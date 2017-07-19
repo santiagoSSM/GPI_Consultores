@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GPI_Consultores.Paginas.Login">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Tareas" Font ="30" HorizontalOptions="Center" VerticalOptions="Center"></Label>
+            <Label Text="Ingreso al Sistema" HorizontalOptions="Center" VerticalOptions="Center"></Label>
+            <ActivityIndicator x:Name="waitActiviyIndicador"></ActivityIndicator>
+            <Label Text="Usuario" HorizontalOptions="Start" VerticalOptions="Center"></Label>
+            <Entry x:Name="userLogin" Placeholder="Ingrese Usuario" HorizontalOptions="FillAndExpand" VerticalOptions="Center"></Entry>
+            <Label Text="Clave"  HorizontalOptions="Start" VerticalOptions="Center"></Label>
+            <Entry x:Name="userPass" Placeholder="Ingrese Contraseña" IsPassword="True" HorizontalOptions="FillAndExpand" VerticalOptions="Center"></Entry>
+            <Button x:Name="enterButton" Text="Ingresar" BackgroundColor="Navy" TextColor="White" HorizontalOptions="FillAndExpand" VerticalOptions="Center"></Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
