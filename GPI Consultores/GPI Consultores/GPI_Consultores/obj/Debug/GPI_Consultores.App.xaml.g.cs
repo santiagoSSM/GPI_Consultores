@@ -11,8 +11,8 @@
 namespace GPI_Consultores {
     
     
-    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("C:\\Users\\Google Drive\\PC1\\Desktop\\GPI Consultores\\GPI Consultores\\GPI_Consultores" +
-        "\\App.xaml")]
+    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("C:\\Users\\Usuario\\GitHub\\GPI_Consultores\\GPI Consultores\\GPI Consultores\\GPI_Consu" +
+        "ltores\\App.xaml")]
     public partial class App : global::Xamarin.Forms.Application {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "0.0.0.0")]
