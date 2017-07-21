@@ -31,6 +31,11 @@ namespace GPI_Consultores
                         Title = "About",
                         Icon = Device.OnPlatform("tab_about.png",null,null)
                     },
+                    new NavigationPage(new LoginPage())
+                    {
+                        Title = "Login",
+                        Icon = Device.OnPlatform("tab_about.png",null,null)
+                    },
                 }
             };
         }
