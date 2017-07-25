@@ -10,15 +10,6 @@
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
-*.vs/
-*.git/
-GPI_Consultores.sln
-*.Android/
-*.iOS/
-*UWP/
-
-
-
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/
