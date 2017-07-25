@@ -9,26 +9,29 @@ namespace GPI_Consultores.Views
 {
     public partial class LoginPage : ContentPage
     {
-        public User User { get; set; }
-        public LoginViewModel LoginViewModel { get; set; }
+        public User userLog { get; set; }
+        public LoginViewModel loginViewModel { get; set; }
 
         public LoginPage()
         {
             InitializeComponent();
 
-            User = new User { };
-            LoginViewModel = new LoginViewModel
+            userLog = new User { UserId = "user", UserPassword = "pass" };
+
+            loginViewModel = new LoginViewModel
             {
-                User = this.User
+                user = userLog
             };
 
             BindingContext = this;
 
-            InitializeComponent();
+            //InitializeComponent();
         }
 
-        private async void enterButton_Clicked(object sender, EventArgs e)
+        private async void EnterButton_Clicked(object sender, EventArgs e)
         {
+            
+
             if (string.IsNullOrEmpty(userLogin.Text))
             {
                 await DisplayAlert("Error", "Debe ingresar un Usuario", "Aceptar");
@@ -43,9 +46,26 @@ namespace GPI_Consultores.Views
                 return;
             }
 
-            if (LoginViewModel.logear())
+            if (loginViewModel.Login())
             {
-                await DisplayAlert("Iniciar", "Usuario y contraseña correctos", "Aceptar");
+                await Navigation.PushModalAsync(
+                    new TabbedPage
+                    {
+                        Children =
+                        {
+                            new NavigationPage(new ItemsPage())
+                            {
+                                Title = "Browse",
+                                Icon = Device.OnPlatform("tab_feed.png",null,null)
+                            },
+                            new NavigationPage(new AboutPage())
+                            {
+                                Title = "About",
+                                Icon = Device.OnPlatform("tab_about.png",null,null)
+                            },
+                        }
+                    },
+                 true);
             }
             else
             {

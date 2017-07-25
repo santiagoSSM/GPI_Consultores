@@ -9,14 +9,14 @@ namespace GPI_Consultores.ViewModels
 {
     public class LoginViewModel
     {
-        public User User { get; set; }
+        public User user { get; set; }
 
         public LoginViewModel()
         { }
 
-        public bool validarUsuario()
+        public bool ValidateUserId()
         {
-            if (this.User.Usuario == "user") //remplazar user por el de la base de datos
+            if (this.user.UserId == "user") //remplazar user por el de la base de datos
             {
                 return true;
             }
@@ -26,9 +26,9 @@ namespace GPI_Consultores.ViewModels
             }
         }
 
-        public bool validarContrasenia()
+        public bool PasswordValidate()
         {
-            if (this.User.Contrasenia == "contraseña") //remplazar contraseña por el de la base de datos
+            if (this.user.UserPassword == "pass") //remplazar contraseña por el de la base de datos
             {
                 return true;
             }
@@ -38,9 +38,9 @@ namespace GPI_Consultores.ViewModels
             }
         }
 
-        public bool logear()
+        public bool Login()
         {
-            if(validarUsuario() && validarContrasenia())
+            if(ValidateUserId() && PasswordValidate())
             {
                 return true;
             }

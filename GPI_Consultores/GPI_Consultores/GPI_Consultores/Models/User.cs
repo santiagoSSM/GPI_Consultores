@@ -2,18 +2,18 @@
 {
     public class User : BaseDataObject
     {
-        string usuario = string.Empty;
-        public string Usuario
+        string userId = string.Empty;
+        public string UserId
         {
-            get { return usuario; }
-            set { SetProperty(ref usuario, value); }
+            get { return userId; }
+            set { SetProperty(ref userId, value); }
         }
 
-        string contrasenia = string.Empty;
-        public string Contrasenia
+        string userPassword = string.Empty;
+        public string UserPassword
         {
-            get { return contrasenia; }
-            set { SetProperty(ref contrasenia, value); }
+            get { return userPassword; }
+            set { SetProperty(ref userPassword, value); }
         }
     }
 }
