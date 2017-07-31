@@ -9,23 +9,25 @@ namespace GPI_Consultores.Views
 {
     public partial class LoginPage : ContentPage
     {
-        public User userLog { get; set; }
+        public User user { get; set; }
         public LoginViewModel loginViewModel { get; set; }
 
         public LoginPage()
         {
             InitializeComponent();
 
-            userLog = new User { UserId = "user", UserPassword = "pass" };
+            user = new User
+            {
+                UserId = "",
+                UserPassword = ""
+            };
 
             loginViewModel = new LoginViewModel
             {
-                user = userLog
+                user = this.user
             };
 
             BindingContext = this;
-
-            //InitializeComponent();
         }
 
         private async void EnterButton_Clicked(object sender, EventArgs e)
