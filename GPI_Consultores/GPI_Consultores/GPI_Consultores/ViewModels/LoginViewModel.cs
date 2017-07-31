@@ -12,7 +12,9 @@ namespace GPI_Consultores.ViewModels
         public User user { get; set; }
 
         public LoginViewModel()
-        { }
+        {
+            user = new User();
+        }
 
         public bool ValidateUserId()
         {
