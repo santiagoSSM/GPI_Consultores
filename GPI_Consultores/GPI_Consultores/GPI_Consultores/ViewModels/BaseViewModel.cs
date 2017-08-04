@@ -1,24 +1,10 @@
 ﻿using GPI_Consultores.Helpers;
 using GPI_Consultores.Models;
-using GPI_Consultores.Services;
-
-using Xamarin.Forms;
 
 namespace GPI_Consultores.ViewModels
 {
     public class BaseViewModel : ObservableObject
     {
-        /// <summary>
-        /// Get the azure service instance
-        /// </summary>
-        public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
-
-        bool isBusy = false;
-        public bool IsBusy
-        {
-            get { return isBusy; }
-            set { SetProperty(ref isBusy, value); }
-        }
         /// <summary>
         /// Private backing field to hold the title
         /// </summary>
@@ -33,4 +19,3 @@ namespace GPI_Consultores.ViewModels
         }
     }
 }
-
