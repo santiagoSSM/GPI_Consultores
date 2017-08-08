@@ -13,11 +13,13 @@ namespace GPI_Consultores
             InitializeComponent();
 
             SetMainPage();
+
+           // MainPage = new LoginPage();
         }
 
         public static void SetMainPage()
         {
-            Current.MainPage = new NavigationPage(new LoginPage());
+            Current.MainPage = new NavigationPage(new MasterPageApp());
         }
     }
 }

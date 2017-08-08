@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GPI_Consultores.Views.MasterPageApp">
+    <MasterDetailPage.Master>
+        <ContentPage Title="Menú Principal" Icon="">
+
+            <ListView x:Name="ListMenu">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell Text="{Binding MenuTitle}" Detail="{Binding MenúDetail}"></TextCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </ContentPage>
+    </MasterDetailPage.Master>
+</MasterDetailPage>
