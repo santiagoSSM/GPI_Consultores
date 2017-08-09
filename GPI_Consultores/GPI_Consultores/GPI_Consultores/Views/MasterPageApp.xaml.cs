@@ -22,7 +22,7 @@ namespace GPI_Consultores.Views
         void Init ()
         {
        
-            Detail = new NavigationPage(new LoginPage());
+            Detail = new NavigationPage(new ItemsPage());
         }
 	}
 }

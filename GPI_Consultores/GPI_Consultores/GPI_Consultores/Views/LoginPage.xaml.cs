@@ -14,7 +14,11 @@ namespace GPI_Consultores.Views
         public LoginPage()
         {
             InitializeComponent();
+            Init();
+        }
 
+        private void Init()
+        {
             BindingContext = loginViewModel = new LoginViewModel();
         }
 
@@ -39,7 +43,8 @@ namespace GPI_Consultores.Views
             if (loginViewModel.Login())
             {
                 await Navigation.PushModalAsync(
-                    new TabbedPage
+                    new MasterPageApp(),
+                    /*new TabbedPage
                     {
                         Children =
                         {
@@ -48,13 +53,13 @@ namespace GPI_Consultores.Views
                                 Title = "Browse",
                                 Icon = Device.OnPlatform("tab_feed.png",null,null)
                             },
-                            /*new NavigationPage(new AboutPage())
+                            new NavigationPage(new AboutPage())
                             {
                                 Title = "About",
                                 Icon = Device.OnPlatform("tab_about.png",null,null)
-                            },*/
+                            },
                         }
-                    },
+                    },*/
                  true);
             }
             else
