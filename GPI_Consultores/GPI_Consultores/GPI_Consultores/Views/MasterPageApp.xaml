@@ -5,10 +5,10 @@
     <MasterDetailPage.Master>
         <ContentPage Title="Menú Principal" Icon="">
 
-            <ListView x:Name="ListMenu">
+            <ListView x:Name="ListMenu" ItemSelected="ListMenu_ItemSelected">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <TextCell Text="{Binding MenuTitle}" Detail="{Binding MenúDetail}"></TextCell>
+                        <TextCell Text="{Binding MenuTitle}" Detail="{Binding MenuDetail}"></TextCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
