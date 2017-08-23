@@ -1,50 +1,48 @@
-﻿using GPI_Consultores.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using GPI_Consultores.AzureDataBase;
+using GPI_Consultores.Models;
 
 namespace GPI_Consultores.ViewModels
 {
     public class LoginViewModel
     {
         public User user { get; set; }
+        private LoginDB loginDB;
 
         public LoginViewModel()
         {
             user = new User();
+            loginDB = new LoginDB();
         }
 
-        public bool ValidateUserId()
+        private bool LoadUser()
         {
-            if (this.user.UserId == "user") //remplazar user por el de la base de datos
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            loginDB.SearchUser(user.UserId, user.UserPassword);
+            return loginDB.ExistUser();
         }
 
-        public bool PasswordValidate()
+        public bool CompareUser()
         {
-            if (this.user.UserPassword == "pass") //remplazar contraseña por el de la base de datos
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return loginDB.GetUser().UserId == user.UserId;
+        }
+
+        public bool ComparePass()
+        {
+            return loginDB.GetUser().UserPassword == user.UserPassword;
         }
 
         public bool Login()
         {
-            if(ValidateUserId() && PasswordValidate())
+            if (LoadUser())
             {
-                return true;
+                if (CompareUser() && ComparePass())
+                {
+                    user = loginDB.GetUser();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
             else
             {

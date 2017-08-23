@@ -17,7 +17,7 @@ namespace GPI_Consultores
 
         public static void SetMainPage()
         {
-            Current.MainPage = new NavigationPage(new LoginPage());
+            Current.MainPage = new LoginPage();
         }
     }
 }
