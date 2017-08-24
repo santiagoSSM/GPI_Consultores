@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Xamarin.Forms;
 
-namespace GPI_Consultores.Models
+namespace GPI_Consultores.Helpers
 {
     public class Intent
     {

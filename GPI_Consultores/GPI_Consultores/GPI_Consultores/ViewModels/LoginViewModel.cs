@@ -1,4 +1,4 @@
-﻿using GPI_Consultores.AzureDataBase;
+﻿using GPI_Consultores.WebService;
 using GPI_Consultores.Models;
 
 namespace GPI_Consultores.ViewModels
@@ -6,28 +6,28 @@ namespace GPI_Consultores.ViewModels
     public class LoginViewModel
     {
         public User user { get; set; }
-        private LoginDB loginDB;
+        private LoginWS loginWS;
 
         public LoginViewModel()
         {
             user = new User();
-            loginDB = new LoginDB();
+            loginWS = new LoginWS();
         }
 
         private bool LoadUser()
         {
-            loginDB.SearchUser(user.UserId, user.UserPassword);
-            return loginDB.ExistUser();
+            loginWS.SearchUser(user.UserId, user.UserPassword);
+            return loginWS.ExistUser();
         }
 
         public bool CompareUser()
         {
-            return loginDB.GetUser().UserId == user.UserId;
+            return loginWS.GetUser().UserId == user.UserId;
         }
 
         public bool ComparePass()
         {
-            return loginDB.GetUser().UserPassword == user.UserPassword;
+            return loginWS.GetUser().UserPassword == user.UserPassword;
         }
 
         public bool Login()
@@ -36,7 +36,7 @@ namespace GPI_Consultores.ViewModels
             {
                 if (CompareUser() && ComparePass())
                 {
-                    user = loginDB.GetUser();
+                    user = loginWS.GetUser();
                     return true;
                 }
                 else

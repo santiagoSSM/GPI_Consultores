@@ -38,7 +38,8 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AzureDataBase\LoginDB.cs" />
+    <Compile Include="Helpers\ILoginManager.cs" />
+    <Compile Include="WebService\LoginWS.cs" />
     <Compile Include="Helpers\Intent.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Helpers\ObservableObject.cs" />
@@ -87,7 +88,9 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="SQLite\" />
+  </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\MasterPageApp.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>

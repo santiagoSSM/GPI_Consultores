@@ -1,14 +1,14 @@
 ﻿using GPI_Consultores.Models;
 
-namespace GPI_Consultores.AzureDataBase
+namespace GPI_Consultores.WebService
 {
-    class LoginDB
+    class LoginWS
     {
-        public User userDB;
+        public User userWS;
 
-        public LoginDB()
+        public LoginWS()
         {
-            userDB = new User
+            userWS = new User
             {
                 UserId = "",
                 UserPassword = ""
@@ -22,19 +22,19 @@ namespace GPI_Consultores.AzureDataBase
 
         public void SearchUser(string userID, string passID)
         {
-            //usar la base de datos de asure
-            userDB.UserId = "user";
-            userDB.UserPassword = "pass";
+            //usar el web service para conectar
+            userWS.UserId = "user";
+            userWS.UserPassword = "pass";
         }
 
         public bool ExistUser()
         {
-            return userDB.UserId != null && userDB.UserPassword != null;
+            return userWS.UserId != null && userWS.UserPassword != null;
         }
 
         public User GetUser()
         {
-            return userDB;
+            return userWS;
         }
     }
 }

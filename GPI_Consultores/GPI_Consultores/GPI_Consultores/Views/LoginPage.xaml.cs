@@ -4,15 +4,18 @@ using GPI_Consultores.Models;
 using GPI_Consultores.ViewModels;
 
 using Xamarin.Forms;
+using GPI_Consultores.Helpers;
 
 namespace GPI_Consultores.Views
 {
     public partial class LoginPage : ContentPage
     {
         public LoginViewModel loginViewModel { get; set; }
+        ILoginManager inter;
 
-        public LoginPage()
+        public LoginPage(ILoginManager inter)
         {
+            this.inter = inter;
             InitializeComponent();
             Init();
         }
@@ -42,8 +45,12 @@ namespace GPI_Consultores.Views
 
             if (loginViewModel.Login())
             {
-                await Navigation.PushModalAsync(
+                inter.ShowMainPage();
+
+                /*await Navigation.PushModalAsync(
                     new MasterPageApp(),
+                    
+                    
                     /*new TabbedPage
                     {
                         Children =
@@ -59,8 +66,8 @@ namespace GPI_Consultores.Views
                                 Icon = Device.OnPlatform("tab_about.png",null,null)
                             },
                         }
-                    },*/
-                 true);
+                    },
+                 true);*/
             }
             else
             {

@@ -1,23 +1,34 @@
-﻿using GPI_Consultores.Views;
-
+﻿using GPI_Consultores.Helpers;
+using GPI_Consultores.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace GPI_Consultores
 {
-    public partial class App : Application
+    public partial class App : Application, ILoginManager
     {
+
         public App()
         {
             InitializeComponent();
-
-            SetMainPage();
+            SetLoginPage();
         }
 
-        public static void SetMainPage()
+        public void SetLoginPage()
         {
-            Current.MainPage = new LoginPage();
+            Current.MainPage = new LoginPage(this);
+        }
+
+        public void ShowMainPage()
+        {
+            Current.MainPage = new MasterPageApp();
+        }
+
+        public void Logout()
+        {
+            //Properties["IsLoggedIn"] = false; // usar propiedad para definir que no esta logeado desde sqlite
+            Current.MainPage = new LoginPage(this);
         }
     }
 }
