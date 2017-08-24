@@ -46,28 +46,6 @@ namespace GPI_Consultores.Views
             if (loginViewModel.Login())
             {
                 inter.ShowMainPage();
-
-                /*await Navigation.PushModalAsync(
-                    new MasterPageApp(),
-                    
-                    
-                    /*new TabbedPage
-                    {
-                        Children =
-                        {
-                            new NavigationPage(new ItemsPage())
-                            {
-                                Title = "Browse",
-                                Icon = Device.OnPlatform("tab_feed.png",null,null)
-                            },
-                            new NavigationPage(new AboutPage())
-                            {
-                                Title = "About",
-                                Icon = Device.OnPlatform("tab_about.png",null,null)
-                            },
-                        }
-                    },
-                 true);*/
             }
             else
             {
