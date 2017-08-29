@@ -25,7 +25,7 @@ namespace GPI_Consultores.Views
             List<Menu> menu = new List<Menu>()
             {
                 new Menu { MenuTitle = "Inicio", MenuDetail = "Regresa a la Pagina Principal"},
-                new Menu { MenuTitle = "Opciones", MenuDetail = "Navegar"}
+                new Menu { MenuTitle = "Crear Nueva Tarea", MenuDetail = "Nueva Tarea"}
             };
 
             ListMenu.ItemsSource = menu;
@@ -41,6 +41,7 @@ namespace GPI_Consultores.Views
             });
        
             Detail = new NavigationPage(new ItemsPage());
+            Detail = new NavigationPage(new AgregarTarea());
         }
 
         private void ListMenu_ItemSelected(object sender, SelectedItemChangedEventArgs e)
@@ -51,9 +52,9 @@ namespace GPI_Consultores.Views
                 if (menu.MenuTitle.Equals("Inicio"))
                 {
                     Detail = new NavigationPage( new ItemsPage());
-                }else if (menu.MenuTitle.Equals("Opciones"))
+                }else if (menu.MenuTitle.Equals("Crear Nueva Tarea"))
                 {
-                    Detail = new NavigationPage(new ItemsPage());
+                    Detail = new NavigationPage(new AgregarTarea());
                 }
             }
         }
