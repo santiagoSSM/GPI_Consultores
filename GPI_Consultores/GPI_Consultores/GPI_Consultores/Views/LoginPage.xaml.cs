@@ -52,5 +52,7 @@ namespace GPI_Consultores.Views
                 await DisplayAlert("Error", "Usuario y contraseña incorrectos", "Aceptar");
             }
         }
+
+        
     }
 }

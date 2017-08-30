@@ -25,7 +25,13 @@ namespace GPI_Consultores
         private void categoryPicker_SelectedIndexChanged(object sender, EventArgs e)
         {
             var name = categoryPicker.Items[categoryPicker.SelectedIndex];
-            DisplayAlert(name, "Select Value", "Ok");
+            DisplayAlert(name, "Selecciona una Opción", "Ok");
         }
+
+        private void Switch_Toggled(object sender, ToggledEventArgs e)
+        {
+            bool isToggle = e.Value;
+            reqApproval.Text = isToggle.ToString();
+;        }
     }
 }
