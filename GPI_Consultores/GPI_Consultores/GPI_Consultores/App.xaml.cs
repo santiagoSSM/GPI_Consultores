@@ -12,7 +12,8 @@ namespace GPI_Consultores
         public App()
         {
             InitializeComponent();
-            SetLoginPage();
+            //SetLoginPage();
+            ShowMainPage();
         }
 
         public void SetLoginPage()
@@ -22,13 +23,13 @@ namespace GPI_Consultores
 
         public void ShowMainPage()
         {
-            Current.MainPage = new MasterPageApp();
+            Current.MainPage = new Master_MainPage();
         }
 
         public void Logout()
         {
             //Properties["IsLoggedIn"] = false; // usar propiedad para definir que no esta logeado desde sqlite
-            Current.MainPage = new LoginPage(this);
+            SetLoginPage();
         }
     }
 }

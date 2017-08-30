@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GPI_Consultores.NewWorkPage">
+    <ScrollView>
+        <StackLayout Padding="10,30,10,10" Spacing="10">
+            <Label x:Name="l1" Font="30" HorizontalOptions="Center" VerticalOptions="Center"></Label>
+            <Label x:Name="l2" Text="Ingresar Nueva Tarea" Font="30" HorizontalOptions="Center" VerticalOptions="Center"></Label>
+
+            <StackLayout Orientation="Vertical">
+                <Label Text="Responsable" HorizontalOptions="Start" VerticalOptions="Center"></Label>
+                <Entry x:Name="userResp" Placeholder="Responsables" HorizontalOptions="FillAndExpand" VerticalOptions="Center"></Entry>
+            </StackLayout>
+
+            <StackLayout Orientation="Vertical">
+                <Label Text="Copiados" HorizontalOptions="Start" VerticalOptions="Center"></Label>
+                <Entry x:Name="userCopy" Placeholder="Copiados" HorizontalOptions="FillAndExpand" VerticalOptions="Center"></Entry>
+            </StackLayout>
+
+            <StackLayout Orientation="Vertical">
+                <Label Text="Categoría" HorizontalOptions="Start" VerticalOptions="Center"></Label>
+                <Picker x:Name="categoryPicker" SelectedIndexChanged="categoryPicker_SelectedIndexChanged"></Picker>
+            </StackLayout>
+
+            <StackLayout Orientation="Vertical">
+                <Label Text="Requiere Aprobación" HorizontalOptions="Start" VerticalOptions="Center"></Label>
+
+                <StackLayout Orientation="Horizontal">
+                    <Label x:Name="reqApproval" HorizontalOptions="Start" TextColor="Green" Text="No requiere"></Label>
+                    <Switch HorizontalOptions="Fill" x:Name="approvalSwitch" Toggled="Switch_Toggled"></Switch>
+                </StackLayout>
+
+            </StackLayout>
+
+            <StackLayout Orientation="Vertical">
+
+            </StackLayout>
+
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

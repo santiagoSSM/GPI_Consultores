@@ -10,16 +10,15 @@ using Xamarin.Forms.Xaml;
 namespace GPI_Consultores
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class AgregarTarea : ContentPage
+    public partial class NewWorkPage : ContentPage
     {
-        public AgregarTarea()
+        public NewWorkPage()
         {
             InitializeComponent();
             categoryPicker.Items.Add("Hola");
             categoryPicker.Items.Add("Hola");
             categoryPicker.Items.Add("Hola");
             categoryPicker.Items.Add("Hola");
-
         }
 
         private void categoryPicker_SelectedIndexChanged(object sender, EventArgs e)
@@ -30,8 +29,14 @@ namespace GPI_Consultores
 
         private void Switch_Toggled(object sender, ToggledEventArgs e)
         {
-            bool isToggle = e.Value;
-            reqApproval.Text = isToggle.ToString();
-;        }
+            if (e.Value)
+            {
+                reqApproval.Text = "Requiere";
+            }
+            else
+            {
+                reqApproval.Text = "No requiere";
+            }
+        }
     }
 }
