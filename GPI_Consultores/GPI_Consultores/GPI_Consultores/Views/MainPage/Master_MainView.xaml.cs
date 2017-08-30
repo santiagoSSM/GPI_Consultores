@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace GPI_Consultores.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class Master_MainPage : MasterDetailPage
+	public partial class Master_MainView : MasterDetailPage
 	{
-		public Master_MainPage ()
+		public Master_MainView ()
 		{
 			InitializeComponent ();
             Init();
@@ -40,8 +40,8 @@ namespace GPI_Consultores.Views
 
             });
        
-            Detail = new NavigationPage(new MainPage());
-            Detail = new NavigationPage(new NewWorkPage());
+            Detail = new NavigationPage(new MainView());
+            Detail = new NavigationPage(new NewWorkView());
         }
 
         private void ListMenu_ItemSelected(object sender, SelectedItemChangedEventArgs e)
@@ -51,10 +51,10 @@ namespace GPI_Consultores.Views
             {
                 if (menu.MenuTitle.Equals("Inicio"))
                 {
-                    Detail = new NavigationPage( new MainPage());
+                    Detail = new NavigationPage( new MainView());
                 }else if (menu.MenuTitle.Equals("Crear Nueva Tarea"))
                 {
-                    Detail = new NavigationPage(new NewWorkPage());
+                    Detail = new NavigationPage(new NewWorkView());
                 }
             }
         }

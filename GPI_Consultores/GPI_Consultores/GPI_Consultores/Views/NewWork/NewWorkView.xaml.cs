@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace GPI_Consultores
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class NewWorkPage : ContentPage
+    public partial class NewWorkView : ContentPage
     {
-        public NewWorkPage()
+        public NewWorkView()
         {
             InitializeComponent();
             categoryPicker.Items.Add("Hola");

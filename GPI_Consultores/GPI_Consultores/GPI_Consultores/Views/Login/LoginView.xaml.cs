@@ -8,12 +8,12 @@ using GPI_Consultores.Helpers;
 
 namespace GPI_Consultores.Views
 {
-    public partial class LoginPage : ContentPage
+    public partial class LoginView : ContentPage
     {
         public LoginViewModel loginViewModel { get; set; }
         ILoginManager inter;
 
-        public LoginPage(ILoginManager inter)
+        public LoginView(ILoginManager inter)
         {
             this.inter = inter;
             InitializeComponent();

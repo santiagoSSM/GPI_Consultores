@@ -18,12 +18,12 @@ namespace GPI_Consultores
 
         public void SetLoginPage()
         {
-            Current.MainPage = new LoginPage(this);
+            Current.MainPage = new LoginView(this);
         }
 
         public void ShowMainPage()
         {
-            Current.MainPage = new Master_MainPage();
+            Current.MainPage = new Master_MainView();
         }
 
         public void Logout()

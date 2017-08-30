@@ -35,8 +35,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Views\NewWork\NewWorkPage.xaml.cs">
-      <DependentUpon>NewWorkPage.xaml</DependentUpon>
+    <Compile Include="Views\NewWork\NewWorkView.xaml.cs">
+      <DependentUpon>NewWorkView.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
@@ -51,14 +51,14 @@
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\ItemsViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
-    <Compile Include="Views\MainPage\MainPage.xaml.cs">
-      <DependentUpon>MainPage.xaml</DependentUpon>
+    <Compile Include="Views\MainPage\MainView.xaml.cs">
+      <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Login\LoginPage.xaml.cs">
-      <DependentUpon>LoginPage.xaml</DependentUpon>
+    <Compile Include="Views\Login\LoginView.xaml.cs">
+      <DependentUpon>LoginView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\MainPage\Master_MainPage.xaml.cs">
-      <DependentUpon>Master_MainPage.xaml</DependentUpon>
+    <Compile Include="Views\MainPage\Master_MainView.xaml.cs">
+      <DependentUpon>Master_MainView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -66,7 +66,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\MainPage\MainPage.xaml">
+    <EmbeddedResource Include="Views\MainPage\MainView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -86,7 +86,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\Login\LoginPage.xaml">
+    <EmbeddedResource Include="Views\Login\LoginView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -95,13 +95,13 @@
     <Folder Include="SQLite\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\MainPage\Master_MainPage.xaml">
+    <EmbeddedResource Include="Views\MainPage\Master_MainView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\NewWork\NewWorkPage.xaml">
+    <EmbeddedResource Include="Views\NewWork\NewWorkView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

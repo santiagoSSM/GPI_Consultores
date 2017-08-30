@@ -7,11 +7,11 @@ using Xamarin.Forms;
 
 namespace GPI_Consultores.Views
 {
-    public partial class MainPage : ContentPage
+    public partial class MainView : ContentPage
     {
         ItemsViewModel viewModel;
 
-        public MainPage()
+        public MainView()
         {
             InitializeComponent();
 
