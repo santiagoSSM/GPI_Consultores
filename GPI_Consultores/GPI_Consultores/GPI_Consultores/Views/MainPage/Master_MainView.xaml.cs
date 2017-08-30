@@ -41,7 +41,7 @@ namespace GPI_Consultores.Views
             });
        
             Detail = new NavigationPage(new MainView());
-            Detail = new NavigationPage(new NewWorkView());
+            Detail = new NavigationPage(new NewTaskView());
         }
 
         private void ListMenu_ItemSelected(object sender, SelectedItemChangedEventArgs e)
@@ -54,7 +54,7 @@ namespace GPI_Consultores.Views
                     Detail = new NavigationPage( new MainView());
                 }else if (menu.MenuTitle.Equals("Crear Nueva Tarea"))
                 {
-                    Detail = new NavigationPage(new NewWorkView());
+                    Detail = new NavigationPage(new NewTaskView());
                 }
             }
         }

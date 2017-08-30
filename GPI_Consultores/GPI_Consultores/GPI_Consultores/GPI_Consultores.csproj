@@ -35,8 +35,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Views\NewTask\NewTask.xaml.cs">
-      <DependentUpon>NewTask.xaml</DependentUpon>
+    <Compile Include="Views\NewTask\NewTaskView.xaml.cs">
+      <DependentUpon>NewTaskView.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
@@ -101,7 +101,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\NewTask\NewTask.xaml">
+    <EmbeddedResource Include="Views\NewTask\NewTaskView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
