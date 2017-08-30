@@ -33,6 +33,35 @@
             </StackLayout>
 
             <StackLayout Orientation="Vertical">
+                <Label Text="Prioridad" HorizontalOptions="Start" VerticalOptions="Center"></Label>
+                <Picker x:Name="priority" SelectedIndexChanged="priority_SelectedIndexChanged"></Picker>
+            </StackLayout>
+
+            <StackLayout Orientation="Vertical">
+                <Label Text="Recurrencia" HorizontalOptions="Start" VerticalOptions="Center"></Label>
+                <Picker x:Name="recurrence" SelectedIndexChanged="recurrence_SelectedIndexChanged"></Picker>
+            </StackLayout>
+
+            <StackLayout Orientation="Vertical">
+                <Label Text="Días de Preaviso" HorizontalOptions="Start" VerticalOptions="Center"></Label>
+                <Picker x:Name="beforeDays" SelectedIndexChanged="beforeDays_SelectedIndexChanged"></Picker>
+            </StackLayout>
+
+            <StackLayout Orientation="Vertical">
+                <Label Text="Cancelar Recurrencia" HorizontalOptions="Start" VerticalOptions="Center"></Label>
+                <StackLayout Orientation="Horizontal">
+                    <Label x:Name="cancelRecurrence" HorizontalOptions="Start" TextColor="Green" Text="No cancela Recurrencia"></Label>
+                    <Switch HorizontalOptions="Fill" x:Name="cancelRecuSwitch" Toggled="cancelRecuSwitch_Toggled"></Switch>
+                </StackLayout>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Fecha Final: " VerticalOptions="Center"></Label>
+                <DatePicker x:Name="fechaContratacionDatePicker"></DatePicker>
+            </StackLayout>
+
+
+            <StackLayout Orientation="Vertical">
 
             </StackLayout>
 
