@@ -33,7 +33,10 @@ namespace GPI_Consultores
             beforeDays.Items.Add("10 días");
             beforeDays.Items.Add("15 días");
 
-            //finalAfterOf.Items.Add("4 recurrencias");
+           AfterDayOfPicker.Items.Add("4 recurrencias");
+           AfterDayOfPicker.Items.Add("4 recurrencias");
+           AfterDayOfPicker.Items.Add("4 recurrencias");
+
             //finalAfterOf.Items.Add("8 recurrencias");
             //finalAfterOf.Items.Add("12 recurrencias");
 
@@ -101,7 +104,16 @@ namespace GPI_Consultores
             }
         }
 
-       
+        private void AfterDayOfSwitch_Toggled(object sender, ToggledEventArgs e)
+        {
+
+        }
+
+        private void AfterDayOfPicker_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var name = AfterDayOfPicker.Items[AfterDayOfPicker.SelectedIndex];
+            DisplayAlert(name, "Ha sido seleccionada exitosamente", "Ok");
+        }
     }
 
 }

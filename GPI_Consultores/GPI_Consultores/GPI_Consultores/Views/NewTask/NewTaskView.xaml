@@ -65,6 +65,23 @@
                     <Label x:Name="finalDate" HorizontalOptions="Fill" TextColor="Green" Text="Sin Fecha de Finalización"></Label>
                 </StackLayout>
             </StackLayout>
+
+            <StackLayout Orientation="Vertical">
+                <StackLayout Orientation="Horizontal">
+                    <Switch HorizontalOptions="Start" x:Name="AfterDayOfSwitch" Toggled="AfterDayOfSwitch_Toggled"></Switch>
+                    <Label x:Name="AfterDayOf" HorizontalOptions="Fill" TextColor="Green" Text="Finaliza Después de: "></Label>
+                </StackLayout>
+                <Picker x:Name="AfterDayOfPicker" HorizontalOptions="Fill" SelectedIndexChanged="AfterDayOfPicker_SelectedIndexChanged"></Picker>
+            </StackLayout>
+            
+            <StackLayout Orientation="Vertical">
+                <StackLayout Orientation="Horizontal">
+                    <Switch HorizontalOptions="Start" x:Name="AfterDayOfSwitch" Toggled="AfterDayOfSwitch_Toggled"></Switch>
+                    <Label x:Name="AfterDayOf" HorizontalOptions="Fill" TextColor="Green" Text="Finaliza Después de: "></Label>
+                </StackLayout>
+                <Picker x:Name="AfterDayOfPicker" HorizontalOptions="Fill" SelectedIndexChanged="AfterDayOfPicker_SelectedIndexChanged"></Picker>
+            </StackLayout>
+
             <StackLayout>
                 <DatePicker x:Name="fechaContratacionDatePicker"></DatePicker>
             </StackLayout>
