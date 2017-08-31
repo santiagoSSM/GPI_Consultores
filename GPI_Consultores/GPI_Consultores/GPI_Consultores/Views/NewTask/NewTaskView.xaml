@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="GPI_Consultores.NewTaskView">
     <ScrollView>
-        <StackLayout Padding="10,30,10,10" Spacing="10">
+        <StackLayout Padding="10,15,10,10" Spacing="10">
             <Label x:Name="l1" Font="30" HorizontalOptions="Center" VerticalOptions="Center"></Label>
             <Label x:Name="l2" Text="Ingresar Nueva Tarea" Font="30" HorizontalOptions="Center" VerticalOptions="Center"></Label>
 
@@ -73,23 +73,22 @@
                 </StackLayout>
                 <Picker x:Name="AfterDayOfPicker" HorizontalOptions="Fill" SelectedIndexChanged="AfterDayOfPicker_SelectedIndexChanged"></Picker>
             </StackLayout>
-            
+
             <StackLayout Orientation="Vertical">
                 <StackLayout Orientation="Horizontal">
-                    <Switch HorizontalOptions="Start" x:Name="AfterDayOfSwitch" Toggled="AfterDayOfSwitch_Toggled"></Switch>
-                    <Label x:Name="AfterDayOf" HorizontalOptions="Fill" TextColor="Green" Text="Finaliza Después de: "></Label>
+                    <Switch HorizontalOptions="Start" x:Name="FinalSwitch" Toggled="FinalSwitch_Toggled"></Switch>
+                    <Label x:Name="final" HorizontalOptions="Fill" TextColor="Green" Text="Finaliza el: "></Label>
                 </StackLayout>
-                <Picker x:Name="AfterDayOfPicker" HorizontalOptions="Fill" SelectedIndexChanged="AfterDayOfPicker_SelectedIndexChanged"></Picker>
+                <DatePicker x:Name="finalDatePicker"></DatePicker>
             </StackLayout>
 
             <StackLayout>
-                <DatePicker x:Name="fechaContratacionDatePicker"></DatePicker>
+                   <Button x:Name="SaveButton" Text="Guardar" BackgroundColor="Navy" TextColor="White" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Clicked="SaveButton_Clicked"></Button>
             </StackLayout>
-           
 
-              
+            <StackLayout>
 
-
+            </StackLayout>
         </StackLayout>
     </ScrollView>
 </ContentPage>

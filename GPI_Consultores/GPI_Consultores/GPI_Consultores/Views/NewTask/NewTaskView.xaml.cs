@@ -114,6 +114,16 @@ namespace GPI_Consultores
             var name = AfterDayOfPicker.Items[AfterDayOfPicker.SelectedIndex];
             DisplayAlert(name, "Ha sido seleccionada exitosamente", "Ok");
         }
+
+        private void FinalSwitch_Toggled(object sender, ToggledEventArgs e)
+        {
+
+        }
+
+        private void SaveButton_Clicked(object sender, EventArgs e)
+        {
+
+        }
     }
 
 }
