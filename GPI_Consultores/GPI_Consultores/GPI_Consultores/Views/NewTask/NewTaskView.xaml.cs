@@ -34,8 +34,8 @@ namespace GPI_Consultores
             beforeDays.Items.Add("15 días");
 
            AfterDayOfPicker.Items.Add("4 recurrencias");
-           AfterDayOfPicker.Items.Add("4 recurrencias");
-           AfterDayOfPicker.Items.Add("4 recurrencias");
+           AfterDayOfPicker.Items.Add("8 recurrencias");
+           AfterDayOfPicker.Items.Add("12 recurrencias");
 
             //finalAfterOf.Items.Add("8 recurrencias");
             //finalAfterOf.Items.Add("12 recurrencias");
