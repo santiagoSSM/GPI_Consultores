@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GPI_Consultores.Views.TaskList;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -42,6 +43,8 @@ namespace GPI_Consultores.Views
        
             Detail = new NavigationPage(new MainView());
             Detail = new NavigationPage(new NewTaskView());
+            Detail = new NavigationPage(new TaskListView());
+
         }
 
         private void ListMenu_ItemSelected(object sender, SelectedItemChangedEventArgs e)
@@ -54,7 +57,7 @@ namespace GPI_Consultores.Views
                     Detail = new NavigationPage( new MainView());
                 }else if (menu.MenuTitle.Equals("Crear Nueva Tarea"))
                 {
-                    Detail = new NavigationPage(new NewTaskView());
+                    Detail = new NavigationPage(new TaskListView());
                 }
             }
         }

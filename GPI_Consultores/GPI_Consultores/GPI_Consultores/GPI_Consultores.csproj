@@ -35,6 +35,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Views\Home\HomeView.xaml.cs">
+      <DependentUpon>HomeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ListTask.cs" />
     <Compile Include="Views\NewTask\NewTaskView.xaml.cs">
       <DependentUpon>NewTaskView.xaml</DependentUpon>
     </Compile>
@@ -42,6 +46,10 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Helpers\ILoginManager.cs" />
+    <Compile Include="Views\TaskListViewModel.cs" />
+    <Compile Include="Views\TaskList\TaskListView.xaml.cs">
+      <DependentUpon>TaskListView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WebService\LoginWS.cs" />
     <Compile Include="Helpers\Intent.cs" />
     <Compile Include="Models\User.cs" />
@@ -102,6 +110,18 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\NewTask\NewTaskView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Home\HomeView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\TaskList\TaskListView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
