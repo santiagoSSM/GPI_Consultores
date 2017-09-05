@@ -20,19 +20,19 @@ namespace GPI_Consultores.Views
             {
                 new ListTask
                 {
-                    Title ="Esteban",
+                    Title ="Esteban Arias",
                     IsVisible = false
                 },
 
                  new ListTask
                 {
-                    Title ="Esteban",
+                    Title ="Geovanny Rojas Fhunnez",
                     IsVisible = false
                 },
 
                   new ListTask
                 {
-                    Title ="Esteban",
+                    Title ="Santiago Sánchez Madrigal",
                     IsVisible = false
                 },
 
@@ -65,8 +65,6 @@ namespace GPI_Consultores.Views
 
             _oldListTask = listTask;
         }
-    
-    
 
         private void UpdateListTasks(ListTask listTask)
         {
