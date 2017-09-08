@@ -9,13 +9,13 @@ namespace GPI_Consultores.Views
 {
     public partial class MainView : ContentPage
     {
-        ItemsViewModel viewModel;
+        MainPageViewModel viewModel;
 
         public MainView()
         {
             InitializeComponent();
 
-            BindingContext = viewModel = new ItemsViewModel();
+            BindingContext = viewModel = new MainPageViewModel();
         }
 
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)

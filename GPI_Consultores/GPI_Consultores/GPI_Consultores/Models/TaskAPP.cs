@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace MockWebApi.Models
+namespace GPI_Consultores.Models
 {
-    public class TaskWS
+    class TaskAPP
     {
         int idTask;
         string userResp;

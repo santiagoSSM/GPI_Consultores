@@ -1,48 +1,33 @@
-﻿using GPI_Consultores.WebService;
+﻿using GPI_Consultores.WebApi;
 using GPI_Consultores.Models;
+using System.Threading.Tasks;
 
 namespace GPI_Consultores.ViewModels
 {
     public class LoginViewModel
     {
-        public User user { get; set; }
-        private LoginWS loginWS;
+        public UserAPP user { get; set; }
+        private UserWA userWA;
 
         public LoginViewModel()
         {
-            user = new User();
-            loginWS = new LoginWS();
+            user = new UserAPP();
+            userWA = new UserWA();
         }
 
-        private bool LoadUser()
+        private void LoadUser(UserAPP user)
         {
-            loginWS.SearchUser(user.UserId, user.UserPassword);
-            return loginWS.ExistUser();
+            //Cargar usuario en el intent
         }
 
-        public bool CompareUser()
+        public async Task<bool> Login()
         {
-            return loginWS.GetUser().UserId == user.UserId;
-        }
+            var temp = await userWA.PutLogin(user);
 
-        public bool ComparePass()
-        {
-            return loginWS.GetUser().UserPassword == user.UserPassword;
-        }
-
-        public bool Login()
-        {
-            if (LoadUser())
+            if (temp != null)
             {
-                if (CompareUser() && ComparePass())
-                {
-                    user = loginWS.GetUser();
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                LoadUser(temp);
+                return true;
             }
             else
             {

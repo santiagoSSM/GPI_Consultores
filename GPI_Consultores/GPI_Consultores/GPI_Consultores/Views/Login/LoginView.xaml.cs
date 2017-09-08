@@ -25,34 +25,40 @@ namespace GPI_Consultores.Views
             BindingContext = loginViewModel = new LoginViewModel();
         }
 
-        private async void EnterButton_Clicked(object sender, EventArgs e)
+        private void EnterButton_Clicked(object sender, EventArgs e)
         {
-            
+            Device.BeginInvokeOnMainThread(async () =>
+            {
+                if (string.IsNullOrEmpty(userLogin.Text))
+                {
+                    await DisplayAlert("Error", "Debe ingresar un Usuario", "Aceptar");
+                    userLogin.Focus();
+                    return;
+                }
 
-            if (string.IsNullOrEmpty(userLogin.Text))
-            {
-                await DisplayAlert("Error", "Debe ingresar un Usuario", "Aceptar");
-                userLogin.Focus();
-                return;
-            }
+                if (string.IsNullOrEmpty(userLogin.Text))
+                {
+                    await DisplayAlert("Error", "Debe ingresar una Contraseña", "Aceptar");
+                    userPass.Focus();
+                    return;
+                }
 
-            if (string.IsNullOrEmpty(userLogin.Text))
-            {
-                await DisplayAlert("Error", "Debe ingresar una Contraseña", "Aceptar");
-                userPass.Focus();
-                return;
-            }
-
-            if (loginViewModel.Login())
-            {
-                inter.ShowMainPage();
-            }
-            else
-            {
-                await DisplayAlert("Error", "Usuario y contraseña incorrectos", "Aceptar");
-            }
+                try
+                {
+                    if (await loginViewModel.Login())
+                    {
+                        inter.ShowMainPage();
+                    }
+                    else
+                    {
+                        await DisplayAlert("Error", "Usuario y contraseña incorrectos", "Aceptar");
+                    }
+                }
+                catch(Exception ex)
+                {
+                    await DisplayAlert("Error", ex.Message, "Aceptar");
+                }
+            });
         }
-
-        
     }
 }

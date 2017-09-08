@@ -12,8 +12,8 @@ namespace GPI_Consultores
         public App()
         {
             InitializeComponent();
-            //SetLoginPage();
-            ShowMainPage();
+            SetLoginPage();
+            //ShowMainPage();
         }
 
         public void SetLoginPage()

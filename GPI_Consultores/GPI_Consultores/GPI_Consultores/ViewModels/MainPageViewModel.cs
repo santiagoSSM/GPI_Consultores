@@ -6,11 +6,11 @@ using Xamarin.Forms;
 
 namespace GPI_Consultores.ViewModels
 {
-    public class ItemsViewModel
+    public class MainPageViewModel
     {
         public Command LoadItemsCommand { get; set; }
 
-        public ItemsViewModel()
+        public MainPageViewModel()
         {
 
         }
