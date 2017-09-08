@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Web;
 
-namespace MockService
+namespace MockWebApi.Models
 {
-    [DataContract]
+
     public class TaskWS
     {
         int idTask;
@@ -20,7 +19,6 @@ namespace MockService
         bool userCancelRecurrence;
         DateTime userContractDate;
 
-        [DataMember]
         public int IdTask
         {
             get
@@ -34,7 +32,6 @@ namespace MockService
             }
         }
 
-        [DataMember]
         public string UserResp
         {
             get
@@ -48,7 +45,6 @@ namespace MockService
             }
         }
 
-        [DataMember]
         public string UserCopy
         {
             get
@@ -62,7 +58,6 @@ namespace MockService
             }
         }
 
-        [DataMember]
         public string UserCategory
         {
             get
@@ -76,7 +71,6 @@ namespace MockService
             }
         }
 
-        [DataMember]
         public bool UserAprob
         {
             get
@@ -90,7 +84,6 @@ namespace MockService
             }
         }
 
-        [DataMember]
         public string UserPriority
         {
             get
@@ -104,7 +97,6 @@ namespace MockService
             }
         }
 
-        [DataMember]
         public string UserRecurrence
         {
             get
@@ -118,7 +110,6 @@ namespace MockService
             }
         }
 
-        [DataMember]
         public decimal UserBeforeDays
         {
             get
@@ -132,7 +123,6 @@ namespace MockService
             }
         }
 
-        [DataMember]
         public bool UserCancelRecurrence
         {
             get
@@ -146,7 +136,6 @@ namespace MockService
             }
         }
 
-        [DataMember]
         public DateTime UserContractDate
         {
             get
