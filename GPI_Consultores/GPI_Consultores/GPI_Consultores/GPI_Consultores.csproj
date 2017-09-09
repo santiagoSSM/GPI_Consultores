@@ -53,6 +53,7 @@
       <DependentUpon>TaskListView.xaml</DependentUpon>
     </Compile>
     <Compile Include="WebApi\ConstantsWA.cs" />
+    <Compile Include="WebApi\TaskWA.cs" />
     <Compile Include="WebApi\UserWA.cs" />
     <Compile Include="Helpers\Intent.cs" />
     <Compile Include="Models\UserAPP.cs" />

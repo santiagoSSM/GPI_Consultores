@@ -260,3 +260,4 @@ paket-files/
 __pycache__/
 *.pyc
 .suo
+GPI_Consultores/GPI_Consultores/GPI_Consultores/WebApi/ConstantsWA.cs
