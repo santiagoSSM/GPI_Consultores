@@ -260,6 +260,3 @@ paket-files/
 __pycache__/
 *.pyc
 .suo
-
-# Archivos especificos del proyecto
-ConstantsWA.cs
