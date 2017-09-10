@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GPI_Consultores.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,9 +13,12 @@ namespace GPI_Consultores
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class NewTaskView : ContentPage
     {
+        public NewTaskViewModel newTaskViewModel { get; set; }
+
         public NewTaskView()
         {
             InitializeComponent();
+            BindingContext = newTaskViewModel = new NewTaskViewModel();
 
             categoryPicker.Items.Add("Programación");
             categoryPicker.Items.Add("Base de Datos");
@@ -122,7 +126,21 @@ namespace GPI_Consultores
 
         private void SaveButton_Clicked(object sender, EventArgs e)
         {
+            Device.BeginInvokeOnMainThread(async () =>
+            {
+                //faltan las validaciones
 
+                try
+                {
+                    await newTaskViewModel.NewTask();
+                    await DisplayAlert("Mensaje", "Tarea registrada correctamente", "Aceptar");
+                    //navegar a MainPage
+                }
+                catch (Exception ex)
+                {
+                    await DisplayAlert("Error", ex.Message, "Aceptar");
+                }
+            });   
         }
     }
 

@@ -17,11 +17,6 @@ namespace GPI_Consultores.Views
         {
             this.inter = inter;
             InitializeComponent();
-            Init();
-        }
-
-        private void Init()
-        {
             BindingContext = loginViewModel = new LoginViewModel();
         }
 

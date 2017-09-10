@@ -37,6 +37,7 @@
   <ItemGroup>
     <Compile Include="Models\TaskAPP.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
+    <Compile Include="ViewModels\NewTaskViewModel.cs" />
     <Compile Include="Views\Home\HomeView.xaml.cs">
       <DependentUpon>HomeView.xaml</DependentUpon>
     </Compile>

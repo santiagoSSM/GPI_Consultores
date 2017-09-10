@@ -14,17 +14,20 @@ namespace MockWebApi.Controllers
         {
             new UserWS()
             {
-                UserId = "user", UserPassword = "pass"
+                UserId = "user",
+                UserPassword = "pass"
             },
 
             new UserWS()
             {
-                UserId = "user1", UserPassword = "pass"
+                UserId = "user1",
+                UserPassword = "pass"
             },
 
             new UserWS()
             {
-                UserId = "user2", UserPassword = "pass"
+                UserId = "user2",
+                UserPassword = "pass"
             }
         };
 

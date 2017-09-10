@@ -8,13 +8,15 @@ namespace MockWebApi.Models
     public class TaskWS
     {
         int idTask;
+        string userIssue;
         string userResp;
         string userCopy;
         string userCategory;
         bool userAprob;
         string userPriority;
+        string userDescription;
         string userRecurrence;
-        decimal userBeforeDays;
+        string userBeforeDays;
         bool userCancelRecurrence;
         DateTime userContractDate;
 
@@ -28,6 +30,19 @@ namespace MockWebApi.Models
             set
             {
                 idTask = value;
+            }
+        }
+
+        public string UserIssue
+        {
+            get
+            {
+                return userIssue;
+            }
+
+            set
+            {
+                userIssue = value;
             }
         }
 
@@ -96,6 +111,19 @@ namespace MockWebApi.Models
             }
         }
 
+        public string UserDescription
+        {
+            get
+            {
+                return userDescription;
+            }
+
+            set
+            {
+                userDescription = value;
+            }
+        }
+
         public string UserRecurrence
         {
             get
@@ -109,7 +137,7 @@ namespace MockWebApi.Models
             }
         }
 
-        public decimal UserBeforeDays
+        public string UserBeforeDays
         {
             get
             {

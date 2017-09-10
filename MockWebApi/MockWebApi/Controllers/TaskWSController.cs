@@ -10,7 +10,56 @@ namespace MockWebApi.Controllers
 {
     public class TaskWSController : ApiController
     {
-        private static List<TaskWS> listTask = new List<TaskWS>();
+        private static List<TaskWS> listTask = new List<TaskWS>()
+        {
+            new TaskWS()
+            {
+                IdTask = 0,
+                UserIssue = "tarea0",
+                UserResp = "Oscar",
+                UserCopy = "copia",
+                UserCategory = "categoria",
+                UserAprob = true,
+                UserPriority = "prioridad",
+                UserDescription = "descripcion",
+                UserRecurrence = "recurrencia",
+                UserBeforeDays = "5 días",
+                UserCancelRecurrence = false,
+                UserContractDate = new DateTime(2010, 8, 10)
+            },
+
+            new TaskWS()
+            {
+                IdTask = 1,
+                UserIssue = "tarea1",
+                UserResp = "Oscar",
+                UserCopy = "copia",
+                UserCategory = "categoria",
+                UserAprob = true,
+                UserPriority = "prioridad",
+                UserDescription = "descripcion",
+                UserRecurrence = "recurrencia",
+                UserBeforeDays = "5 días",
+                UserCancelRecurrence = false,
+                UserContractDate = new DateTime(2010, 8, 10)
+            },
+
+            new TaskWS()
+            {
+                IdTask = 2,
+                UserIssue = "tarea2",
+                UserResp = "Oscar",
+                UserCopy = "copia",
+                UserCategory = "categoria",
+                UserAprob = true,
+                UserPriority = "prioridad",
+                UserDescription = "descripcion",
+                UserRecurrence = "recurrencia",
+                UserBeforeDays = "5 días",
+                UserCancelRecurrence = false,
+                UserContractDate = new DateTime(2010, 8, 10)
+            }
+        };
 
         // GET: api/TaskWS
         public IEnumerable<TaskWS> Get()

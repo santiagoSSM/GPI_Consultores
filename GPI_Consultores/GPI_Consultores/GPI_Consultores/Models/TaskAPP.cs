@@ -6,18 +6,20 @@ using System.Threading.Tasks;
 
 namespace GPI_Consultores.Models
 {
-    class TaskAPP
+    public class TaskAPP
     {
         int idTask;
+        string userIssue;
         string userResp;
         string userCopy;
         string userCategory;
         bool userAprob;
         string userPriority;
+        string userDescription;
         string userRecurrence;
-        decimal userBeforeDays;
+        string userBeforeDays;
         bool userCancelRecurrence;
-        DateTime userContractDate;
+        DateTime userContractDate = DateTime.Now;
 
         public int IdTask
         {
@@ -29,6 +31,19 @@ namespace GPI_Consultores.Models
             set
             {
                 idTask = value;
+            }
+        }
+
+        public string UserIssue
+        {
+            get
+            {
+                return userIssue;
+            }
+
+            set
+            {
+                userIssue = value;
             }
         }
 
@@ -97,6 +112,19 @@ namespace GPI_Consultores.Models
             }
         }
 
+        public string UserDescription
+        {
+            get
+            {
+                return userDescription;
+            }
+
+            set
+            {
+                userDescription = value;
+            }
+        }
+
         public string UserRecurrence
         {
             get
@@ -110,7 +138,7 @@ namespace GPI_Consultores.Models
             }
         }
 
-        public decimal UserBeforeDays
+        public string UserBeforeDays
         {
             get
             {

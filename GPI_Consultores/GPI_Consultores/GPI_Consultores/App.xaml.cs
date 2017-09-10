@@ -12,8 +12,9 @@ namespace GPI_Consultores
         public App()
         {
             InitializeComponent();
-            SetLoginPage();
+            //SetLoginPage();
             //ShowMainPage();
+            Current.MainPage = new NewTaskView();
         }
 
         public void SetLoginPage()

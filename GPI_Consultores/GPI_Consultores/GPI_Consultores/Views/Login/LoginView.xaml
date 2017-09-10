@@ -7,10 +7,17 @@
             <Label Text="Tareas" Font ="30" HorizontalOptions="Center" VerticalOptions="Center"></Label>
             <Label Text="Ingreso al Sistema" HorizontalOptions="Center" VerticalOptions="Center"></Label>
             <ActivityIndicator x:Name="waitActiviyIndicador"></ActivityIndicator>
-            <Label Text="Usuario" HorizontalOptions="Start" VerticalOptions="Center"></Label>
-            <Entry Text="{Binding user.UserId}" x:Name="userLogin" Placeholder="Ingrese Usuario" HorizontalOptions="FillAndExpand" VerticalOptions="Center"></Entry>
-            <Label Text="Clave"  HorizontalOptions="Start" VerticalOptions="Center"></Label>
-            <Entry Text="{Binding user.UserPassword}" x:Name="userPass" Placeholder="Ingrese Contraseña" IsPassword="True" HorizontalOptions="FillAndExpand" VerticalOptions="Center"></Entry>
+
+            <StackLayout Orientation="Vertical">
+                <Label Text="Usuario" HorizontalOptions="Start" VerticalOptions="Center"></Label>
+                <Entry Text="{Binding user.UserId}" x:Name="userLogin" Placeholder="Ingrese Usuario" HorizontalOptions="FillAndExpand" VerticalOptions="Center"></Entry>
+            </StackLayout>
+
+            <StackLayout Orientation="Vertical">
+                <Label Text="Clave"  HorizontalOptions="Start" VerticalOptions="Center"></Label>
+                <Entry Text="{Binding user.UserPassword}" x:Name="userPass" Placeholder="Ingrese Contraseña" IsPassword="True" HorizontalOptions="FillAndExpand" VerticalOptions="Center"></Entry>
+            </StackLayout>
+
             <Button x:Name="enterButton" Text="Ingresar" BackgroundColor="Navy" TextColor="White" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Clicked="EnterButton_Clicked"></Button>
         </StackLayout>
     </ContentPage.Content>
