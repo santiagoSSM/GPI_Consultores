@@ -1,20 +1,22 @@
-﻿using GPI_Consultores.Helpers;
-using GPI_Consultores.Views;
+﻿using System;
+using GPIApp.Helpers;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using GPIApp.Views.Login;
+using GPIApp.Views.MainPage;
+using GPIApp.Views.NewTask;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
-namespace GPI_Consultores
+namespace GPIApp
 {
     public partial class App : Application, ILoginManager
     {
-
         public App()
         {
             InitializeComponent();
-            SetLoginPage();
+            //SetLoginPage();
             //ShowMainPage();
-            //Current.MainPage = new NewTaskView();
+            Current.MainPage = new NewTaskView();
         }
 
         public void SetLoginPage()
@@ -22,15 +24,15 @@ namespace GPI_Consultores
             Current.MainPage = new LoginView(this);
         }
 
-        public void ShowMainPage()
-        {
-            Current.MainPage = new Master_MainView();
-        }
-
         public void Logout()
         {
             //Properties["IsLoggedIn"] = false; // usar propiedad para definir que no esta logeado desde sqlite
             SetLoginPage();
+        }
+
+        public void ShowMainPage()
+        {
+            Current.MainPage = new Master_MainView();
         }
     }
 }
