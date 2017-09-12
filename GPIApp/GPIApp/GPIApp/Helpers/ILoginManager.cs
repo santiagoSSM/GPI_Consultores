@@ -8,7 +8,7 @@ namespace GPIApp.Helpers
 {
     public interface ILoginManager
     {
-        void ShowMainPage();
+        void ShowMainPage(string user);
         void Logout();
     }
 }

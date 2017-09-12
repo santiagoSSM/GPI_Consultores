@@ -14,9 +14,9 @@ namespace GPIApp
         public App()
         {
             InitializeComponent();
-            //SetLoginPage();
+            SetLoginPage();
             //ShowMainPage();
-            Current.MainPage = new NewTaskView();
+            //Current.MainPage = new NewTaskView();
         }
 
         public void SetLoginPage()
@@ -30,8 +30,9 @@ namespace GPIApp
             SetLoginPage();
         }
 
-        public void ShowMainPage()
+        public void ShowMainPage(string user)
         {
+            //Verificar uso del intent
             Current.MainPage = new Master_MainView();
         }
     }

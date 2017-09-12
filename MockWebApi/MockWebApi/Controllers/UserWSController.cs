@@ -116,9 +116,9 @@ namespace MockWebApi.Controllers
         }
 
         // Login method
-        public UserWS PutLogin(char select, [FromBody]UserWS value)
+        public bool PutLogin(char select, [FromBody]UserWS value)
         {
-            return userList.FirstOrDefault(x => x.UserId == value.UserId && x.UserPassword == value.UserPassword);
+            return userList.FirstOrDefault(x => x.UserId == value.UserId && x.UserPassword == value.UserPassword)!=null;
         }
     }
 }

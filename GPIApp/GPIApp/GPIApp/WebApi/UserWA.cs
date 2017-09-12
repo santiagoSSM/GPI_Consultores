@@ -27,10 +27,9 @@ namespace GPIApp.WebApi
 
                 if (response.IsSuccessStatusCode)
                 {
-                    T temp = JsonConvert.DeserializeObject<T>(
+                     return JsonConvert.DeserializeObject<T>(
                         await response.Content.ReadAsStringAsync()  //Get the json
                     );
-                    return temp;
                 }
             }
             catch (Exception e)
@@ -40,7 +39,7 @@ namespace GPIApp.WebApi
             return default(T);
         }
 
-        public async Task<T> PutLogin<X>(string serverVarName, X key, T value)
+        public async Task<bool> PutLogin<X>(string serverVarName, X key, T value)
         {
             var uri = new Uri(string.Format(url, string.Format("?{0}=", serverVarName), key));
 
@@ -57,7 +56,7 @@ namespace GPIApp.WebApi
                 }
                 else
                 {
-                    return JsonConvert.DeserializeObject<T>(
+                    return JsonConvert.DeserializeObject<bool>(
                         await response.Content.ReadAsStringAsync()  //Get the json
                     );
                 }
@@ -146,7 +145,7 @@ namespace GPIApp.WebApi
             }
         }
 
-        public async Task<UserAPP> PutLogin(UserAPP value)
+        public async Task<bool> PutLogin(UserAPP value)
         {
             try
             {

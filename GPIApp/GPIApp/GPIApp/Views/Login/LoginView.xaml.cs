@@ -15,13 +15,11 @@ namespace GPIApp.Views.Login
     public partial class LoginView : ContentPage
     {
         public LoginViewModel loginViewModel { get; set; }
-        ILoginManager inter;
 
         public LoginView(ILoginManager inter)
         {
-            this.inter = inter;
             InitializeComponent();
-            BindingContext = loginViewModel = new LoginViewModel();
+            BindingContext = loginViewModel = new LoginViewModel(inter);
         }
 
         private void EnterButton_Clicked(object sender, EventArgs e)
@@ -44,11 +42,7 @@ namespace GPIApp.Views.Login
 
                 try
                 {
-                    if (await loginViewModel.Login())
-                    {
-                        inter.ShowMainPage();
-                    }
-                    else
+                    if (!await loginViewModel.Login())
                     {
                         await DisplayAlert("Error", "Usuario y contraseña incorrectos", "Aceptar");
                     }

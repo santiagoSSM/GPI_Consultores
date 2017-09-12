@@ -1,4 +1,5 @@
-﻿using GPIApp.Models;
+﻿using GPIApp.Helpers;
+using GPIApp.Models;
 using GPIApp.WebApi;
 using System;
 using System.Collections.Generic;
@@ -13,30 +14,26 @@ namespace GPIApp.ViewModels
         public UserAPP user { get; set; }
         private UserWA userWA;
 
-        public LoginViewModel()
+        //Navigation
+        ILoginManager inter;
+
+        public LoginViewModel(ILoginManager inter)
         {
+            this.inter = inter;
             user = new UserAPP();
             userWA = new UserWA();
-        }
-
-        private void LoadUser(UserAPP user)
-        {
-            //Cargar usuario en el intent
         }
 
         public async Task<bool> Login()
         {
             var temp = await userWA.PutLogin(user);
 
-            if (temp != null)
+            if (temp)
             {
-                LoadUser(temp);
+                inter.ShowMainPage(user.UserId);
                 return true;
             }
-            else
-            {
-                return false;
-            }
+            return false;
         }
     }
 }
