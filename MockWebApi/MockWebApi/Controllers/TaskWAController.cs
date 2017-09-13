@@ -8,13 +8,13 @@ using System.Web.Http;
 
 namespace MockWebApi.Controllers
 {
-    public class TaskWSController : ApiController
+    public class TaskWAController : ApiController
     {
-        private static List<TaskWS> listTask = new List<TaskWS>()
+        private static List<TaskWA> listTask = new List<TaskWA>()
         {
             
             
-            new TaskWS()
+            new TaskWA()
             {
                 IdTask = 0,
                 UserIssue = "tarea0",
@@ -30,7 +30,7 @@ namespace MockWebApi.Controllers
                 UserContractDate = new DateTime(2010, 8, 10)
             },
 
-            new TaskWS()
+            new TaskWA()
             {
                 IdTask = 1,
                 UserIssue = "tarea1",
@@ -46,7 +46,7 @@ namespace MockWebApi.Controllers
                 UserContractDate = new DateTime(2010, 8, 10)
             },
 
-            new TaskWS()
+            new TaskWA()
             {
                 IdTask = 2,
                 UserIssue = "tarea2",
@@ -64,25 +64,19 @@ namespace MockWebApi.Controllers
         };
 
         // GET: api/TaskWS
-        public IEnumerable<TaskWS> Get()
+        public IEnumerable<TaskWA> Get()
         {
             return listTask;
         }
 
         // GET: api/TaskWS/5
-        public TaskWS Get(int id)
-        {
-            return listTask.ElementAtOrDefault(id);
-        }
-
-        // GET: api/TaskWS/5
-        public TaskWS GetSearch(int key)
+        public TaskWA Get(int key)
         {
             return listTask.FirstOrDefault(x => x.IdTask == key);
         }
 
         // POST: api/TaskWS
-        public IHttpActionResult Post([FromBody]TaskWS value)
+        public IHttpActionResult Post([FromBody]TaskWA value)
         {
             if (true)
             {
@@ -101,7 +95,7 @@ namespace MockWebApi.Controllers
         }
 
         // PUT: api/TaskWS/5
-        public IHttpActionResult Put(int key, [FromBody]TaskWS value)
+        public IHttpActionResult Put(int key, [FromBody]TaskWA value)
         {
             if (true)
             {
@@ -111,7 +105,7 @@ namespace MockWebApi.Controllers
                     {
                         try
                         {
-                            TaskWS temp = GetSearch(key);
+                            TaskWA temp = Get(key);
 
                             temp.IdTask = value.IdTask;
                             temp.UserResp = value.UserResp;

@@ -85,13 +85,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\TaskWSController.cs" />
-    <Compile Include="Controllers\UserWSController.cs" />
+    <Compile Include="Controllers\BeforeDaysWAController.cs" />
+    <Compile Include="Controllers\TaskWAController.cs" />
+    <Compile Include="Controllers\UserWAController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\TaskWS.cs" />
-    <Compile Include="Models\UserWS.cs" />
+    <Compile Include="Models\TaskWA.cs" />
+    <Compile Include="Models\UserWA.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

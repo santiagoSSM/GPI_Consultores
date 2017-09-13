@@ -5,7 +5,7 @@ using System.Web;
 
 namespace MockWebApi.Models
 {
-    public class UserWS
+    public class UserWA
     {
         string userId;
         string userPassword;

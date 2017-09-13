@@ -10,33 +10,10 @@ using WebApiConector;
 
 namespace GPIApp.WebApi
 {
-    class RestClientImplemented<T> : RestClient<T>
+    internal class RestClientImplemented<T> : RestClient<T>
     {
         public RestClientImplemented(string url) : base(url)
         {
-        }
-
-        // GET: api/{ModelName}/{var}
-        public async Task<T> GetSearch<X>(string serverVarName, X key)
-        {
-            var uri = new Uri(string.Format(url, string.Format("?{0}=", serverVarName), key));
-
-            try
-            {
-                HttpResponseMessage response = await client.GetAsync(uri);
-
-                if (response.IsSuccessStatusCode)
-                {
-                     return JsonConvert.DeserializeObject<T>(
-                        await response.Content.ReadAsStringAsync()  //Get the json
-                    );
-                }
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
-            return default(T);
         }
 
         public async Task<bool> PutLogin<X>(string serverVarName, X key, T value)
@@ -70,7 +47,7 @@ namespace GPIApp.WebApi
 
     public class UserWA
     {
-        RestClientImplemented<UserAPP> client = new RestClientImplemented<UserAPP>(ConstantsWA.WebApiServer + "UserWS/");
+        RestClientImplemented<UserAPP> client = new RestClientImplemented<UserAPP>(ConstantsWA.WebApiServer + "UserWA/");
 
         public async Task<List<UserAPP>> Get()
         {
@@ -84,11 +61,11 @@ namespace GPIApp.WebApi
             }
         }
 
-        public async Task<UserAPP> Get(int id)
+        public async Task<UserAPP> Get(string key)
         {
             try
             {
-                return await client.Get("id", id);
+                return await client.Get("id", key);
             }
             catch (Exception e)
             {
@@ -125,19 +102,6 @@ namespace GPIApp.WebApi
             try
             {
                 await client.Delete("key", key);
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
-        }
-
-        // GET: api/{ModelName}/{var}
-        public async Task<UserAPP> GetSearch(string key)
-        {
-            try
-            {
-                return await client.GetSearch("key", key);
             }
             catch (Exception e)
             {

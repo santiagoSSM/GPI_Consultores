@@ -5,7 +5,7 @@ using System.Web;
 
 namespace MockWebApi.Models
 {
-    public class TaskWS
+    public class TaskWA
     {
         int idTask;
         string userIssue;

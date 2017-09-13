@@ -8,23 +8,23 @@ using System.Web.Http;
 
 namespace MockWebApi.Controllers
 {
-    public class UserWSController : ApiController
+    public class UserWAController : ApiController
     {
-        private static List<UserWS> userList = new List<UserWS>()
+        private static List<UserWA> userList = new List<UserWA>()
         {
-            new UserWS()
+            new UserWA()
             {
                 UserId = "user",
                 UserPassword = "pass"
             },
 
-            new UserWS()
+            new UserWA()
             {
                 UserId = "user1",
                 UserPassword = "pass"
             },
 
-            new UserWS()
+            new UserWA()
             {
                 UserId = "user2",
                 UserPassword = "pass"
@@ -32,19 +32,19 @@ namespace MockWebApi.Controllers
         };
 
         // GET: api/UserWS
-        public IEnumerable<UserWS> Get()
+        public IEnumerable<UserWA> Get()
         {
             return userList;
         }
 
         // GET: api/UserWS
-        public UserWS Get(int id)
+        public UserWA Get(string key)
         {
-            return userList.ElementAtOrDefault(id);
+            return userList.FirstOrDefault(x => x.UserId == key);
         }
 
         // POST: api/UserWS
-        public IHttpActionResult Post([FromBody]UserWS value)
+        public IHttpActionResult Post([FromBody]UserWA value)
         {
             if (value.UserId != null && value.UserPassword != null)
             {
@@ -65,7 +65,7 @@ namespace MockWebApi.Controllers
         }
 
         // PUT: api/UserWS/5
-        public IHttpActionResult Put(string key, [FromBody]UserWS value)
+        public IHttpActionResult Put(string key, [FromBody]UserWA value)
         { 
             if (value.UserId != null && value.UserPassword != null)
             {
@@ -75,7 +75,7 @@ namespace MockWebApi.Controllers
                     {
                         try
                         {
-                            UserWS temp = GetSearch(key);
+                            UserWA temp = Get(key);
 
                             temp.UserId = value.UserId;
                             temp.UserPassword = value.UserPassword;
@@ -109,14 +109,8 @@ namespace MockWebApi.Controllers
             return InternalServerError();
         }
 
-        // Search user
-        public UserWS GetSearch(string key)
-        {
-            return userList.FirstOrDefault(x => x.UserId == key);
-        }
-
         // Login method
-        public bool PutLogin(char select, [FromBody]UserWS value)
+        public bool PutLogin(char select, [FromBody]UserWA value)
         {
             return userList.FirstOrDefault(x => x.UserId == value.UserId && x.UserPassword == value.UserPassword)!=null;
         }

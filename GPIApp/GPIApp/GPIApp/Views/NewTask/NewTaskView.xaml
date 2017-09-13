@@ -58,7 +58,7 @@
                 <StackLayout Orientation="Vertical">
                     <Label Text="Días de Preaviso" HorizontalOptions="Start" VerticalOptions="Center"></Label>
                     <!--Primer binding es para el guardar el segundo para obtener la información y llenar la lista [SelectedIndex="{Binding task.UserCategory}" ItemsSource="{Binding lista}]-->
-                    <Picker SelectedItem="{Binding task.UserBeforeDays}" x:Name="beforeDays" SelectedIndexChanged="beforeDays_SelectedIndexChanged"></Picker>
+                    <Picker SelectedItem="{Binding task.UserBeforeDays}" ItemsSource="{Binding beforeDaysList}" x:Name="beforeDays" SelectedIndexChanged="beforeDays_SelectedIndexChanged"></Picker>
                 </StackLayout>
 
                 <StackLayout Orientation="Vertical">

@@ -15,11 +15,25 @@ namespace GPIApp.Views.NewTask
     {
         public NewTaskViewModel newTaskViewModel { get; set; }
 
-        public NewTaskView()
+        //load items before displaying the page, replace with the constructor
+        protected async override void OnAppearing()
         {
-            InitializeComponent();
+            base.OnAppearing();
+
             BindingContext = newTaskViewModel = new NewTaskViewModel();
 
+            
+            try
+            {
+                //load server information
+                await newTaskViewModel.Charge();
+            }
+            catch (Exception ex)
+            {
+                DisplayAlert("Error", ex.Message, "Ok");
+            }
+
+            InitializeComponent();
             categoryPicker.Items.Add("Programación");
             categoryPicker.Items.Add("Base de Datos");
             categoryPicker.Items.Add("Diseño");
@@ -33,17 +47,12 @@ namespace GPIApp.Views.NewTask
             recurrence.Items.Add("Cada Mes");
             recurrence.Items.Add("Cada Año");
 
-            beforeDays.Items.Add("5 días");
-            beforeDays.Items.Add("10 días");
-            beforeDays.Items.Add("15 días");
-
             AfterDayOfPicker.Items.Add("4 recurrencias");
             AfterDayOfPicker.Items.Add("8 recurrencias");
             AfterDayOfPicker.Items.Add("12 recurrencias");
 
             //finalAfterOf.Items.Add("8 recurrencias");
             //finalAfterOf.Items.Add("12 recurrencias");
-
         }
 
         private void categoryPicker_SelectedIndexChanged(object sender, EventArgs e)

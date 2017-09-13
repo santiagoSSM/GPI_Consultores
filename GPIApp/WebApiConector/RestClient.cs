@@ -42,9 +42,9 @@ namespace WebApiConector
         }
 
         // GET: api/{ModelName}/{var}
-        public async Task<T> Get(string serverVarName, int id)
+        public async Task<T> Get<X>(string serverVarName, X key)
         {
-            var uri = new Uri(string.Format(url, string.Format("?{0}=", serverVarName), id));
+            var uri = new Uri(string.Format(url, string.Format("?{0}=", serverVarName), key));
 
             try
             {

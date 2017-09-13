@@ -8,7 +8,7 @@ using WebApiConector;
 
 namespace GPIApp.WebApi
 {
-    class RestTaskImplemented<T> : RestClient<T>
+    internal class RestTaskImplemented<T> : RestClient<T>
     {
         public RestTaskImplemented(string url) : base(url)
         {
@@ -17,7 +17,7 @@ namespace GPIApp.WebApi
 
     public class TaskWA
     {
-        RestTaskImplemented<TaskAPP> client = new RestTaskImplemented<TaskAPP>(ConstantsWA.WebApiServer + "TaskWS/");
+        RestTaskImplemented<TaskAPP> client = new RestTaskImplemented<TaskAPP>(ConstantsWA.WebApiServer + "TaskWA/");
 
         public async Task<List<TaskAPP>> Get()
         {
@@ -31,11 +31,11 @@ namespace GPIApp.WebApi
             }
         }
 
-        public async Task<TaskAPP> Get(int id)
+        public async Task<TaskAPP> Get(int key)
         {
             try
             {
-                return await client.Get("id", id);
+                return await client.Get("id", key);
             }
             catch (Exception e)
             {
@@ -55,7 +55,7 @@ namespace GPIApp.WebApi
             }
         }
 
-        public async Task Put(string key, TaskAPP value)
+        public async Task Put(int key, TaskAPP value)
         {
             try
             {
@@ -67,7 +67,7 @@ namespace GPIApp.WebApi
             }
         }
 
-        public async Task Delete(string key)
+        public async Task Delete(int key)
         {
             try
             {

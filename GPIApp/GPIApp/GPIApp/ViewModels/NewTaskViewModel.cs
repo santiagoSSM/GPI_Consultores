@@ -10,13 +10,22 @@ namespace GPIApp.ViewModels
 {
     public class NewTaskViewModel
     {
-        public TaskAPP task { get; set; }
         private TaskWA taskWA;
+        private BeforeDaysWA beforeDaysWA;
+
+        public TaskAPP task { get; set; }
+        public List<string> beforeDaysList { get; set; }
 
         public NewTaskViewModel()
         {
-            task = new TaskAPP();
             taskWA = new TaskWA();
+            beforeDaysWA = new BeforeDaysWA();
+            task = new TaskAPP();
+        }
+
+        public async Task Charge()
+        {
+            beforeDaysList = await beforeDaysWA.Get();
         }
 
         public async Task NewTask()
