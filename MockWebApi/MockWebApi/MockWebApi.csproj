@@ -87,6 +87,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\BeforeDaysWAController.cs" />
     <Compile Include="Controllers\TaskWAController.cs" />
+    <Compile Include="Controllers\UserCategoryWAController.cs" />
     <Compile Include="Controllers\UserWAController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

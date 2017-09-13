@@ -25,7 +25,6 @@
 
                 <StackLayout Orientation="Vertical">
                     <Label Text="Categoría" HorizontalOptions="Start" VerticalOptions="Center"></Label>
-                    <!--Primer binding es para el guardar el segundo para obtener la información y llenar la lista [SelectedIndex="{Binding task.UserCategory}" ItemsSource="{Binding lista}]-->
                     <Picker SelectedItem="{Binding task.UserCategory}" x:Name="categoryPicker" SelectedIndexChanged="categoryPicker_SelectedIndexChanged"></Picker>
 
                 </StackLayout>
