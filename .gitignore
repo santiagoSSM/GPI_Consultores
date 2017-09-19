@@ -259,5 +259,5 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
-GPI_Consultores/GPI_Consultores/GPI_Consultores/WebApi/ConstantsWA.cs
 GPIApp/GPIApp/GPIApp/WebApi/ConstantsWA.cs
+GPI_Consultores/GPI_Consultores/GPI_Consultores/WebApi/ConstantsWA.cs
