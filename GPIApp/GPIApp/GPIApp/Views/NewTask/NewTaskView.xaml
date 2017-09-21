@@ -25,8 +25,7 @@
 
                 <StackLayout Orientation="Vertical">
                     <Label Text="Categoría" HorizontalOptions="Start" VerticalOptions="Center"></Label>
-                    <Picker SelectedItem="{Binding task.UserCategory}" x:Name="categoryPicker" SelectedIndexChanged="categoryPicker_SelectedIndexChanged"></Picker>
-
+                    <Picker SelectedItem="{Binding task.UserCategory}" ItemsSource="{Binding categoryList}" x:Name="categoryPicker" SelectedIndexChanged="categoryPicker_SelectedIndexChanged"></Picker>
                 </StackLayout>
 
                 <StackLayout Orientation="Vertical">
@@ -41,7 +40,7 @@
 
                 <StackLayout Orientation="Vertical">
                     <Label Text="Prioridad" HorizontalOptions="Start" VerticalOptions="Center"></Label>
-                    <Picker SelectedItem="{Binding task.UserPriority}" x:Name="priority" SelectedIndexChanged="priority_SelectedIndexChanged"></Picker>
+                    <Picker SelectedItem="{Binding task.UserPriority}" ItemsSource="{Binding priorityList}" x:Name="priority" SelectedIndexChanged="priority_SelectedIndexChanged"></Picker>
                 </StackLayout>
 
                 <StackLayout Orientation="Vertical">
@@ -51,7 +50,7 @@
 
                 <StackLayout Orientation="Vertical">
                     <Label Text="Recurrencia" HorizontalOptions="Start" VerticalOptions="Center"></Label>
-                    <Picker SelectedItem="{Binding task.UserRecurrence}" x:Name="recurrence" SelectedIndexChanged="recurrence_SelectedIndexChanged"></Picker>
+                    <Picker SelectedItem="{Binding task.UserRecurrence}" ItemsSource="{Binding recurrenceList}" x:Name="recurrence" SelectedIndexChanged="recurrence_SelectedIndexChanged"></Picker>
                 </StackLayout>
 
                 <StackLayout Orientation="Vertical">
@@ -84,7 +83,7 @@
                         <Switch HorizontalOptions="Start" x:Name="AfterDayOfSwitch" Toggled="AfterDayOfSwitch_Toggled"></Switch>
                         <Label x:Name="AfterDayOf" HorizontalOptions="Fill" TextColor="Green" Text="Finaliza Después de: "></Label>
                     </StackLayout>
-                    <Picker x:Name="AfterDayOfPicker" HorizontalOptions="Fill" SelectedIndexChanged="AfterDayOfPicker_SelectedIndexChanged"></Picker>
+                    <Picker ItemsSource="{Binding afterDayList}" x:Name="AfterDayOfPicker" HorizontalOptions="Fill" SelectedIndexChanged="AfterDayOfPicker_SelectedIndexChanged"></Picker>
                 </StackLayout>
 
                 <StackLayout Orientation="Vertical">

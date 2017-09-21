@@ -34,22 +34,6 @@ namespace GPIApp.Views.NewTask
             }
 
             InitializeComponent();
-            categoryPicker.Items.Add("Programación");
-            categoryPicker.Items.Add("Base de Datos");
-            categoryPicker.Items.Add("Diseño");
-            categoryPicker.Items.Add("Otro");
-
-            priority.Items.Add("Alta");
-            priority.Items.Add("Baja");
-            priority.Items.Add("Media");
-
-            recurrence.Items.Add("Cada Semana");
-            recurrence.Items.Add("Cada Mes");
-            recurrence.Items.Add("Cada Año");
-
-            AfterDayOfPicker.Items.Add("4 recurrencias");
-            AfterDayOfPicker.Items.Add("8 recurrencias");
-            AfterDayOfPicker.Items.Add("12 recurrencias");
 
             //finalAfterOf.Items.Add("8 recurrencias");
             //finalAfterOf.Items.Add("12 recurrencias");

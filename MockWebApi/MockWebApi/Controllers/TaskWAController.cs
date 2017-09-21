@@ -10,7 +10,7 @@ namespace MockWebApi.Controllers
 {
     public class TaskWAController : ApiController
     {
-        private static List<TaskWA> listTask = new List<TaskWA>()
+        private static List<TaskWA> taskWAList = new List<TaskWA>()
         {
             
             
@@ -66,13 +66,13 @@ namespace MockWebApi.Controllers
         // GET: api/TaskWS
         public IEnumerable<TaskWA> Get()
         {
-            return listTask;
+            return taskWAList;
         }
 
         // GET: api/TaskWS/5
         public TaskWA Get(int key)
         {
-            return listTask.FirstOrDefault(x => x.IdTask == key);
+            return taskWAList.FirstOrDefault(x => x.IdTask == key);
         }
 
         // POST: api/TaskWS
@@ -82,8 +82,8 @@ namespace MockWebApi.Controllers
             {
                 try
                 {
-                    value.IdTask = listTask.Count();
-                    listTask.Add(value);
+                    value.IdTask = taskWAList.Count();
+                    taskWAList.Add(value);
                     return Ok();
                 }
                 catch
@@ -99,9 +99,9 @@ namespace MockWebApi.Controllers
         {
             if (true)
             {
-                if (listTask.FirstOrDefault(x => x.IdTask == value.IdTask) == null)
+                if (taskWAList.FirstOrDefault(x => x.IdTask == value.IdTask) == null)
                 {
-                    if (listTask.FirstOrDefault(x => x.IdTask == key) != null)
+                    if (taskWAList.FirstOrDefault(x => x.IdTask == key) != null)
                     {
                         try
                         {
@@ -135,7 +135,7 @@ namespace MockWebApi.Controllers
         {
             try
             {
-                if (listTask.RemoveAll(x => x.IdTask == key) != 0)
+                if (taskWAList.RemoveAll(x => x.IdTask == key) != 0)
                 {
                     return Ok();
                 }

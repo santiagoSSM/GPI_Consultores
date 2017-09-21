@@ -10,7 +10,7 @@ namespace MockWebApi.Controllers
 {
     public class UserWAController : ApiController
     {
-        private static List<UserWA> userList = new List<UserWA>()
+        private static List<UserWA> userWAList = new List<UserWA>()
         {
             new UserWA()
             {
@@ -34,13 +34,13 @@ namespace MockWebApi.Controllers
         // GET: api/UserWS
         public IEnumerable<UserWA> Get()
         {
-            return userList;
+            return userWAList;
         }
 
         // GET: api/UserWS
         public UserWA Get(string key)
         {
-            return userList.FirstOrDefault(x => x.UserId == key);
+            return userWAList.FirstOrDefault(x => x.UserId == key);
         }
 
         // POST: api/UserWS
@@ -48,11 +48,11 @@ namespace MockWebApi.Controllers
         {
             if (value.UserId != null && value.UserPassword != null)
             {
-                if (userList.FirstOrDefault(x => x.UserId == value.UserId) == null)
+                if (userWAList.FirstOrDefault(x => x.UserId == value.UserId) == null)
                 {
                     try
                     {
-                        userList.Add(value);
+                        userWAList.Add(value);
                         return Ok();
                     }
                     catch
@@ -69,9 +69,9 @@ namespace MockWebApi.Controllers
         { 
             if (value.UserId != null && value.UserPassword != null)
             {
-                if (userList.FirstOrDefault(x => x.UserId == value.UserId) == null)
+                if (userWAList.FirstOrDefault(x => x.UserId == value.UserId) == null)
                 {
-                    if (userList.FirstOrDefault(x => x.UserId == key) != null)
+                    if (userWAList.FirstOrDefault(x => x.UserId == key) != null)
                     {
                         try
                         {
@@ -97,7 +97,7 @@ namespace MockWebApi.Controllers
         {
             try
             {
-                if (userList.RemoveAll(x => x.UserId == key) != 0)
+                if (userWAList.RemoveAll(x => x.UserId == key) != 0)
                 {
                     return Ok();
                 }
@@ -112,7 +112,7 @@ namespace MockWebApi.Controllers
         // Login method
         public bool PutLogin(char select, [FromBody]UserWA value)
         {
-            return userList.FirstOrDefault(x => x.UserId == value.UserId && x.UserPassword == value.UserPassword)!=null;
+            return userWAList.FirstOrDefault(x => x.UserId == value.UserId && x.UserPassword == value.UserPassword)!=null;
         }
     }
 }

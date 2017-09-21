@@ -7,25 +7,25 @@ using System.Web.Http;
 
 namespace MockWebApi.Controllers
 {
-    public class UserCategoryWAController : ApiController
+    public class PriorityWAController : ApiController
     {
-        private static List<string> userCategoryWAList = new List<string>()
+        private static List<string> priorityWAList = new List<string>()
         {
-            "Programación",
-            "10 días",
-            "15 días"
+            "Alta",
+            "Media",
+            "Baja"
         };
 
         // GET: api/BeforeDaysWS
         public IEnumerable<string> Get()
         {
-            return userCategoryWAList;
+            return priorityWAList;
         }
 
         // GET: api/UserWS
         public string Get(string key)
         {
-            return userCategoryWAList.FirstOrDefault(x => x == key);
+            return priorityWAList.FirstOrDefault(x => x == key);
         }
 
         // POST: api/UserWS
@@ -33,11 +33,11 @@ namespace MockWebApi.Controllers
         {
             if (value != null)
             {
-                if (userCategoryWAList.FirstOrDefault(x => x == value) == null)
+                if (priorityWAList.FirstOrDefault(x => x == value) == null)
                 {
                     try
                     {
-                        userCategoryWAList.Add(value);
+                        priorityWAList.Add(value);
                         return Ok();
                     }
                     catch
@@ -54,9 +54,9 @@ namespace MockWebApi.Controllers
         {
             if (value != null)
             {
-                if (userCategoryWAList.FirstOrDefault(x => x == value) == null)
+                if (priorityWAList.FirstOrDefault(x => x == value) == null)
                 {
-                    if (userCategoryWAList.FirstOrDefault(x => x == key) != null)
+                    if (priorityWAList.FirstOrDefault(x => x == key) != null)
                     {
                         try
                         {
@@ -81,7 +81,7 @@ namespace MockWebApi.Controllers
         {
             try
             {
-                if (userCategoryWAList.RemoveAll(x => x == key) != 0)
+                if (priorityWAList.RemoveAll(x => x == key) != 0)
                 {
                     return Ok();
                 }

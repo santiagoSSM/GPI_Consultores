@@ -66,8 +66,12 @@
     <Compile Include="Views\TaskList\TaskListView.xaml.cs">
       <DependentUpon>TaskListView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WebApi\AfterDayWA.cs" />
     <Compile Include="WebApi\BeforeDaysWA.cs" />
+    <Compile Include="WebApi\CategoryWA.cs" />
     <Compile Include="WebApi\ConstantsWA.cs" />
+    <Compile Include="WebApi\PriorityWA.cs" />
+    <Compile Include="WebApi\RecurrenceWA.cs" />
     <Compile Include="WebApi\TaskWA.cs" />
     <Compile Include="WebApi\UserWA.cs" />
   </ItemGroup>

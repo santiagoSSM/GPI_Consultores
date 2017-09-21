@@ -10,7 +10,7 @@ namespace MockWebApi.Controllers
 {
     public class BeforeDaysWAController : ApiController
     {
-        private static List<string> BeforeDaysWSList = new List<string>()
+        private static List<string> beforeDaysWAList = new List<string>()
         {
             "5 días",
             "10 días",
@@ -20,13 +20,13 @@ namespace MockWebApi.Controllers
         // GET: api/BeforeDaysWS
         public IEnumerable<string> Get()
         {
-            return BeforeDaysWSList;
+            return beforeDaysWAList;
         }
 
         // GET: api/UserWS
         public string Get(string key)
         {
-            return BeforeDaysWSList.FirstOrDefault(x => x == key);
+            return beforeDaysWAList.FirstOrDefault(x => x == key);
         }
 
         // POST: api/UserWS
@@ -34,11 +34,11 @@ namespace MockWebApi.Controllers
         {
             if (value != null)
             {
-                if (BeforeDaysWSList.FirstOrDefault(x => x == value) == null)
+                if (beforeDaysWAList.FirstOrDefault(x => x == value) == null)
                 {
                     try
                     {
-                        BeforeDaysWSList.Add(value);
+                        beforeDaysWAList.Add(value);
                         return Ok();
                     }
                     catch
@@ -55,9 +55,9 @@ namespace MockWebApi.Controllers
         {
             if (value != null)
             {
-                if (BeforeDaysWSList.FirstOrDefault(x => x == value) == null)
+                if (beforeDaysWAList.FirstOrDefault(x => x == value) == null)
                 {
-                    if (BeforeDaysWSList.FirstOrDefault(x => x == key) != null)
+                    if (beforeDaysWAList.FirstOrDefault(x => x == key) != null)
                     {
                         try
                         {
@@ -82,7 +82,7 @@ namespace MockWebApi.Controllers
         {
             try
             {
-                if (BeforeDaysWSList.RemoveAll(x => x == key) != 0)
+                if (beforeDaysWAList.RemoveAll(x => x == key) != 0)
                 {
                     return Ok();
                 }

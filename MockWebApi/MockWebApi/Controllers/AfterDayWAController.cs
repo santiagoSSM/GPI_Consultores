@@ -7,25 +7,25 @@ using System.Web.Http;
 
 namespace MockWebApi.Controllers
 {
-    public class UserCategoryWAController : ApiController
+    public class AfterDayWAController : ApiController
     {
-        private static List<string> userCategoryWAList = new List<string>()
+        private static List<string> afterDayWAList = new List<string>()
         {
-            "Programación",
-            "10 días",
-            "15 días"
+            "4 recurrencias",
+            "8 recurrencias",
+            "12 recurrencias"
         };
 
         // GET: api/BeforeDaysWS
         public IEnumerable<string> Get()
         {
-            return userCategoryWAList;
+            return afterDayWAList;
         }
 
         // GET: api/UserWS
         public string Get(string key)
         {
-            return userCategoryWAList.FirstOrDefault(x => x == key);
+            return afterDayWAList.FirstOrDefault(x => x == key);
         }
 
         // POST: api/UserWS
@@ -33,11 +33,11 @@ namespace MockWebApi.Controllers
         {
             if (value != null)
             {
-                if (userCategoryWAList.FirstOrDefault(x => x == value) == null)
+                if (afterDayWAList.FirstOrDefault(x => x == value) == null)
                 {
                     try
                     {
-                        userCategoryWAList.Add(value);
+                        afterDayWAList.Add(value);
                         return Ok();
                     }
                     catch
@@ -54,9 +54,9 @@ namespace MockWebApi.Controllers
         {
             if (value != null)
             {
-                if (userCategoryWAList.FirstOrDefault(x => x == value) == null)
+                if (afterDayWAList.FirstOrDefault(x => x == value) == null)
                 {
-                    if (userCategoryWAList.FirstOrDefault(x => x == key) != null)
+                    if (afterDayWAList.FirstOrDefault(x => x == key) != null)
                     {
                         try
                         {
@@ -81,7 +81,7 @@ namespace MockWebApi.Controllers
         {
             try
             {
-                if (userCategoryWAList.RemoveAll(x => x == key) != 0)
+                if (afterDayWAList.RemoveAll(x => x == key) != 0)
                 {
                     return Ok();
                 }
