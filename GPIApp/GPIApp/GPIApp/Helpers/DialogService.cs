@@ -8,9 +8,16 @@ namespace GPIApp.Helpers
 {
     class DialogService
     {
-        public async Task ShowMessage(string message, string title, string button)
+        public async Task ShowMessage(string title, string message, string button)
         {
-            await App.Navigator.DisplayAlert(title, message, button);
+            if (App.Navigator != null)
+            {
+                await App.Navigator.DisplayAlert(title, message, button);
+            }
+            else
+            {
+                await App.Current.MainPage.DisplayAlert(title, message, button);
+            }
         }
     }
 }

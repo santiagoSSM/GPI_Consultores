@@ -11,7 +11,7 @@ namespace GPIApp.ViewModels
 {
     class MenuItemViewModel
     {
-        NavigationService navigationService;
+        private NavigationService navigationService;
 
         public MenuItemViewModel()
         {

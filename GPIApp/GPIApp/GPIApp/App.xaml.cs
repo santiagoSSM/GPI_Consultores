@@ -1,4 +1,4 @@
-﻿using GPIApp.Views;
+﻿using GPIApp.Views.Login;
 using GPIApp.Views.MainPage;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -15,7 +15,9 @@ namespace GPIApp
         {
             InitializeComponent();
 
-            MainPage = new Master_MainView();
+            //MainPage = new Master_MainView();
+
+            MainPage = new LoginView();
         }
     }
 }

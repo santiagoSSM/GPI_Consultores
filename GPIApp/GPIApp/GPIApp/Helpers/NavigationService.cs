@@ -34,6 +34,9 @@ namespace GPIApp.Helpers
                 case "MyTask":
                     //await Navigate(new MyTask());
                     break;
+                case "NewTask":
+                    await Navigate(new NewTask());
+                    break;
                 case "MainPage":
                     await App.Navigator.PopToRootAsync();
                     break;

@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace GPIApp.Views.NewTask
+namespace GPIApp.Views.Login
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class NewTask : ContentPage
+    public partial class LoginView : ContentPage
     {
-        public NewTask()
+        public LoginView()
         {
             InitializeComponent();
         }

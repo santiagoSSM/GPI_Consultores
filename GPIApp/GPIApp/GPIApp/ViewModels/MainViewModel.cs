@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight.Command;
+using GPIApp.Helpers;
 using GPIApp.Views.NewTask;
 using System;
 using System.Collections.Generic;
@@ -15,10 +16,32 @@ namespace GPIApp.ViewModels
 
         public MainViewModel()
         {
+            navigationService = new NavigationService();
+
+            Login = new LoginViewModel();
+
+            Tasks = new ObservableCollection<Task>();
+
             LoadMenu();
         }
 
-        public ObservableCollection<MenuItemViewModel> Menu { get; set; }
+        #region Properties
+
+        private NavigationService navigationService;
+
+        public String User { get; private set; }
+
+        public LoginViewModel Login { get; private set; }
+
+        public TaskViewModel NewTask { get; private set; }
+
+        public ObservableCollection<Task> Tasks { get; set; }
+
+        public ObservableCollection<MenuItemViewModel> Menu { get; set; } 
+
+        #endregion
+
+        #region Commands
 
         public ICommand GoToCommand
         {
@@ -30,13 +53,44 @@ namespace GPIApp.ViewModels
             switch (pageName)
             {
                 case "NewTask":
-                    App.Navigator.PushAsync(new NewTask());
+                    NewTask = new TaskViewModel();
                     break;
                 default:
                     break;
+            }
+            navigationService.Navigate(pageName);
+        }
 
+        public ICommand StartCommand
+        {
+            get { return new RelayCommand(Start); }
+        }
+
+        private async void Start()
+        {
+            /*var list = await apiService.GetAllOrders();
+            Orders.Clear();
+
+            foreach (var item in list)
+            {
+                Orders.Add(new OrderViewModel()
+                {
+                    Title = item.Title,
+                    DeliveryDate = item.DeliveryDate,
+                    Description = item.Description
+                });
+            }*/
+            
+
+            if (await Login.Login())
+            {
+                navigationService.SetMainPage("MasterPage");
             }
         }
+
+        #endregion
+
+        #region Methods
 
         private void LoadMenu()
         {
@@ -100,5 +154,6 @@ namespace GPIApp.ViewModels
 
         }
 
+        #endregion
     }
 }
