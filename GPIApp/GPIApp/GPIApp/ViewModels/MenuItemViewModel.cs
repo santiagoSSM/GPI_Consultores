@@ -24,7 +24,7 @@ namespace GPIApp.ViewModels
 
         public ICommand NavigateCommand
         {
-            get { return new RelayCommand(() => navigationService.Navigate(PageName)); }
+            get {return new RelayCommand(() => navigationService.Navigate(PageName));}
         }
     }
 }

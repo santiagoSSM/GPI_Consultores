@@ -25,14 +25,14 @@ namespace GPIApp.ViewModels
         {
             if (string.IsNullOrEmpty(user.UserId))
             {
-                await dialogService.ShowMessage("Error", "Debe ingresar un Usuario", "Aceptar");
+                await dialogService.ShowMessage("Error", "Debe ingresar un usuario", "Aceptar");
                 //userLogin.Focus();
                 return false;
             }
 
             if (string.IsNullOrEmpty(user.UserPassword))
             {
-                await dialogService.ShowMessage("Error", "Debe ingresar una Contraseña", "Aceptar");
+                await dialogService.ShowMessage("Error", "Debe ingresar una contraseña", "Aceptar");
                 //userPass.Focus();
                 return false;
             }

@@ -43,12 +43,7 @@ namespace GPIApp.ViewModels
             recurrenceWA = new RecurrenceWA();
         }
 
-        public ICommand LoadCommand
-        {
-            get { return new RelayCommand(Load); }
-        }
-
-        public async void Load()
+        public async Task LoadPicker()
         {
             afterDayList = await afterDayWA.Get();
             beforeDaysList = await beforeDaysWA.Get();
@@ -64,6 +59,36 @@ namespace GPIApp.ViewModels
 
         public async void NewTask()
         {
+            if (string.IsNullOrEmpty(task.UserIssue))
+            {
+                await dialogService.ShowMessage("Error", "Debe ingresar un asunto", "Aceptar");
+                return;
+            }
+
+            if (string.IsNullOrEmpty(task.UserResp))
+            {
+                await dialogService.ShowMessage("Error", "Debe ingresar un responsable", "Aceptar");
+                return;
+            }
+
+            if (string.IsNullOrEmpty(task.UserCopy))
+            {
+                await dialogService.ShowMessage("Error", "Ingresar el usuario al que se copia la tarea", "Aceptar");
+                return;
+            }
+
+            if (string.IsNullOrEmpty(task.UserCategory))
+            {
+                await dialogService.ShowMessage("Error", "Debe ingresar una categoría", "Aceptar");
+                return;
+            }
+
+            if (string.IsNullOrEmpty(task.UserPriority))
+            {
+                await dialogService.ShowMessage("Error", "Debe ingresar la prioridad", "Aceptar");
+                return;
+            }
+
             try
             {
                 await taskWA.Post(task);

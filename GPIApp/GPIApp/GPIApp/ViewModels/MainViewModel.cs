@@ -16,6 +16,7 @@ namespace GPIApp.ViewModels
 
         public MainViewModel()
         {
+            dialogService = new DialogService();
             navigationService = new NavigationService();
 
             Login = new LoginViewModel();
@@ -26,6 +27,8 @@ namespace GPIApp.ViewModels
         }
 
         #region Properties
+
+        private DialogService dialogService;
 
         private NavigationService navigationService;
 
@@ -39,6 +42,8 @@ namespace GPIApp.ViewModels
 
         public ObservableCollection<MenuItemViewModel> Menu { get; set; } 
 
+        public MenuItemViewModel CerrarSesion { get; set; }
+
         #endregion
 
         #region Commands
@@ -48,12 +53,22 @@ namespace GPIApp.ViewModels
             get { return new RelayCommand<string>(GoTo); }
         }
 
-        private void GoTo(string pageName)
+        private async void GoTo(string pageName)
         {
             switch (pageName)
             {
                 case "NewTask":
                     NewTask = new TaskViewModel();
+
+                    try
+                    {
+                        await NewTask.LoadPicker();
+                    }
+                    catch (Exception ex)
+                    {
+                        await dialogService.ShowMessage("Error", ex.Message, "Aceptar");
+                    }
+
                     break;
                 default:
                     break;
@@ -80,12 +95,28 @@ namespace GPIApp.ViewModels
                     Description = item.Description
                 });
             }*/
-            
 
-            if (await Login.Login())
+            try
             {
-                navigationService.SetMainPage("MasterPage");
+                if (await Login.Login())
+                {
+                    navigationService.SetPage("MasterPage");
+                }
             }
+            catch (Exception ex)
+            {
+                await dialogService.ShowMessage("Error", ex.Message, "Aceptar");
+            }
+        }
+
+        public ICommand LogoutCommand
+        {
+            get { return new RelayCommand(Logout); }
+        }
+
+        private void Logout()
+        {
+            navigationService.SetPage("LoginPage");
         }
 
         #endregion
@@ -141,17 +172,14 @@ namespace GPIApp.ViewModels
 
             });
 
-
-
             Menu.Add(new MenuItemViewModel()
             {
 
                 Icon = "ic_action_user",
                 Title = "Cerrar Sesión",
-                //PageName = ""
+                PageName = "CloseSesion"
 
             });
-
         }
 
         #endregion

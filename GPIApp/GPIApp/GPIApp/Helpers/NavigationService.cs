@@ -1,4 +1,5 @@
-﻿using GPIApp.Views.MainPage;
+﻿using GPIApp.Views.Login;
+using GPIApp.Views.MainPage;
 using GPIApp.Views.NewTask;
 using System;
 using System.Collections.Generic;
@@ -11,13 +12,22 @@ namespace GPIApp.Helpers
 {
     class NavigationService
     {
+
+        private DialogService dialogService;
+
         public async void Navigate(string pageName)
         {
+            dialogService = new DialogService();
+
             App.Master.IsPresented = false;
             switch (pageName)
             {
+                //Menu
                 case "ActiveTask":
                     //await Navigate(new ActiveTask());
+                    break;
+                case "CompletedTask":
+                    //await Navigate(new CompletedTask());
                     break;
                 case "CanceledTask":
                     //await Navigate(new CanceledTask());
@@ -28,14 +38,13 @@ namespace GPIApp.Helpers
                 case "Settings":
                     //await Navigate(new Settings());
                     break;
-                case "CompletedTask":
-                    //await Navigate(new CompletedTask());
-                    break;
-                case "MyTask":
-                    //await Navigate(new MyTask());
-                    break;
+                //Nueva Tarea
                 case "NewTask":
                     await Navigate(new NewTask());
+                    break;
+                //otros
+                case "MyTask":
+                    //await Navigate(new MyTask());
                     break;
                 case "MainPage":
                     await App.Navigator.PopToRootAsync();
@@ -54,12 +63,15 @@ namespace GPIApp.Helpers
             await App.Navigator.PushAsync(page);
         }
 
-        internal void SetMainPage(string pageName)
+        internal void SetPage(string pageName)
         {
             switch (pageName)
             {
                 case "MasterPage":
                     App.Current.MainPage = new Master_MainView();
+                    break;
+                case "LoginPage":
+                    App.Current.MainPage = new LoginView();
                     break;
                 default:
                     break;

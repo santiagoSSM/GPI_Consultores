@@ -6,9 +6,13 @@
              BindingContext="{Binding Main, Source={StaticResource Locator}}"
              Title="Mis Tareas">
 
-    <Label Text="Página Principal" VerticalOptions="Center" HorizontalOptions="Center"></Label>
-
     <ContentPage.ToolbarItems>
-        <ToolbarItem Icon="ic_action_add.png" Command="{Binding GoToCommand}" CommandParameter="NewTask"></ToolbarItem>
+        <ToolbarItem Icon="ic_action_add.png" Command="{Binding GoToCommand}" CommandParameter="other"></ToolbarItem>
     </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <StackLayout>
+   
+        </StackLayout>
+    </ContentPage.Content>
 </ContentPage>
