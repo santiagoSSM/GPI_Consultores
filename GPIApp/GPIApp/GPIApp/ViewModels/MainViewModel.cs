@@ -76,39 +76,6 @@ namespace GPIApp.ViewModels
             navigationService.Navigate(pageName);
         }
 
-        public ICommand StartCommand
-        {
-            get { return new RelayCommand(Start); }
-        }
-
-        private async void Start()
-        {
-            /*var list = await apiService.GetAllOrders();
-            Orders.Clear();
-
-            foreach (var item in list)
-            {
-                Orders.Add(new OrderViewModel()
-                {
-                    Title = item.Title,
-                    DeliveryDate = item.DeliveryDate,
-                    Description = item.Description
-                });
-            }*/
-
-            try
-            {
-                if (await Login.Login())
-                {
-                    navigationService.SetPage("MasterPage");
-                }
-            }
-            catch (Exception ex)
-            {
-                await dialogService.ShowMessage("Error", ex.Message, "Aceptar");
-            }
-        }
-
         public ICommand LogoutCommand
         {
             get { return new RelayCommand(Logout); }

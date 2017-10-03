@@ -13,7 +13,9 @@ namespace GPIApp.ViewModels
 {
     public class TaskViewModel
     {
+
         private DialogService dialogService;
+        private NavigationService navigationService;
         private TaskWA taskWA;
         public TaskAPP task { get; set; }
 
@@ -33,6 +35,7 @@ namespace GPIApp.ViewModels
         public TaskViewModel()
         {
             dialogService = new DialogService();
+            navigationService = new NavigationService();
             taskWA = new TaskWA();
             task = new TaskAPP();
 
@@ -93,6 +96,7 @@ namespace GPIApp.ViewModels
             {
                 await taskWA.Post(task);
                 await dialogService.ShowMessage("Mensaje", "Tarea registrada correctamente", "Aceptar");
+                navigationService.Navigate("MainPage");
             }
             catch (Exception ex)
             {

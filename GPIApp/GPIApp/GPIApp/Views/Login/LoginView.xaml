@@ -21,9 +21,9 @@
                     <Label Text="Clave"  HorizontalOptions="Start" VerticalOptions="Center"></Label>
                     <Entry Text="{Binding user.UserPassword}" x:Name="userPass" Placeholder="Ingrese Contraseña" IsPassword="True" HorizontalOptions="FillAndExpand" VerticalOptions="Center"></Entry>
                 </StackLayout>
-            </StackLayout>
 
-            <Button Command="{Binding StartCommand}" x:Name="enterButton" Text="Ingresar" BackgroundColor="Navy" TextColor="White" HorizontalOptions="FillAndExpand" VerticalOptions="Center"></Button>
+                <Button Command="{Binding LoginCommand}" x:Name="enterButton" Text="Ingresar" BackgroundColor="Navy" TextColor="White" HorizontalOptions="FillAndExpand" VerticalOptions="Center"></Button>
+            </StackLayout>
         </StackLayout>
     </ScrollView>
 </ContentPage>
