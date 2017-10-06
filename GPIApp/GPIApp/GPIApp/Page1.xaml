@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GPIApp.Page1">
+    <ContentPage.Content>
+        <ListView ItemsSource="{Binding ListTasks}"
+              HasUnevenRows="True"
+              ItemTapped="ListView_ItemTapped">
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout>
+                            <Label Text="{Binding Title}" Font ="25" HorizontalOptions="Start" VerticalOptions="Center"></Label>
+                            <Button Text="Detalles" IsVisible="{Binding IsVisible}"  HorizontalOptions="Fill" BackgroundColor="Navy" TextColor="White"></Button>
+                            <Button Text="Editar" IsVisible="{Binding IsVisible}" BackgroundColor="Navy" HorizontalOptions="Fill" TextColor="White"></Button>
+                            <Button Text="Eliminar" IsVisible="{Binding IsVisible}" BackgroundColor="Navy" HorizontalOptions="Fill" TextColor="White"></Button>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+
+        </ListView>
+    </ContentPage.Content>
+</ContentPage>

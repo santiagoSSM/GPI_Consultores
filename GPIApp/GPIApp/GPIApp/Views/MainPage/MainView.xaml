@@ -11,8 +11,6 @@
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
-        <StackLayout>
-   
-        </StackLayout>
+        
     </ContentPage.Content>
 </ContentPage>

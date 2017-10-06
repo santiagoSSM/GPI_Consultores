@@ -17,7 +17,7 @@
             </StackLayout>
 
             <StackLayout Orientation="Vertical">
-                <Label Text="Responsable" HorizontalOptions="Start" VerticalOptions="Center"></Label>
+                <Label Text="Responsables" HorizontalOptions="Start" VerticalOptions="Center"></Label>
                 <Entry Text="{Binding task.UserResp}" x:Name="userResp" Placeholder="Responsables" HorizontalOptions="FillAndExpand" VerticalOptions="Center"></Entry>
             </StackLayout>
 
@@ -35,8 +35,8 @@
                 <Label Text="Requiere Aprobación" HorizontalOptions="Start" VerticalOptions="Center"></Label>
 
                 <StackLayout Orientation="Horizontal">
-                    <Label x:Name="reqApproval" HorizontalOptions="Start" TextColor="Green" Text="No requiere"></Label>
-                    <Switch IsToggled="{Binding task.UserAprob}" HorizontalOptions="Fill" x:Name="approvalSwitch"></Switch>
+                    <Switch IsToggled="{Binding task.UserAprob, Mode=TwoWay}" HorizontalOptions="Fill" x:Name="approvalSwitch"></Switch>
+                    <Label x:Name="reqApproval" Text="{Binding task.UserAprobLabel}" HorizontalOptions="Start" TextColor="Green"></Label>
                 </StackLayout>
 
             </StackLayout>

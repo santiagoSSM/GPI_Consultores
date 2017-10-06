@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace GPIApp.Models
 {
-    public class TaskAPP
+    public class TaskAPP : INotifyPropertyChanged
     {
         int idTask;
         string userIssue;
@@ -96,6 +97,22 @@ namespace GPIApp.Models
             set
             {
                 userAprob = value;
+                OnPropertyChanged("UserAprobLabel");
+            }
+        }
+
+        public string UserAprobLabel
+        {
+            get
+            {
+                if (userAprob)
+                {
+                    return "Requiere";
+                }
+                else
+                {
+                    return "No requiere";
+                }
             }
         }
 
@@ -174,6 +191,17 @@ namespace GPIApp.Models
             set
             {
                 userContractDate = value;
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            var changed = PropertyChanged;
+            if (changed != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
     }

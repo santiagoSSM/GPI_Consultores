@@ -18,7 +18,9 @@ namespace GPIApp
 
             MainPage = new Master_MainView();
 
-            // = new LoginView();
+            //MainPage = new LoginView();
+
+            //MainPage = new Page1();
         }
     }
 }
