@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.Collections.ObjectModel;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,7 +18,7 @@ namespace WebApiConector
         }
 
         // GET: api/{ModelName}/
-        public async Task<List<T>> Get()
+        public async Task<ObservableCollection<T>> Get()
         {
             var uri = new Uri(string.Format(url, string.Empty, string.Empty));
 
@@ -29,7 +28,7 @@ namespace WebApiConector
 
                 if (response.IsSuccessStatusCode)
                 {
-                    return JsonConvert.DeserializeObject<List<T>>(
+                    return JsonConvert.DeserializeObject<ObservableCollection<T>>(
                         await response.Content.ReadAsStringAsync()  //Get the json
                     );
                 }
@@ -38,7 +37,7 @@ namespace WebApiConector
             {
                 throw e;
             }
-            return default(List<T>);
+            return default(ObservableCollection<T>);
         }
 
         // GET: api/{ModelName}/{var}

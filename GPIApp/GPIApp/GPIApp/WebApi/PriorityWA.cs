@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,7 +19,7 @@ namespace GPIApp.WebApi
     {
         PriorityImplemented<string> client = new PriorityImplemented<string>(ConstantsWA.WebApiServer + "PriorityWA/");
 
-        public async Task<List<string>> Get()
+        public async Task<ObservableCollection<string>> Get()
         {
             try
             {

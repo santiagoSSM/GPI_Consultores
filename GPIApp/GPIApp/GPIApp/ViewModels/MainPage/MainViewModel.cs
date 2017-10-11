@@ -9,14 +9,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace GPIApp.ViewModels
+namespace GPIApp.ViewModels.MainPage
 {
-    public static class StaticTaskList
+    public static class StaticTaskItem
     {
-        public static TaskListViewModel previousElement;
+        public static MainViewModel previousElement;
     }
 
-    public class TaskListViewModel : INotifyPropertyChanged
+    public class MainViewModel : INotifyPropertyChanged
     {
         public string Title { get; set; }
         public bool IsVisible { get; set; }
@@ -24,6 +24,8 @@ namespace GPIApp.ViewModels
         public int Btn1 { get; set; }
         public int Btn2 { get; set; }
         public int Btn3 { get; set; }
+
+
 
         public ICommand HideOrShowElementCommand
         {
@@ -35,20 +37,20 @@ namespace GPIApp.ViewModels
             HideOrShowElementMethod();
 
             
-                if (StaticTaskList.previousElement == null)
+                if (StaticTaskItem.previousElement == null)
                 {
-                    StaticTaskList.previousElement = this;
+                    StaticTaskItem.previousElement = this;
                 }
                 else
                 {
-                    if (!StaticTaskList.previousElement.Equals(this))
+                    if (!StaticTaskItem.previousElement.Equals(this))
                     {
-                        StaticTaskList.previousElement.HideOrShowElementMethod();
-                        StaticTaskList.previousElement = this;
+                        StaticTaskItem.previousElement.HideOrShowElementMethod();
+                        StaticTaskItem.previousElement = this;
                     }
                     else
                     {
-                        StaticTaskList.previousElement = null;
+                        StaticTaskItem.previousElement = null;
                     }
                 } 
         }

@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="GPIApp.Views.Login.LoginView"
              BackgroundColor="{StaticResource BackgroundColor}"
-             BindingContext="{Binding Main,Source={StaticResource Locator}}">
+             BindingContext="{Binding VMControl,Source={StaticResource Locator}}">
 
     <ScrollView>
         <StackLayout Padding="10,30,10,10" Spacing="10">
@@ -11,7 +11,7 @@
             <Label Text="Ingreso al Sistema" HorizontalOptions="Center" VerticalOptions="Center"></Label>
             <ActivityIndicator x:Name="waitActiviyIndicador"></ActivityIndicator>
 
-            <StackLayout BindingContext="{Binding Login}">
+            <StackLayout BindingContext="{Binding LoginVM}">
                 <StackLayout Orientation="Vertical">
                     <Label Text="Usuario" HorizontalOptions="Start" VerticalOptions="Center"></Label>
                     <Entry Text="{Binding user.UserId}" x:Name="userLogin" Placeholder="Ingrese Usuario" HorizontalOptions="FillAndExpand" VerticalOptions="Center"></Entry>
@@ -22,8 +22,9 @@
                     <Entry Text="{Binding user.UserPassword}" x:Name="userPass" Placeholder="Ingrese Contraseña" IsPassword="True" HorizontalOptions="FillAndExpand" VerticalOptions="Center"></Entry>
                 </StackLayout>
 
-                <Button Command="{Binding LoginCommand}" x:Name="enterButton" Text="Ingresar" BackgroundColor="Navy" TextColor="White" HorizontalOptions="FillAndExpand" VerticalOptions="Center"></Button>
             </StackLayout>
+
+            <Button Command="{Binding LoginCommand}" x:Name="enterButton" Text="Ingresar" BackgroundColor="Navy" TextColor="White" HorizontalOptions="FillAndExpand" VerticalOptions="Center"></Button>
         </StackLayout>
     </ScrollView>
 </ContentPage>

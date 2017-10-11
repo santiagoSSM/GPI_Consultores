@@ -1,61 +1,29 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using GPIApp.Helpers;
-using GPIApp.Views.NewTask;
+using GPIApp.ViewModels.Login;
+using GPIApp.ViewModels.MainPage;
+using GPIApp.ViewModels.NewTask;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace GPIApp.ViewModels
 {
-    class MainViewModel
+    class ViewModelsControl
     {
+        #region Main
 
-        public MainViewModel()
+        //Utilities
+        private DialogService dialogService;
+        private NavigationService navigationService;
+
+        public ViewModelsControl()
         {
             dialogService = new DialogService();
             navigationService = new NavigationService();
 
-            Login = new LoginViewModel();
-
-            Tasks = new ObservableCollection<Task>();
-
-            LoadMenu();
-            LoadTask();
+            LoginVM = new LoginViewModel();
         }
-
-        #region Properties
-
-        private DialogService dialogService;
-
-        private NavigationService navigationService;
-
-        public String User { get; private set; }
-
-        public LoginViewModel Login { get; private set; }
-
-        //Tasks
-
-        public TaskViewModel NewTask { get; private set; }
-
-        public ObservableCollection<Task> Tasks { get; set; }
-
-        //Menu
-
-        public ObservableCollection<MenuItemViewModel> Menu { get; set; } 
-
-        public MenuItemViewModel CerrarSesion { get; set; }
-
-        //ListTask
-
-        public ObservableCollection<TaskListViewModel> ListTasks { get; set; }
-
-        #endregion
-
-        #region Commands
 
         public ICommand GoToCommand
         {
@@ -67,7 +35,7 @@ namespace GPIApp.ViewModels
             switch (pageName)
             {
                 case "NewTask":
-                    NewTask = new TaskViewModel();
+                    NewTask = new NewTaskViewModel();
 
                     try
                     {
@@ -85,19 +53,33 @@ namespace GPIApp.ViewModels
             navigationService.Navigate(pageName);
         }
 
-        public ICommand LogoutCommand
+        #endregion
+
+        #region Login
+
+        public LoginViewModel LoginVM { get; private set; }
+
+        public ICommand LoginCommand
         {
-            get { return new RelayCommand(Logout); }
+            get { return new RelayCommand(Login); }
         }
 
-        private void Logout()
+        public async void Login()
         {
-            navigationService.SetPage("LoginPage");
+            if (await LoginVM.Login())
+            {
+                //load lists and View
+                LoadMenu();
+                LoadTask();
+                navigationService.SetPage("MasterPage");
+            }
         }
 
         #endregion
 
-        #region Methods
+        #region Menu
+
+        public ObservableCollection<MenuItemViewModel> Menu { get; set; }
 
         private void LoadMenu()
         {
@@ -158,11 +140,17 @@ namespace GPIApp.ViewModels
             });
         }
 
+        #endregion
+
+        #region ListTask
+
+        public ObservableCollection<MainViewModel> ListTasks { get; set; }
+
         private void LoadTask()
         {
-            ListTasks = new ObservableCollection<TaskListViewModel>();
+            ListTasks = new ObservableCollection<MainViewModel>();
 
-            ListTasks.Add(new TaskListViewModel()
+            ListTasks.Add(new MainViewModel()
             {
 
                 Title = "Esteban Arias",
@@ -170,7 +158,7 @@ namespace GPIApp.ViewModels
 
             });
 
-            ListTasks.Add(new TaskListViewModel()
+            ListTasks.Add(new MainViewModel()
             {
 
                 Title = "Geovanny Rojas Fhunnez",
@@ -178,7 +166,7 @@ namespace GPIApp.ViewModels
 
             });
 
-            ListTasks.Add(new TaskListViewModel()
+            ListTasks.Add(new MainViewModel()
             {
 
                 Title = "Santiago Sánchez Madrigal",
@@ -188,5 +176,11 @@ namespace GPIApp.ViewModels
         }
 
         #endregion
+
+        #region NewTask
+
+        public NewTaskViewModel NewTask { get; private set; }
+
+        #endregion 
     }
 }

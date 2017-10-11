@@ -1,6 +1,7 @@
 ﻿using GPIApp.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,7 +20,7 @@ namespace GPIApp.WebApi
     {
         RestTaskImplemented<TaskAPP> client = new RestTaskImplemented<TaskAPP>(ConstantsWA.WebApiServer + "TaskWA/");
 
-        public async Task<List<TaskAPP>> Get()
+        public async Task<ObservableCollection<TaskAPP>> Get()
         {
             try
             {

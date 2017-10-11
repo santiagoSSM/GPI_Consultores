@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace GPIApp.ViewModels
+namespace GPIApp.ViewModels.Login
 {
     public class LoginViewModel
     {
@@ -25,39 +25,37 @@ namespace GPIApp.ViewModels
             userWA = new UserWA();
         }
 
-        public ICommand LoginCommand
-        {
-            get { return new RelayCommand(Login); }
-        }
-
-        public async void Login()
+        public async Task<bool> Login()
         {
             if (string.IsNullOrEmpty(user.UserId))
             {
                 await dialogService.ShowMessage("Error", "Debe ingresar un usuario", "Aceptar");
-                return;
+                return false;
             }
 
             if (string.IsNullOrEmpty(user.UserPassword))
             {
                 await dialogService.ShowMessage("Error", "Debe ingresar una contraseña", "Aceptar");
-                return;
+                return false;
             }
 
             try
             {
                 if (await userWA.PutLogin(user))
                 {
-                    navigationService.SetPage("MasterPage");
+                    //navigationService.SetPage("MasterPage");
+                    return true;
                 }
                 else
                 {
                     await dialogService.ShowMessage("Error", "Usuario y contraseña incorrectos", "Aceptar");
+                    return false;
                 }
             }
             catch (Exception ex)
             {
                 await dialogService.ShowMessage("Error", ex.Message, "Aceptar");
+                return false;
             }
         }
     }

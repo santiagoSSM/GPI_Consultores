@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -49,7 +50,7 @@ namespace GPIApp.WebApi
     {
         RestClientImplemented<UserAPP> client = new RestClientImplemented<UserAPP>(ConstantsWA.WebApiServer + "UserWA/");
 
-        public async Task<List<UserAPP>> Get()
+        public async Task<ObservableCollection<UserAPP>> Get()
         {
             try
             {
