@@ -24,6 +24,7 @@ namespace GPIApp.ViewModels
             Tasks = new ObservableCollection<Task>();
 
             LoadMenu();
+            LoadTask();
         }
 
         #region Properties
@@ -36,13 +37,21 @@ namespace GPIApp.ViewModels
 
         public LoginViewModel Login { get; private set; }
 
+        //Tasks
+
         public TaskViewModel NewTask { get; private set; }
 
         public ObservableCollection<Task> Tasks { get; set; }
 
+        //Menu
+
         public ObservableCollection<MenuItemViewModel> Menu { get; set; } 
 
         public MenuItemViewModel CerrarSesion { get; set; }
+
+        //ListTask
+
+        public ObservableCollection<TaskListViewModel> ListTasks { get; set; }
 
         #endregion
 
@@ -145,6 +154,35 @@ namespace GPIApp.ViewModels
                 Icon = "ic_action_user",
                 Title = "Cerrar Sesión",
                 PageName = "CloseSesion"
+
+            });
+        }
+
+        private void LoadTask()
+        {
+            ListTasks = new ObservableCollection<TaskListViewModel>();
+
+            ListTasks.Add(new TaskListViewModel()
+            {
+
+                Title = "Esteban Arias",
+                IsVisible = false
+
+            });
+
+            ListTasks.Add(new TaskListViewModel()
+            {
+
+                Title = "Geovanny Rojas Fhunnez",
+                IsVisible = false
+
+            });
+
+            ListTasks.Add(new TaskListViewModel()
+            {
+
+                Title = "Santiago Sánchez Madrigal",
+                IsVisible = false
 
             });
         }
