@@ -32,18 +32,17 @@
             </StackLayout>
 
             <StackLayout Orientation="Vertical">
-                <Label Text="Requiere Aprobación" HorizontalOptions="Start" VerticalOptions="Center"></Label>
-
                 <StackLayout Orientation="Horizontal">
-                    <Switch IsToggled="{Binding task.UserAprob, Mode=TwoWay}" HorizontalOptions="Fill" x:Name="approvalSwitch"></Switch>
-                    <Label x:Name="reqApproval" Text="{Binding task.UserAprobLabel}" HorizontalOptions="Start" TextColor="Green"></Label>
+                <Label Text="Requiere Aprobación" HorizontalOptions="Start" VerticalOptions="Center"></Label>
+                <Switch IsToggled="{Binding task.UserAprob, Mode=TwoWay}" HorizontalOptions="Fill" x:Name="approvalSwitch"></Switch>
                 </StackLayout>
-
             </StackLayout>
-
+            
             <StackLayout Orientation="Vertical">
+                <StackLayout Orientation="Horizontal">
                 <Label Text="Prioridad" HorizontalOptions="Start" VerticalOptions="Center"></Label>
                 <Picker SelectedItem="{Binding task.UserPriority}" ItemsSource="{Binding priorityList}" x:Name="priority" Title="Seleccionar"></Picker>
+                </StackLayout>
             </StackLayout>
 
             <StackLayout Orientation="Vertical">
@@ -62,10 +61,9 @@
             </StackLayout>
 
             <StackLayout Orientation="Vertical">
-                <Label Text="Cancelar Recurrencia" HorizontalOptions="Start" VerticalOptions="Center"></Label>
                 <StackLayout Orientation="Horizontal">
-                    <Label x:Name="cancelRecurrence" HorizontalOptions="Start" TextColor="Green" Text="No cancela Recurrencia"></Label>
-                    <Switch IsToggled="{Binding task.UserCancelRecurrence}" HorizontalOptions="Fill" x:Name="cancelRecuSwitch"></Switch>
+                <Label Text="Cancelar Recurrencia" HorizontalOptions="Start" VerticalOptions="Center"></Label>
+                <Switch IsToggled="{Binding task.UserCancelRecurrence}" HorizontalOptions="Fill" x:Name="cancelRecuSwitch"></Switch>
                 </StackLayout>
             </StackLayout>
 
