@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:infra="clr-namespace:GPIApp.Helpers;assembly=GPIApp"
              x:Class="GPIApp.App">
-
+    
     <Application.Resources>
         <ResourceDictionary>
             <Color x:Key="MainColor">#134074</Color>

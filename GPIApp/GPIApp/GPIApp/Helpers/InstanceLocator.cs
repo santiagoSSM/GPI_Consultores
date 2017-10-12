@@ -11,9 +11,9 @@ namespace GPIApp.Helpers
     {
         public InstanceLocator()
         {
-            Main = new MainViewModel();
+            VMControl = new ViewModelsControl();
         }
 
-        public MainViewModel Main { get; set; }
+        public ViewModelsControl VMControl { get; set; }
     }
 }

@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="GPIApp.Views.MainPage.MainView"
              BackgroundColor="{StaticResource BackgroundColor}"
-             BindingContext="{Binding Main, Source={StaticResource Locator}}"
+             BindingContext="{Binding VMControl, Source={StaticResource Locator}}"
              Title="Mis Tareas">
 
     <ContentPage.ToolbarItems>
@@ -11,6 +11,30 @@
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
-        
+        <ListView ItemsSource="{Binding ListTasks}"
+                  HasUnevenRows="True">
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid>
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding HideOrShowElementCommand}">
+                                </TapGestureRecognizer>
+                            </Grid.GestureRecognizers>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <Label HorizontalOptions="Center"  Text="{Binding Title}" Font ="25"></Label>
+                            <Button Grid.Row="{Binding Btn1}" HorizontalOptions="Center" Text="Detalles" IsVisible="{Binding IsVisible}" BackgroundColor="Navy" TextColor="White"></Button>
+                            <Button Grid.Row="{Binding Btn2}" HorizontalOptions="Center" Text="Editar" IsVisible="{Binding IsVisible}" BackgroundColor="Navy" TextColor="White"></Button>
+                            <Button Grid.Row="{Binding Btn3}" HorizontalOptions="Center" Text="Eliminar" IsVisible="{Binding IsVisible}" BackgroundColor="Navy" TextColor="White"></Button>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+
+        </ListView>
     </ContentPage.Content>
 </ContentPage>

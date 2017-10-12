@@ -4,14 +4,15 @@ using GPIApp.Models;
 using GPIApp.WebApi;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace GPIApp.ViewModels
+namespace GPIApp.ViewModels.NewTask
 {
-    public class TaskViewModel
+    public class NewTaskViewModel
     {
 
         private DialogService dialogService;
@@ -26,13 +27,13 @@ namespace GPIApp.ViewModels
         private RecurrenceWA recurrenceWA;
 
         
-        public List<string> afterDayList { get; set; }
-        public List<string> beforeDaysList { get; set; }
-        public List<string> categoryList { get; set; }
-        public List<string> priorityList { get; set; }
-        public List<string> recurrenceList { get; set; }
+        public ObservableCollection<string> afterDayList { get; set; }
+        public ObservableCollection<string> beforeDaysList { get; set; }
+        public ObservableCollection<string> categoryList { get; set; }
+        public ObservableCollection<string> priorityList { get; set; }
+        public ObservableCollection<string> recurrenceList { get; set; }
 
-        public TaskViewModel()
+        public NewTaskViewModel()
         {
             dialogService = new DialogService();
             navigationService = new NavigationService();

@@ -4,7 +4,7 @@
              x:Class="GPIApp.Views.NewTask.NewTask"
              Title="Nueva Tarea"
              BackgroundColor="{StaticResource BackgroundColor}"
-             BindingContext="{Binding Main,Source={StaticResource Locator}}">
+             BindingContext="{Binding VMControl,Source={StaticResource Locator}}">
 
     <ScrollView BindingContext="{Binding NewTask}">
         <StackLayout Padding="10,15,10,10" Spacing="10">
