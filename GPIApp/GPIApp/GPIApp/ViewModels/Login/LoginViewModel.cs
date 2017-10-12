@@ -14,14 +14,14 @@ namespace GPIApp.ViewModels.Login
     {
         private DialogService dialogService;
         private NavigationService navigationService;
-        public UserAPP user { get; set; }
+        public UserModel user { get; set; }
         private UserWA userWA;
 
         public LoginViewModel()
         {
             dialogService = new DialogService();
             navigationService = new NavigationService();
-            user = new UserAPP();
+            user = new UserModel();
             userWA = new UserWA();
         }
 

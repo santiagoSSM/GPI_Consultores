@@ -18,9 +18,9 @@ namespace GPIApp.WebApi
 
     public class TaskWA
     {
-        RestTaskImplemented<TaskAPP> client = new RestTaskImplemented<TaskAPP>(ConstantsWA.WebApiServer + "TaskWA/");
+        RestTaskImplemented<TaskModel> client = new RestTaskImplemented<TaskModel>(ConstantsWA.WebApiServer + "TaskWA/");
 
-        public async Task<ObservableCollection<TaskAPP>> Get()
+        public async Task<ObservableCollection<TaskModel>> Get()
         {
             try
             {
@@ -32,7 +32,7 @@ namespace GPIApp.WebApi
             }
         }
 
-        public async Task<TaskAPP> Get(int key)
+        public async Task<TaskModel> Get(int key)
         {
             try
             {
@@ -44,7 +44,7 @@ namespace GPIApp.WebApi
             }
         }
 
-        public async Task Post(TaskAPP value)
+        public async Task Post(TaskModel value)
         {
             try
             {
@@ -56,7 +56,7 @@ namespace GPIApp.WebApi
             }
         }
 
-        public async Task Put(int key, TaskAPP value)
+        public async Task Put(int key, TaskModel value)
         {
             try
             {

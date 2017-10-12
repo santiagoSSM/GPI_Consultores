@@ -41,8 +41,8 @@
     <Compile Include="Helpers\DialogService.cs" />
     <Compile Include="Helpers\InstanceLocator.cs" />
     <Compile Include="Helpers\NavigationService.cs" />
-    <Compile Include="Models\TaskAPP.cs" />
-    <Compile Include="Models\UserAPP.cs" />
+    <Compile Include="Models\TaskModel.cs" />
+    <Compile Include="Models\UserModel.cs" />
     <Compile Include="Page1.xaml.cs">
       <DependentUpon>Page1.xaml</DependentUpon>
     </Compile>

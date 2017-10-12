@@ -18,7 +18,7 @@ namespace GPIApp.ViewModels.NewTask
         private DialogService dialogService;
         private NavigationService navigationService;
         private TaskWA taskWA;
-        public TaskAPP task { get; set; }
+        public TaskModel task { get; set; }
 
         private AfterDayWA afterDayWA;
         private BeforeDaysWA beforeDaysWA;
@@ -38,7 +38,7 @@ namespace GPIApp.ViewModels.NewTask
             dialogService = new DialogService();
             navigationService = new NavigationService();
             taskWA = new TaskWA();
-            task = new TaskAPP();
+            task = new TaskModel();
 
             afterDayWA = new AfterDayWA();
             beforeDaysWA = new BeforeDaysWA();

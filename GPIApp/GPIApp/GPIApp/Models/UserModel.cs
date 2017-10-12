@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GPIApp.Models
 {
-    public class UserAPP
+    public class UserModel
     {
         string userId = string.Empty;
         public string UserId

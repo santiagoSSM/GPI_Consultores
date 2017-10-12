@@ -48,9 +48,9 @@ namespace GPIApp.WebApi
 
     public class UserWA
     {
-        RestClientImplemented<UserAPP> client = new RestClientImplemented<UserAPP>(ConstantsWA.WebApiServer + "UserWA/");
+        RestClientImplemented<UserModel> client = new RestClientImplemented<UserModel>(ConstantsWA.WebApiServer + "UserWA/");
 
-        public async Task<ObservableCollection<UserAPP>> Get()
+        public async Task<ObservableCollection<UserModel>> Get()
         {
             try
             {
@@ -62,7 +62,7 @@ namespace GPIApp.WebApi
             }
         }
 
-        public async Task<UserAPP> Get(string key)
+        public async Task<UserModel> Get(string key)
         {
             try
             {
@@ -74,7 +74,7 @@ namespace GPIApp.WebApi
             }
         }
 
-        public async Task Post(UserAPP value)
+        public async Task Post(UserModel value)
         {
             try
             {
@@ -86,7 +86,7 @@ namespace GPIApp.WebApi
             }
         }
 
-        public async Task Put(string key, UserAPP value)
+        public async Task Put(string key, UserModel value)
         {
             try
             {
@@ -110,7 +110,7 @@ namespace GPIApp.WebApi
             }
         }
 
-        public async Task<bool> PutLogin(UserAPP value)
+        public async Task<bool> PutLogin(UserModel value)
         {
             try
             {

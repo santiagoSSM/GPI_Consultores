@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GPIApp.Models
 {
-    public class TaskAPP : INotifyPropertyChanged
+    public class TaskModel : INotifyPropertyChanged
     {
         int idTask;
         string userIssue;

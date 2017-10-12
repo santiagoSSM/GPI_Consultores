@@ -35,22 +35,33 @@ namespace GPIApp.ViewModels
             switch (pageName)
             {
                 case "NewTask":
-                    NewTask = new NewTaskViewModel();
-
-                    try
                     {
-                        await NewTask.LoadPicker();
-                    }
-                    catch (Exception ex)
-                    {
-                        await dialogService.ShowMessage("Error", ex.Message, "Aceptar");
-                    }
+                        NewTask = new NewTaskViewModel();
 
-                    break;
+                        try
+                        {
+                            await NewTask.LoadPicker();
+                        }
+                        catch (Exception ex)
+                        {
+                            await dialogService.ShowMessage("Error", ex.Message, "Aceptar");
+                        }
+                        navigationService.Navigate(pageName);
+                        break;
+                    }
+                    
+                case "CloseSesion":
+                    {
+                        navigationService.SetPage("LoginPage");
+                        break;
+                    }
+                    
                 default:
-                    break;
+                    {
+                        navigationService.Navigate(pageName);
+                        break;
+                    } 
             }
-            navigationService.Navigate(pageName);
         }
 
         #endregion

@@ -10,7 +10,58 @@
         <StackLayout>
             <Label Text="Menú Principal" FontSize="Medium" TextColor="White" FontAttributes="Bold"></Label>
         </StackLayout>
-        <ListView ItemsSource="{Binding Menu}" HasUnevenRows="True">
+
+        <StackLayout Orientation="Horizontal" >
+            <StackLayout.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding GoToCommand}" CommandParameter="NewTask">
+                </TapGestureRecognizer>
+            </StackLayout.GestureRecognizers>
+            <Image  WidthRequest="50" HeightRequest="50" Source="ic_action_donut_large"></Image>
+            <Label Grid.Column="1" VerticalOptions="Center" TextColor="{StaticResource MenuFontColor}" Text="Tareas Activas"></Label>
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal" >
+            <StackLayout.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding GoToCommand}" CommandParameter="NewTask">
+                </TapGestureRecognizer>
+            </StackLayout.GestureRecognizers>
+            <Image  WidthRequest="50" HeightRequest="50" Source="ic_action_check"></Image>
+            <Label Grid.Column="1" VerticalOptions="Center" TextColor="{StaticResource MenuFontColor}" Text="Tareas Completadas"></Label>
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal" >
+            <StackLayout.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding GoToCommand}" CommandParameter="NewTask">
+                </TapGestureRecognizer>
+            </StackLayout.GestureRecognizers>
+            <Image  WidthRequest="50" HeightRequest="50" Source="ic_action_clear"></Image>
+            <Label Grid.Column="1" VerticalOptions="Center" TextColor="{StaticResource MenuFontColor}" Text="Tareas Canceladas"></Label>
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal" >
+            <StackLayout.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding GoToCommand}" CommandParameter="NewTask">
+                </TapGestureRecognizer>
+            </StackLayout.GestureRecognizers>
+            <Image  WidthRequest="50" HeightRequest="50" Source="ic_action_delete"></Image>
+            <Label Grid.Column="1" VerticalOptions="Center" TextColor="{StaticResource MenuFontColor}" Text="Tareas Eliminadas"></Label>
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal" >
+            <StackLayout.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding GoToCommand}" CommandParameter="NewTask">
+                </TapGestureRecognizer>
+            </StackLayout.GestureRecognizers>
+            <Image  WidthRequest="50" HeightRequest="50" Source="ic_action_settings"></Image>
+            <Label Grid.Column="1" VerticalOptions="Center" TextColor="{StaticResource MenuFontColor}" Text="Settings"></Label>
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal" >
+            <Image  WidthRequest="50" HeightRequest="50" Source="ic_action_user"></Image>
+            <Button Command="{Binding GoToCommand}" CommandParameter="CloseSesion" Text="Cerrar Sesión" BackgroundColor="{StaticResource MainColor}" TextColor="{StaticResource MenuFontColor}" HorizontalOptions="Fill" VerticalOptions="Center"></Button>
+        </StackLayout>
+
+        <!--<ListView ItemsSource="{Binding Menu}" HasUnevenRows="True">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
@@ -29,6 +80,6 @@
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
-        </ListView>
+        </ListView>-->
     </StackLayout>
 </ContentPage>
