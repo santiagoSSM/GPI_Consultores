@@ -1,8 +1,10 @@
 ﻿using GPIApp.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using WebApiConector;
@@ -13,6 +15,29 @@ namespace GPIApp.WebApi
     {
         public RestTaskImplemented(string url) : base(url)
         {
+        }
+
+        public async Task<ObservableCollection<string>> GetSelect<X>(string serverVarName, X key)
+        {
+            var uri = new Uri(string.Format(url, string.Format("?{0}=", serverVarName), key));
+
+            try
+            {
+                HttpResponseMessage response = await client.GetAsync(uri);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    return JsonConvert.DeserializeObject<ObservableCollection<string>>(
+                        await response.Content.ReadAsStringAsync()  //Get the json
+                    );
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+
+            return default(ObservableCollection<string>);
         }
     }
 
@@ -78,6 +103,35 @@ namespace GPIApp.WebApi
             {
                 throw e;
             }
+        }
+
+        public async Task<ObservableCollection<TaskListItemModel>> GetSelect()
+        {
+            ObservableCollection<TaskListItemModel> temp = new ObservableCollection<TaskListItemModel>();
+
+            try
+            {
+                foreach (string element in await client.GetSelect<char>("select", 'l'))
+                {
+                    temp.Add(
+                        new TaskListItemModel()
+                        {
+                            Title = element,
+                            IsVisible = false,
+                        //Buttons
+                        Btn1 = 0,
+                            Btn2 = 0,
+                            Btn3 = 0
+                        }
+                        );
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+
+            return temp;
         }
     }
 }

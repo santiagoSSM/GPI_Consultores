@@ -110,7 +110,7 @@ namespace MockWebApi.Controllers
         }
 
         // Login method
-        public bool PutLogin(char select, [FromBody]UserWA value)
+        public bool PutSelect(char select, [FromBody]UserWA value)
         {
             return userWAList.FirstOrDefault(x => x.UserId == value.UserId && x.UserPassword == value.UserPassword)!=null;
         }

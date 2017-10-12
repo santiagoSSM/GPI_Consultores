@@ -146,5 +146,17 @@ namespace MockWebApi.Controllers
             }
             return InternalServerError();
         }
+
+        public IEnumerable<string> GetSelect(char select)
+        {
+            List<string> temp = new List<string>();
+
+            foreach (TaskWA element in taskWAList)
+            {
+                temp.Add(element.UserIssue);
+            }
+
+            return temp;
+        }
     }
 }

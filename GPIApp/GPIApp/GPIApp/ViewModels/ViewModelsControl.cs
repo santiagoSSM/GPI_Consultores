@@ -5,13 +5,14 @@ using GPIApp.ViewModels.MainPage;
 using GPIApp.ViewModels.NewTask;
 using System;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace GPIApp.ViewModels
 {
     class ViewModelsControl
     {
-        #region Main
+        #region VMControl
 
         //Utilities
         private DialogService dialogService;
@@ -32,35 +33,40 @@ namespace GPIApp.ViewModels
 
         private async void GoTo(string pageName)
         {
-            switch (pageName)
+            try
             {
-                case "NewTask":
-                    {
-                        NewTask = new NewTaskViewModel();
+                switch (pageName)
+                {
+                    case "NewTask":
+                        {
+                            NewTaskVM = new NewTaskViewModel();
+                            await LoadPicker();
+                            navigationService.Navigate(pageName);
+                            break;
+                        }
 
-                        try
+                    case "MainPage":
                         {
-                            await NewTask.LoadPicker();
+                            await MainVM.LoadTask();
+                            navigationService.Navigate(pageName);
+                            break;
                         }
-                        catch (Exception ex)
+
+                    case "CloseSesion":
                         {
-                            await dialogService.ShowMessage("Error", ex.Message, "Aceptar");
+                            navigationService.SetPage("LoginPage");
+                            break;
                         }
-                        navigationService.Navigate(pageName);
-                        break;
-                    }
-                    
-                case "CloseSesion":
-                    {
-                        navigationService.SetPage("LoginPage");
-                        break;
-                    }
-                    
-                default:
-                    {
-                        navigationService.Navigate(pageName);
-                        break;
-                    } 
+
+                    default:
+                        {
+                            break;
+                        }
+                }
+            }
+            catch (Exception ex)
+            {
+                await dialogService.ShowMessage("Error", ex.Message, "Aceptar");
             }
         }
 
@@ -75,14 +81,24 @@ namespace GPIApp.ViewModels
             get { return new RelayCommand(Login); }
         }
 
-        public async void Login()
+        private async void Login()
         {
-            if (await LoginVM.Login())
+            try
             {
-                //load lists and View
-                LoadMenu();
-                LoadTask();
-                navigationService.SetPage("MasterPage");
+                if (await LoginVM.Login())
+                {
+                    //load lists and View
+                    LoadMenu();
+
+                    MainVM = new MainViewModel();
+
+                    await MainVM.LoadTask();
+                    navigationService.SetPage("MasterPage");
+                }
+            }
+            catch (Exception ex)
+            {
+                await dialogService.ShowMessage("Error", ex.Message, "Aceptar");
             }
         }
 
@@ -153,45 +169,74 @@ namespace GPIApp.ViewModels
 
         #endregion
 
-        #region ListTask
+        #region Main
 
-        public ObservableCollection<MainViewModel> ListTasks { get; set; }
-
-        private void LoadTask()
-        {
-            ListTasks = new ObservableCollection<MainViewModel>();
-
-            ListTasks.Add(new MainViewModel()
-            {
-
-                Title = "Esteban Arias",
-                IsVisible = false
-
-            });
-
-            ListTasks.Add(new MainViewModel()
-            {
-
-                Title = "Geovanny Rojas Fhunnez",
-                IsVisible = false
-
-            });
-
-            ListTasks.Add(new MainViewModel()
-            {
-
-                Title = "Santiago Sánchez Madrigal",
-                IsVisible = false
-
-            });
-        }
+        public MainViewModel MainVM { get; private set; }
 
         #endregion
 
         #region NewTask
 
-        public NewTaskViewModel NewTask { get; private set; }
+        public NewTaskViewModel NewTaskVM { get; private set; }
 
-        #endregion 
+        public ICommand NewTaskCommand
+        {
+            get { return new RelayCommand(NewTask); }
+        }
+
+        private async void NewTask()
+        {
+            try
+            {
+                await NewTaskVM.NewTask();
+                GoTo("MainPage");
+            }
+            catch (Exception ex)
+            {
+                await dialogService.ShowMessage("Error", ex.Message, "Aceptar");
+            }
+        }
+
+        private async Task LoadPicker()
+        {
+            try
+            {
+                await NewTaskVM.LoadPicker();
+            }
+            catch (Exception ex)
+            {
+                await dialogService.ShowMessage("Error", ex.Message, "Aceptar");
+            }
+        }
+
+        #endregion
+
+        #region INIT
+        public ICommand INITCommand
+        {
+            get { return new RelayCommand(INIT); }
+        }
+
+        private async void INIT()
+        {
+            try
+            {
+                if (true)
+                {
+                    //load lists and View
+                    LoadMenu();
+
+                    MainVM = new MainViewModel();
+
+                    await MainVM.LoadTask();
+                    navigationService.SetPage("MasterPage");
+                }
+            }
+            catch (Exception ex)
+            {
+                await dialogService.ShowMessage("Error", ex.Message, "Aceptar");
+            }
+        }
+        #endregion
     }
 }

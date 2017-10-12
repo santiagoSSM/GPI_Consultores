@@ -101,21 +101,6 @@ namespace GPIApp.Models
             }
         }
 
-        public string UserAprobLabel
-        {
-            get
-            {
-                if (userAprob)
-                {
-                    return "Requiere";
-                }
-                else
-                {
-                    return "No requiere";
-                }
-            }
-        }
-
         public string UserPriority
         {
             get

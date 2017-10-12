@@ -7,11 +7,11 @@
              Title="Mis Tareas">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Icon="ic_action_add.png" Command="{Binding GoToCommand}" CommandParameter="CloseSesion"></ToolbarItem>
+        <ToolbarItem Icon="ic_action_add.png" Command="{Binding GoToCommand}" CommandParameter="NewTask"></ToolbarItem>
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
-        <ListView ItemsSource="{Binding ListTasks}"
+        <ListView ItemsSource="{Binding MainVM.ListTasks}"
                   HasUnevenRows="True">
 
             <ListView.ItemTemplate>

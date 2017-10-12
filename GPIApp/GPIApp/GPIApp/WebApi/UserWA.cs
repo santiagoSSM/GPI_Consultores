@@ -112,14 +112,7 @@ namespace GPIApp.WebApi
 
         public async Task<bool> PutLogin(UserModel value)
         {
-            try
-            {
-                return await client.PutLogin<char>("select", 'l', value);
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
+            return await client.PutLogin<char>("select", 'l', value);
         }
     }
 }

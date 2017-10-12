@@ -1,78 +1,39 @@
-﻿using GalaSoft.MvvmLight.Command;
-using GPIApp.Models;
-using System;
-using System.Collections.Generic;
+﻿using GPIApp.Models;
+using GPIApp.WebApi;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Input;
 
 namespace GPIApp.ViewModels.MainPage
 {
-    public static class StaticTaskItem
-    {
-        public static MainViewModel previousElement;
-    }
-
     public class MainViewModel : INotifyPropertyChanged
     {
-        public string Title { get; set; }
-        public bool IsVisible { get; set; }
-        //Buttons
-        public int Btn1 { get; set; }
-        public int Btn2 { get; set; }
-        public int Btn3 { get; set; }
+        private TaskWA taskWA;
+        public ObservableCollection<TaskListItemModel> listTasks;
 
-
-
-        public ICommand HideOrShowElementCommand
+        public ObservableCollection<TaskListItemModel> ListTasks
         {
-            get { return new RelayCommand(HideOrShowElement); }
-        }
-
-        public void HideOrShowElement()
-        {
-            HideOrShowElementMethod();
-
-            
-                if (StaticTaskItem.previousElement == null)
-                {
-                    StaticTaskItem.previousElement = this;
-                }
-                else
-                {
-                    if (!StaticTaskItem.previousElement.Equals(this))
-                    {
-                        StaticTaskItem.previousElement.HideOrShowElementMethod();
-                        StaticTaskItem.previousElement = this;
-                    }
-                    else
-                    {
-                        StaticTaskItem.previousElement = null;
-                    }
-                } 
-        }
-
-        public void HideOrShowElementMethod()
-        {
-            IsVisible = !IsVisible;
-            if (IsVisible)
+            get
             {
-                Btn1 = 1;
-                Btn2 = 2;
-                Btn3 = 3;
-            }
-            else
-            {
-                Btn1 = Btn2 = Btn3 = 0;
+                return listTasks;
             }
 
-            OnPropertyChanged("IsVisible");
-            OnPropertyChanged("Btn1");
-            OnPropertyChanged("Btn2");
-            OnPropertyChanged("Btn3");
+            set
+            {
+                listTasks = value;
+                OnPropertyChanged("ListTasks");
+            }
+        }
+
+        public MainViewModel()
+        {
+            taskWA = new TaskWA();
+            ListTasks = new ObservableCollection<TaskListItemModel>();
+        }
+
+        public async Task LoadTask()
+        {
+            ListTasks = await taskWA.GetSelect();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

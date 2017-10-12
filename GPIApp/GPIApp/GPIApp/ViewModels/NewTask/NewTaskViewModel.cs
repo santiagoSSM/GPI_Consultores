@@ -56,53 +56,41 @@ namespace GPIApp.ViewModels.NewTask
             recurrenceList = await recurrenceWA.Get();
         }
 
-        public ICommand NewTaskCommand
-        {
-            get { return new RelayCommand(NewTask); }
-        }
-
-        public async void NewTask()
+        public async Task<bool> NewTask()
         {
             if (string.IsNullOrEmpty(task.UserIssue))
             {
                 await dialogService.ShowMessage("Error", "Debe ingresar un asunto", "Aceptar");
-                return;
+                return false;
             }
 
             if (string.IsNullOrEmpty(task.UserResp))
             {
                 await dialogService.ShowMessage("Error", "Debe ingresar un responsable", "Aceptar");
-                return;
+                return false;
             }
 
             if (string.IsNullOrEmpty(task.UserCopy))
             {
                 await dialogService.ShowMessage("Error", "Ingresar el usuario al que se copia la tarea", "Aceptar");
-                return;
+                return false;
             }
 
             if (string.IsNullOrEmpty(task.UserCategory))
             {
                 await dialogService.ShowMessage("Error", "Debe ingresar una categoría", "Aceptar");
-                return;
+                return false;
             }
 
             if (string.IsNullOrEmpty(task.UserPriority))
             {
                 await dialogService.ShowMessage("Error", "Debe ingresar la prioridad", "Aceptar");
-                return;
+                return false;
             }
 
-            try
-            {
-                await taskWA.Post(task);
-                await dialogService.ShowMessage("Mensaje", "Tarea registrada correctamente", "Aceptar");
-                navigationService.Navigate("MainPage");
-            }
-            catch (Exception ex)
-            {
-                await dialogService.ShowMessage("Error", ex.Message, "Aceptar");
-            }
+            await taskWA.Post(task);
+            await dialogService.ShowMessage("Mensaje", "Tarea registrada correctamente", "Aceptar");
+            return true;
         }
     }
 }

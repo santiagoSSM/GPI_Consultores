@@ -43,7 +43,6 @@ namespace GPIApp.ViewModels.Login
             {
                 if (await userWA.PutLogin(user))
                 {
-                    //navigationService.SetPage("MasterPage");
                     return true;
                 }
                 else
@@ -52,10 +51,9 @@ namespace GPIApp.ViewModels.Login
                     return false;
                 }
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                await dialogService.ShowMessage("Error", ex.Message, "Aceptar");
-                return false;
+                throw e;
             }
         }
     }

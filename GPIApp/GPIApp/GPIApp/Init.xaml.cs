@@ -11,9 +11,9 @@ using Xamarin.Forms.Xaml;
 namespace GPIApp
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Page1 : ContentPage
+    public partial class Init : ContentPage
     {
-        public Page1()
+        public Init()
         {
             InitializeComponent();
         }
