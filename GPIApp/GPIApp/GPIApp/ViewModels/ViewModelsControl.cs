@@ -39,7 +39,7 @@ namespace GPIApp.ViewModels
                 {
                     case "NewTask":
                         {
-                            NewTaskVM = new NewTaskViewModel();
+                            TaskVM = new NewTaskViewModel();
                             await LoadPicker();
                             navigationService.Navigate(pageName);
                             break;
@@ -47,7 +47,7 @@ namespace GPIApp.ViewModels
 
                     case "MainPage":
                         {
-                            await MainVM.LoadTask();
+                            await MainVM.LoadListTask();
                             navigationService.Navigate(pageName);
                             break;
                         }
@@ -87,12 +87,9 @@ namespace GPIApp.ViewModels
             {
                 if (await LoginVM.Login())
                 {
-                    //load lists and View
-                    LoadMenu();
-
                     MainVM = new MainViewModel();
 
-                    await MainVM.LoadTask();
+                    await MainVM.LoadListTask();
                     navigationService.SetPage("MasterPage");
                 }
             }
@@ -104,80 +101,69 @@ namespace GPIApp.ViewModels
 
         #endregion
 
-        #region Menu
-
-        public ObservableCollection<MenuItemViewModel> Menu { get; set; }
-
-        private void LoadMenu()
-        {
-            Menu = new ObservableCollection<MenuItemViewModel>();
-
-            Menu.Add(new MenuItemViewModel()
-            {
-
-                Icon = "ic_action_donut_large",
-                Title = "Tareas Activas",
-                PageName = "NewTask"
-
-            });
-
-            Menu.Add(new MenuItemViewModel()
-            {
-
-                Icon = "ic_action_check",
-                Title = "Tareas Completadas",
-                PageName = "NewTask"
-
-            });
-
-            Menu.Add(new MenuItemViewModel()
-            {
-
-                Icon = "ic_action_clear",
-                Title = "Tareas Canceladas",
-                PageName = "NewTask"
-
-            });
-
-            Menu.Add(new MenuItemViewModel()
-            {
-
-                Icon = "ic_action_delete",
-                Title = "Tareas Eliminadas",
-                PageName = "NewTask"
-
-            });
-
-            Menu.Add(new MenuItemViewModel()
-            {
-
-                Icon = "ic_action_settings",
-                Title = "Settings",
-                PageName = "NewTask"
-
-            });
-
-            Menu.Add(new MenuItemViewModel()
-            {
-
-                Icon = "ic_action_user",
-                Title = "Cerrar Sesión",
-                PageName = "CloseSesion"
-
-            });
-        }
-
-        #endregion
-
         #region Main
 
         public MainViewModel MainVM { get; private set; }
+
+        public ICommand TaskListElementCommand
+        {
+            get { return new RelayCommand(TaskListElement); }
+        }
+
+        public async void TaskListElement()
+        {
+            var select = await dialogService.ShowOptions("Seleccionar", new string[] { "Ver", "Reasignar", "Editar", "Prorrogar", "Responder", "Delegar", "Crear borrador", "Eliminar borrador" }, "Cancelar");
+
+            switch (select)
+            {
+                case "Ver":
+                    {
+                        //Code
+                        break;
+                    }
+                case "Reasignar":
+                    {
+                        //Code
+                        break;
+                    }
+                case "Editar":
+                    {
+                        //Code
+                        break;
+                    }
+                case "Prorrogar":
+                    {
+                        //Code
+                        break;
+                    }
+                case "Responder":
+                    {
+                        //Code
+                        break;
+                    }
+                case "Delegar":
+                    {
+                        //Code
+                        break;
+                    }
+                case "Crear borrador":
+                    {
+                        //Code
+                        break;
+                    }
+                case "Eliminar borrador":
+                    {
+                        //Code
+                        break;
+                    }
+            }
+        }
 
         #endregion
 
         #region NewTask
 
-        public NewTaskViewModel NewTaskVM { get; private set; }
+        public NewTaskViewModel TaskVM { get; private set; }
 
         public ICommand NewTaskCommand
         {
@@ -188,7 +174,7 @@ namespace GPIApp.ViewModels
         {
             try
             {
-                await NewTaskVM.NewTask();
+                await TaskVM.NewTask();
                 GoTo("MainPage");
             }
             catch (Exception ex)
@@ -201,7 +187,7 @@ namespace GPIApp.ViewModels
         {
             try
             {
-                await NewTaskVM.LoadPicker();
+                await TaskVM.LoadPicker();
             }
             catch (Exception ex)
             {
@@ -223,12 +209,9 @@ namespace GPIApp.ViewModels
             {
                 if (true)
                 {
-                    //load lists and View
-                    LoadMenu();
-
                     MainVM = new MainViewModel();
 
-                    await MainVM.LoadTask();
+                    await MainVM.LoadListTask();
                     navigationService.SetPage("MasterPage");
                 }
             }

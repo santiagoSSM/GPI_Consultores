@@ -1,13 +1,17 @@
-﻿using GPIApp.Models;
+﻿using GalaSoft.MvvmLight.Command;
+using GPIApp.Helpers;
+using GPIApp.Models;
 using GPIApp.WebApi;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace GPIApp.ViewModels.MainPage
 {
     public class MainViewModel : INotifyPropertyChanged
     {
+        private DialogService dialogService;
         private TaskWA taskWA;
         public ObservableCollection<TaskListItemModel> listTasks;
 
@@ -27,11 +31,12 @@ namespace GPIApp.ViewModels.MainPage
 
         public MainViewModel()
         {
+            dialogService = new DialogService();
             taskWA = new TaskWA();
             ListTasks = new ObservableCollection<TaskListItemModel>();
         }
 
-        public async Task LoadTask()
+        public async Task LoadListTask()
         {
             ListTasks = await taskWA.GetSelect();
         }

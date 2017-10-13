@@ -116,12 +116,7 @@ namespace GPIApp.WebApi
                     temp.Add(
                         new TaskListItemModel()
                         {
-                            Title = element,
-                            IsVisible = false,
-                        //Buttons
-                        Btn1 = 0,
-                            Btn2 = 0,
-                            Btn3 = 0
+                            Title = element
                         }
                         );
                 }

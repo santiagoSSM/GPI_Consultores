@@ -14,6 +14,7 @@ namespace GPIApp.ViewModels.NewTask
 {
     public class NewTaskViewModel
     {
+        public string Title { get; set; }
 
         private DialogService dialogService;
         private NavigationService navigationService;
@@ -35,6 +36,8 @@ namespace GPIApp.ViewModels.NewTask
 
         public NewTaskViewModel()
         {
+            Title = "Nueva Tarea";
+
             dialogService = new DialogService();
             navigationService = new NavigationService();
             taskWA = new TaskWA();

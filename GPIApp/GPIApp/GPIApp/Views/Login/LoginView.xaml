@@ -7,18 +7,17 @@
 
     <ScrollView>
         <StackLayout Padding="10,30,10,10" Spacing="10">
-            <Label Text="Tareas" Font ="30" HorizontalOptions="Center" VerticalOptions="Center"></Label>
-            <Label Text="Ingreso al Sistema" HorizontalOptions="Center" VerticalOptions="Center"></Label>
+            <Label Text="Ingreso al Sistema" Font="25" HorizontalOptions="Center" VerticalOptions="Center"></Label>
             <ActivityIndicator x:Name="waitActiviyIndicador"></ActivityIndicator>
 
             <StackLayout BindingContext="{Binding LoginVM}">
                 <StackLayout Orientation="Vertical">
-                    <Label Text="Usuario" HorizontalOptions="Start" VerticalOptions="Center"></Label>
+                    <Label Text="Usuario" Font="20" HorizontalOptions="Start" VerticalOptions="Center"></Label>
                     <Entry Text="{Binding user.UserId}" x:Name="userLogin" Placeholder="Ingrese Usuario" HorizontalOptions="FillAndExpand" VerticalOptions="Center"></Entry>
                 </StackLayout>
 
                 <StackLayout Orientation="Vertical">
-                    <Label Text="Clave"  HorizontalOptions="Start" VerticalOptions="Center"></Label>
+                    <Label Text="Clave" Font="20"   HorizontalOptions="Start" VerticalOptions="Center"></Label>
                     <Entry Text="{Binding user.UserPassword}" x:Name="userPass" Placeholder="Ingrese Contraseña" IsPassword="True" HorizontalOptions="FillAndExpand" VerticalOptions="Center"></Entry>
                 </StackLayout>
 

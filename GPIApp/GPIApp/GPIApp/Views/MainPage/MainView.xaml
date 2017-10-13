@@ -19,17 +19,14 @@
                     <ViewCell>
                         <Grid>
                             <Grid.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding HideOrShowElementCommand}">
+                                <TapGestureRecognizer Command="{Binding VMControl.TaskListElementCommand, Source={StaticResource Locator}}">
                                 </TapGestureRecognizer>
                             </Grid.GestureRecognizers>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
 
-                            <Label HorizontalOptions="Center"  Text="{Binding Title}" Font ="25"></Label>
-                            <Button Grid.Row="{Binding Btn1}" HorizontalOptions="Center" Text="Detalles" IsVisible="{Binding IsVisible}" BackgroundColor="Navy" TextColor="White"></Button>
-                            <Button Grid.Row="{Binding Btn2}" HorizontalOptions="Center" Text="Editar" IsVisible="{Binding IsVisible}" BackgroundColor="Navy" TextColor="White"></Button>
-                            <Button Grid.Row="{Binding Btn3}" HorizontalOptions="Center" Text="Eliminar" IsVisible="{Binding IsVisible}" BackgroundColor="Navy" TextColor="White"></Button>
+                            <Label HorizontalOptions="Center" Text="{Binding Title}" Font ="25"></Label>
                         </Grid>
                     </ViewCell>
                 </DataTemplate>

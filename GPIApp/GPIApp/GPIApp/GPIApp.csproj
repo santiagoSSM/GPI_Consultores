@@ -50,7 +50,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\Login\LoginViewModel.cs" />
     <Compile Include="ViewModels\ViewModelsControl.cs" />
-    <Compile Include="ViewModels\MainPage\MenuItemViewModel.cs" />
     <Compile Include="ViewModels\MainPage\MainViewModel.cs" />
     <Compile Include="ViewModels\NewTask\NewTaskViewModel.cs" />
     <Compile Include="Views\Login\LoginView.xaml.cs">
