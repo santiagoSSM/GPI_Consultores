@@ -65,8 +65,8 @@
     <Compile Include="Views\MainPage\Menu_MainView.xaml.cs">
       <DependentUpon>Menu_MainView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\NewTask\NewTask.xaml.cs">
-      <DependentUpon>NewTask.xaml</DependentUpon>
+    <Compile Include="Views\Task\TaskView.xaml.cs">
+      <DependentUpon>TaskView.xaml</DependentUpon>
     </Compile>
     <Compile Include="WebApi\AfterDayWA.cs" />
     <Compile Include="WebApi\BeforeDaysWA.cs" />
@@ -140,12 +140,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\NewTask\NewTask.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Views\Login\LoginView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
@@ -153,6 +147,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Init.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Task\TaskView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

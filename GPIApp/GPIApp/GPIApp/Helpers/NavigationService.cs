@@ -1,10 +1,6 @@
 ﻿using GPIApp.Views.Login;
 using GPIApp.Views.MainPage;
-using GPIApp.Views.NewTask;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using GPIApp.Views.Task;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -40,7 +36,7 @@ namespace GPIApp.Helpers
                     break;
                 //Nueva Tarea
                 case "NewTask":
-                    await Navigate(new NewTask());
+                    await Navigate(new TaskView());
                     break;
                 //otros
                 case "MyTask":
@@ -50,7 +46,7 @@ namespace GPIApp.Helpers
                     await App.Navigator.PopToRootAsync();
                     break;
                 default:
-                    await Navigate(new NewTask());
+                    await Navigate(new TaskView());
                     break;
             }
         }
