@@ -19,5 +19,10 @@ namespace GPIApp.Helpers
                 await App.Current.MainPage.DisplayAlert(title, message, button);
             }
         }
+
+        public async Task<string> ShowOptions(string title, string[] options, string button)
+        {
+            return await App.Navigator.DisplayActionSheet(title, button, null, options);
+        }
     }
 }

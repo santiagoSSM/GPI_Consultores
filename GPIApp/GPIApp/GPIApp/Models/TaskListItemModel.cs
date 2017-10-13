@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight.Command;
+using GPIApp.Helpers;
 using System.ComponentModel;
 using System.Windows.Input;
 
@@ -11,6 +12,8 @@ namespace GPIApp.Models
 
     public class TaskListItemModel : INotifyPropertyChanged
     {
+        private DialogService dialogService;
+
         public string Title { get; set; }
         public bool IsVisible { get; set; }
         //Buttons
@@ -18,33 +21,85 @@ namespace GPIApp.Models
         public int Btn2 { get; set; }
         public int Btn3 { get; set; }
 
+        public TaskListItemModel()
+        {
+            dialogService = new DialogService();
+        }
+
         public ICommand HideOrShowElementCommand
         {
             get { return new RelayCommand(HideOrShowElement); }
         }
 
-        public void HideOrShowElement()
+        public async void HideOrShowElement()
         {
-            HideOrShowElementMethod();
+            var select = await dialogService.ShowOptions("Seleccionar", new string[] { "Ver", "Reasignar", "Editar", "Prorrogar", "Responder", "Delegar", "Crear borrador", "Eliminar borrador" },"Cancelar");
+
+            switch (select)
+            {
+                case "Ver":
+                    {
+                        //Code
+                        break;
+                    }
+                case "Reasignar":
+                    {
+                        //Code
+                        break;
+                    }
+                case "Editar":
+                    {
+                        //Code
+                        break;
+                    }
+                case "Prorrogar":
+                    {
+                        //Code
+                        break;
+                    }
+                case "Responder":
+                    {
+                        //Code
+                        break;
+                    }
+                case "Delegar":
+                    {
+                        //Code
+                        break;
+                    }
+                case "Crear borrador":
+                    {
+                        //Code
+                        break;
+                    }
+                case "Eliminar borrador":
+                    {
+                        //Code
+                        break;
+                    }
+            }
+                    /*
+                    HideOrShowElementMethod();
 
 
-            if (StaticTaskItem.previousElement == null)
-            {
-                StaticTaskItem.previousElement = this;
+                    if (StaticTaskItem.previousElement == null)
+                    {
+                        StaticTaskItem.previousElement = this;
+                    }
+                    else
+                    {
+                        if (!StaticTaskItem.previousElement.Equals(this))
+                        {
+                            StaticTaskItem.previousElement.HideOrShowElementMethod();
+                            StaticTaskItem.previousElement = this;
+                        }
+                        else
+                        {
+                            StaticTaskItem.previousElement = null;
+                        }
+                    }
+                    */
             }
-            else
-            {
-                if (!StaticTaskItem.previousElement.Equals(this))
-                {
-                    StaticTaskItem.previousElement.HideOrShowElementMethod();
-                    StaticTaskItem.previousElement = this;
-                }
-                else
-                {
-                    StaticTaskItem.previousElement = null;
-                }
-            }
-        }
 
         public void HideOrShowElementMethod()
         {
