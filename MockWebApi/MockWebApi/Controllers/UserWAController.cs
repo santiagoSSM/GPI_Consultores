@@ -69,25 +69,22 @@ namespace MockWebApi.Controllers
         { 
             if (value.UserId != null && value.UserPassword != null)
             {
-                if (userWAList.FirstOrDefault(x => x.UserId == value.UserId) == null)
+                if (userWAList.FirstOrDefault(x => x.UserId == key) != null)
                 {
-                    if (userWAList.FirstOrDefault(x => x.UserId == key) != null)
+                    try
                     {
-                        try
-                        {
-                            UserWA temp = Get(key);
+                        UserWA temp = Get(key);
 
-                            temp.UserId = value.UserId;
-                            temp.UserPassword = value.UserPassword;
+                        temp.UserId = value.UserId;
+                        temp.UserPassword = value.UserPassword;
 
-                            return Ok();
-                        }
-                        catch
-                        {
-                            return InternalServerError();
-                        }
+                        return Ok();
                     }
-                } 
+                    catch
+                    {
+                        return InternalServerError();
+                    }
+                }
             }
             return InternalServerError();
         }

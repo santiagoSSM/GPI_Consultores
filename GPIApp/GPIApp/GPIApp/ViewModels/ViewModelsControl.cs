@@ -185,8 +185,10 @@ namespace GPIApp.ViewModels
         {
             try
             {
-                await NewTaskVM.NewTask();
-                GoTo("MainPage");
+                if (await NewTaskVM.NewTask())
+                {
+                    GoTo("MainPage");
+                }
             }
             catch (Exception ex)
             {
@@ -209,8 +211,10 @@ namespace GPIApp.ViewModels
         {
             try
             {
-                await EditTaskVM.EditTask();
-                GoTo("MainPage");
+                if (await EditTaskVM.EditTask())
+                {
+                    GoTo("MainPage");
+                }
             }
             catch (Exception ex)
             {

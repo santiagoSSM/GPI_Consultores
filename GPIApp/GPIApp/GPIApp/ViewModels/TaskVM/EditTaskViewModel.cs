@@ -7,7 +7,10 @@ using System.Threading.Tasks;
 namespace GPIApp.ViewModels.TaskVM
 {
     public class EditTaskViewModel
-    {
+    {   //variable asunto temporal
+        private string issueTemp;
+
+
         private DialogService dialogService;
         private NavigationService navigationService;
         private TaskWA taskWA;
@@ -43,6 +46,8 @@ namespace GPIApp.ViewModels.TaskVM
         public async Task LoadPicker(string issue)
         {
             task = await taskWA.Get(issue);
+            issueTemp = task.UserIssue;
+
 
             afterDayList = await afterDayWA.Get();
             beforeDaysList = await beforeDaysWA.Get();
@@ -82,8 +87,8 @@ namespace GPIApp.ViewModels.TaskVM
                 await dialogService.ShowMessage("Error", "Debe ingresar la prioridad", "Aceptar");
                 return false;
             }
-
-            await taskWA.Post(task);
+            
+            await taskWA.Put(issueTemp, task);
             await dialogService.ShowMessage("Mensaje", "Tarea editada correctamente", "Aceptar");
             return true;
         }

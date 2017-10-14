@@ -12,8 +12,6 @@ namespace MockWebApi.Controllers
     {
         private static List<TaskWA> taskWAList = new List<TaskWA>()
         {
-            
-            
             new TaskWA()
             {
                 IdTask = 0,
@@ -102,31 +100,29 @@ namespace MockWebApi.Controllers
         {
             if (true)
             {
-                if (taskWAList.FirstOrDefault(x => x.IdTask == value.IdTask) == null)
+                if (taskWAList.FirstOrDefault(x => x.UserIssue == key) != null)
                 {
-                    if (taskWAList.FirstOrDefault(x => x.UserIssue == key) != null)
+                    try
                     {
-                        try
-                        {
-                            TaskWA temp = Get(key);
+                        TaskWA temp = Get(key);
 
-                            temp.IdTask = value.IdTask;
-                            temp.UserResp = value.UserResp;
-                            temp.UserCopy = value.UserCopy;
-                            temp.UserCategory = value.UserCategory;
-                            temp.UserAprob = value.UserAprob;
-                            temp.UserPriority = value.UserPriority;
-                            temp.UserRecurrence = value.UserRecurrence;
-                            temp.UserBeforeDays = value.UserBeforeDays;
-                            temp.UserCancelRecurrence = value.UserCancelRecurrence;
-                            temp.UserContractDate = value.UserContractDate;
+                        temp.IdTask = value.IdTask;
+                        temp.UserIssue = value.UserIssue;
+                        temp.UserResp = value.UserResp;
+                        temp.UserCopy = value.UserCopy;
+                        temp.UserCategory = value.UserCategory;
+                        temp.UserAprob = value.UserAprob;
+                        temp.UserPriority = value.UserPriority;
+                        temp.UserRecurrence = value.UserRecurrence;
+                        temp.UserBeforeDays = value.UserBeforeDays;
+                        temp.UserCancelRecurrence = value.UserCancelRecurrence;
+                        temp.UserContractDate = value.UserContractDate;
 
-                            return Ok();
-                        }
-                        catch
-                        {
-                            return InternalServerError();
-                        }
+                        return Ok();
+                    }
+                    catch
+                    {
+                        return InternalServerError();
                     }
                 }
             }
