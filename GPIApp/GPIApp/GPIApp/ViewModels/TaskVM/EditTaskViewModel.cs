@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GPIApp.ViewModels.TaskVM
 {
-    public class NewTaskViewModel
+    public class EditTaskViewModel
     {
         private DialogService dialogService;
         private NavigationService navigationService;
@@ -19,14 +19,14 @@ namespace GPIApp.ViewModels.TaskVM
         private PriorityWA priorityWA;
         private RecurrenceWA recurrenceWA;
 
-        
+
         public ObservableCollection<string> afterDayList { get; set; }
         public ObservableCollection<string> beforeDaysList { get; set; }
         public ObservableCollection<string> categoryList { get; set; }
         public ObservableCollection<string> priorityList { get; set; }
         public ObservableCollection<string> recurrenceList { get; set; }
 
-        public NewTaskViewModel()
+        public EditTaskViewModel()
         {
             dialogService = new DialogService();
             navigationService = new NavigationService();
@@ -40,8 +40,10 @@ namespace GPIApp.ViewModels.TaskVM
             recurrenceWA = new RecurrenceWA();
         }
 
-        public async Task LoadPicker()
+        public async Task LoadPicker(string issue)
         {
+            task = await taskWA.Get(issue);
+
             afterDayList = await afterDayWA.Get();
             beforeDaysList = await beforeDaysWA.Get();
             categoryList = await categoryWA.Get();
@@ -49,7 +51,7 @@ namespace GPIApp.ViewModels.TaskVM
             recurrenceList = await recurrenceWA.Get();
         }
 
-        public async Task<bool> NewTask()
+        public async Task<bool> EditTask()
         {
             if (string.IsNullOrEmpty(task.UserIssue))
             {
@@ -82,7 +84,7 @@ namespace GPIApp.ViewModels.TaskVM
             }
 
             await taskWA.Post(task);
-            await dialogService.ShowMessage("Mensaje", "Tarea registrada correctamente", "Aceptar");
+            await dialogService.ShowMessage("Mensaje", "Tarea editada correctamente", "Aceptar");
             return true;
         }
     }

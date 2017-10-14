@@ -18,6 +18,8 @@ namespace GPIApp.ViewModels
         private DialogService dialogService;
         private NavigationService navigationService;
 
+        public string TaskTemp { get; set; }
+
         public ViewModelsControl()
         {
             dialogService = new DialogService();
@@ -40,7 +42,7 @@ namespace GPIApp.ViewModels
                     case "NewTask":
                         {
                             NewTaskVM = new NewTaskViewModel();
-                            await LoadPicker();
+                            await NewTaskVM.LoadPicker();
                             navigationService.Navigate(pageName);
                             break;
                         }
@@ -107,55 +109,64 @@ namespace GPIApp.ViewModels
 
         public ICommand TaskListElementCommand
         {
-            get { return new RelayCommand(TaskListElement); }
+            get { return new RelayCommand<string>(TaskListElement); }
         }
 
-        public async void TaskListElement()
+        public async void TaskListElement(string taskIssue)
         {
-            var select = await dialogService.ShowOptions("Seleccionar", new string[] { "Ver", "Reasignar", "Editar", "Prorrogar", "Responder", "Delegar", "Crear borrador", "Eliminar borrador" }, "Cancelar");
-
-            switch (select)
+            try
             {
-                case "Ver":
-                    {
-                        //Code
-                        break;
-                    }
-                case "Reasignar":
-                    {
-                        //Code
-                        break;
-                    }
-                case "Editar":
-                    {
-                        //Code
-                        break;
-                    }
-                case "Prorrogar":
-                    {
-                        //Code
-                        break;
-                    }
-                case "Responder":
-                    {
-                        //Code
-                        break;
-                    }
-                case "Delegar":
-                    {
-                        //Code
-                        break;
-                    }
-                case "Crear borrador":
-                    {
-                        //Code
-                        break;
-                    }
-                case "Eliminar borrador":
-                    {
-                        //Code
-                        break;
-                    }
+                var select = await dialogService.ShowOptions("Seleccionar", new string[] { "Ver", "Reasignar", "Editar", "Prorrogar", "Responder", "Delegar", "Crear borrador", "Eliminar borrador" }, "Cancelar");
+
+                switch (select)
+                {
+                    case "Ver":
+                        {
+                            //Code
+                            break;
+                        }
+                    case "Reasignar":
+                        {
+                            //Code
+                            break;
+                        }
+                    case "Editar":
+                        {
+                            EditTaskVM = new EditTaskViewModel();
+                            await EditTaskVM.LoadPicker(taskIssue);
+                            navigationService.Navigate("EditTask");
+                            break;
+                        }
+                    case "Prorrogar":
+                        {
+                            //Code
+                            break;
+                        }
+                    case "Responder":
+                        {
+                            //Code
+                            break;
+                        }
+                    case "Delegar":
+                        {
+                            //Code
+                            break;
+                        }
+                    case "Crear borrador":
+                        {
+                            //Code
+                            break;
+                        }
+                    case "Eliminar borrador":
+                        {
+                            //Code
+                            break;
+                        }
+                }
+            }
+            catch (Exception ex)
+            {
+                await dialogService.ShowMessage("Error", ex.Message, "Aceptar");
             }
         }
 
@@ -183,11 +194,23 @@ namespace GPIApp.ViewModels
             }
         }
 
-        private async Task LoadPicker()
+        #endregion
+
+        #region NewTask
+
+        public EditTaskViewModel EditTaskVM { get; private set; }
+
+        public ICommand EditTaskCommand
+        {
+            get { return new RelayCommand(EditTask); }
+        }
+
+        private async void EditTask()
         {
             try
             {
-                await NewTaskVM.LoadPicker();
+                await EditTaskVM.EditTask();
+                GoTo("MainPage");
             }
             catch (Exception ex)
             {

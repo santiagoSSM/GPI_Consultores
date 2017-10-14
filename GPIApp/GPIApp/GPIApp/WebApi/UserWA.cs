@@ -66,7 +66,7 @@ namespace GPIApp.WebApi
         {
             try
             {
-                return await client.Get("id", key);
+                return await client.Get("key", key);
             }
             catch (Exception e)
             {

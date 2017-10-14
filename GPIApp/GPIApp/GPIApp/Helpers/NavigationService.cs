@@ -34,14 +34,14 @@ namespace GPIApp.Helpers
                 case "Settings":
                     //await Navigate(new Settings());
                     break;
-                //Nueva Tarea
+                //Tasks
                 case "NewTask":
                     await Navigate(new NewTaskView());
                     break;
-                //otros
-                case "MyTask":
-                    //await Navigate(new MyTask());
+                case "EditTask":
+                    await Navigate(new EditTaskView());
                     break;
+                //other
                 case "MainPage":
                     await App.Navigator.PopToRootAsync();
                     break;

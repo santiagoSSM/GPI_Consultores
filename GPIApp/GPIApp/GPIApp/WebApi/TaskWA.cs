@@ -21,13 +21,29 @@ namespace GPIApp.WebApi
         {
             var uri = new Uri(string.Format(url, string.Format("?{0}=", serverVarName), key));
 
+            HttpResponseMessage response = await client.GetAsync(uri);
+
+            if (response.IsSuccessStatusCode)
+            {
+                return JsonConvert.DeserializeObject<ObservableCollection<string>>(
+                    await response.Content.ReadAsStringAsync()  //Get the json
+                );
+            }
+
+            return default(ObservableCollection<string>);
+        }
+
+        public async Task<T> GetS<X>(string serverVarName, X key)
+        {
+            var uri = new Uri(string.Format(url, string.Format("?{0}=", serverVarName), key));
+
             try
             {
                 HttpResponseMessage response = await client.GetAsync(uri);
 
                 if (response.IsSuccessStatusCode)
                 {
-                    return JsonConvert.DeserializeObject<ObservableCollection<string>>(
+                    return JsonConvert.DeserializeObject<T>(
                         await response.Content.ReadAsStringAsync()  //Get the json
                     );
                 }
@@ -36,8 +52,7 @@ namespace GPIApp.WebApi
             {
                 throw e;
             }
-
-            return default(ObservableCollection<string>);
+            return default(T);
         }
     }
 
@@ -57,16 +72,9 @@ namespace GPIApp.WebApi
             }
         }
 
-        public async Task<TaskModel> Get(int key)
+        public async Task<TaskModel> Get(string key)
         {
-            try
-            {
-                return await client.Get("id", key);
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
+            return await client.Get("key", key);
         }
 
         public async Task Post(TaskModel value)
@@ -81,7 +89,7 @@ namespace GPIApp.WebApi
             }
         }
 
-        public async Task Put(int key, TaskModel value)
+        public async Task Put(string key, TaskModel value)
         {
             try
             {

@@ -70,9 +70,9 @@ namespace MockWebApi.Controllers
         }
 
         // GET: api/TaskWS/5
-        public TaskWA Get(int key)
+        public TaskWA Get(string key)
         {
-            return taskWAList.FirstOrDefault(x => x.IdTask == key);
+            return taskWAList.FirstOrDefault(x => x.UserIssue == key);
         }
 
         // POST: api/TaskWS
@@ -98,13 +98,13 @@ namespace MockWebApi.Controllers
         }
 
         // PUT: api/TaskWS/5
-        public IHttpActionResult Put(int key, [FromBody]TaskWA value)
+        public IHttpActionResult Put(string key, [FromBody]TaskWA value)
         {
             if (true)
             {
                 if (taskWAList.FirstOrDefault(x => x.IdTask == value.IdTask) == null)
                 {
-                    if (taskWAList.FirstOrDefault(x => x.IdTask == key) != null)
+                    if (taskWAList.FirstOrDefault(x => x.UserIssue == key) != null)
                     {
                         try
                         {
