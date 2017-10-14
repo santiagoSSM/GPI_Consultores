@@ -51,7 +51,7 @@
     <Compile Include="ViewModels\Login\LoginViewModel.cs" />
     <Compile Include="ViewModels\ViewModelsControl.cs" />
     <Compile Include="ViewModels\MainPage\MainViewModel.cs" />
-    <Compile Include="ViewModels\NewTask\NewTaskViewModel.cs" />
+    <Compile Include="ViewModels\TaskVM\NewTaskViewModel.cs" />
     <Compile Include="Views\Login\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
     </Compile>
@@ -64,8 +64,8 @@
     <Compile Include="Views\MainPage\Menu_MainView.xaml.cs">
       <DependentUpon>Menu_MainView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Task\TaskView.xaml.cs">
-      <DependentUpon>TaskView.xaml</DependentUpon>
+    <Compile Include="Views\Task\NewTaskView.xaml.cs">
+      <DependentUpon>NewTaskView.xaml</DependentUpon>
     </Compile>
     <Compile Include="WebApi\AfterDayWA.cs" />
     <Compile Include="WebApi\BeforeDaysWA.cs" />
@@ -151,7 +151,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\Task\TaskView.xaml">
+    <EmbeddedResource Include="Views\Task\NewTaskView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

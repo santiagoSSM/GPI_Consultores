@@ -36,7 +36,7 @@ namespace GPIApp.Helpers
                     break;
                 //Nueva Tarea
                 case "NewTask":
-                    await Navigate(new TaskView());
+                    await Navigate(new NewTaskView());
                     break;
                 //otros
                 case "MyTask":
@@ -46,7 +46,7 @@ namespace GPIApp.Helpers
                     await App.Navigator.PopToRootAsync();
                     break;
                 default:
-                    await Navigate(new TaskView());
+                    await Navigate(new NewTaskView());
                     break;
             }
         }

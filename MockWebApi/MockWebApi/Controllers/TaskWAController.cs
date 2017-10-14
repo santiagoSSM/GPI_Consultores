@@ -80,15 +80,18 @@ namespace MockWebApi.Controllers
         {
             if (true)
             {
-                try
+                if (taskWAList.FirstOrDefault(x => x.UserIssue == value.UserIssue) == null)
                 {
-                    value.IdTask = taskWAList.Count();
-                    taskWAList.Add(value);
-                    return Ok();
-                }
-                catch
-                {
-                    return InternalServerError();
+                    try
+                    {
+                        value.IdTask = taskWAList.Count();
+                        taskWAList.Add(value);
+                        return Ok();
+                    }
+                    catch
+                    {
+                        return InternalServerError();
+                    }
                 }
             }
             return InternalServerError();

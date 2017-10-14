@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace GPIApp.ViewModels.NewTask
+namespace GPIApp.ViewModels.TaskVM
 {
     public class NewTaskViewModel
     {

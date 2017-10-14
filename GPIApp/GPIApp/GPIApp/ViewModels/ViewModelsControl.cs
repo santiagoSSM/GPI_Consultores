@@ -2,7 +2,7 @@
 using GPIApp.Helpers;
 using GPIApp.ViewModels.Login;
 using GPIApp.ViewModels.MainPage;
-using GPIApp.ViewModels.NewTask;
+using GPIApp.ViewModels.TaskVM;
 using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
@@ -39,7 +39,7 @@ namespace GPIApp.ViewModels
                 {
                     case "NewTask":
                         {
-                            TaskVM = new NewTaskViewModel();
+                            NewTaskVM = new NewTaskViewModel();
                             await LoadPicker();
                             navigationService.Navigate(pageName);
                             break;
@@ -163,7 +163,7 @@ namespace GPIApp.ViewModels
 
         #region NewTask
 
-        public NewTaskViewModel TaskVM { get; private set; }
+        public NewTaskViewModel NewTaskVM { get; private set; }
 
         public ICommand NewTaskCommand
         {
@@ -174,7 +174,7 @@ namespace GPIApp.ViewModels
         {
             try
             {
-                await TaskVM.NewTask();
+                await NewTaskVM.NewTask();
                 GoTo("MainPage");
             }
             catch (Exception ex)
@@ -187,7 +187,7 @@ namespace GPIApp.ViewModels
         {
             try
             {
-                await TaskVM.LoadPicker();
+                await NewTaskVM.LoadPicker();
             }
             catch (Exception ex)
             {
