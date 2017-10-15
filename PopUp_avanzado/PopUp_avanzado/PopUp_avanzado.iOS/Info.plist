@@ -23,9 +23,9 @@
     <key>MinimumOSVersion</key>
     <string>8.0</string>
     <key>CFBundleDisplayName</key>
-    <string>MyOrders</string>
+    <string>PopUp_avanzado</string>
     <key>CFBundleIdentifier</key>
-    <string>com.yourcompany.MyOrders</string>
+    <string>com.yourcompany.PopUp_avanzado</string>
     <key>CFBundleVersion</key>
     <string>1.0</string>
     <key>CFBundleIconFiles</key>
