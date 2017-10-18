@@ -16,9 +16,9 @@ namespace GPIApp
         {
             InitializeComponent();
 
-            //MainPage = new Init();
+            MainPage = new Init();
 
-            MainPage = new LoginView();
+            //MainPage = new LoginView();
         }
     }
 }

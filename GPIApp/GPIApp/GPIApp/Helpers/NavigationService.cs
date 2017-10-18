@@ -18,19 +18,6 @@ namespace GPIApp.Helpers
             App.Master.IsPresented = false;
             switch (pageName)
             {
-                //Menu
-                case "ActiveTask":
-                    //await Navigate(new ActiveTask());
-                    break;
-                case "CompletedTask":
-                    //await Navigate(new CompletedTask());
-                    break;
-                case "CanceledTask":
-                    //await Navigate(new CanceledTask());
-                    break;
-                case "DeletedTask":
-                    //await Navigate(new DeletedTask());
-                    break;
                 case "Settings":
                     //await Navigate(new Settings());
                     break;

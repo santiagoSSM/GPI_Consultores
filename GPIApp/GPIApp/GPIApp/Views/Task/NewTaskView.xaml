@@ -50,18 +50,18 @@
 
                 <StackLayout Orientation="Vertical">
                     <Label Text="Recurrencia" Font="20"  HorizontalOptions="Start" VerticalOptions="Center"></Label>
-                    <Picker SelectedItem="{Binding task.UserRecurrence}" ItemsSource="{Binding recurrenceList}" x:Name="recurrence" Title="Seleccionar"></Picker>
+                    <!--<Picker SelectedItem="{Binding task.UserRecurrence}" ItemsSource="{Binding recurrenceList}" x:Name="recurrence" Title="Seleccionar"></Picker>-->
                 </StackLayout>
 
-                <StackLayout Orientation="Vertical">
+                <!--<StackLayout Orientation="Vertical">
                     <Label Text="Días de Preaviso" Font="20"  HorizontalOptions="Start" VerticalOptions="Center"></Label>
-                    <Picker SelectedItem="{Binding task.UserBeforeDays}" ItemsSource="{Binding beforeDaysList}" x:Name="beforeDays" Title="Seleccionar"></Picker>
+                    <Picker SelectedItem="{Binding task.objRecurrence.UserBeforeDays}" ItemsSource="{Binding beforeDaysList}" x:Name="beforeDays" Title="Seleccionar"></Picker>
                 </StackLayout>
 
                 <StackLayout Orientation="Vertical">
                     <StackLayout Orientation="Horizontal">
                         <Label Text="Cancelar Recurrencia" Font="20"  HorizontalOptions="Start" VerticalOptions="Center"></Label>
-                        <Switch IsToggled="{Binding task.UserCancelRecurrence}" HorizontalOptions="Fill" x:Name="cancelRecuSwitch"></Switch>
+                        <Switch IsToggled="{Binding task.objRecurrence.UserCancelRecurrence}" HorizontalOptions="Fill" x:Name="cancelRecuSwitch"></Switch>
                     </StackLayout>
                 </StackLayout>
 
@@ -89,8 +89,8 @@
                         <Switch HorizontalOptions="Start" x:Name="FinalSwitch"></Switch>
                         <Label x:Name="final" Font="20"  HorizontalOptions="Fill" TextColor="Green" Text="Finaliza el: "></Label>
                     </StackLayout>
-                    <DatePicker Date="{Binding task.UserContractDate}" x:Name="finalDatePicker"></DatePicker>
-                </StackLayout>
+                    <DatePicker Date="{Binding task.objRecurrence.UserContractDate}" x:Name="finalDatePicker"></DatePicker>
+                </StackLayout>-->
             </StackLayout>
 
             <!--                                    prueba                                -->

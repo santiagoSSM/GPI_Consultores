@@ -22,7 +22,8 @@ namespace PopUp_avanzado
 
         private async void SimplePopupClicked(object sender, EventArgs e)
         {
-            var temp = new BasicPopup() { CloseWhenBackgroundIsClicked = true };
+            //var temp = new BasicPopup() { CloseWhenBackgroundIsClicked = true };
+            var temp = new Basic2() { CloseWhenBackgroundIsClicked = true };
             try
             {
                 await PopupNavigation.PushAsync(temp);

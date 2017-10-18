@@ -1,4 +1,6 @@
 ﻿using MockWebApi.Models;
+using MockWebApi.Models.Recurrence;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +12,7 @@ namespace MockWebApi.Controllers
 {
     public class TaskWAController : ApiController
     {
+        private static string user;
         private static List<TaskWA> taskWAList = new List<TaskWA>()
         {
             new TaskWA()
@@ -18,14 +21,17 @@ namespace MockWebApi.Controllers
                 UserIssue = "tarea0",
                 UserResp = "Oscar",
                 UserCopy = "copia",
-                UserCategory = "categoria",
+                UserCategory = "Programación",
                 UserAprob = true,
-                UserPriority = "prioridad",
+                UserPriority = "Media",
                 UserDescription = "descripcion",
-                UserRecurrence = "recurrencia",
-                UserBeforeDays = "5 días",
-                UserCancelRecurrence = false,
-                UserContractDate = new DateTime(2010, 8, 10)
+                UserRecurrence = "Ninguna",
+                ObjRecurrence = new NothingRecurrence()
+                {
+                    UserBeforeDays = "5 días",
+                    UserCancelRecurrence = false,
+                    UserContractDate = new DateTime(2010, 8, 10)
+                }
             },
 
             new TaskWA()
@@ -34,14 +40,17 @@ namespace MockWebApi.Controllers
                 UserIssue = "tarea1",
                 UserResp = "Oscar",
                 UserCopy = "copia",
-                UserCategory = "categoria",
+                UserCategory = "Programación",
                 UserAprob = true,
-                UserPriority = "prioridad",
+                UserPriority = "Media",
                 UserDescription = "descripcion",
-                UserRecurrence = "recurrencia",
-                UserBeforeDays = "5 días",
-                UserCancelRecurrence = false,
-                UserContractDate = new DateTime(2010, 8, 10)
+                UserRecurrence = "Ninguna",
+                ObjRecurrence = new NothingRecurrence()
+                {
+                    UserBeforeDays = "5 días",
+                    UserCancelRecurrence = false,
+                    UserContractDate = new DateTime(2010, 8, 10)
+                }
             },
 
             new TaskWA()
@@ -50,14 +59,17 @@ namespace MockWebApi.Controllers
                 UserIssue = "tarea2",
                 UserResp = "Oscar",
                 UserCopy = "copia",
-                UserCategory = "categoria",
+                UserCategory = "Programación",
                 UserAprob = true,
-                UserPriority = "prioridad",
+                UserPriority = "Media",
                 UserDescription = "descripcion",
-                UserRecurrence = "recurrencia",
-                UserBeforeDays = "5 días",
-                UserCancelRecurrence = false,
-                UserContractDate = new DateTime(2010, 8, 10)
+                UserRecurrence = "Ninguna",
+                ObjRecurrence = new NothingRecurrence()
+                {
+                    UserBeforeDays = "5 días",
+                    UserCancelRecurrence = false,
+                    UserContractDate = new DateTime(2010, 8, 10)
+                }
             }
         };
 
@@ -83,6 +95,19 @@ namespace MockWebApi.Controllers
                     try
                     {
                         value.IdTask = taskWAList.Count();
+
+                        //Deserialise ObjRecurrence
+
+                        switch (value.UserRecurrence)
+                        {
+                            case "Ninguna":
+                                {
+                                    value.ObjRecurrence = JsonConvert.DeserializeObject<NothingRecurrence>(
+                                        value.ObjRecurrence.ToString());
+                                    break;
+                                }
+                        }
+
                         taskWAList.Add(value);
                         return Ok();
                     }
@@ -114,9 +139,19 @@ namespace MockWebApi.Controllers
                         temp.UserAprob = value.UserAprob;
                         temp.UserPriority = value.UserPriority;
                         temp.UserRecurrence = value.UserRecurrence;
-                        temp.UserBeforeDays = value.UserBeforeDays;
-                        temp.UserCancelRecurrence = value.UserCancelRecurrence;
-                        temp.UserContractDate = value.UserContractDate;
+                        temp.ObjRecurrence = value.ObjRecurrence;
+
+                        //Deserialise ObjRecurrence
+
+                        switch (value.UserRecurrence)
+                        {
+                            case "Ninguna":
+                                {
+                                    temp.ObjRecurrence = JsonConvert.DeserializeObject<NothingRecurrence>(
+                                        value.ObjRecurrence.ToString());
+                                    break;
+                                }
+                        }
 
                         return Ok();
                     }
@@ -132,6 +167,7 @@ namespace MockWebApi.Controllers
         // DELETE: api/TaskWS/5
         public IHttpActionResult Delete(int key)
         {
+            //Para la base de datos validar correctamente la eliminacion de datos en cada base
             try
             {
                 if (taskWAList.RemoveAll(x => x.IdTask == key) != 0)
@@ -146,13 +182,85 @@ namespace MockWebApi.Controllers
             return InternalServerError();
         }
 
-        public IEnumerable<string> GetSelect(char select)
+        public IEnumerable<TaskListItemModel> GetSelect(char select)
         {
-            List<string> temp = new List<string>();
+            List<TaskListItemModel> temp = new List<TaskListItemModel>();
 
-            foreach (TaskWA element in taskWAList)
+            switch (select)
             {
-                temp.Add(element.UserIssue);
+                // load active task in list
+                case 'a':
+                    {
+
+                        foreach (TaskWA element in taskWAList)
+                        {
+                            if (element.ActiveTask())
+                            {
+                                temp.Add(new TaskListItemModel()
+                                {
+                                    UserIssue = element.UserIssue,
+                                    UserPriority = element.UserPriority,
+                                    ActiveTask = element.ActiveTask()
+                                });
+                            }
+                        }
+
+                        break;
+                    }
+                // load completed task in list
+                case 'c':
+                    {
+
+                        foreach (TaskWA element in taskWAList)
+                        {
+                            if (element.ActiveTask())
+                            {
+                                temp.Add(new TaskListItemModel()
+                                {
+                                    UserIssue = element.UserIssue,
+                                    UserPriority = element.UserPriority,
+                                    ActiveTask = element.ActiveTask()
+                                });
+                            }
+                        }
+
+                        break;
+                    }
+                // load canceled task in list
+                case 'e':
+                    {
+
+                        foreach (TaskWA element in taskWAList)
+                        {
+                            if (element.ActiveTask())
+                            {
+                                temp.Add(new TaskListItemModel()
+                                {
+                                    UserIssue = element.UserIssue,
+                                    UserPriority = element.UserPriority,
+                                    ActiveTask = element.ActiveTask()
+                                });
+                            }
+                        }
+
+                        break;
+                    }
+                // load all task in list
+                default:
+                    {
+
+                        foreach (TaskWA element in taskWAList)
+                        {
+                            temp.Add(new TaskListItemModel()
+                            {
+                                UserIssue = element.UserIssue,
+                                UserPriority = element.UserPriority,
+                                ActiveTask = element.ActiveTask()
+                            });
+                        }
+
+                        break;
+                    }
             }
 
             return temp;

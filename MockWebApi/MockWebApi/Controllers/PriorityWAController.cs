@@ -11,7 +11,7 @@ namespace MockWebApi.Controllers
     {
         private static List<string> priorityWAList = new List<string>()
         {
-            "Alta",
+            "Crítica",
             "Media",
             "Baja"
         };

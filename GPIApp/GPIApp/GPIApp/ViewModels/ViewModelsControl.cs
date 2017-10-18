@@ -41,18 +41,24 @@ namespace GPIApp.ViewModels
             {
                 switch (pageName)
                 {
+                    case "ActiveTask":
+                        {
+                            await MainVM.LoadListTask('a');
+                            navigationService.Navigate("MainPage");
+                            break;
+                        }
                     case "NewTask":
                         {
                             NewTaskVM = new NewTaskViewModel();
                             await NewTaskVM.LoadPicker();
-                            navigationService.Navigate(pageName);
+                            navigationService.Navigate("NewTask");
                             break;
                         }
 
                     case "MainPage":
                         {
-                            await MainVM.LoadListTask();
-                            navigationService.Navigate(pageName);
+                            await MainVM.LoadListTask('l');
+                            navigationService.Navigate("MainPage");
                             break;
                         }
 
@@ -93,7 +99,7 @@ namespace GPIApp.ViewModels
                 {
                     MainVM = new MainViewModel();
 
-                    await MainVM.LoadListTask();
+                    await MainVM.LoadListTask('l');
                     navigationService.SetPage("MasterPage");
                 }
             }
@@ -200,7 +206,7 @@ namespace GPIApp.ViewModels
 
         #endregion
 
-        #region NewTask
+        #region EditTask
 
         public EditTaskViewModel EditTaskVM { get; private set; }
 
@@ -263,7 +269,7 @@ namespace GPIApp.ViewModels
                 {
                     MainVM = new MainViewModel();
 
-                    await MainVM.LoadListTask();
+                    await MainVM.LoadListTask('l');
                     navigationService.SetPage("MasterPage");
                 }
             }

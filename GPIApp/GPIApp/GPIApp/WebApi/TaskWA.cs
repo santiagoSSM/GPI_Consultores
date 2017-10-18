@@ -17,7 +17,7 @@ namespace GPIApp.WebApi
         {
         }
 
-        public async Task<ObservableCollection<string>> GetSelect<X>(string serverVarName, X key)
+        public async Task<ObservableCollection<TaskListItemModel>> GetSelect<X>(string serverVarName, X key)
         {
             var uri = new Uri(string.Format(url, string.Format("?{0}=", serverVarName), key));
 
@@ -25,34 +25,12 @@ namespace GPIApp.WebApi
 
             if (response.IsSuccessStatusCode)
             {
-                return JsonConvert.DeserializeObject<ObservableCollection<string>>(
+                return JsonConvert.DeserializeObject<ObservableCollection<TaskListItemModel>>(
                     await response.Content.ReadAsStringAsync()  //Get the json
                 );
             }
 
-            return default(ObservableCollection<string>);
-        }
-
-        public async Task<T> GetS<X>(string serverVarName, X key)
-        {
-            var uri = new Uri(string.Format(url, string.Format("?{0}=", serverVarName), key));
-
-            try
-            {
-                HttpResponseMessage response = await client.GetAsync(uri);
-
-                if (response.IsSuccessStatusCode)
-                {
-                    return JsonConvert.DeserializeObject<T>(
-                        await response.Content.ReadAsStringAsync()  //Get the json
-                    );
-                }
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
-            return default(T);
+            return default(ObservableCollection<TaskListItemModel>);
         }
     }
 
@@ -79,62 +57,22 @@ namespace GPIApp.WebApi
 
         public async Task Post(TaskModel value)
         {
-            try
-            {
-                await client.Post(value);
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
+            await client.Post(value);
         }
 
         public async Task Put(string key, TaskModel value)
         {
-            try
-            {
-                await client.Put("key", key, value);
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
+            await client.Put("key", key, value);
         }
 
         public async Task Delete(int key)
         {
-            try
-            {
-                await client.Delete("key", key);
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
+            await client.Delete("key", key);
         }
 
-        public async Task<ObservableCollection<TaskListItemModel>> GetSelect()
+        public async Task<ObservableCollection<TaskListItemModel>> GetSelect(char select)
         {
-            ObservableCollection<TaskListItemModel> temp = new ObservableCollection<TaskListItemModel>();
-
-            try
-            {
-                foreach (string element in await client.GetSelect<char>("select", 'l'))
-                {
-                    temp.Add(
-                        new TaskListItemModel()
-                        {
-                            Title = element
-                        }
-                        );
-                }
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
-
-            return temp;
+            return await client.GetSelect<char>("select", select);
         }
     }
 }

@@ -16,9 +16,7 @@ namespace MockWebApi.Models
         string userPriority;
         string userDescription;
         string userRecurrence;
-        string userBeforeDays;
-        bool userCancelRecurrence;
-        DateTime userContractDate;
+        object objRecurrence;
 
         public int IdTask
         {
@@ -137,43 +135,25 @@ namespace MockWebApi.Models
             }
         }
 
-        public string UserBeforeDays
+        public object ObjRecurrence
         {
             get
             {
-                return userBeforeDays;
+                return objRecurrence;
             }
 
             set
             {
-                userBeforeDays = value;
+                objRecurrence = value;
             }
         }
 
-        public bool UserCancelRecurrence
+        //Utilities
+
+        public bool ActiveTask()
         {
-            get
-            {
-                return userCancelRecurrence;
-            }
-
-            set
-            {
-                userCancelRecurrence = value;
-            }
-        }
-
-        public DateTime UserContractDate
-        {
-            get
-            {
-                return userContractDate;
-            }
-
-            set
-            {
-                userContractDate = value;
-            }
+            //return DateTime.Compare(userContractDate, DateTime.Now) >= 0;
+            return false;
         }
     }
 }

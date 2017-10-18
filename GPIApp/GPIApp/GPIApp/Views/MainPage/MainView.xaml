@@ -19,14 +19,18 @@
                     <ViewCell>
                         <Grid>
                             <Grid.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding VMControl.TaskListElementCommand, Source={StaticResource Locator}}" CommandParameter="{Binding Title}">
+                                <TapGestureRecognizer Command="{Binding VMControl.TaskListElementCommand, Source={StaticResource Locator}}" CommandParameter="{Binding UserIssue}">
                                 </TapGestureRecognizer>
                             </Grid.GestureRecognizers>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
 
-                            <Label HorizontalOptions="Center" Text="{Binding Title}" Font ="25"></Label>
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand">
+                                <Label Text="{Binding UserIssue}" Font ="25"></Label>
+                                <Image  WidthRequest="50" HeightRequest="20" Source="{Binding ExpirationIcon}"></Image>
+                                <Image  WidthRequest="50" HeightRequest="20" Source="{Binding UserPriorityIcon}"></Image>
+                            </StackLayout>
                         </Grid>
                     </ViewCell>
                 </DataTemplate>

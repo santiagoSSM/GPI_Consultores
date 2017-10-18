@@ -36,9 +36,9 @@ namespace GPIApp.ViewModels.MainPage
             ListTasks = new ObservableCollection<TaskListItemModel>();
         }
 
-        public async Task LoadListTask()
+        public async Task LoadListTask(char select)
         {
-            ListTasks = await taskWA.GetSelect();
+            ListTasks = await taskWA.GetSelect(select);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
