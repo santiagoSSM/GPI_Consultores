@@ -2,7 +2,9 @@
 using GPIApp.Helpers;
 using GPIApp.ViewModels.Login;
 using GPIApp.ViewModels.MainPage;
+using GPIApp.ViewModels.PopUps;
 using GPIApp.ViewModels.TaskVM;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
@@ -215,6 +217,29 @@ namespace GPIApp.ViewModels
                 {
                     GoTo("MainPage");
                 }
+            }
+            catch (Exception ex)
+            {
+                await dialogService.ShowMessage("Error", ex.Message, "Aceptar");
+            }
+        }
+
+        #endregion
+
+        #region PopUp
+
+        public ICommand PopUpListRecuKindCommand
+        {
+            get { return new RelayCommand (ListRecuKind); }
+        }
+        
+        private async void ListRecuKind()
+
+        {
+            var temp = new RecurrenceKind() { CloseWhenBackgroundIsClicked = true };
+            try
+            {
+                await PopupNavigation.PushAsync(temp);
             }
             catch (Exception ex)
             {

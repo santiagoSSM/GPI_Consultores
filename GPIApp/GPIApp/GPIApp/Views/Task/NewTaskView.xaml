@@ -93,8 +93,18 @@
                 </StackLayout>
             </StackLayout>
 
+            <!--                                    prueba                                -->
+            <StackLayout Orientation="Horizontal">
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding VMControl,Source={StaticResource Locator}}">
+                    </TapGestureRecognizer>
+                </StackLayout.GestureRecognizers>
+                <Label Font="20"  HorizontalOptions="Start" Text="Recurrencia "></Label>
+                <Label Font="15"  HorizontalOptions="Fill"></Label>
+            </StackLayout>
+
             <Button Command="{Binding NewTaskCommand}" x:Name="SaveButton" Text="Guardar" BackgroundColor="Navy" TextColor="White" HorizontalOptions="FillAndExpand" VerticalOptions="Center"></Button>
-            
+          
         </StackLayout>
     </ScrollView>
 </ContentPage>

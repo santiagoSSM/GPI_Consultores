@@ -4,8 +4,8 @@
              x:Class="GPIApp.Views.MainPage.Menu_MainView"
              Title="Menú"
              BackgroundColor="{StaticResource MainColor}"
-             BindingContext="{Binding VMControl,Source={StaticResource Locator}}">>
-    
+             BindingContext="{Binding VMControl,Source={StaticResource Locator}}">
+
     <StackLayout Margin="5,40,5,5">
         <StackLayout>
             <Label Text="Menú Principal" FontSize="Medium" TextColor="White" FontAttributes="Bold"></Label>
