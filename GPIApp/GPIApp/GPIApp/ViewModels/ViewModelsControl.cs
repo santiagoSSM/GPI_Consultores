@@ -250,7 +250,9 @@ namespace GPIApp.ViewModels
                 {
                     case "Ninguna":
                         {
-                            //Code
+                            var temp = new NoneRecurrence() { CloseWhenBackgroundIsClicked = true };
+                            await PopupNavigation.PushAsync(temp);
+
                             break;
                         }
                     case "Diaria":
