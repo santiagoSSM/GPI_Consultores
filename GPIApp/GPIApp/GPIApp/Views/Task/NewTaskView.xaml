@@ -49,7 +49,6 @@
                 </StackLayout>
 
                 <StackLayout Orientation="Vertical">
-                    <Label Text="Recurrencia" Font="20"  HorizontalOptions="Start" VerticalOptions="Center"></Label>
                     <!--<Picker SelectedItem="{Binding task.UserRecurrence}" ItemsSource="{Binding recurrenceList}" x:Name="recurrence" Title="Seleccionar"></Picker>-->
                 </StackLayout>
 
@@ -96,7 +95,7 @@
             <!--                                    prueba                                -->
             <StackLayout Orientation="Horizontal">
                 <StackLayout.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding VMControl,Source={StaticResource Locator}}">
+                    <TapGestureRecognizer Command="{Binding VMControl.PopUpListRecuCommand,Source={StaticResource Locator}}">
                     </TapGestureRecognizer>
                 </StackLayout.GestureRecognizers>
                 <Label Font="20"  HorizontalOptions="Start" Text="Recurrencia "></Label>

@@ -234,7 +234,7 @@ namespace GPIApp.ViewModels
 
         #region PopUp
 
-        public ICommand PopUpListRecuKindCommand
+        public ICommand PopUpListRecuCommand
         {
             get { return new RelayCommand (ListRecuKind); }
         }
@@ -242,15 +242,52 @@ namespace GPIApp.ViewModels
         private async void ListRecuKind()
 
         {
-            var temp = new RecurrenceKind() { CloseWhenBackgroundIsClicked = true };
             try
             {
-                await PopupNavigation.PushAsync(temp);
+                var select = await dialogService.ShowOptions("Seleccionar", new string[] { "Ninguna", "Diaria", "Semanal", "Mensual", "Anual" }, "Cancelar");
+
+                switch (select)
+                {
+                    case "Ninguna":
+                        {
+                            //Code
+                            break;
+                        }
+                    case "Diaria":
+                        {
+                            //Code
+                            break;
+                        }
+                    case "Semanal":
+                        {
+                            //code
+                            break;
+                        }
+                    case "Mensual":
+                        {
+                            //Code
+                            break;
+                        }
+                    case "Anual":
+                        {
+                            //Code
+                            break;
+                        }
+                }
             }
             catch (Exception ex)
             {
                 await dialogService.ShowMessage("Error", ex.Message, "Aceptar");
             }
+            //var temp = new RecurrenceKind() { CloseWhenBackgroundIsClicked = true };
+            //try
+            //{
+            //    await PopupNavigation.PushAsync(temp);
+            //}
+            //catch (Exception ex)
+            //{
+            //    await dialogService.ShowMessage("Error", ex.Message, "Aceptar");
+            //}
         }
 
         #endregion

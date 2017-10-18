@@ -9,12 +9,12 @@ namespace GPIApp.Models
 {
     public class TaskModel
     {
-        int idTask;
+        int    idTask;
         string userIssue;
         string userResp;
         string userCopy;
         string userCategory;
-        bool userAprob;
+        bool   userAprob;
         string userPriority;
         string userDescription;
         string userRecurrence;

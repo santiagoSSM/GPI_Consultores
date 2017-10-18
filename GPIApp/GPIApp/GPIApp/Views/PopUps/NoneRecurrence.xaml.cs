@@ -12,9 +12,9 @@ using Xamarin.Forms.Xaml;
 namespace GPIApp.ViewModels.PopUps
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class RecurrenceKind : PopupPage
+	public partial class NoneRecurrence : PopupPage
     {
-		public RecurrenceKind ()
+		public NoneRecurrence ()
 		{
 			InitializeComponent ();
 		}
