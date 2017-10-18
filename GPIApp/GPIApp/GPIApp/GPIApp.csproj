@@ -41,6 +41,7 @@
     <Compile Include="Helpers\DialogService.cs" />
     <Compile Include="Helpers\InstanceLocator.cs" />
     <Compile Include="Helpers\NavigationService.cs" />
+    <Compile Include="Models\Recurrence\NothingRecurrence.cs" />
     <Compile Include="Models\TaskListItemModel.cs" />
     <Compile Include="Models\TaskModel.cs" />
     <Compile Include="Models\UserModel.cs" />

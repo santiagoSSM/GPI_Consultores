@@ -1,5 +1,6 @@
 ﻿using GPIApp.Helpers;
 using GPIApp.Models;
+using GPIApp.Models.Recurrence;
 using GPIApp.WebApi;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
@@ -42,11 +43,25 @@ namespace GPIApp.ViewModels.TaskVM
 
         public async Task LoadPicker()
         {
+            InitObjRecurrence();
+
             afterDayList = await afterDayWA.Get();
             beforeDaysList = await beforeDaysWA.Get();
             categoryList = await categoryWA.Get();
             priorityList = await priorityWA.Get();
             recurrenceList = await recurrenceWA.Get();
+        }
+
+        private void InitObjRecurrence()
+        {
+            switch (task.UserRecurrence)
+            {
+                default:
+                    {
+                        task.ObjRecurrence = new NothingRecurrence();
+                        break;
+                    }
+            }
         }
 
         public async Task<bool> NewTask()

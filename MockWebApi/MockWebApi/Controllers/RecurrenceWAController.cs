@@ -11,9 +11,11 @@ namespace MockWebApi.Controllers
     {
         private static List<string> recurrenceWAList = new List<string>()
         {
-            "Cada Semana",
-            "Cada Mes",
-            "Cada Año"
+            "Ninguna",
+            "Diaria",
+            "Semanal",
+            "Mensual",
+            "Anual"
         };
 
         // GET: api/BeforeDaysWS

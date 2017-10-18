@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GPIApp.Models
 {
-    public class TaskModel : INotifyPropertyChanged
+    public class TaskModel
     {
         int idTask;
         string userIssue;
@@ -18,9 +18,7 @@ namespace GPIApp.Models
         string userPriority;
         string userDescription;
         string userRecurrence;
-        string userBeforeDays;
-        bool userCancelRecurrence;
-        DateTime userContractDate = DateTime.Now;
+        object objRecurrence;
 
         public int IdTask
         {
@@ -97,7 +95,6 @@ namespace GPIApp.Models
             set
             {
                 userAprob = value;
-                OnPropertyChanged("UserAprobLabel");
             }
         }
 
@@ -140,53 +137,16 @@ namespace GPIApp.Models
             }
         }
 
-        public string UserBeforeDays
+        public object ObjRecurrence
         {
             get
             {
-                return userBeforeDays;
+                return objRecurrence;
             }
 
             set
             {
-                userBeforeDays = value;
-            }
-        }
-
-        public bool UserCancelRecurrence
-        {
-            get
-            {
-                return userCancelRecurrence;
-            }
-
-            set
-            {
-                userCancelRecurrence = value;
-            }
-        }
-
-        public DateTime UserContractDate
-        {
-            get
-            {
-                return userContractDate;
-            }
-
-            set
-            {
-                userContractDate = value;
-            }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertyChanged(string propertyName)
-        {
-            var changed = PropertyChanged;
-            if (changed != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+                objRecurrence = value;
             }
         }
     }
