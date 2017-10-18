@@ -13,7 +13,7 @@
 
         <StackLayout Orientation="Horizontal" >
             <StackLayout.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding GoToCommand}" CommandParameter="NewTask">
+                <TapGestureRecognizer Command="{Binding GoToCommand}" CommandParameter="ActiveTask">
                 </TapGestureRecognizer>
             </StackLayout.GestureRecognizers>
             <Image  WidthRequest="50" HeightRequest="50" Source="ic_action_donut_large"></Image>

@@ -146,13 +146,85 @@ namespace MockWebApi.Controllers
             return InternalServerError();
         }
 
-        public IEnumerable<string> GetSelect(char select)
+        public IEnumerable<TaskListItemModel> GetSelect(char select)
         {
-            List<string> temp = new List<string>();
+            List<TaskListItemModel> temp = new List<TaskListItemModel>();
 
-            foreach (TaskWA element in taskWAList)
+            switch (select)
             {
-                temp.Add(element.UserIssue);
+                // load active task in list
+                case 'a':
+                    {
+
+                        foreach (TaskWA element in taskWAList)
+                        {
+                            if (element.ActiveTask())
+                            {
+                                temp.Add(new TaskListItemModel()
+                                {
+                                    UserIssue = element.UserIssue,
+                                    UserPriority = element.UserPriority,
+                                    ActiveTask = element.ActiveTask()
+                                });
+                            }
+                        }
+
+                        break;
+                    }
+                // load completed task in list
+                case 'c':
+                    {
+
+                        foreach (TaskWA element in taskWAList)
+                        {
+                            if (element.ActiveTask())
+                            {
+                                temp.Add(new TaskListItemModel()
+                                {
+                                    UserIssue = element.UserIssue,
+                                    UserPriority = element.UserPriority,
+                                    ActiveTask = element.ActiveTask()
+                                });
+                            }
+                        }
+
+                        break;
+                    }
+                // load canceled task in list
+                case 'e':
+                    {
+
+                        foreach (TaskWA element in taskWAList)
+                        {
+                            if (element.ActiveTask())
+                            {
+                                temp.Add(new TaskListItemModel()
+                                {
+                                    UserIssue = element.UserIssue,
+                                    UserPriority = element.UserPriority,
+                                    ActiveTask = element.ActiveTask()
+                                });
+                            }
+                        }
+
+                        break;
+                    }
+                // load all task in list
+                default:
+                    {
+
+                        foreach (TaskWA element in taskWAList)
+                        {
+                            temp.Add(new TaskListItemModel()
+                            {
+                                UserIssue = element.UserIssue,
+                                UserPriority = element.UserPriority,
+                                ActiveTask = element.ActiveTask()
+                            });
+                        }
+
+                        break;
+                    }
             }
 
             return temp;

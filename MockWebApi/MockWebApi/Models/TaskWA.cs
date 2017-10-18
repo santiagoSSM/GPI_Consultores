@@ -175,5 +175,10 @@ namespace MockWebApi.Models
                 userContractDate = value;
             }
         }
+
+        public bool ActiveTask()
+        {
+            return DateTime.Compare(userContractDate, DateTime.Now) >= 0;
+        }
     }
 }

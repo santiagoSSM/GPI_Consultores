@@ -38,6 +38,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Basic2.xaml.cs">
+      <DependentUpon>Basic2.xaml</DependentUpon>
+    </Compile>
     <Compile Include="BasicPopup.xaml.cs">
       <DependentUpon>BasicPopup.xaml</DependentUpon>
     </Compile>
@@ -98,6 +101,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="StilizedPopup.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Basic2.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
