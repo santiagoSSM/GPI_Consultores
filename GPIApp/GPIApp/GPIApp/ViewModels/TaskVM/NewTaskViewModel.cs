@@ -91,7 +91,7 @@ namespace GPIApp.ViewModels.TaskVM
 
         public async Task<bool> NewTaskDraft()
         {
-            await taskWA.Delete(0);
+            
 
             return true;
         }

@@ -49,9 +49,18 @@ namespace GPIApp.ViewModels
                         }
                     case "NewTask":
                         {
-                            NewTaskVM = new NewTaskViewModel();
+                            for(int i=0; i<10000; i++)
+                            {
+                                MainVM.ListTasks.Add(new Models.TaskListItemModel()
+                                {
+                                    IdTask = 9,
+                                    UserIssue = "tarea0",
+                                    UserPriority = "Media"
+                                });
+                            }
+                            /*NewTaskVM = new NewTaskViewModel();
                             await NewTaskVM.LoadPicker();
-                            navigationService.Navigate("NewTask");
+                            navigationService.Navigate("NewTask");*/
                             break;
                         }
 
@@ -64,7 +73,7 @@ namespace GPIApp.ViewModels
 
                     case "CloseSesion":
                         {
-                            navigationService.SetPage("LoginPage");
+                            await navigationService.SetPageAsync("LoginPage");
                             break;
                         }
 
@@ -100,7 +109,7 @@ namespace GPIApp.ViewModels
                     MainVM = new MainViewModel();
 
                     await MainVM.LoadListTask('l');
-                    navigationService.SetPage("MasterPage");
+                    await navigationService.SetPageAsync("MasterPage");
                 }
             }
             catch (Exception ex)
@@ -329,7 +338,7 @@ namespace GPIApp.ViewModels
                     MainVM = new MainViewModel();
 
                     await MainVM.LoadListTask('l');
-                    navigationService.SetPage("MasterPage");
+                    await navigationService.SetPageAsync("MasterPage");
                 }
             }
             catch (Exception ex)

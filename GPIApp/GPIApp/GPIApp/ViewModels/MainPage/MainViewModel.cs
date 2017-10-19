@@ -13,7 +13,7 @@ namespace GPIApp.ViewModels.MainPage
     {
         private DialogService dialogService;
         private TaskWA taskWA;
-        public ObservableCollection<TaskListItemModel> listTasks;
+        private ObservableCollection<TaskListItemModel> listTasks;
 
         public ObservableCollection<TaskListItemModel> ListTasks
         {
@@ -38,7 +38,11 @@ namespace GPIApp.ViewModels.MainPage
 
         public async Task LoadListTask(char select)
         {
-            ListTasks = await taskWA.GetSelect(select);
+            ListTasks.Clear();
+            foreach (TaskListItemModel element in await taskWA.GetSelect(select))
+            {
+                ListTasks.Add(element);
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

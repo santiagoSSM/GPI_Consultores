@@ -90,55 +90,52 @@ namespace MockWebApi.Controllers
         {
             if (true)
             {
-                if (taskWAList.FirstOrDefault(x => x.UserIssue == value.UserIssue) == null)
+                try
                 {
-                    try
+                    value.IdTask = taskWAList.Count();
+
+                    //Deserialise ObjRecurrence
+
+                    switch (value.UserRecurrence)
                     {
-                        value.IdTask = taskWAList.Count();
-
-                        //Deserialise ObjRecurrence
-
-                        switch (value.UserRecurrence)
-                        {
-                            case "Ninguna":
-                                {
-                                    value.ObjRecurrence = JsonConvert.DeserializeObject<NoneTaskModel>(
-                                        value.ObjRecurrence.ToString());
-                                    break;
-                                }
-                            case "Diaria":
-                                {
-                                    value.ObjRecurrence = JsonConvert.DeserializeObject<DailyTaskModel>(
-                                        value.ObjRecurrence.ToString());
-                                    break;
-                                }
-                            case "Semanal":
-                                {
-                                    value.ObjRecurrence = JsonConvert.DeserializeObject<WeeklyTaskModel>(
-                                        value.ObjRecurrence.ToString());
-                                    break;
-                                }
-                            case "Mensual":
-                                {
-                                    value.ObjRecurrence = JsonConvert.DeserializeObject<MonthlyTaskModel>(
-                                        value.ObjRecurrence.ToString());
-                                    break;
-                                }
-                            case "Anual":
-                                {
-                                    value.ObjRecurrence = JsonConvert.DeserializeObject<AnnualTaskModel>(
-                                        value.ObjRecurrence.ToString());
-                                    break;
-                                }
-                        }
-
-                        taskWAList.Add(value);
-                        return Ok();
+                        case "Ninguna":
+                            {
+                                value.ObjRecurrence = JsonConvert.DeserializeObject<NoneTaskModel>(
+                                    value.ObjRecurrence.ToString());
+                                break;
+                            }
+                        case "Diaria":
+                            {
+                                value.ObjRecurrence = JsonConvert.DeserializeObject<DailyTaskModel>(
+                                    value.ObjRecurrence.ToString());
+                                break;
+                            }
+                        case "Semanal":
+                            {
+                                value.ObjRecurrence = JsonConvert.DeserializeObject<WeeklyTaskModel>(
+                                    value.ObjRecurrence.ToString());
+                                break;
+                            }
+                        case "Mensual":
+                            {
+                                value.ObjRecurrence = JsonConvert.DeserializeObject<MonthlyTaskModel>(
+                                    value.ObjRecurrence.ToString());
+                                break;
+                            }
+                        case "Anual":
+                            {
+                                value.ObjRecurrence = JsonConvert.DeserializeObject<AnnualTaskModel>(
+                                    value.ObjRecurrence.ToString());
+                                break;
+                            }
                     }
-                    catch
-                    {
-                        return InternalServerError();
-                    }
+
+                    taskWAList.Add(value);
+                    return Ok();
+                }
+                catch
+                {
+                    return InternalServerError();
                 }
             }
             return InternalServerError();

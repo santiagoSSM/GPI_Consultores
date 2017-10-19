@@ -9,7 +9,7 @@ namespace GPIApp.Models.Recurrence
     class NoneTaskModel
     {
         int userBeforeDays;
-        bool userCancelRecurrence;
+        bool userCancelRecu;
         DateTime userContractExp;
 
         public int UserBeforeDays
@@ -25,16 +25,16 @@ namespace GPIApp.Models.Recurrence
             }
         }
 
-        public bool UserCancelRecurrence
+        public bool UserCancelRecu
         {
             get
             {
-                return userCancelRecurrence;
+                return userCancelRecu;
             }
 
             set
             {
-                userCancelRecurrence = value;
+                userCancelRecu = value;
             }
         }
 
