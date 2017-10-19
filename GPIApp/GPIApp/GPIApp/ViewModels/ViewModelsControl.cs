@@ -3,7 +3,7 @@ using GPIApp.Helpers;
 using GPIApp.Models.Recurrence;
 using GPIApp.ViewModels.Login;
 using GPIApp.ViewModels.MainPage;
-using GPIApp.ViewModels.PopUps;
+using GPIApp.Views.PopUps;
 using GPIApp.ViewModels.TaskVM;
 using Rg.Plugins.Popup.Services;
 using System;
@@ -305,7 +305,10 @@ namespace GPIApp.ViewModels
                             //Init the objectClass
                             NewTaskVM.task.UserRecurrence = "Diaria";
                             NewTaskVM.task.ObjRecurrence = new DailyTaskModel();
-                            //Code
+
+                            var temp = new DailyRecurrence() { CloseWhenBackgroundIsClicked = true };
+                            await PopupNavigation.PushAsync(temp);
+
                             break;
                         }
                     case "Semanal":
@@ -313,7 +316,9 @@ namespace GPIApp.ViewModels
                             //Init the objectClass
                             NewTaskVM.task.UserRecurrence = "Semanal";
                             NewTaskVM.task.ObjRecurrence = new WeeklyTaskModel();
-                            //code
+
+                            var temp = new WeeklyRecurrence() { CloseWhenBackgroundIsClicked = true };
+                            await PopupNavigation.PushAsync(temp);
                             break;
                         }
                     case "Mensual":
@@ -321,7 +326,10 @@ namespace GPIApp.ViewModels
                             //Init the objectClass
                             NewTaskVM.task.UserRecurrence = "Mensual";
                             NewTaskVM.task.ObjRecurrence = new MonthlyTaskModel();
-                            //Code
+
+                            var temp = new MonthlyRecurrence() { CloseWhenBackgroundIsClicked = true };
+                            await PopupNavigation.PushAsync(temp);
+
                             break;
                         }
                     case "Anual":
@@ -329,7 +337,9 @@ namespace GPIApp.ViewModels
                             //Init the objectClass
                             NewTaskVM.task.UserRecurrence = "Anual";
                             NewTaskVM.task.ObjRecurrence = new AnnualTaskModel();
-                            //Code
+
+                            var temp = new AnnualRecurrence() { CloseWhenBackgroundIsClicked = true };
+                            await PopupNavigation.PushAsync(temp);
                             break;
                         }
                     default:

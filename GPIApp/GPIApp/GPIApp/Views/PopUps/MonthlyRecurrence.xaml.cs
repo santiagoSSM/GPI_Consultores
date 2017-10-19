@@ -11,17 +11,20 @@ using Xamarin.Forms.Xaml;
 
 namespace GPIApp.Views.PopUps
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class NoneRecurrence : PopupPage
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class MonthlyRecurrence : PopupPage
     {
-		public NoneRecurrence ()
-		{
-			InitializeComponent ();
-		}
+        public MonthlyRecurrence()
+        {
+            InitializeComponent();
+        }
 
         private async void Button_OnClicked(object sender, EventArgs e)
         {
             await PopupNavigation.PopAsync();
         }
+
+
+
     }
 }
