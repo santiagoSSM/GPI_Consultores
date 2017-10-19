@@ -1,4 +1,5 @@
 ﻿using GPIApp.Models;
+using GPIApp.Models.Recurrence;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -42,7 +43,53 @@ namespace GPIApp.WebApi
         {
             try
             {
-                return await client.Get();
+                var temp = await client.Get();
+
+                foreach (TaskModel element in temp)
+                {
+                    //Deserialise ObjRecurrence
+
+                    switch (element.UserRecurrence)
+                    {
+                        case "Ninguna":
+                            {
+                                element.ObjRecurrence = JsonConvert.DeserializeObject<NoneTaskModel>(
+                                    element.ObjRecurrence.ToString()
+                                    );
+                                break;
+                            }
+                        case "Diaria":
+                            {
+                                element.ObjRecurrence = JsonConvert.DeserializeObject<DailyTaskModel>(
+                                    element.ObjRecurrence.ToString()
+                                    );
+                                break;
+                            }
+                        case "Semanal":
+                            {
+                                element.ObjRecurrence = JsonConvert.DeserializeObject<WeeklyTaskModel>(
+                                    element.ObjRecurrence.ToString()
+                                    );
+                                break;
+                            }
+                        case "Mensual":
+                            {
+                                element.ObjRecurrence = JsonConvert.DeserializeObject<MonthlyTaskModel>(
+                                    element.ObjRecurrence.ToString()
+                                    );
+                                break;
+                            }
+                        case "Anual":
+                            {
+                                element.ObjRecurrence = JsonConvert.DeserializeObject<AnnualTaskModel>(
+                                    element.ObjRecurrence.ToString()
+                                    );
+                                break;
+                            }
+                    }
+                }
+
+                return temp;
             }
             catch (Exception e)
             {
@@ -50,9 +97,59 @@ namespace GPIApp.WebApi
             }
         }
 
-        public async Task<TaskModel> Get(string key)
+        public async Task<TaskModel> Get(int key)
         {
-            return await client.Get("key", key);
+            try
+            {
+                var temp = await client.Get("key", key);
+
+                //Deserialise ObjRecurrence
+
+                switch (temp.UserRecurrence)
+                {
+                    case "Ninguna":
+                        {
+                            temp.ObjRecurrence = JsonConvert.DeserializeObject<NoneTaskModel>(
+                                temp.ObjRecurrence.ToString()
+                                );
+                            break;
+                        }
+                    case "Diaria":
+                        {
+                            temp.ObjRecurrence = JsonConvert.DeserializeObject<DailyTaskModel>(
+                                temp.ObjRecurrence.ToString()
+                                );
+                            break;
+                        }
+                    case "Semanal":
+                        {
+                            temp.ObjRecurrence = JsonConvert.DeserializeObject<WeeklyTaskModel>(
+                                temp.ObjRecurrence.ToString()
+                                );
+                            break;
+                        }
+                    case "Mensual":
+                        {
+                            temp.ObjRecurrence = JsonConvert.DeserializeObject<MonthlyTaskModel>(
+                                temp.ObjRecurrence.ToString()
+                                );
+                            break;
+                        }
+                    case "Anual":
+                        {
+                            temp.ObjRecurrence = JsonConvert.DeserializeObject<AnnualTaskModel>(
+                                temp.ObjRecurrence.ToString()
+                                );
+                            break;
+                        }
+                }
+
+                return temp;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
 
         public async Task Post(TaskModel value)
@@ -60,7 +157,7 @@ namespace GPIApp.WebApi
             await client.Post(value);
         }
 
-        public async Task Put(string key, TaskModel value)
+        public async Task Put(int key, TaskModel value)
         {
             await client.Put("key", key, value);
         }

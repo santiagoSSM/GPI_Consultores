@@ -117,10 +117,10 @@ namespace GPIApp.ViewModels
 
         public ICommand TaskListElementCommand
         {
-            get { return new RelayCommand<string>(TaskListElement); }
+            get { return new RelayCommand<int>(TaskListElement); }
         }
 
-        public async void TaskListElement(string taskIssue)
+        public async void TaskListElement(int taskId)
         {
             try
             {
@@ -141,7 +141,7 @@ namespace GPIApp.ViewModels
                     case "Editar":
                         {
                             EditTaskVM = new EditTaskViewModel();
-                            await EditTaskVM.LoadPicker(taskIssue);
+                            await EditTaskVM.LoadPicker(taskId);
                             navigationService.Navigate("EditTask");
                             break;
                         }
@@ -183,6 +183,26 @@ namespace GPIApp.ViewModels
         #region NewTask
 
         public NewTaskViewModel NewTaskVM { get; private set; }
+
+        public ICommand NewTaskDraftCommand
+        {
+            get { return new RelayCommand(NewTaskDraft); }
+        }
+
+        private async void NewTaskDraft()
+        {
+            try
+            {
+                if (await NewTaskVM.NewTaskDraft())
+                {
+                    GoTo("MainPage");
+                }
+            }
+            catch (Exception ex)
+            {
+                await dialogService.ShowMessage("Error", ex.Message, "Aceptar");
+            }
+        }
 
         public ICommand NewTaskCommand
         {

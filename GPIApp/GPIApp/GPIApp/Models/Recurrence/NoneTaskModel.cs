@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace GPIApp.Models.Recurrence
 {
-    class NothingRecurrence
+    class NoneTaskModel
     {
-        string userBeforeDays;
+        int userBeforeDays;
         bool userCancelRecurrence;
-        DateTime userContractDate;
+        DateTime userContractExp;
 
-        public string UserBeforeDays
+        public int UserBeforeDays
         {
             get
             {
@@ -38,16 +38,16 @@ namespace GPIApp.Models.Recurrence
             }
         }
 
-        public DateTime UserContractDate
+        public DateTime UserContractExp
         {
             get
             {
-                return userContractDate;
+                return userContractExp;
             }
 
             set
             {
-                userContractDate = value;
+                userContractExp = value;
             }
         }
     }

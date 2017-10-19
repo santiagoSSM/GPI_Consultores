@@ -19,7 +19,7 @@
                     <ViewCell>
                         <Grid>
                             <Grid.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding VMControl.TaskListElementCommand, Source={StaticResource Locator}}" CommandParameter="{Binding UserIssue}">
+                                <TapGestureRecognizer Command="{Binding VMControl.TaskListElementCommand, Source={StaticResource Locator}}" CommandParameter="{Binding IdTask}">
                                 </TapGestureRecognizer>
                             </Grid.GestureRecognizers>
                             <Grid.ColumnDefinitions>

@@ -103,6 +103,7 @@
             </StackLayout>
 
             <Button Command="{Binding NewTaskCommand}" x:Name="SaveButton" Text="Guardar" BackgroundColor="Navy" TextColor="White" HorizontalOptions="FillAndExpand" VerticalOptions="Center"></Button>
+            <Button Command="{Binding NewTaskDraftCommand}" x:Name="SaveDraft" Text="Crear borrador" BackgroundColor="Navy" TextColor="White" HorizontalOptions="FillAndExpand" VerticalOptions="Center"></Button>
           
         </StackLayout>
     </ScrollView>

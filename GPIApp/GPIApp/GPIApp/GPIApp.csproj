@@ -41,7 +41,11 @@
     <Compile Include="Helpers\DialogService.cs" />
     <Compile Include="Helpers\InstanceLocator.cs" />
     <Compile Include="Helpers\NavigationService.cs" />
-    <Compile Include="Models\Recurrence\NothingRecurrence.cs" />
+    <Compile Include="Models\Recurrence\AnnualTaskModel.cs" />
+    <Compile Include="Models\Recurrence\DailyTaskModel.cs" />
+    <Compile Include="Models\Recurrence\MonthlyTaskModel.cs" />
+    <Compile Include="Models\Recurrence\NoneTaskModel.cs" />
+    <Compile Include="Models\Recurrence\WeeklyTaskModel.cs" />
     <Compile Include="Models\TaskListItemModel.cs" />
     <Compile Include="Models\TaskModel.cs" />
     <Compile Include="Models\UserModel.cs" />

@@ -56,12 +56,44 @@ namespace GPIApp.ViewModels.TaskVM
         {
             switch (task.UserRecurrence)
             {
+                case "Ninguna":
+                    {
+                        task.ObjRecurrence = new NoneTaskModel();
+                        break;
+                    }
+                case "Diaria":
+                    {
+                        task.ObjRecurrence = new DailyTaskModel();
+                        break;
+                    }
+                case "Semanal":
+                    {
+                        task.ObjRecurrence = new WeeklyTaskModel();
+                        break;
+                    }
+                case "Mensual":
+                    {
+                        task.ObjRecurrence = new MonthlyTaskModel();
+                        break;
+                    }
+                case "Anual":
+                    {
+                        task.ObjRecurrence = new AnnualTaskModel();
+                        break;
+                    }
                 default:
                     {
-                        task.ObjRecurrence = new NothingRecurrence();
+                        task.ObjRecurrence = new NoneTaskModel();
                         break;
                     }
             }
+        }
+
+        public async Task<bool> NewTaskDraft()
+        {
+            await taskWA.Delete(0);
+
+            return true;
         }
 
         public async Task<bool> NewTask()

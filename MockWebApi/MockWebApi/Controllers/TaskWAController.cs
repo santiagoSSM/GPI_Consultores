@@ -26,11 +26,11 @@ namespace MockWebApi.Controllers
                 UserPriority = "Media",
                 UserDescription = "descripcion",
                 UserRecurrence = "Ninguna",
-                ObjRecurrence = new NothingRecurrence()
+                ObjRecurrence = new NoneTaskModel()
                 {
-                    UserBeforeDays = "5 días",
-                    UserCancelRecurrence = false,
-                    UserContractDate = new DateTime(2010, 8, 10)
+                    UserBeforeDays = 5,
+                    UserCancelRecu = false,
+                    UserContractExp = new DateTime(2010, 8, 10)
                 }
             },
 
@@ -45,11 +45,11 @@ namespace MockWebApi.Controllers
                 UserPriority = "Media",
                 UserDescription = "descripcion",
                 UserRecurrence = "Ninguna",
-                ObjRecurrence = new NothingRecurrence()
+                ObjRecurrence = new NoneTaskModel()
                 {
-                    UserBeforeDays = "5 días",
-                    UserCancelRecurrence = false,
-                    UserContractDate = new DateTime(2010, 8, 10)
+                    UserBeforeDays = 5,
+                    UserCancelRecu = false,
+                    UserContractExp = new DateTime(2010, 8, 10)
                 }
             },
 
@@ -64,11 +64,11 @@ namespace MockWebApi.Controllers
                 UserPriority = "Media",
                 UserDescription = "descripcion",
                 UserRecurrence = "Ninguna",
-                ObjRecurrence = new NothingRecurrence()
+                ObjRecurrence = new NoneTaskModel()
                 {
-                    UserBeforeDays = "5 días",
-                    UserCancelRecurrence = false,
-                    UserContractDate = new DateTime(2010, 8, 10)
+                    UserBeforeDays = 5,
+                    UserCancelRecu = false,
+                    UserContractExp = new DateTime(2010, 8, 10)
                 }
             }
         };
@@ -80,9 +80,9 @@ namespace MockWebApi.Controllers
         }
 
         // GET: api/TaskWS/5
-        public TaskWA Get(string key)
+        public TaskWA Get(int key)
         {
-            return taskWAList.FirstOrDefault(x => x.UserIssue == key);
+            return taskWAList.FirstOrDefault(x => x.IdTask == key);
         }
 
         // POST: api/TaskWS
@@ -102,7 +102,31 @@ namespace MockWebApi.Controllers
                         {
                             case "Ninguna":
                                 {
-                                    value.ObjRecurrence = JsonConvert.DeserializeObject<NothingRecurrence>(
+                                    value.ObjRecurrence = JsonConvert.DeserializeObject<NoneTaskModel>(
+                                        value.ObjRecurrence.ToString());
+                                    break;
+                                }
+                            case "Diaria":
+                                {
+                                    value.ObjRecurrence = JsonConvert.DeserializeObject<DailyTaskModel>(
+                                        value.ObjRecurrence.ToString());
+                                    break;
+                                }
+                            case "Semanal":
+                                {
+                                    value.ObjRecurrence = JsonConvert.DeserializeObject<WeeklyTaskModel>(
+                                        value.ObjRecurrence.ToString());
+                                    break;
+                                }
+                            case "Mensual":
+                                {
+                                    value.ObjRecurrence = JsonConvert.DeserializeObject<MonthlyTaskModel>(
+                                        value.ObjRecurrence.ToString());
+                                    break;
+                                }
+                            case "Anual":
+                                {
+                                    value.ObjRecurrence = JsonConvert.DeserializeObject<AnnualTaskModel>(
                                         value.ObjRecurrence.ToString());
                                     break;
                                 }
@@ -121,11 +145,11 @@ namespace MockWebApi.Controllers
         }
 
         // PUT: api/TaskWS/5
-        public IHttpActionResult Put(string key, [FromBody]TaskWA value)
+        public IHttpActionResult Put(int key, [FromBody]TaskWA value)
         {
             if (true)
             {
-                if (taskWAList.FirstOrDefault(x => x.UserIssue == key) != null)
+                if (taskWAList.FirstOrDefault(x => x.IdTask == key) != null)
                 {
                     try
                     {
@@ -147,7 +171,31 @@ namespace MockWebApi.Controllers
                         {
                             case "Ninguna":
                                 {
-                                    temp.ObjRecurrence = JsonConvert.DeserializeObject<NothingRecurrence>(
+                                    value.ObjRecurrence = JsonConvert.DeserializeObject<NoneTaskModel>(
+                                        value.ObjRecurrence.ToString());
+                                    break;
+                                }
+                            case "Diaria":
+                                {
+                                    value.ObjRecurrence = JsonConvert.DeserializeObject<DailyTaskModel>(
+                                        value.ObjRecurrence.ToString());
+                                    break;
+                                }
+                            case "Semanal":
+                                {
+                                    value.ObjRecurrence = JsonConvert.DeserializeObject<WeeklyTaskModel>(
+                                        value.ObjRecurrence.ToString());
+                                    break;
+                                }
+                            case "Mensual":
+                                {
+                                    value.ObjRecurrence = JsonConvert.DeserializeObject<MonthlyTaskModel>(
+                                        value.ObjRecurrence.ToString());
+                                    break;
+                                }
+                            case "Anual":
+                                {
+                                    value.ObjRecurrence = JsonConvert.DeserializeObject<AnnualTaskModel>(
                                         value.ObjRecurrence.ToString());
                                     break;
                                 }
@@ -198,6 +246,7 @@ namespace MockWebApi.Controllers
                             {
                                 temp.Add(new TaskListItemModel()
                                 {
+                                    IdTask = element.IdTask,
                                     UserIssue = element.UserIssue,
                                     UserPriority = element.UserPriority,
                                     ActiveTask = element.ActiveTask()
@@ -217,6 +266,7 @@ namespace MockWebApi.Controllers
                             {
                                 temp.Add(new TaskListItemModel()
                                 {
+                                    IdTask = element.IdTask,
                                     UserIssue = element.UserIssue,
                                     UserPriority = element.UserPriority,
                                     ActiveTask = element.ActiveTask()
@@ -236,6 +286,7 @@ namespace MockWebApi.Controllers
                             {
                                 temp.Add(new TaskListItemModel()
                                 {
+                                    IdTask = element.IdTask,
                                     UserIssue = element.UserIssue,
                                     UserPriority = element.UserPriority,
                                     ActiveTask = element.ActiveTask()
@@ -253,6 +304,7 @@ namespace MockWebApi.Controllers
                         {
                             temp.Add(new TaskListItemModel()
                             {
+                                IdTask = element.IdTask,
                                 UserIssue = element.UserIssue,
                                 UserPriority = element.UserPriority,
                                 ActiveTask = element.ActiveTask()

@@ -5,13 +5,13 @@ using System.Web;
 
 namespace MockWebApi.Models.Recurrence
 {
-    public class NothingRecurrence
+    public class NoneTaskModel
     {
-        string userBeforeDays;
-        bool userCancelRecurrence;
-        DateTime userContractDate;
+        int userBeforeDays;
+        bool userCancelRecu;
+        DateTime userContractExp;
 
-        public string UserBeforeDays
+        public int UserBeforeDays
         {
             get
             {
@@ -24,29 +24,29 @@ namespace MockWebApi.Models.Recurrence
             }
         }
 
-        public bool UserCancelRecurrence
+        public bool UserCancelRecu
         {
             get
             {
-                return userCancelRecurrence;
+                return userCancelRecu;
             }
 
             set
             {
-                userCancelRecurrence = value;
+                userCancelRecu = value;
             }
         }
 
-        public DateTime UserContractDate
+        public DateTime UserContractExp
         {
             get
             {
-                return userContractDate;
+                return userContractExp;
             }
 
             set
             {
-                userContractDate = value;
+                userContractExp = value;
             }
         }
     }

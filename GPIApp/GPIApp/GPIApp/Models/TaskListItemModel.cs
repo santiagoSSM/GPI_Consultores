@@ -4,6 +4,7 @@ namespace GPIApp.Models
 {
     public class TaskListItemModel
     {
+        public int IdTask { get; set; }
         public string UserIssue { get; set; }
         public string UserPriority { get; set; }
         public bool ActiveTask { get; set; }
