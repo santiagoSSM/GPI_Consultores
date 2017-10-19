@@ -7,9 +7,14 @@
              BindingContext="{Binding VMControl, Source={StaticResource Locator}}">
 
     <StackLayout VerticalOptions="Center" HorizontalOptions="Center" Padding="0" Margin="0">
-        <Frame Margin="30" Padding="10">
+        <Frame Margin="10" Padding="10">
             <StackLayout>
                 <Label HorizontalTextAlignment="Center" FontSize="Large" Text="Diariamente"></Label>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Cada" Font="20"  HorizontalOptions="Start" VerticalOptions="Center"></Label>
+                    <Entry HorizontalOptions="Fill"></Entry>
+                    <Label Text="días" Font="20"  HorizontalOptions="Fill" VerticalOptions="Center"></Label>
+                </StackLayout>
                 <Button Text="Cerrar" Clicked="Button_OnClicked"></Button>
             </StackLayout>
         </Frame>
