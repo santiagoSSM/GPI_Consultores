@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using GPIApp.Helpers;
+using GPIApp.Models.Recurrence;
 using GPIApp.ViewModels.Login;
 using GPIApp.ViewModels.MainPage;
 using GPIApp.ViewModels.PopUps;
@@ -49,18 +50,9 @@ namespace GPIApp.ViewModels
                         }
                     case "NewTask":
                         {
-                            for(int i=0; i<10000; i++)
-                            {
-                                MainVM.ListTasks.Add(new Models.TaskListItemModel()
-                                {
-                                    IdTask = 9,
-                                    UserIssue = "tarea0",
-                                    UserPriority = "Media"
-                                });
-                            }
-                            /*NewTaskVM = new NewTaskViewModel();
+                            NewTaskVM = new NewTaskViewModel();
                             await NewTaskVM.LoadPicker();
-                            navigationService.Navigate("NewTask");*/
+                            navigationService.Navigate("NewTask");
                             break;
                         }
 
@@ -239,6 +231,26 @@ namespace GPIApp.ViewModels
 
         public EditTaskViewModel EditTaskVM { get; private set; }
 
+        public ICommand EditTaskDraftCommand
+        {
+            get { return new RelayCommand(EditTaskDraft); }
+        }
+
+        private async void EditTaskDraft()
+        {
+            try
+            {
+                if (await EditTaskVM.EditTaskDraft())
+                {
+                    GoTo("MainPage");
+                }
+            }
+            catch (Exception ex)
+            {
+                await dialogService.ShowMessage("Error", ex.Message, "Aceptar");
+            }
+        }
+
         public ICommand EditTaskCommand
         {
             get { return new RelayCommand(EditTask); }
@@ -265,10 +277,10 @@ namespace GPIApp.ViewModels
 
         public ICommand PopUpListRecuCommand
         {
-            get { return new RelayCommand (ListRecuKind); }
+            get { return new RelayCommand<string> (ListRecuKind); }
         }
         
-        private async void ListRecuKind()
+        private async void ListRecuKind(string pageName)
 
         {
             try
@@ -279,6 +291,10 @@ namespace GPIApp.ViewModels
                 {
                     case "Ninguna":
                         {
+                            //Init the objectClass
+                            NewTaskVM.task.UserRecurrence = "Ninguna";
+                            NewTaskVM.task.ObjRecurrence = new NoneTaskModel();
+
                             var temp = new NoneRecurrence() { CloseWhenBackgroundIsClicked = true };
                             await PopupNavigation.PushAsync(temp);
 
@@ -286,23 +302,39 @@ namespace GPIApp.ViewModels
                         }
                     case "Diaria":
                         {
+                            //Init the objectClass
+                            NewTaskVM.task.UserRecurrence = "Diaria";
+                            NewTaskVM.task.ObjRecurrence = new DailyTaskModel();
                             //Code
                             break;
                         }
                     case "Semanal":
                         {
+                            //Init the objectClass
+                            NewTaskVM.task.UserRecurrence = "Semanal";
+                            NewTaskVM.task.ObjRecurrence = new WeeklyTaskModel();
                             //code
                             break;
                         }
                     case "Mensual":
                         {
+                            //Init the objectClass
+                            NewTaskVM.task.UserRecurrence = "Mensual";
+                            NewTaskVM.task.ObjRecurrence = new MonthlyTaskModel();
                             //Code
                             break;
                         }
                     case "Anual":
                         {
+                            //Init the objectClass
+                            NewTaskVM.task.UserRecurrence = "Anual";
+                            NewTaskVM.task.ObjRecurrence = new AnnualTaskModel();
                             //Code
                             break;
+                        }
+                    default:
+                        {
+                            throw new Exception("Error en el tipo de recurrencia");
                         }
                 }
             }

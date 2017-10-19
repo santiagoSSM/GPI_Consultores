@@ -90,8 +90,7 @@ namespace GPIApp.ViewModels.TaskVM
         }
 
         public async Task<bool> NewTaskDraft()
-        {
-            
+        { 
 
             return true;
         }
