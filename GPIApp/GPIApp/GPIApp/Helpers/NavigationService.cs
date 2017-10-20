@@ -1,5 +1,6 @@
 ﻿using GPIApp.Views.Login;
 using GPIApp.Views.MainPage;
+using GPIApp.Views.NewTask;
 using GPIApp.Views.Task;
 using System;
 using System.Threading.Tasks;

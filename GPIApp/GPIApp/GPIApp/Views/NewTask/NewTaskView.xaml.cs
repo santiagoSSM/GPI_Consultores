@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace GPIApp.Views.Task
+namespace GPIApp.Views.NewTask
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class NewTaskView : ContentPage

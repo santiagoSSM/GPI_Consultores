@@ -3,7 +3,7 @@ using GPIApp.Helpers;
 using GPIApp.Models.Recurrence;
 using GPIApp.ViewModels.Login;
 using GPIApp.ViewModels.MainPage;
-using GPIApp.Views.PopUps;
+using GPIApp.Views.NewTask;
 using GPIApp.ViewModels.TaskVM;
 using Rg.Plugins.Popup.Services;
 using System;
@@ -225,62 +225,14 @@ namespace GPIApp.ViewModels
             }
         }
 
-        #endregion
+        //NoneRecurrence
 
-        #region EditTask
-
-        public EditTaskViewModel EditTaskVM { get; private set; }
-
-        public ICommand EditTaskDraftCommand
+        public ICommand NewTaskUserRecuCommand
         {
-            get { return new RelayCommand(EditTaskDraft); }
+            get { return new RelayCommand<string>(NewTaskUserRecu); }
         }
 
-        private async void EditTaskDraft()
-        {
-            try
-            {
-                if (await EditTaskVM.EditTaskDraft())
-                {
-                    GoTo("MainPage");
-                }
-            }
-            catch (Exception ex)
-            {
-                await dialogService.ShowMessage("Error", ex.Message, "Aceptar");
-            }
-        }
-
-        public ICommand EditTaskCommand
-        {
-            get { return new RelayCommand(EditTask); }
-        }
-
-        private async void EditTask()
-        {
-            try
-            {
-                if (await EditTaskVM.EditTask())
-                {
-                    GoTo("MainPage");
-                }
-            }
-            catch (Exception ex)
-            {
-                await dialogService.ShowMessage("Error", ex.Message, "Aceptar");
-            }
-        }
-
-        #endregion
-
-        #region PopUp
-
-        public ICommand PopUpListRecuCommand
-        {
-            get { return new RelayCommand<string> (ListRecuKind); }
-        }
-        
-        private async void ListRecuKind(string pageName)
+        private async void NewTaskUserRecu(string pageName)
 
         {
             try
@@ -352,15 +304,52 @@ namespace GPIApp.ViewModels
             {
                 await dialogService.ShowMessage("Error", ex.Message, "Aceptar");
             }
-            //var temp = new RecurrenceKind() { CloseWhenBackgroundIsClicked = true };
-            //try
-            //{
-            //    await PopupNavigation.PushAsync(temp);
-            //}
-            //catch (Exception ex)
-            //{
-            //    await dialogService.ShowMessage("Error", ex.Message, "Aceptar");
-            //}
+        }
+
+        #endregion
+
+        #region EditTask
+
+        public EditTaskViewModel EditTaskVM { get; private set; }
+
+        public ICommand EditTaskDraftCommand
+        {
+            get { return new RelayCommand(EditTaskDraft); }
+        }
+
+        private async void EditTaskDraft()
+        {
+            try
+            {
+                if (await EditTaskVM.EditTaskDraft())
+                {
+                    GoTo("MainPage");
+                }
+            }
+            catch (Exception ex)
+            {
+                await dialogService.ShowMessage("Error", ex.Message, "Aceptar");
+            }
+        }
+
+        public ICommand EditTaskCommand
+        {
+            get { return new RelayCommand(EditTask); }
+        }
+
+        private async void EditTask()
+        {
+            try
+            {
+                if (await EditTaskVM.EditTask())
+                {
+                    GoTo("MainPage");
+                }
+            }
+            catch (Exception ex)
+            {
+                await dialogService.ShowMessage("Error", ex.Message, "Aceptar");
+            }
         }
 
         #endregion

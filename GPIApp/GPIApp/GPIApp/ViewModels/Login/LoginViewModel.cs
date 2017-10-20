@@ -1,7 +1,9 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using GPIApp.Helpers;
 using GPIApp.Models;
+using GPIApp.Views.PopUps.Generic;
 using GPIApp.WebApi;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Linq;
 using System.Text;
@@ -39,20 +41,25 @@ namespace GPIApp.ViewModels.Login
                 return false;
             }
 
+
             try
             {
+                await PopupNavigation.PushAsync(new ActivityIndicatorPopUp());
                 if (await userWA.PutLogin(user))
                 {
+                    await PopupNavigation.PopAsync();
                     return true;
                 }
                 else
                 {
+                    await PopupNavigation.PopAsync();
                     await dialogService.ShowMessage("Error", "Usuario y contraseña incorrectos", "Aceptar");
                     return false;
                 }
             }
             catch (Exception e)
             {
+                await PopupNavigation.PopAsync();
                 throw e;
             }
         }

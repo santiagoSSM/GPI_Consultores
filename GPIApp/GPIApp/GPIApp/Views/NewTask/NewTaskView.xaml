@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="GPIApp.Views.Task.NewTaskView"
+             x:Class="GPIApp.Views.NewTask.NewTaskView"
              BackgroundColor="{StaticResource BackgroundColor}"
              BindingContext="{Binding VMControl, Source={StaticResource Locator}}"
              Title="Nueva Tarea">
     <ScrollView>
         <StackLayout Padding="10,15,10,10" Spacing="10">
-            
+
             <StackLayout BindingContext="{Binding NewTaskVM}">
                 <StackLayout Orientation="Vertical">
                     <Label Text="Asunto" Font="20"  HorizontalOptions="Start" VerticalOptions="Center"></Label>
@@ -49,57 +49,13 @@
                 </StackLayout>
 
                 <StackLayout Orientation="Vertical">
-                    <!--<Picker SelectedItem="{Binding task.UserRecurrence}" ItemsSource="{Binding recurrenceList}" x:Name="recurrence" Title="Seleccionar"></Picker>-->
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding VMControl.NewTaskUserRecuCommand,Source={StaticResource Locator}}">
+                        </TapGestureRecognizer>
+                    </StackLayout.GestureRecognizers>
+                    <Label Font="20"  HorizontalOptions="Start" Text="Recurrencia"></Label>
+                    <Label Font="15"  HorizontalOptions="Start" Text="{Binding task.UserRecurrence}"></Label>
                 </StackLayout>
-
-                <!--<StackLayout Orientation="Vertical">
-                    <Label Text="Días de Preaviso" Font="20"  HorizontalOptions="Start" VerticalOptions="Center"></Label>
-                    <Picker SelectedItem="{Binding task.objRecurrence.UserBeforeDays}" ItemsSource="{Binding beforeDaysList}" x:Name="beforeDays" Title="Seleccionar"></Picker>
-                </StackLayout>
-
-                <StackLayout Orientation="Vertical">
-                    <StackLayout Orientation="Horizontal">
-                        <Label Text="Cancelar Recurrencia" Font="20"  HorizontalOptions="Start" VerticalOptions="Center"></Label>
-                        <Switch IsToggled="{Binding task.objRecurrence.UserCancelRecurrence}" HorizontalOptions="Fill" x:Name="cancelRecuSwitch"></Switch>
-                    </StackLayout>
-                </StackLayout>
-
-                <StackLayout Orientation="Horizontal">
-                    <Label Text="Fecha Final: " Font="20"  VerticalOptions="Center"></Label>
-                </StackLayout>
-
-                <StackLayout Orientation="Vertical">
-                    <StackLayout Orientation="Horizontal">
-                        <Switch HorizontalOptions="Start" x:Name="finalDateSwitch"></Switch>
-                        <Label x:Name="finalDate" Font="20"  HorizontalOptions="Fill" TextColor="Green" Text="Sin Fecha de Finalización"></Label>
-                    </StackLayout>
-                </StackLayout>
-
-                <StackLayout Orientation="Vertical">
-                    <StackLayout Orientation="Horizontal">
-                        <Switch HorizontalOptions="Start" x:Name="AfterDayOfSwitch"></Switch>
-                        <Label x:Name="AfterDayOf" Font="20"  HorizontalOptions="Fill" TextColor="Green" Text="Finaliza Después de: "></Label>
-                    </StackLayout>
-                    <Picker ItemsSource="{Binding afterDayList}" x:Name="AfterDayOfPicker" HorizontalOptions="Fill"></Picker>
-                </StackLayout>
-
-                <StackLayout Orientation="Vertical">
-                    <StackLayout Orientation="Horizontal">
-                        <Switch HorizontalOptions="Start" x:Name="FinalSwitch"></Switch>
-                        <Label x:Name="final" Font="20"  HorizontalOptions="Fill" TextColor="Green" Text="Finaliza el: "></Label>
-                    </StackLayout>
-                    <DatePicker Date="{Binding task.objRecurrence.UserContractDate}" x:Name="finalDatePicker"></DatePicker>
-                </StackLayout>-->
-            </StackLayout>
-
-            <!--                                    prueba                                -->
-            <StackLayout Orientation="Horizontal">
-                <StackLayout.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding VMControl.PopUpListRecuCommand,Source={StaticResource Locator}}">
-                    </TapGestureRecognizer>
-                </StackLayout.GestureRecognizers>
-                <Label Font="20"  HorizontalOptions="Start" Text="Recurrencia "></Label>
-                <Label Font="15"  HorizontalOptions="Fill"></Label>
             </StackLayout>
 
             <Button Command="{Binding NewTaskCommand}" x:Name="SaveButton" Text="Guardar" BackgroundColor="Navy" TextColor="White" HorizontalOptions="FillAndExpand" VerticalOptions="Center"></Button>

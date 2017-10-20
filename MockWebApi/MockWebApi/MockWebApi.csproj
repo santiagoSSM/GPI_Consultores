@@ -89,7 +89,6 @@
     <Compile Include="Controllers\BeforeDaysWAController.cs" />
     <Compile Include="Controllers\CategoryWAController.cs" />
     <Compile Include="Controllers\PriorityWAController.cs" />
-    <Compile Include="Controllers\RecurrenceWAController.cs" />
     <Compile Include="Controllers\TaskWAController.cs" />
     <Compile Include="Controllers\UserCategoryWAController.cs" />
     <Compile Include="Controllers\UserWAController.cs" />

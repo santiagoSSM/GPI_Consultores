@@ -10,11 +10,7 @@ namespace GPIApp.Models.Recurrence
     {
         int userBeforeDays;
         bool userCancelRecu;
-        int repeatRecu;
-        string day;
-        string finalDate;
-        int recurrence;
-        DateTime userContractFinal;
+        DateTime userContractExp;
 
         public int UserBeforeDays
         {
@@ -42,68 +38,16 @@ namespace GPIApp.Models.Recurrence
             }
         }
 
-        public int RepeatRecu
+        public DateTime UserContractExp
         {
             get
             {
-                return repeatRecu;
+                return userContractExp;
             }
 
             set
             {
-                repeatRecu = value;
-            }
-        }
-
-        public string Day
-        {
-            get
-            {
-                return day;
-            }
-
-            set
-            {
-                day = value;
-            }
-        }
-
-        public string FinalDate
-        {
-            get
-            {
-                return finalDate;
-            }
-
-            set
-            {
-                finalDate = value;
-            }
-        }
-
-        public int Recurrence
-        {
-            get
-            {
-                return recurrence;
-            }
-
-            set
-            {
-                recurrence = value;
-            }
-        }
-
-        public DateTime UserContractFinal
-        {
-            get
-            {
-                return userContractFinal;
-            }
-
-            set
-            {
-                userContractFinal = value;
+                userContractExp = value;
             }
         }
     }

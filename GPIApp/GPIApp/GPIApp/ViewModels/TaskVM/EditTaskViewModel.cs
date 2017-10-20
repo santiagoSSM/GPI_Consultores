@@ -43,7 +43,6 @@ namespace GPIApp.ViewModels.TaskVM
 
         public async Task LoadPicker(int id)
         {
-            InitObjRecurrence();
             task = await taskWA.Get(id);
 
             afterDayList = await afterDayWA.Get();
@@ -51,43 +50,6 @@ namespace GPIApp.ViewModels.TaskVM
             categoryList = await categoryWA.Get();
             priorityList = await priorityWA.Get();
             recurrenceList = await recurrenceWA.Get();
-        }
-
-        private void InitObjRecurrence()
-        {
-            switch (task.UserRecurrence)
-            {
-                case "Ninguna":
-                    {
-                        task.ObjRecurrence = new NoneTaskModel();
-                        break;
-                    }
-                case "Diaria":
-                    {
-                        task.ObjRecurrence = new DailyTaskModel();
-                        break;
-                    }
-                case "Semanal":
-                    {
-                        task.ObjRecurrence = new WeeklyTaskModel();
-                        break;
-                    }
-                case "Mensual":
-                    {
-                        task.ObjRecurrence = new MonthlyTaskModel();
-                        break;
-                    }
-                case "Anual":
-                    {
-                        task.ObjRecurrence = new AnnualTaskModel();
-                        break;
-                    }
-                default:
-                    {
-                        task.ObjRecurrence = new NoneTaskModel();
-                        break;
-                    }
-            }
         }
 
         public async Task<bool> EditTaskDraft()
