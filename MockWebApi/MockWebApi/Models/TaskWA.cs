@@ -5,155 +5,142 @@ using System.Web;
 
 namespace MockWebApi.Models
 {
-    public class TaskWA
+    public class TaskWA : TaskParentWA
     {
-        int idTask;
-        string userIssue;
-        string userResp;
-        string userCopy;
-        string userCategory;
-        bool userAprob;
-        string userPriority;
-        string userDescription;
-        string userRecurrence;
-        object objRecurrence;
+        //NoTaskAttributes
 
-        public int IdTask
+        private int idUser;
+        private bool isDraft;
+
+        //Task
+
+        private int idRespUser;
+        private int idCopyUser;
+        private int idCategory;
+        private int idPriority;
+
+        //Recurrence
+        private int idRecu;
+
+        //FinalDate
+
+        private int idFinalDate;
+
+        //Properties
+
+        //NoTaskAttributes
+
+        public int IdUser
         {
             get
             {
-                return idTask;
+                return idUser;
             }
 
             set
             {
-                idTask = value;
+                idUser = value;
             }
         }
 
-        public string UserIssue
+        public bool IsDraft
         {
             get
             {
-                return userIssue;
+                return isDraft;
             }
 
             set
             {
-                userIssue = value;
+                isDraft = value;
             }
         }
 
-        public string UserResp
+
+        //Task
+
+        public int IdRespUser
         {
             get
             {
-                return userResp;
+                return idRespUser;
             }
 
             set
             {
-                userResp = value;
+                idRespUser = value;
             }
         }
 
-        public string UserCopy
+        public int IdCopyUser
         {
             get
             {
-                return userCopy;
+                return idCopyUser;
             }
 
             set
             {
-                userCopy = value;
+                idCopyUser = value;
             }
         }
 
-        public string UserCategory
+        public int IdCategory
         {
             get
             {
-                return userCategory;
+                return idCategory;
             }
 
             set
             {
-                userCategory = value;
+                idCategory = value;
             }
         }
 
-        public bool UserAprob
+        public int IdPriority
         {
             get
             {
-                return userAprob;
+                return idPriority;
             }
 
             set
             {
-                userAprob = value;
+                idPriority = value;
             }
         }
 
-        public string UserPriority
+
+        //Recurrence
+        public int IdRecu
         {
             get
             {
-                return userPriority;
+                return idRecu;
             }
 
             set
             {
-                userPriority = value;
+                idRecu = value;
             }
         }
 
-        public string UserDescription
+
+        //FinalDate
+
+        public int IdFinalDate
         {
             get
             {
-                return userDescription;
+                return idFinalDate;
             }
 
             set
             {
-                userDescription = value;
+                idFinalDate = value;
             }
         }
 
-        public string UserRecurrence
-        {
-            get
-            {
-                return userRecurrence;
-            }
-
-            set
-            {
-                userRecurrence = value;
-            }
-        }
-
-        public object ObjRecurrence
-        {
-            get
-            {
-                return objRecurrence;
-            }
-
-            set
-            {
-                objRecurrence = value;
-            }
-        }
-
-        //Utilities
-
-        public bool ActiveTask()
-        {
-            //return DateTime.Compare(userContractDate, DateTime.Now) >= 0;
-            return false;
-        }
     }
 }

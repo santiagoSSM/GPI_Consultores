@@ -10,14 +10,14 @@ namespace GPIApp.Models
     public class TaskModel
     {
         int    idTask;
-        string userIssue;
-        string userResp;
-        string userCopy;
-        string userCategory;
-        bool   userAprob;
-        string userPriority;
-        string userDescription;
-        string userRecurrence;
+        string userIssue; //Todo IssueText
+        string userResp; // Todo IdUserResp y agregar UserRespName
+        string userCopy; // Todo IdUserCopy y agregar UserCopyName
+        string userCategory; // Todo IdCategory y agregar CategoryName
+        bool   userAprob; // Todo IsAprob
+        string userPriority; // Todo IdPriority y agregar PriorityName
+        string userDescription;// Todo Description
+        string userRecurrence;// Todo IdRecurrence y agregar RecurrenceName
         object objRecurrence;
 
         public int IdTask

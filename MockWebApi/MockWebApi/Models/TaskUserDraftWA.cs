@@ -5,10 +5,12 @@ using System.Web;
 
 namespace MockWebApi.Models
 {
-    public class UserWA
+    public class TaskUserDraftWA : TaskStringWA
     {
-        protected int idUser;
-        protected string nameUser;
+        private int idUser;
+        private bool isDraft;
+
+        //Properties
 
         public int IdUser
         {
@@ -23,16 +25,16 @@ namespace MockWebApi.Models
             }
         }
 
-        public string NameUser
+        public bool IsDraft
         {
             get
             {
-                return nameUser;
+                return isDraft;
             }
 
             set
             {
-                nameUser = value;
+                isDraft = value;
             }
         }
     }

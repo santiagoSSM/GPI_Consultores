@@ -85,23 +85,23 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\AfterDayWAController.cs" />
-    <Compile Include="Controllers\BeforeDaysWAController.cs" />
-    <Compile Include="Controllers\CategoryWAController.cs" />
-    <Compile Include="Controllers\PriorityWAController.cs" />
-    <Compile Include="Controllers\TaskWAController.cs" />
-    <Compile Include="Controllers\UserCategoryWAController.cs" />
-    <Compile Include="Controllers\UserWAController.cs" />
+    <Compile Include="Controllers\TaskController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Recurrence\AnnualTaskModel.cs" />
-    <Compile Include="Models\Recurrence\DailyTaskModel.cs" />
-    <Compile Include="Models\Recurrence\MonthlyTaskModel.cs" />
-    <Compile Include="Models\Recurrence\NoneTaskModel.cs" />
-    <Compile Include="Models\Recurrence\WeeklyTaskModel.cs" />
-    <Compile Include="Models\TaskListItemModel.cs" />
+    <Compile Include="Models\InfoListsWA.cs" />
+    <Compile Include="Models\FiltersParamWA.cs" />
+    <Compile Include="Models\PickersWA.cs" />
+    <Compile Include="Models\TaskBindingWA.cs" />
+    <Compile Include="Models\TaskListItemWA.cs" />
+    <Compile Include="Models\TaskParentWA.cs" />
+    <Compile Include="Models\TaskPickersWA.cs" />
+    <Compile Include="Models\TaskSeeWA.cs" />
+    <Compile Include="Models\TaskStringWA.cs" />
+    <Compile Include="Models\TaskUserDraftWA.cs" />
     <Compile Include="Models\TaskWA.cs" />
+    <Compile Include="Models\UserPassWA.cs" />
     <Compile Include="Models\UserWA.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

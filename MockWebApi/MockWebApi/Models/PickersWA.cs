@@ -5,34 +5,34 @@ using System.Web;
 
 namespace MockWebApi.Models
 {
-    public class UserWA
+    public class PickersWA
     {
-        protected int idUser;
-        protected string nameUser;
+        protected int idValue;
+        protected string textValue;
 
-        public int IdUser
+        public int IdValue
         {
             get
             {
-                return idUser;
+                return idValue;
             }
 
             set
             {
-                idUser = value;
+                idValue = value;
             }
         }
 
-        public string NameUser
+        public string TextValue
         {
             get
             {
-                return nameUser;
+                return textValue;
             }
 
             set
             {
-                nameUser = value;
+                textValue = value;
             }
         }
     }

@@ -5,10 +5,11 @@ namespace GPIApp.Models
     public class TaskListItemModel
     {
         public int IdTask { get; set; }
-        public string UserIssue { get; set; }
-        public string UserPriority { get; set; }
-        public bool ActiveTask { get; set; }
+        public string UserIssue { get; set; } //Todo cambiar a IssueText
+        public string UserPriority { get; set; } //Todo cambiar a IdImgPriority
+        public bool ActiveTask { get; set; } // Todo IsActive
 
+        //Todo ImgPriority
         public string UserPriorityIcon
         {
             get
@@ -24,6 +25,7 @@ namespace GPIApp.Models
             }
         }
 
+        //Todo ImgIsActive
         public string ExpirationIcon
         {
             
