@@ -38,22 +38,26 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\DialogService.cs" />
-    <Compile Include="Helpers\InstanceLocator.cs" />
-    <Compile Include="Helpers\NavigationService.cs" />
-    <Compile Include="Models\Recurrence\AnnualTaskModel.cs" />
-    <Compile Include="Models\Recurrence\DailyTaskModel.cs" />
-    <Compile Include="Models\Recurrence\MonthlyTaskModel.cs" />
-    <Compile Include="Models\Recurrence\NoneTaskModel.cs" />
-    <Compile Include="Models\Recurrence\WeeklyTaskModel.cs" />
+    <Compile Include="Infraestructure\DialogService.cs" />
+    <Compile Include="Infraestructure\InstanceLocator.cs" />
+    <Compile Include="Infraestructure\NavigationService.cs" />
+    <Compile Include="Models\FiltersParamModel.cs" />
+    <Compile Include="Models\TaskBindingModel.cs" />
     <Compile Include="Models\TaskListItemModel.cs" />
-    <Compile Include="Models\TaskModel.cs" />
+    <Compile Include="Models\TaskParentModel.cs" />
+    <Compile Include="Models\TaskPickersModel.cs" />
+    <Compile Include="Models\TaskSeeModel.cs" />
+    <Compile Include="Models\TaskStringModel.cs" />
+    <Compile Include="Models\TaskUserDraftModel.cs" />
+    <Compile Include="Models\UserPassModel.cs" />
     <Compile Include="Models\UserModel.cs" />
-    <Compile Include="Init.xaml.cs">
-      <DependentUpon>Init.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\Login\LoginViewModel.cs" />
+    <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\NewEditTaskViewModel.cs" />
+    <Compile Include="ViewModels\TaskListItemViewModel.cs" />
+    <Compile Include="ViewModels\VMContainer.cs" />
+    <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\ViewModelsCtrl.cs" />
     <Compile Include="Views\NewTask\AnnualRecurrence.xaml.cs">
       <DependentUpon>AnnualRecurrence.xaml</DependentUpon>
     </Compile>
@@ -69,10 +73,6 @@
     <Compile Include="Views\NewTask\NoneRecurrence.xaml.cs">
       <DependentUpon>NoneRecurrence.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\TaskVM\EditTaskViewModel.cs" />
-    <Compile Include="ViewModels\ViewModelsControl.cs" />
-    <Compile Include="ViewModels\MainPage\MainViewModel.cs" />
-    <Compile Include="ViewModels\TaskVM\NewTaskViewModel.cs" />
     <Compile Include="Views\Login\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
     </Compile>
@@ -88,20 +88,15 @@
     <Compile Include="Views\NewTask\WeeklyRecurrence.xaml.cs">
       <DependentUpon>WeeklyRecurrence.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Task\EditTaskView.xaml.cs">
-      <DependentUpon>EditTaskView.xaml</DependentUpon>
+    <Compile Include="Views\Task\NewEditTaskView.xaml.cs">
+      <DependentUpon>NewEditTaskView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\NewTask\NewTaskView.xaml.cs">
-      <DependentUpon>NewTaskView.xaml</DependentUpon>
+    <Compile Include="Views\NewTask\SeeTaskView.xaml.cs">
+      <DependentUpon>SeeTaskView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="WebApi\AfterDayWA.cs" />
-    <Compile Include="WebApi\BeforeDaysWA.cs" />
-    <Compile Include="WebApi\CategoryWA.cs" />
     <Compile Include="WebApi\ConstantsWA.cs" />
-    <Compile Include="WebApi\PriorityWA.cs" />
-    <Compile Include="WebApi\RecurrenceWA.cs" />
-    <Compile Include="WebApi\TaskWA.cs" />
-    <Compile Include="WebApi\UserWA.cs" />
+    <Compile Include="WebApi\TaskWACtrl.cs" />
+    <Compile Include="WebApi\UserWACtrl.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="App.xaml">
@@ -133,9 +128,6 @@
     </Reference>
     <Reference Include="System.Net.Http.Primitives, Version=4.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.Net.Http.2.2.29\lib\portable-net45+win8+wpa81\System.Net.Http.Primitives.dll</HintPath>
-    </Reference>
-    <Reference Include="WebApiConector">
-      <HintPath>..\WebApiConector\bin\Debug\WebApiConector.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Forms.Core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Xamarin.Forms.2.3.4.247\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.Core.dll</HintPath>
@@ -178,19 +170,13 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Init.xaml">
+    <EmbeddedResource Include="Views\NewTask\SeeTaskView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\NewTask\NewTaskView.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Views\Task\EditTaskView.xaml">
+    <EmbeddedResource Include="Views\Task\NewEditTaskView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

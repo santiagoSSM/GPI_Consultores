@@ -3,15 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="GPIApp.Views.MainPage.MainView"
              BackgroundColor="{StaticResource BackgroundColor}"
-             BindingContext="{Binding VMControl, Source={StaticResource Locator}}"
+             BindingContext="{Binding VMControl.MainVM, Source={StaticResource Locator}}"
              Title="Mis Tareas">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Icon="ic_action_add.png" Command="{Binding GoToCommand}" CommandParameter="NewTask"></ToolbarItem>
+        <ToolbarItem Icon="ic_action_add.png" Command="{Binding NewTaskCommand}"></ToolbarItem>
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
-        <ListView ItemsSource="{Binding MainVM.ListTasks}"
+        <ListView ItemsSource="{Binding ListTasks}"
                   HasUnevenRows="True">
 
             <ListView.ItemTemplate>
@@ -19,7 +19,7 @@
                     <ViewCell>
                         <Grid>
                             <Grid.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding VMControl.TaskListElementCommand, Source={StaticResource Locator}}" CommandParameter="{Binding IdTask}">
+                                <TapGestureRecognizer Command="{Binding ClickedCommand}">
                                 </TapGestureRecognizer>
                             </Grid.GestureRecognizers>
                             <Grid.ColumnDefinitions>
@@ -27,9 +27,9 @@
                             </Grid.ColumnDefinitions>
 
                             <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand">
-                                <Label Text="{Binding UserIssue}" Font ="25"></Label>
-                                <Image  WidthRequest="50" HeightRequest="20" Source="{Binding ExpirationIcon}"></Image>
-                                <Image  WidthRequest="50" HeightRequest="20" Source="{Binding UserPriorityIcon}"></Image>
+                                <Label Text="{Binding TextIssue}" Font ="25"></Label>
+                                <Image  WidthRequest="50" HeightRequest="20" Source="{Binding TextImgActive}"></Image>
+                                <Image  WidthRequest="50" HeightRequest="20" Source="{Binding TextImgPriority}"></Image>
                             </StackLayout>
                         </Grid>
                     </ViewCell>

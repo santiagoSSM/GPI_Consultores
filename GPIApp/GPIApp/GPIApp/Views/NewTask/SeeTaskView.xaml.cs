@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace GPIApp.Views.NewTask
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class NewTaskView : ContentPage
+	public partial class SeeTaskView : ContentPage
 	{
-		public NewTaskView ()
+		public SeeTaskView ()
 		{
 			InitializeComponent ();
 		}

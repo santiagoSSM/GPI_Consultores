@@ -1,44 +1,63 @@
-﻿using System;
-
-namespace GPIApp.Models
+﻿namespace GPIApp.Models
 {
     public class TaskListItemModel
     {
-        public int IdTask { get; set; }
-        public string UserIssue { get; set; } //Todo cambiar a IssueText
-        public string UserPriority { get; set; } //Todo cambiar a IdImgPriority
-        public bool ActiveTask { get; set; } // Todo IsActive
+        protected int idTask;
+        protected string textIssue;
+        private int idPriority;
+        private bool isActive;
 
-        //Todo ImgPriority
-        public string UserPriorityIcon
+        //Properties
+
+        public int IdTask
         {
             get
             {
-                if (UserPriority == "Baja")
-                {
-                    return "low_Priority.png";
-                }
-                else
-                {
-                    return "high_Priority.png";
-                }
+                return idTask;
+            }
+
+            set
+            {
+                idTask = value;
             }
         }
 
-        //Todo ImgIsActive
-        public string ExpirationIcon
+        public string TextIssue
         {
-            
             get
             {
-                if (ActiveTask)
-                {
-                    return "active_Task.png";
-                }
-                else
-                {
-                    return "inactive_Task.png";
-                }
+                return textIssue;
+            }
+
+            set
+            {
+                textIssue = value;
+            }
+        }
+
+        public int IdPriority
+        {
+            get
+            {
+                return idPriority;
+            }
+
+            set
+            {
+                idPriority = value;
+            }
+        }
+
+        public bool IsActive
+        {
+            get
+            {
+                return isActive;
+            }
+
+            set
+            {
+                isActive = value;
             }
         }
     }

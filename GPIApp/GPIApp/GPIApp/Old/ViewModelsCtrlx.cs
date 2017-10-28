@@ -13,22 +13,18 @@ using System.Windows.Input;
 
 namespace GPIApp.ViewModels
 {
-    class ViewModelsControl
+    class ViewModelsCtrlx
     {
         #region VMControl
 
         //Utilities
         private DialogService dialogService;
-        private NavigationService navigationService;
 
         public string TaskTemp { get; set; }
 
-        public ViewModelsControl()
+        public ViewModelsCtrl()
         {
             dialogService = new DialogService();
-            navigationService = new NavigationService();
-
-            LoginVM = new LoginViewModel();
         }
 
         public ICommand GoToCommand
@@ -45,27 +41,27 @@ namespace GPIApp.ViewModels
                     case "ActiveTask":
                         {
                             await MainVM.LoadListTask('a');
-                            navigationService.Navigate("MainPage");
+                            NavigationService.Navigate("MainPage");
                             break;
                         }
                     case "NewTask":
                         {
                             NewTaskVM = new NewTaskViewModel();
                             await NewTaskVM.LoadPicker();
-                            navigationService.Navigate("NewTask");
+                            NavigationService.Navigate("NewTask");
                             break;
                         }
 
                     case "MainPage":
                         {
                             await MainVM.LoadListTask('l');
-                            navigationService.Navigate("MainPage");
+                            NavigationService.Navigate("MainPage");
                             break;
                         }
 
                     case "CloseSesion":
                         {
-                            await navigationService.SetPageAsync("LoginPage");
+                            await NavigationService.SetPageAsync("LoginPage");
                             break;
                         }
 
@@ -85,7 +81,13 @@ namespace GPIApp.ViewModels
 
         #region Login
 
-        public LoginViewModel LoginVM { get; private set; }
+        public LoginViewModel LoginVM
+        {
+            get
+            {
+                return VMContainer.LoginVM;
+            }
+        }
 
         public ICommand LoginCommand
         {
@@ -98,10 +100,10 @@ namespace GPIApp.ViewModels
             {
                 if (await LoginVM.Login())
                 {
-                    MainVM = new MainViewModel();
+                    //MainVM = new MainViewModel();
 
-                    await MainVM.LoadListTask('l');
-                    await navigationService.SetPageAsync("MasterPage");
+                    //await MainVM.LoadListTask('l');
+                    await NavigationService.SetPageAsync("MasterPage");
                 }
             }
             catch (Exception ex)
@@ -114,7 +116,13 @@ namespace GPIApp.ViewModels
 
         #region Main
 
-        public MainViewModel MainVM { get; private set; }
+        public MainViewModel MainVM
+        {
+            get
+            {
+                return VMContainer.MainVM;
+            }
+        }
 
         public ICommand TaskListElementCommand
         {
@@ -143,7 +151,7 @@ namespace GPIApp.ViewModels
                         {
                             EditTaskVM = new EditTaskViewModel();
                             await EditTaskVM.LoadPicker(taskId);
-                            navigationService.Navigate("EditTask");
+                            NavigationService.Navigate("EditTask");
                             break;
                         }
                     case "Prorrogar":
@@ -366,10 +374,10 @@ namespace GPIApp.ViewModels
             {
                 if (true)
                 {
-                    MainVM = new MainViewModel();
+                    //MainVM = new MainViewModel();
 
-                    await MainVM.LoadListTask('l');
-                    await navigationService.SetPageAsync("MasterPage");
+                    //await MainVM.LoadListTask('l');
+                    await NavigationService.SetPageAsync("MasterPage");
                 }
             }
             catch (Exception ex)

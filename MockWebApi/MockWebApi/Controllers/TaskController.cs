@@ -168,6 +168,13 @@ namespace MockWebApi.Controllers
                     {
                         TaskPickers = tmpTaskPickers,
 
+                        //NoTaskAttributes
+
+                        IdUser = temp.IdUser,
+                        IsDraft = temp.IsDraft,
+
+                        //Task
+
                         IdTask = temp.IdTask,
                         TextIssue = temp.TextIssue,
                         TextDescription = temp.TextDescription,
@@ -208,8 +215,8 @@ namespace MockWebApi.Controllers
             }
         }
 
-        [HttpGet]
-        [ActionName("GetTLI")]
+        [HttpPut]
+        [ActionName("Put")]
         public IEnumerable<TaskListItemWA> PutTaskListItem(int idUser)
         {
             try

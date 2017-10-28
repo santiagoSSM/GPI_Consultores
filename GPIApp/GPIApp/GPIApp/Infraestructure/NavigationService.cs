@@ -1,4 +1,5 @@
-﻿using GPIApp.Views.Login;
+﻿using GPIApp.ViewModels;
+using GPIApp.Views.Login;
 using GPIApp.Views.MainPage;
 using GPIApp.Views.NewTask;
 using GPIApp.Views.Task;
@@ -6,46 +7,47 @@ using System;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace GPIApp.Helpers
+namespace GPIApp.Infraestructure
 {
-    class NavigationService
+    public static class NavigationService
     {
-        public NavigationService()
-        {
-            dialogService = new DialogService();
-        }
-
-        private DialogService dialogService;
-
-        public async void Navigate(string pageName)
+        public static async Task Navigate(string pageName)
         {
             try
             {
                 App.Master.IsPresented = false;
                 switch (pageName)
                 {
-                    case "Settings":
-                        //await Navigate(new Settings());
-                        break;
                     //Tasks
                     case "NewTask":
-                        await Navigate(new NewTaskView());
+                        VMContainer.ReleaseResourses();
+                        VMContainer.NewEditTaskVMInit("Nueva tarea");
+                        await VMContainer.NewEditTaskVM.LoadPickers();
+                        await Navigate(new NewEditTaskView());
                         break;
                     case "EditTask":
-                        await Navigate(new EditTaskView());
+                        //await Navigate(new EditTaskView());
+                        break;
+                    case "SeeTask":
+                        //await Navigate(new EditTaskView());
                         break;
                     //other
                     case "MainPage":
+                        VMContainer.ReleaseResourses();
+                        VMContainer.MainVMInit();
+                        await VMContainer.MainVM.LoadInfo(VMContainer.UserLogged.IdUser);
+                        await App.Navigator.PopToRootAsync();
+                        break;
+                    case "CloseMenu":
                         await App.Navigator.PopToRootAsync();
                         break;
                     default:
-                        await Navigate(new NewTaskView());
                         break;
                 }
             }
             catch (Exception ex)
             {
-                await dialogService.ShowMessage("Error", ex.Message, "Aceptar");
+                await DialogService.ShowMessage("Error", ex.Message, "Aceptar");
             }
         }
 
@@ -57,16 +59,21 @@ namespace GPIApp.Helpers
             await App.Navigator.PushAsync(page);
         }
 
-        internal async Task SetPageAsync(string pageName)
+        public static async Task SetPageAsync(string pageName)
         {
             try
             {
                 switch (pageName)
                 {
                     case "MasterPage":
+                        VMContainer.ReleaseResourses();
+                        VMContainer.MainVMInit();
+                        await VMContainer.MainVM.LoadInfo(VMContainer.UserLogged.IdUser);
                         App.Current.MainPage = new Master_MainView();
                         break;
                     case "LoginPage":
+                        VMContainer.ReleaseResourses();
+                        VMContainer.LoginVMInit();
                         App.Current.MainPage = new LoginView();
                         break;
                     default:
@@ -75,7 +82,7 @@ namespace GPIApp.Helpers
             }
             catch (Exception ex)
             {
-                await dialogService.ShowMessage("Error", ex.Message, "Aceptar");
+                await DialogService.ShowMessage("Error", ex.Message, "Aceptar");
             }
         }
     }

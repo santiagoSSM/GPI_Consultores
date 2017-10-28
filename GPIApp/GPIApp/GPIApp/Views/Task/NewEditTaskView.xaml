@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GPIApp.Views.Task.NewEditTaskView"
+             BackgroundColor="{StaticResource BackgroundColor}"
+             BindingContext="{Binding VMControl.NewEditTaskVM, Source={StaticResource Locator}}"
+             Title="{Binding Title}">
+    <ScrollView>
+        <StackLayout Padding="10,15,10,10" Spacing="10">
+
+            <StackLayout Orientation="Vertical">
+                <Label Text="Asunto" Font="20"  HorizontalOptions="Start" VerticalOptions="Center"></Label>
+                <Entry Text="{Binding Task.TestIssue, Mode=TwoWay}" x:Name="userIssue" Placeholder="Asunto" HorizontalOptions="FillAndExpand" VerticalOptions="Center"></Entry>
+            </StackLayout>
+
+            <StackLayout Orientation="Vertical">
+                <Label Text="Descripción" Font="20"  HorizontalOptions="Start" VerticalOptions="Center"></Label>
+                <Entry Text="{Binding Task.TextDescription, Mode=TwoWay}" x:Name="userDescription" Placeholder="Descripción" HorizontalOptions="FillAndExpand" VerticalOptions="Center"></Entry>
+            </StackLayout>
+
+            <StackLayout Orientation="Vertical">
+                <Label Text="Responsables" Font="20"  HorizontalOptions="Start" VerticalOptions="Center"></Label>
+                <Picker SelectedItem="{Binding Task.NameRespUser, Mode=TwoWay}" ItemsSource="{Binding TaskPickers.ListUser}" Title="Seleccionar"></Picker>
+            </StackLayout>
+
+            <StackLayout Orientation="Vertical">
+                <Label Text="Copiados" Font="20"  HorizontalOptions="Start" VerticalOptions="Center"></Label>
+                <Picker SelectedItem="{Binding Task.NameCopyUser, Mode=TwoWay}" ItemsSource="{Binding TaskPickers.ListUser}" Title="Seleccionar"></Picker>
+            </StackLayout>
+
+            <StackLayout Orientation="Vertical">
+                <Label Text="Categoría" Font="20"  HorizontalOptions="Start" VerticalOptions="Center"></Label>
+                <Picker SelectedItem="{Binding Task.TextCategory, Mode=TwoWay}" ItemsSource="{Binding TaskPickers.ListCategory}" x:Name="categoryPicker" Title="Seleccionar"></Picker>
+            </StackLayout>
+
+            <StackLayout Orientation="Vertical">
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Requiere Aprobación" Font="20"  HorizontalOptions="Start" VerticalOptions="Center"></Label>
+                    <Switch IsToggled="{Binding Task.IsAprob, Mode=TwoWay}" HorizontalOptions="Fill" x:Name="approvalSwitch"></Switch>
+                </StackLayout>
+            </StackLayout>
+
+            <StackLayout Orientation="Vertical">
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Prioridad" Font="20"  HorizontalOptions="Start" VerticalOptions="Center"></Label>
+                    <Picker SelectedItem="{Binding Task.TextPriority, Mode=TwoWay}" ItemsSource="{Binding TaskPickers.ListPriority}" x:Name="priority" Title="Seleccionar"></Picker>
+                </StackLayout>
+            </StackLayout>
+
+            <!--<StackLayout Orientation="Horizontal">
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding VMControl.PopUpListRecuCommand,Source={StaticResource Locator}}">
+                    </TapGestureRecognizer>
+                </StackLayout.GestureRecognizers>
+                <Label Font="20"  HorizontalOptions="Start" Text="Recurrencia "></Label>
+                <Label Font="15"  HorizontalOptions="Fill"></Label>
+            </StackLayout>-->
+
+            <Button Command="{Binding SaveTaskCommand}" CommandParameter="false" Text="Guardar" BackgroundColor="Navy" TextColor="White" HorizontalOptions="FillAndExpand" VerticalOptions="Center"></Button>
+            <Button Command="{Binding SaveTaskCommand}" CommandParameter="true" Text="Crear borrador" BackgroundColor="Navy" TextColor="White" HorizontalOptions="FillAndExpand" VerticalOptions="Center"></Button>
+
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

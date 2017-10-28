@@ -15,7 +15,7 @@ namespace MockWebApi.Controllers
         {
             try
             {
-                var temp = InfoListsWA.ListUserPass.FirstOrDefault(x => x.IdUser == user.IdUser && x.PassUser == user.PassUser);
+                var temp = InfoListsWA.ListUserPass.FirstOrDefault(x => x.NameUser == user.NameUser && x.PassUser == user.PassUser);
 
                 if (temp != null)
                 {

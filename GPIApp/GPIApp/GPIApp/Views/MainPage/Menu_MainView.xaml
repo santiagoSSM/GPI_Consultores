@@ -4,7 +4,7 @@
              x:Class="GPIApp.Views.MainPage.Menu_MainView"
              Title="Menú"
              BackgroundColor="{StaticResource MainColor}"
-             BindingContext="{Binding VMControl,Source={StaticResource Locator}}">
+             BindingContext="{Binding VMControl.MainVM, Source={StaticResource Locator}}">
 
     <StackLayout Margin="5,40,5,5">
         <StackLayout>
@@ -13,7 +13,7 @@
 
         <StackLayout Orientation="Horizontal" >
             <StackLayout.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding GoToCommand}" CommandParameter="ActiveTask">
+            <TapGestureRecognizer Command="{Binding ActiveTaskCommand}">
                 </TapGestureRecognizer>
             </StackLayout.GestureRecognizers>
             <Image  WidthRequest="50" HeightRequest="50" Source="ic_action_donut_large"></Image>
@@ -22,7 +22,7 @@
 
         <StackLayout Orientation="Horizontal" >
             <StackLayout.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding GoToCommand}" CommandParameter="NewTask">
+            <TapGestureRecognizer Command="{Binding CompleteTaskCommand}">
                 </TapGestureRecognizer>
             </StackLayout.GestureRecognizers>
             <Image  WidthRequest="50" HeightRequest="50" Source="ic_action_check"></Image>
@@ -31,7 +31,7 @@
 
         <StackLayout Orientation="Horizontal" >
             <StackLayout.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding GoToCommand}" CommandParameter="NewTask">
+            <TapGestureRecognizer Command="{Binding CanceledTaskCommand}">
                 </TapGestureRecognizer>
             </StackLayout.GestureRecognizers>
             <Image  WidthRequest="50" HeightRequest="50" Source="ic_action_clear"></Image>
@@ -40,25 +40,16 @@
 
         <StackLayout Orientation="Horizontal" >
             <StackLayout.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding GoToCommand}" CommandParameter="NewTask">
-                </TapGestureRecognizer>
-            </StackLayout.GestureRecognizers>
-            <Image  WidthRequest="50" HeightRequest="50" Source="ic_action_delete"></Image>
-            <Label Grid.Column="1" VerticalOptions="Center" TextColor="{StaticResource MenuFontColor}" Text="Tareas Eliminadas"></Label>
-        </StackLayout>
-
-        <StackLayout Orientation="Horizontal" >
-            <StackLayout.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding GoToCommand}" CommandParameter="NewTask">
+            <TapGestureRecognizer Command="{Binding SettingsCommand}">
                 </TapGestureRecognizer>
             </StackLayout.GestureRecognizers>
             <Image  WidthRequest="50" HeightRequest="50" Source="ic_action_settings"></Image>
-            <Label Grid.Column="1" VerticalOptions="Center" TextColor="{StaticResource MenuFontColor}" Text="Settings"></Label>
+            <Label Grid.Column="1" VerticalOptions="Center" TextColor="{StaticResource MenuFontColor}" Text="Configuraciones"></Label>
         </StackLayout>
 
         <StackLayout Orientation="Horizontal" >
             <Image  WidthRequest="50" HeightRequest="50" Source="ic_action_user"></Image>
-            <Button Command="{Binding GoToCommand}" CommandParameter="CloseSesion" Text="Cerrar Sesión" BackgroundColor="{StaticResource MainColor}" TextColor="{StaticResource MenuFontColor}" HorizontalOptions="Fill" VerticalOptions="Center"></Button>
+        <Button Command="{Binding CloseSesionCommand}" CommandParameter="CloseSesion" Text="Cerrar Sesión" BackgroundColor="{StaticResource MainColor}" TextColor="{StaticResource MenuFontColor}" HorizontalOptions="Fill" VerticalOptions="Center"></Button>
         </StackLayout>
     </StackLayout>
 </ContentPage>

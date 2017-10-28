@@ -1,9 +1,11 @@
 ﻿namespace GPIApp.Models
 {
-    public class UserModel
+    public class TaskUserDraftModel : TaskStringModel
     {
-        protected int idUser = -1;
-        protected string nameUser;
+        private int idUser;
+        private bool isDraft;
+
+        //Properties
 
         public int IdUser
         {
@@ -18,16 +20,16 @@
             }
         }
 
-        public string NameUser
+        public bool IsDraft
         {
             get
             {
-                return nameUser;
+                return isDraft;
             }
 
             set
             {
-                nameUser = value;
+                isDraft = value;
             }
         }
     }

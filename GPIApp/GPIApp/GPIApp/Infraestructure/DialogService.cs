@@ -1,14 +1,16 @@
-﻿using System;
+﻿using Rg.Plugins.Popup.Pages;
+using Rg.Plugins.Popup.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GPIApp.Helpers
+namespace GPIApp.Infraestructure
 {
-    class DialogService
+    public static class DialogService
     {
-        public async Task ShowMessage(string title, string message, string button)
+        public static async Task ShowMessage(string title, string message, string button)
         {
             if (App.Navigator != null)
             {
@@ -20,7 +22,7 @@ namespace GPIApp.Helpers
             }
         }
 
-        public async Task<string> ShowOptions(string title, string[] options, string button)
+        public static async Task<string> ShowOptions(string title, string[] options, string button)
         {
             return await App.Navigator.DisplayActionSheet(title, button, null, options);
         }

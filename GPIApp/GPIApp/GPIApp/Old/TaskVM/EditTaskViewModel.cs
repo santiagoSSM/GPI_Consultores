@@ -10,7 +10,6 @@ namespace GPIApp.ViewModels.TaskVM
     public class EditTaskViewModel
     {   
         private DialogService dialogService;
-        private NavigationService navigationService;
         private TaskWA taskWA;
         public TaskModel task { get; set; }
 
@@ -30,7 +29,6 @@ namespace GPIApp.ViewModels.TaskVM
         public EditTaskViewModel()
         {
             dialogService = new DialogService();
-            navigationService = new NavigationService();
             taskWA = new TaskWA();
             task = new TaskModel();
 
