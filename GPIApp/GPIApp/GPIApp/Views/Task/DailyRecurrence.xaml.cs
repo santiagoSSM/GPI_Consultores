@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace GPIApp.Views.NewTask
+namespace GPIApp.Views.Task
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DailyRecurrence : PopupPage

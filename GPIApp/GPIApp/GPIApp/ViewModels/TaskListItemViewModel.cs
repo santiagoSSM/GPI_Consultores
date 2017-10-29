@@ -1,5 +1,7 @@
 ﻿using GalaSoft.MvvmLight.Command;
+using GPIApp.Infraestructure;
 using GPIApp.Models;
+using System;
 using System.Windows.Input;
 
 namespace GPIApp.ViewModels
@@ -76,7 +78,58 @@ namespace GPIApp.ViewModels
 
         public async void Clicked()
         {
-            //user idTask
+            try
+            {
+                var select = await DialogService.ShowOptions("Seleccionar", new string[] { "Ver", "Reasignar", "Editar", "Prorrogar", "Responder", "Delegar", "Crear borrador", "Eliminar borrador" }, "Cancelar");
+
+                switch (select)
+                {
+                    case "Ver":
+                        {
+                            //Code
+                            break;
+                        }
+                    case "Reasignar":
+                        {
+                            //Code
+                            break;
+                        }
+                    case "Editar":
+                        {
+                            await NavigationService.Navigate("EditTask", idTask);
+                            break;
+                        }
+                    case "Prorrogar":
+                        {
+                            //Code
+                            break;
+                        }
+                    case "Responder":
+                        {
+                            //Code
+                            break;
+                        }
+                    case "Delegar":
+                        {
+                            //Code
+                            break;
+                        }
+                    case "Crear borrador":
+                        {
+                            //Code
+                            break;
+                        }
+                    case "Eliminar borrador":
+                        {
+                            //Code
+                            break;
+                        }
+                }
+            }
+            catch (Exception ex)
+            {
+                await DialogService.ShowMessage("Error", ex.Message, "Aceptar");
+            }
         }
     }
 }

@@ -14,10 +14,10 @@ namespace GPIApp.WebApi
     {
         public static async Task<TaskPickersModel> GetTaskPickers()
         {
-            var uri = new Uri(ConstantsWA.WebApiServer + "Task/GetTP/");
-
             try
             {
+                var uri = new Uri(ConstantsWA.WebApiServer + "Task/GetTP/");
+
                 using (var client = new HttpClient())
                 using (HttpResponseMessage response = await client.GetAsync(uri))
                 {
@@ -38,12 +38,50 @@ namespace GPIApp.WebApi
 
         public static async Task<TaskSeeModel> GetSeeTask(int idTask)
         {
-            return null;
+            try
+            {
+                var uri = new Uri(ConstantsWA.WebApiServer + "Task/GetST/?idTask=" + idTask);
+
+                using (var client = new HttpClient())
+                using (HttpResponseMessage response = await client.GetAsync(uri))
+                {
+                    if (response.IsSuccessStatusCode)
+                    {
+                        return JsonConvert.DeserializeObject<TaskSeeModel>(
+                            await response.Content.ReadAsStringAsync()  //Get the json
+                        );
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            return default(TaskSeeModel);
         }
 
         public static async Task<TaskBindingModel> GetEditTask(int idTask)
         {
-            return null;
+            try
+            {
+                var uri = new Uri(ConstantsWA.WebApiServer + "Task/GetET/?idTask=" + idTask);
+
+                using (var client = new HttpClient())
+                using (HttpResponseMessage response = await client.GetAsync(uri))
+                {
+                    if (response.IsSuccessStatusCode)
+                    {
+                        return JsonConvert.DeserializeObject<TaskBindingModel>(
+                            await response.Content.ReadAsStringAsync()  //Get the json
+                        );
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            return default(TaskBindingModel);
         }
 
         public static async Task<ObservableCollection<TaskListItemModel>> PutTaskListItem(int idUser, FiltersParamModel filters)
@@ -77,7 +115,29 @@ namespace GPIApp.WebApi
 
         public static async Task<bool> Post(TaskUserDraftModel value)
         {
-            return false;
+            try
+            {
+                var uri = new Uri(ConstantsWA.WebApiServer + "Task/Post/");
+                var json = JsonConvert.SerializeObject(value);
+
+                using (var content = new StringContent(json, Encoding.UTF8, "application/json"))
+                using (var client = new HttpClient())
+                using (HttpResponseMessage response = await client.PostAsync(uri, content))
+                {
+                    if (!response.IsSuccessStatusCode)
+                    {
+                        throw new Exception("Error " + response.StatusCode.GetHashCode() + " " + response.ReasonPhrase);
+                    }
+                    else
+                    {
+                        return true;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
     }
 }

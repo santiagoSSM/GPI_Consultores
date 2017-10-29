@@ -9,12 +9,12 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace GPIApp.Views.NewTask
+namespace GPIApp.Views.Task
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MonthlyRecurrence : PopupPage
+    public partial class AnnualRecurrence : PopupPage
     {
-        public MonthlyRecurrence()
+        public AnnualRecurrence()
         {
             InitializeComponent();
         }
@@ -23,8 +23,5 @@ namespace GPIApp.Views.NewTask
         {
             await PopupNavigation.PopAsync();
         }
-
-
-
     }
 }

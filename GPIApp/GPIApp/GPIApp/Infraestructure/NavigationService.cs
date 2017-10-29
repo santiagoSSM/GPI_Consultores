@@ -1,7 +1,6 @@
 ﻿using GPIApp.ViewModels;
 using GPIApp.Views.Login;
 using GPIApp.Views.MainPage;
-using GPIApp.Views.NewTask;
 using GPIApp.Views.Task;
 using System;
 using System.Threading.Tasks;
@@ -11,7 +10,7 @@ namespace GPIApp.Infraestructure
 {
     public static class NavigationService
     {
-        public static async Task Navigate(string pageName)
+        public static async Task Navigate(string pageName, int id=-1)
         {
             try
             {
@@ -26,7 +25,10 @@ namespace GPIApp.Infraestructure
                         await Navigate(new NewEditTaskView());
                         break;
                     case "EditTask":
-                        //await Navigate(new EditTaskView());
+                        VMContainer.ReleaseResourses();
+                        VMContainer.NewEditTaskVMInit("Editar tarea");
+                        await VMContainer.NewEditTaskVM.LoadEditTask(id);
+                        await Navigate(new NewEditTaskView());
                         break;
                     case "SeeTask":
                         //await Navigate(new EditTaskView());

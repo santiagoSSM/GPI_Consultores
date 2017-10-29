@@ -115,7 +115,31 @@ namespace MockWebApi.Models
             new PickersWA()
             {
                 IdValue = 0,
-                TextValue = "Rec"
+                TextValue = "Ninguna"
+            },
+
+            new PickersWA()
+            {
+                IdValue = 1,
+                TextValue = "Diaria"
+            },
+
+            new PickersWA()
+            {
+                IdValue = 2,
+                TextValue = "Semanal"
+            },
+
+            new PickersWA()
+            {
+                IdValue = 3,
+                TextValue = "Mensual"
+            },
+
+            new PickersWA()
+            {
+                IdValue = 4,
+                TextValue = "Anual"
             }
         };
         private static ObservableCollection<PickersWA> listFinalDate = new ObservableCollection<PickersWA>()
@@ -123,7 +147,19 @@ namespace MockWebApi.Models
             new PickersWA()
             {
                 IdValue = 0,
-                TextValue = "FinalDate"
+                TextValue = "Sin fecha de finalización"
+            },
+
+            new PickersWA()
+            {
+                IdValue = 1,
+                TextValue = "Finaliza después de"
+            },
+
+            new PickersWA()
+            {
+                IdValue = 2,
+                TextValue = "Finaliza el"
             }
         };
         private static ObservableCollection<TaskWA> listTask = new ObservableCollection<TaskWA>()

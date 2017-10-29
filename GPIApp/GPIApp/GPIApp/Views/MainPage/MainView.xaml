@@ -11,31 +11,38 @@
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
-        <ListView ItemsSource="{Binding ListTasks}"
+        <StackLayout>
+
+            <Button Command="{Binding VMControl.PruebaCommand, Source={StaticResource Locator}}" x:Name="enterButton" Text="Actualizar" BackgroundColor="Navy" TextColor="White" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+            </Button>
+
+            <ListView ItemsSource="{Binding ListTasks}"
                   HasUnevenRows="True">
 
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <Grid>
-                            <Grid.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding ClickedCommand}">
-                                </TapGestureRecognizer>
-                            </Grid.GestureRecognizers>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding ClickedCommand}">
+                                    </TapGestureRecognizer>
+                                </Grid.GestureRecognizers>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
 
-                            <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand">
-                                <Label Text="{Binding TextIssue}" Font ="25"></Label>
-                                <Image  WidthRequest="50" HeightRequest="20" Source="{Binding TextImgActive}"></Image>
-                                <Image  WidthRequest="50" HeightRequest="20" Source="{Binding TextImgPriority}"></Image>
-                            </StackLayout>
-                        </Grid>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-
-        </ListView>
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand">
+                                    <Label Text="{Binding TextIssue}" Font ="25"></Label>
+                                    <Image  WidthRequest="50" HeightRequest="20" Source="{Binding TextImgActive}"></Image>
+                                    <Image  WidthRequest="50" HeightRequest="20" Source="{Binding TextImgPriority}"></Image>
+                                </StackLayout>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                
+            </ListView>
+            
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

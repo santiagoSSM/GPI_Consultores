@@ -9,23 +9,10 @@ using System.Windows.Input;
 
 namespace GPIApp.ViewModels
 {
-    public class MainViewModel : INotifyPropertyChanged
+    public class MainViewModel
     {
-        private ObservableCollection<TaskListItemViewModel> listTasks;
-
-        public ObservableCollection<TaskListItemViewModel> ListTasks
-        {
-            get
-            {
-                return listTasks;
-            }
-
-            set
-            {
-                listTasks = value;
-                OnPropertyChanged("ListTasks");
-            }
-        }
+        public ObservableCollection<TaskListItemViewModel> ListTasks { get; set; }
+        
 
         public MainViewModel()
         {
@@ -34,7 +21,7 @@ namespace GPIApp.ViewModels
 
         public async Task LoadInfo(int idUser)
         {
-            //Todo programar correctamente los filtros
+            //Todo programar correctamente los filtros y arreglar actualizar pantalla
             ListTasks.Clear();
             foreach (TaskListItemModel element in await TaskWACtrl.PutTaskListItem(idUser, null))
             {
@@ -102,17 +89,6 @@ namespace GPIApp.ViewModels
         private async void CloseSesion()
         {
             await NavigationService.SetPageAsync("LoginPage");
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertyChanged(string propertyName)
-        {
-            var changed = PropertyChanged;
-            if (changed != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
         }
     }
 }

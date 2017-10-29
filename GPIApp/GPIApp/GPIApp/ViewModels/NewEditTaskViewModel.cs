@@ -78,6 +78,7 @@ namespace GPIApp.ViewModels
 
         public async void SaveTask(string isDraft)
         {
+            //Todo validacion de entradas de informacion
             /*if (string.IsNullOrEmpty(Task.TextIssue))
             {
                 await DialogService.ShowMessage("Error", "Debe ingresar un asunto", "Aceptar");
@@ -108,7 +109,30 @@ namespace GPIApp.ViewModels
                 return;
             }*/
 
-            Task.IsDraft = isDraft=="true";
+            //Todo informacion de pruebas
+            #region Recurrencia
+            //Recurrence
+
+            Task.TextRecu = "Ninguna";
+            Task.BeforeDays = 1;
+            Task.IsCancelRecu = false;
+
+            //Daily,Montly,Annual Vector info
+
+            Task.SelectTimeOfRecu = false;
+            Task.TimeOfRecu0 = 0;
+            Task.TimeOfRecu1 = 0;
+            Task.TimeOfRecu2 = 0;
+
+            //Final Date
+
+            Task.TextFinalDate = "Sin fecha de finalización";
+            Task.NumRecu = 0;
+            Task.ContractExp = new DateTime(2010, 8, 10);
+            #endregion
+
+            Task.IdUser = VMContainer.UserLogged.IdUser;
+            Task.IsDraft = isDraft == "true";
 
             try
             {

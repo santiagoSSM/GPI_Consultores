@@ -10,7 +10,7 @@
 
             <StackLayout Orientation="Vertical">
                 <Label Text="Asunto" Font="20"  HorizontalOptions="Start" VerticalOptions="Center"></Label>
-                <Entry Text="{Binding Task.TestIssue, Mode=TwoWay}" x:Name="userIssue" Placeholder="Asunto" HorizontalOptions="FillAndExpand" VerticalOptions="Center"></Entry>
+                <Entry Text="{Binding Task.TextIssue, Mode=TwoWay}" x:Name="userIssue" Placeholder="Asunto" HorizontalOptions="FillAndExpand" VerticalOptions="Center"></Entry>
             </StackLayout>
 
             <StackLayout Orientation="Vertical">
