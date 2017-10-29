@@ -1,41 +1,66 @@
-﻿using GPIApp.Models;
+﻿using GPIApp.Infraestructure;
+using GPIApp.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace GPIApp.ViewModels
 {
-    public static class VMContainer
+    public class VMContainer : IVMContainer, INotifyPropertyChanged
     {
-        public static int TaskidSelect { get; set; }
-        public static UserModel UserLogged { get; set; }
-        public static LoginViewModel LoginVM { get; set; }
-        public static MainViewModel MainVM { get; set; }
-        //public static TaskSeeModel SeeTaskVM { get; set; }
-        public static NewEditTaskViewModel NewEditTaskVM { get; set; }
+        public LoginViewModel LoginVM { get; set; }
+        public MainViewModel MainVM { get; set; }
+        //public TaskSeeModel SeeTaskVM { get; set; }
+        public NewEditTaskViewModel NewEditTaskVM { get; set; }
 
-        public static void ReleaseResourses()
+        private void ReleaseResourses()
         {
             LoginVM = null;
             MainVM = null;
             NewEditTaskVM = null;
         }
 
-        public static void LoginVMInit()
+        public void LoginVMInit()
         {
-            LoginVM = new LoginViewModel();
+            ReleaseResourses();
+            LoginVM = new LoginViewModel(this);
         }
 
-        public static void MainVMInit()
+        public async Task MainVMInit()
         {
-            MainVM = new MainViewModel();
+            ReleaseResourses();
+            MainVM = new MainViewModel(this);
+            await MainVM.LoadInfo(UserLogged.Value.IdUser);
+            OnPropertyChanged("MainVM");
         }
 
-        public static void NewEditTaskVMInit(string title)
+        public async Task NewEditTaskVMInit(string title, int id=-1)
         {
-            NewEditTaskVM = new NewEditTaskViewModel(title);
+            ReleaseResourses();
+            if (title == "EditTask")
+            {
+                NewEditTaskVM = new NewEditTaskViewModel(this, "Editar tarea");
+                await NewEditTaskVM.LoadEditTask(id);
+            }
+            else
+            {
+                NewEditTaskVM = new NewEditTaskViewModel(this, "Nueva tarea");
+                await NewEditTaskVM.LoadPickers();
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            var changed = PropertyChanged;
+            if (changed != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
         }
     }
 }

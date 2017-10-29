@@ -1,5 +1,4 @@
-﻿using GPIApp.ViewModels;
-using GPIApp.Views.Login;
+﻿using GPIApp.Views.Login;
 using GPIApp.Views.MainPage;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -15,12 +14,6 @@ namespace GPIApp
         public App()
         {
             InitializeComponent();
-            VMContainer.LoginVMInit();
-
-            //Todo inicio rapido eliminar despues
-            VMContainer.LoginVM.User.NameUser = "user";
-            VMContainer.LoginVM.User.PassUser = "pass";
-
             MainPage = new LoginView();
         }
     }

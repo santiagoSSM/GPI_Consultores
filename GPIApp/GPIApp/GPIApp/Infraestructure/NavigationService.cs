@@ -8,9 +8,16 @@ using Xamarin.Forms;
 
 namespace GPIApp.Infraestructure
 {
-    public static class NavigationService
+    public class NavigationService
     {
-        public static async Task Navigate(string pageName, int id=-1)
+        IVMContainer inter;
+
+        public NavigationService(IVMContainer inter)
+        {
+            this.inter = inter;
+        }
+
+        public async Task Navigate(string pageName, int id=-1)
         {
             try
             {
@@ -19,15 +26,11 @@ namespace GPIApp.Infraestructure
                 {
                     //Tasks
                     case "NewTask":
-                        VMContainer.ReleaseResourses();
-                        VMContainer.NewEditTaskVMInit("Nueva tarea");
-                        await VMContainer.NewEditTaskVM.LoadPickers();
+                        await inter.NewEditTaskVMInit("NewTask");
                         await Navigate(new NewEditTaskView());
                         break;
                     case "EditTask":
-                        VMContainer.ReleaseResourses();
-                        VMContainer.NewEditTaskVMInit("Editar tarea");
-                        await VMContainer.NewEditTaskVM.LoadEditTask(id);
+                        await inter.NewEditTaskVMInit("EditTask", id);
                         await Navigate(new NewEditTaskView());
                         break;
                     case "SeeTask":
@@ -35,9 +38,7 @@ namespace GPIApp.Infraestructure
                         break;
                     //other
                     case "MainPage":
-                        VMContainer.ReleaseResourses();
-                        VMContainer.MainVMInit();
-                        await VMContainer.MainVM.LoadInfo(VMContainer.UserLogged.IdUser);
+                        await inter.MainVMInit();
                         await App.Navigator.PopToRootAsync();
                         break;
                     case "CloseMenu":
@@ -53,7 +54,7 @@ namespace GPIApp.Infraestructure
             }
         }
 
-        private static async Task Navigate<T>(T page) where T : Page
+        private async Task Navigate<T>(T page) where T : Page
         {
             NavigationPage.SetHasBackButton(page, true);
             NavigationPage.SetBackButtonTitle(page, "Atrás"); //iOS
@@ -61,21 +62,18 @@ namespace GPIApp.Infraestructure
             await App.Navigator.PushAsync(page);
         }
 
-        public static async Task SetPageAsync(string pageName)
+        public async Task SetPageAsync(string pageName)
         {
             try
             {
                 switch (pageName)
                 {
                     case "MasterPage":
-                        VMContainer.ReleaseResourses();
-                        VMContainer.MainVMInit();
-                        await VMContainer.MainVM.LoadInfo(VMContainer.UserLogged.IdUser);
+                        await inter.MainVMInit();
                         App.Current.MainPage = new Master_MainView();
                         break;
                     case "LoginPage":
-                        VMContainer.ReleaseResourses();
-                        VMContainer.LoginVMInit();
+                        inter.LoginVMInit();
                         App.Current.MainPage = new LoginView();
                         break;
                     default:

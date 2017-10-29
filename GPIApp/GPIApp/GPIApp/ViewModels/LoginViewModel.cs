@@ -12,12 +12,18 @@ using System.Windows.Input;
 
 namespace GPIApp.ViewModels
 {
+    public static class UserLogged
+    {
+        public static UserModel Value { get; set; }
+    }
     public class LoginViewModel
     {
+        NavigationService navServ;
         public UserPassModel User { get; set; }
 
-        public LoginViewModel()
+        public LoginViewModel(IVMContainer inter)
         {
+            navServ = new NavigationService(inter);
             User = new UserPassModel();
         }
 
@@ -44,10 +50,10 @@ namespace GPIApp.ViewModels
             try
             {
                 await PopupNavigation.PushAsync(new ActivityIndicatorPopUp());
-                VMContainer.UserLogged = await UserWACtrl.Put(User);
-                if (VMContainer.UserLogged != null)
+                UserLogged.Value = await UserWACtrl.Put(User);
+                if (UserLogged.Value != null)
                 {
-                    await NavigationService.SetPageAsync("MasterPage");
+                    await navServ.SetPageAsync("MasterPage");
                 }
                 else
                 {

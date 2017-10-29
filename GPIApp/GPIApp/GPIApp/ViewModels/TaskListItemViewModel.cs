@@ -8,6 +8,7 @@ namespace GPIApp.ViewModels
 {
     public class TaskListItemViewModel
     {
+        NavigationService navServ;
         private int idTask;
         private string textIssue;
         private string textImgPriority;
@@ -15,8 +16,9 @@ namespace GPIApp.ViewModels
 
         //Properties
 
-        public TaskListItemViewModel(TaskListItemModel item)
+        public TaskListItemViewModel(IVMContainer inter, TaskListItemModel item)
         {
+            navServ = new NavigationService(inter);
             idTask = item.IdTask;
             textIssue = item.TextIssue;
 
@@ -96,7 +98,7 @@ namespace GPIApp.ViewModels
                         }
                     case "Editar":
                         {
-                            await NavigationService.Navigate("EditTask", idTask);
+                            await navServ.Navigate("EditTask", idTask);
                             break;
                         }
                     case "Prorrogar":

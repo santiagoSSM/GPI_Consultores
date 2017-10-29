@@ -12,10 +12,7 @@
 
     <ContentPage.Content>
         <StackLayout>
-
-            <Button Command="{Binding VMControl.PruebaCommand, Source={StaticResource Locator}}" x:Name="enterButton" Text="Actualizar" BackgroundColor="Navy" TextColor="White" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
-            </Button>
-
+            
             <ListView ItemsSource="{Binding ListTasks}"
                   HasUnevenRows="True">
 

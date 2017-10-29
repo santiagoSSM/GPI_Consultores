@@ -40,6 +40,7 @@
     </Compile>
     <Compile Include="Infraestructure\DialogService.cs" />
     <Compile Include="Infraestructure\InstanceLocator.cs" />
+    <Compile Include="Infraestructure\IVMContainer.cs" />
     <Compile Include="Infraestructure\NavigationService.cs" />
     <Compile Include="Models\FiltersParamModel.cs" />
     <Compile Include="Models\TaskBindingModel.cs" />
@@ -57,7 +58,6 @@
     <Compile Include="ViewModels\TaskListItemViewModel.cs" />
     <Compile Include="ViewModels\VMContainer.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
-    <Compile Include="ViewModels\ViewModelsCtrl.cs" />
     <Compile Include="Views\Task\AnnualRecurrence.xaml.cs">
       <DependentUpon>AnnualRecurrence.xaml</DependentUpon>
     </Compile>

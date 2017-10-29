@@ -3,7 +3,6 @@ using GPIApp.Infraestructure;
 using GPIApp.Models;
 using GPIApp.WebApi;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -11,11 +10,15 @@ namespace GPIApp.ViewModels
 {
     public class MainViewModel
     {
+        IVMContainer inter;
+        NavigationService navServ;
         public ObservableCollection<TaskListItemViewModel> ListTasks { get; set; }
         
 
-        public MainViewModel()
+        public MainViewModel(IVMContainer inter)
         {
+            this.inter = inter;
+            navServ = new NavigationService(inter);
             ListTasks = new ObservableCollection<TaskListItemViewModel>();
         }
 
@@ -25,7 +28,7 @@ namespace GPIApp.ViewModels
             ListTasks.Clear();
             foreach (TaskListItemModel element in await TaskWACtrl.PutTaskListItem(idUser, null))
             {
-                ListTasks.Add(new TaskListItemViewModel(element));
+                ListTasks.Add(new TaskListItemViewModel(inter, element));
             }
         }
 
@@ -36,7 +39,7 @@ namespace GPIApp.ViewModels
 
         private async void NewTask()
         {
-            await NavigationService.Navigate("NewTask");
+            await navServ.Navigate("NewTask");
         }
 
         //Menu
@@ -48,7 +51,7 @@ namespace GPIApp.ViewModels
 
         private async void ActiveTask()
         {
-            await NavigationService.Navigate("CloseMenu");
+            await navServ.Navigate("CloseMenu");
         }
 
         public ICommand CompleteTaskCommand
@@ -58,7 +61,7 @@ namespace GPIApp.ViewModels
 
         private async void CompleteTask()
         {
-            await NavigationService.Navigate("CloseMenu");
+            await navServ.Navigate("CloseMenu");
         }
 
         public ICommand CanceledTaskCommand
@@ -68,7 +71,7 @@ namespace GPIApp.ViewModels
 
         private async void CanceledTask()
         {
-            await NavigationService.Navigate("CloseMenu");
+            await navServ.Navigate("CloseMenu");
         }
 
         public ICommand SettingsCommand
@@ -78,7 +81,7 @@ namespace GPIApp.ViewModels
 
         private async void Settings()
         {
-            await NavigationService.Navigate("CloseMenu");
+            await navServ.Navigate("CloseMenu");
         }
 
         public ICommand CloseSesionCommand
@@ -88,7 +91,7 @@ namespace GPIApp.ViewModels
 
         private async void CloseSesion()
         {
-            await NavigationService.SetPageAsync("LoginPage");
+            await navServ.SetPageAsync("LoginPage");
         }
     }
 }

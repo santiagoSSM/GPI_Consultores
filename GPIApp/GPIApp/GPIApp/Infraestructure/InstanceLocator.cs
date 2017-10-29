@@ -6,9 +6,15 @@ namespace GPIApp.Infraestructure
     {
         public InstanceLocator()
         {
-            VMControl = new ViewModelsCtrl();
+            VMControl = new VMContainer();
+
+            VMControl.LoginVMInit();
+
+            //Todo inicio rapido eliminar despues
+            VMControl.LoginVM.User.NameUser = "user";
+            VMControl.LoginVM.User.PassUser = "pass";
         }
 
-        public ViewModelsCtrl VMControl { get; set; }
+        public VMContainer VMControl { get; set; }
     }
 }

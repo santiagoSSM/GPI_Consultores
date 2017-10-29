@@ -13,12 +13,14 @@ namespace GPIApp.ViewModels
 {
     public class NewEditTaskViewModel
     {
+        NavigationService navServ;
         public string Title { get; private set; }
         public TaskUserDraftModel Task { get; set; }
         public TaskPickersModel TaskPickers { get; set; }
 
-        public NewEditTaskViewModel(string title)
+        public NewEditTaskViewModel(IVMContainer inter, string title)
         {
+            navServ = new NavigationService(inter);
             Title = title;
             Task = new TaskUserDraftModel();
             TaskPickers = new TaskPickersModel();
@@ -131,7 +133,7 @@ namespace GPIApp.ViewModels
             Task.ContractExp = new DateTime(2010, 8, 10);
             #endregion
 
-            Task.IdUser = VMContainer.UserLogged.IdUser;
+            Task.IdUser = UserLogged.Value.IdUser;
             Task.IsDraft = isDraft == "true";
 
             try
@@ -140,7 +142,7 @@ namespace GPIApp.ViewModels
                 if (await TaskWACtrl.Post(Task))
                 {
                     await DialogService.ShowMessage("Mensaje", "Tarea registrada correctamente", "Aceptar");
-                    await NavigationService.Navigate("MainPage");
+                    await navServ.Navigate("MainPage");
                 }
                 else
                 {
