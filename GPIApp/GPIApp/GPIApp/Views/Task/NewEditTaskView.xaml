@@ -10,40 +10,40 @@
 
             <StackLayout Orientation="Vertical">
                 <Label Text="Asunto" Font="20"  HorizontalOptions="Start" VerticalOptions="Center"></Label>
-                <Entry Text="{Binding Task.TextIssue, Mode=TwoWay}" x:Name="userIssue" Placeholder="Asunto" HorizontalOptions="FillAndExpand" VerticalOptions="Center"></Entry>
+                <Entry Text="{Binding TaskBind.TextIssue, Mode=TwoWay}" x:Name="userIssue" Placeholder="Asunto" HorizontalOptions="FillAndExpand" VerticalOptions="Center"></Entry>
             </StackLayout>
 
             <StackLayout Orientation="Vertical">
                 <Label Text="Descripción" Font="20"  HorizontalOptions="Start" VerticalOptions="Center"></Label>
-                <Entry Text="{Binding Task.TextDescription, Mode=TwoWay}" x:Name="userDescription" Placeholder="Descripción" HorizontalOptions="FillAndExpand" VerticalOptions="Center"></Entry>
+                <Entry Text="{Binding TaskBind.TextDescription, Mode=TwoWay}" x:Name="userDescription" Placeholder="Descripción" HorizontalOptions="FillAndExpand" VerticalOptions="Center"></Entry>
             </StackLayout>
 
             <StackLayout Orientation="Vertical">
                 <Label Text="Responsables" Font="20"  HorizontalOptions="Start" VerticalOptions="Center"></Label>
-                <Picker SelectedItem="{Binding Task.NameRespUser, Mode=TwoWay}" ItemsSource="{Binding TaskPickers.ListUser}" Title="Seleccionar"></Picker>
+                <Picker ItemsSource="{Binding TaskPickers.ListUser}" SelectedItem="{Binding TaskBind.NameRespUser, Mode=TwoWay}" Title="Seleccionar"></Picker>
             </StackLayout>
 
             <StackLayout Orientation="Vertical">
                 <Label Text="Copiados" Font="20"  HorizontalOptions="Start" VerticalOptions="Center"></Label>
-                <Picker SelectedItem="{Binding Task.NameCopyUser, Mode=TwoWay}" ItemsSource="{Binding TaskPickers.ListUser}" Title="Seleccionar"></Picker>
+                <Picker ItemsSource="{Binding TaskPickers.ListUser}" SelectedItem="{Binding TaskBind.NameCopyUser, Mode=TwoWay}" Title="Seleccionar"></Picker>
             </StackLayout>
 
             <StackLayout Orientation="Vertical">
                 <Label Text="Categoría" Font="20"  HorizontalOptions="Start" VerticalOptions="Center"></Label>
-                <Picker SelectedItem="{Binding Task.TextCategory, Mode=TwoWay}" ItemsSource="{Binding TaskPickers.ListCategory}" x:Name="categoryPicker" Title="Seleccionar"></Picker>
+                <Picker ItemsSource="{Binding TaskPickers.ListCategory}" SelectedItem="{Binding TaskBind.TextCategory, Mode=TwoWay}" x:Name="categoryPicker" Title="Seleccionar"></Picker>
             </StackLayout>
 
             <StackLayout Orientation="Vertical">
                 <StackLayout Orientation="Horizontal">
                     <Label Text="Requiere Aprobación" Font="20"  HorizontalOptions="Start" VerticalOptions="Center"></Label>
-                    <Switch IsToggled="{Binding Task.IsAprob, Mode=TwoWay}" HorizontalOptions="Fill" x:Name="approvalSwitch"></Switch>
+                    <Switch IsToggled="{Binding TaskBind.IsAprob, Mode=TwoWay}" HorizontalOptions="Fill" x:Name="approvalSwitch"></Switch>
                 </StackLayout>
             </StackLayout>
 
             <StackLayout Orientation="Vertical">
                 <StackLayout Orientation="Horizontal">
                     <Label Text="Prioridad" Font="20"  HorizontalOptions="Start" VerticalOptions="Center"></Label>
-                    <Picker SelectedItem="{Binding Task.TextPriority, Mode=TwoWay}" ItemsSource="{Binding TaskPickers.ListPriority}" x:Name="priority" Title="Seleccionar"></Picker>
+                    <Picker ItemsSource="{Binding TaskPickers.ListPriority}" SelectedItem="{Binding TaskBind.TextPriority, Mode=TwoWay}" x:Name="priority" Title="Seleccionar"></Picker>
                 </StackLayout>
             </StackLayout>
 

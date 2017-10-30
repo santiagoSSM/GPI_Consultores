@@ -69,7 +69,7 @@
                     <DatePicker Date="{Binding task.objRecurrence.UserContractDate}" x:Name="finalDatePicker"></DatePicker>
                 </StackLayout>-->
               
-                <Button Text="Guardar recurrencia" Clicked="Button_OnClicked"></Button>
+                <Button Text="Hecho" Clicked="Button_OnClicked"></Button>
             </StackLayout>
         </Frame>
     </StackLayout>
