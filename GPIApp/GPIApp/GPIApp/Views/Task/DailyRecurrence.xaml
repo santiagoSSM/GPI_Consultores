@@ -21,6 +21,12 @@
               <Switch IsToggled="{Binding task.objRecurrence.UserCancelRecurrence}" HorizontalOptions="Fill" x:Name="cancelRecuSwitch"></Switch>
             </StackLayout>
           </StackLayout>
+          
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Cada" Font="20"  HorizontalOptions="Start" VerticalOptions="Center"></Label>
+                <Entry Text="" x:Name="userDescription" HorizontalOptions="Fill" VerticalOptions="Center"></Entry>
+                <Label Text="Días" Font="20"  HorizontalOptions="Fill" VerticalOptions="Center"></Label>
+            </StackLayout>
 
           <StackLayout Orientation="Vertical">
             <StackLayout Orientation="Horizontal">

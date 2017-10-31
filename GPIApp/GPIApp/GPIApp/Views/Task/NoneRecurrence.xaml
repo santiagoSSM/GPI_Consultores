@@ -11,23 +11,20 @@
             <StackLayout>
               
                 <StackLayout Orientation="Vertical">
-                    <Label Text="Días de Preaviso" Font="20"  HorizontalOptions="Start" VerticalOptions="Center"></Label>
+                    <Label Text="Días de Preaviso" Font="20" TextColor="Black" HorizontalOptions="Start" VerticalOptions="Center"></Label>
                     <Picker SelectedItem="{Binding task.objRecurrence.UserBeforeDays}" ItemsSource="{Binding beforeDaysList}" x:Name="beforeDays" Title="Seleccionar"></Picker>
                 </StackLayout>
 
                 <StackLayout Orientation="Vertical">
                     <StackLayout Orientation="Horizontal">
-                        <Label Text="Cancelar Recurrencia" Font="20"  HorizontalOptions="Start" VerticalOptions="Center"></Label>
+                        <Label Text="Cancelar Recurrencia" Font="20" TextColor="Black"  HorizontalOptions="Start" VerticalOptions="Center"></Label>
                         <Switch IsToggled="{Binding task.objRecurrence.UserCancelRecurrence}" HorizontalOptions="Fill" x:Name="cancelRecuSwitch"></Switch>
                     </StackLayout>
                 </StackLayout>
 
                 <StackLayout Orientation="Vertical">
-                  <StackLayout Orientation="Horizontal">
-                    <Switch HorizontalOptions="Start" x:Name="FinalSwitch"></Switch>
-                    <Label x:Name="final" Font="20"  HorizontalOptions="Fill" TextColor="Green" Text="Finaliza el: "></Label>
-                  </StackLayout>
-                  <DatePicker Date="{Binding task.objRecurrence.UserContractDate}" x:Name="finalDatePicker"></DatePicker>
+                    <Label x:Name="final" Font="20"  HorizontalOptions="Fill" TextColor="Black" Text="Vencimiento"></Label>
+                    <DatePicker Date="{Binding task.objRecurrence.UserContractDate}" x:Name="finalDatePicker"></DatePicker>
                 </StackLayout>
 
               <!--<StackLayout Orientation="Vertical">

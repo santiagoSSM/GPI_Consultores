@@ -2,6 +2,7 @@
 using GPIApp.Infraestructure;
 using GPIApp.Models;
 using GPIApp.Views.PopUps.Generic;
+using GPIApp.Views.Task;
 using GPIApp.WebApi;
 using Rg.Plugins.Popup.Services;
 using System;
@@ -160,5 +161,96 @@ namespace GPIApp.ViewModels
                 await PopupNavigation.PopAllAsync();
             }
         }
+
+        ////Recurrence
+
+        public ICommand TaskRecuCommand
+        {
+            get { return new RelayCommand (TaskRecu); }
+        }
+
+        private async void TaskRecu()
+
+        {
+            //Todo cambiar estructura de pickers y guardado
+            try
+            {
+                var select = await DialogService.ShowOptions("Seleccionar", new string[] { "Ninguna", "Diaria", "Semanal", "Mensual", "Anual" }, "Cancelar");
+
+                switch (select)
+                {
+                    case "Ninguna":
+                        {
+                            //Init the objectClass
+                            TaskBind.TextRecu= "Ninguna";
+                            var temp = new NoneRecurrence() { CloseWhenBackgroundIsClicked = true };
+                            await PopupNavigation.PushAsync(temp);
+
+                            break;
+                        }
+                    case "Diaria":
+                        {
+                            TaskBind.TextRecu = "Diaria";
+                            var temp = new DailyRecurrence() { CloseWhenBackgroundIsClicked = true };
+                            await PopupNavigation.PushAsync(temp);
+
+                            break;
+                        }
+                    case "Semanal":
+                        {
+
+                            TaskBind.TextRecu = "Semanal";
+                            var temp = new WeeklyRecurrence() { CloseWhenBackgroundIsClicked = true };
+                            await PopupNavigation.PushAsync(temp);
+                            //Init the objectClass
+                            //NewTaskVM.task.UserRecurrence = "Semanal";
+                            //NewTaskVM.task.ObjRecurrence = new WeeklyTaskModel();
+
+                            //var temp = new WeeklyRecurrence() { CloseWhenBackgroundIsClicked = true };
+                            //await PopupNavigation.PushAsync(temp);
+                            break;
+                        }
+                    case "Mensual":
+                        {
+
+                            TaskBind.TextRecu = "Mensual";
+                            var temp = new MonthlyRecurrence() { CloseWhenBackgroundIsClicked = true };
+                            await PopupNavigation.PushAsync(temp);
+                            //Init the objectClass
+                            //NewTaskVM.task.UserRecurrence = "Mensual";
+                            //NewTaskVM.task.ObjRecurrence = new MonthlyTaskModel();
+
+                            //var temp = new MonthlyRecurrence() { CloseWhenBackgroundIsClicked = true };
+                            //await PopupNavigation.PushAsync(temp);
+
+                            break;
+                        }
+                    case "Anual":
+                        {
+
+                            TaskBind.TextRecu = "Anual";
+                            var temp = new AnnualRecurrence() { CloseWhenBackgroundIsClicked = true };
+                            await PopupNavigation.PushAsync(temp);
+                            //Init the objectClass
+                            //NewTaskVM.task.UserRecurrence = "Anual";
+                            //NewTaskVM.task.ObjRecurrence = new AnnualTaskModel();
+
+                            //var temp = new AnnualRecurrence() { CloseWhenBackgroundIsClicked = true };
+                            //await PopupNavigation.PushAsync(temp);
+                            break;
+                        }
+                    default:
+                        {
+                            throw new Exception("Error en el tipo de recurrencia");
+                        }
+                }
+            }
+            catch (Exception ex)
+            {
+                await DialogService.ShowMessage("Error", ex.Message, "Aceptar");
+            }
+        }
+
+
     }
 }

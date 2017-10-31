@@ -47,14 +47,14 @@
                 </StackLayout>
             </StackLayout>
 
-            <!--<StackLayout Orientation="Horizontal">
+            <StackLayout Orientation="Horizontal">
                 <StackLayout.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding VMControl.PopUpListRecuCommand,Source={StaticResource Locator}}">
+                    <TapGestureRecognizer Command="{Binding TaskRecuCommand}">
                     </TapGestureRecognizer>
                 </StackLayout.GestureRecognizers>
                 <Label Font="20"  HorizontalOptions="Start" Text="Recurrencia "></Label>
                 <Label Font="15"  HorizontalOptions="Fill"></Label>
-            </StackLayout>-->
+            </StackLayout>
 
             <Button Command="{Binding SaveTaskCommand}" CommandParameter="false" Text="Guardar" BackgroundColor="Navy" TextColor="White" HorizontalOptions="FillAndExpand" VerticalOptions="Center"></Button>
             <Button Command="{Binding SaveTaskCommand}" CommandParameter="true" Text="Crear borrador" BackgroundColor="Navy" TextColor="White" HorizontalOptions="FillAndExpand" VerticalOptions="Center"></Button>
