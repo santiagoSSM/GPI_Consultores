@@ -80,38 +80,40 @@ namespace GPIApp.ViewModels
 
         private async void SaveTask(string isDraft)
         {
-            //Todo validacion de entradas de informacion
-            /*if (string.IsNullOrEmpty(Task.TextIssue))
+            //TaskBind.TextDescription = editTask.TextDescription;//Optional?
+
+            //Task
+            if (string.IsNullOrEmpty(TaskBind.TextIssue))
             {
                 await DialogService.ShowMessage("Error", "Debe ingresar un asunto", "Aceptar");
                 return;
             }
-
-            if (string.IsNullOrEmpty(Task.TextIssue))
+			
+			if (string.IsNullOrEmpty(TaskBind.NameRespUser))
             {
                 await DialogService.ShowMessage("Error", "Debe ingresar un responsable", "Aceptar");
                 return;
             }
 
-            if (string.IsNullOrEmpty(Task.TextIssue))
+            if (string.IsNullOrEmpty(TaskBind.NameCopyUser))
             {
                 await DialogService.ShowMessage("Error", "Ingresar el usuario al que se copia la tarea", "Aceptar");
                 return;
             }
 
-            if (string.IsNullOrEmpty(Task.TextIssue))
+            if (string.IsNullOrEmpty(TaskBind.TextCategory))
             {
                 await DialogService.ShowMessage("Error", "Debe ingresar una categoría", "Aceptar");
                 return;
             }
 
-            if (string.IsNullOrEmpty(Task.TextIssue))
+            if (string.IsNullOrEmpty(TaskBind.TextPriority))
             {
                 await DialogService.ShowMessage("Error", "Debe ingresar la prioridad", "Aceptar");
                 return;
-            }*/
+            }
 
-            //Todo informacion de pruebas
+            //Todo informacion de pruebas recurrencia
             #region Recurrencia
             //Recurrence
 

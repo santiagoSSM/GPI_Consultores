@@ -24,7 +24,7 @@ namespace GPIApp.ViewModels
 
         public async Task LoadInfo(int idUser)
         {
-            //Todo programar correctamente los filtros y arreglar actualizar pantalla
+            //Todo programar correctamente los filtros
             ListTasks.Clear();
             foreach (TaskListItemModel element in await TaskWACtrl.PutTaskListItem(idUser, null))
             {
