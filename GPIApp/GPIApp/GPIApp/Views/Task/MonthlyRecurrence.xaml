@@ -23,14 +23,20 @@
         </StackLayout>
 
         <StackLayout Orientation="Horizontal">
-          <Label Text="Cada" Font="20"  HorizontalOptions="Start" VerticalOptions="Center"></Label>
-          <Entry HorizontalOptions="Center" VerticalOptions="Center"></Entry>
-          <Label Text="de Cada" Font="20"  HorizontalOptions="Fill" VerticalOptions="Center"></Label>
+          <Switch HorizontalOptions="Start"></Switch>
+          <Picker SelectedItem="{Binding task.objRecurrence.UserBeforeDays}" ItemsSource="{Binding beforeDaysList}" HorizontalOptions="Fill" Title="Seleccionar" VerticalOptions="Center"></Picker>
+          <Picker SelectedItem="{Binding task.objRecurrence.UserBeforeDays}" ItemsSource="{Binding beforeDaysList}" Title="Seleccionar" VerticalOptions="Center"></Picker>
+        </StackLayout>
+        
+        <StackLayout Orientation="Horizontal">
+          <Switch HorizontalOptions="Start"></Switch>
+          <Picker SelectedItem="{Binding task.objRecurrence.UserBeforeDays}" ItemsSource="{Binding beforeDaysList}" HorizontalOptions="Fill" Title="Seleccionar" VerticalOptions="Center"></Picker>
+          <Picker SelectedItem="{Binding task.objRecurrence.UserBeforeDays}" ItemsSource="{Binding beforeDaysList}" Title="Seleccionar" VerticalOptions="Center"></Picker>
         </StackLayout>
 
         <StackLayout Orientation="Horizontal">
-          <Picker SelectedItem="{Binding task.objRecurrence.UserBeforeDays}" ItemsSource="{Binding beforeDaysList}" x:Name="weeks" Title="Seleccionar" VerticalOptions="Center"></Picker>
-          <Label Text="Semanas" Font="20"  HorizontalOptions="Fill" VerticalOptions="Center"></Label>
+          <Picker SelectedItem="{Binding task.objRecurrence.UserBeforeDays}" ItemsSource="{Binding beforeDaysList}" Title="Seleccionar" VerticalOptions="Center"></Picker>
+          <Label Text="Meses" Font="20"  HorizontalOptions="Fill" VerticalOptions="Center"></Label>
         </StackLayout>
 
         <StackLayout Orientation="Horizontal">
