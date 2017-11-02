@@ -20,39 +20,21 @@ namespace MockWebApi.Controllers
             {
                 var tmpTaskPickers = new TaskPickersWA()
                 {
-                    ListUser = new ObservableCollection<string>(),
-                    ListCategory = new ObservableCollection<string>(),
-                    ListPriority = new ObservableCollection<string>(),
-                    ListRecu = new ObservableCollection<string>(),
-                    ListFinalDate = new ObservableCollection<string>()
+                    ListUser = new ObservableCollection<UserWA>(),
+                    ListCategory = InfoListsWA.ListCategory,
+                    ListPriority = InfoListsWA.ListPriority,
+                    ListRecu = InfoListsWA.ListRecu
                 };
 
-                #region foreach sequences
                 foreach (UserPassWA element in InfoListsWA.ListUserPass)
                 {
-                    tmpTaskPickers.ListUser.Add(element.NameUser);
+                    tmpTaskPickers.ListUser.Add(new UserWA
+                    {
+                        IdUser = element.IdUser,
+                        NameUser = element.NameUser
+                    }
+                    );
                 }
-
-                foreach (PickersWA element in InfoListsWA.ListCategory)
-                {
-                    tmpTaskPickers.ListCategory.Add(element.TextValue);
-                }
-
-                foreach (PickersWA element in InfoListsWA.ListPriority)
-                {
-                    tmpTaskPickers.ListPriority.Add(element.TextValue);
-                }
-
-                foreach (PickersWA element in InfoListsWA.ListRecurrence)
-                {
-                    tmpTaskPickers.ListRecu.Add(element.TextValue);
-                }
-
-                foreach (PickersWA element in InfoListsWA.ListFinalDate)
-                {
-                    tmpTaskPickers.ListFinalDate.Add(element.TextValue);
-                }
-                #endregion
 
                 return tmpTaskPickers;
             }
@@ -85,7 +67,7 @@ namespace MockWebApi.Controllers
 
                         //Recurrence
 
-                        TextRecu = InfoListsWA.ListRecurrence.FirstOrDefault(x => x.IdValue == temp.IdRecu).TextValue,
+                        TextRecu = InfoListsWA.ListRecu.FirstOrDefault(x => x.IdValue == temp.IdRecu).TextValue,
                         BeforeDays = temp.BeforeDays,
                         IsCancelRecu = false,
 
@@ -98,7 +80,7 @@ namespace MockWebApi.Controllers
 
                         //Final Date
 
-                        TextFinalDate = InfoListsWA.ListFinalDate.FirstOrDefault(x => x.IdValue == temp.IdFinalDate).TextValue,
+                        FinalDate = temp.FinalDate,
                         NumRecu = temp.NumRecu,
                         ContractExp = temp.ContractExp,
 
@@ -130,39 +112,21 @@ namespace MockWebApi.Controllers
                 {
                     var tmpTaskPickers = new TaskPickersWA()
                     {
-                        ListUser = new ObservableCollection<string>(),
-                        ListCategory = new ObservableCollection<string>(),
-                        ListPriority = new ObservableCollection<string>(),
-                        ListRecu = new ObservableCollection<string>(),
-                        ListFinalDate = new ObservableCollection<string>()
+                        ListUser = new ObservableCollection<UserWA>(),
+                        ListCategory = InfoListsWA.ListCategory,
+                        ListPriority = InfoListsWA.ListPriority,
+                        ListRecu = InfoListsWA.ListRecu
                     };
 
-                    #region foreach sequences
                     foreach (UserPassWA element in InfoListsWA.ListUserPass)
                     {
-                        tmpTaskPickers.ListUser.Add(element.NameUser);
+                        tmpTaskPickers.ListUser.Add(new UserWA
+                        {
+                            IdUser = element.IdUser,
+                            NameUser = element.NameUser
+                        }
+                        );
                     }
-
-                    foreach (PickersWA element in InfoListsWA.ListCategory)
-                    {
-                        tmpTaskPickers.ListCategory.Add(element.TextValue);
-                    }
-
-                    foreach (PickersWA element in InfoListsWA.ListPriority)
-                    {
-                        tmpTaskPickers.ListPriority.Add(element.TextValue);
-                    }
-
-                    foreach (PickersWA element in InfoListsWA.ListRecurrence)
-                    {
-                        tmpTaskPickers.ListRecu.Add(element.TextValue);
-                    }
-
-                    foreach (PickersWA element in InfoListsWA.ListFinalDate)
-                    {
-                        tmpTaskPickers.ListFinalDate.Add(element.TextValue);
-                    }
-                    #endregion
 
                     return new TaskBindingWA()
                     {
@@ -186,7 +150,7 @@ namespace MockWebApi.Controllers
 
                         //Recurrence
 
-                        TextRecu = InfoListsWA.ListRecurrence.FirstOrDefault(x => x.IdValue == temp.IdRecu).TextValue,
+                        TextRecu = InfoListsWA.ListRecu.FirstOrDefault(x => x.IdValue == temp.IdRecu).TextValue,
                         BeforeDays = temp.BeforeDays,
                         IsCancelRecu = false,
 
@@ -199,7 +163,7 @@ namespace MockWebApi.Controllers
 
                         //Final Date
 
-                        TextFinalDate = InfoListsWA.ListFinalDate.FirstOrDefault(x => x.IdValue == temp.IdFinalDate).TextValue,
+                        FinalDate = temp.FinalDate,
                         NumRecu = temp.NumRecu,
                         ContractExp = temp.ContractExp
                     };
@@ -247,7 +211,7 @@ namespace MockWebApi.Controllers
 
         [HttpPost]
         [ActionName("Post")]
-        public IHttpActionResult Post([FromBody]TaskUserDraftWA value)
+        public IHttpActionResult Post([FromBody]TaskWA value)
         {
             try
             {
@@ -257,43 +221,8 @@ namespace MockWebApi.Controllers
                 {
                     //New Task
 
-                    InfoListsWA.ListTask.Add(new TaskWA()
-                    {
-                        //NoTaskAttributes
-
-                        IdUser = value.IdUser,
-                        IsDraft = value.IsDraft,
-
-                        //Task
-
-                        IdTask = InfoListsWA.ListTask.Count(),
-                        TextIssue = value.TextIssue,
-                        TextDescription = value.TextDescription,
-                        IdRespUser = InfoListsWA.ListUserPass.FirstOrDefault(x => x.NameUser == value.NameRespUser).IdUser,
-                        IdCopyUser = InfoListsWA.ListUserPass.FirstOrDefault(x => x.NameUser == value.NameCopyUser).IdUser,
-                        IdCategory = InfoListsWA.ListCategory.FirstOrDefault(x => x.TextValue == value.TextCategory).IdValue,
-                        IsAprob = value.IsAprob,
-                        IdPriority = InfoListsWA.ListPriority.FirstOrDefault(x => x.TextValue == value.TextPriority).IdValue,
-
-                        //Recurrence
-
-                        IdRecu = InfoListsWA.ListRecurrence.FirstOrDefault(x => x.TextValue == value.TextRecu).IdValue,
-                        BeforeDays = value.BeforeDays,
-                        IsCancelRecu = false,
-
-                        //Daily,Montly,Annual Vector info
-
-                        SelectTimeOfRecu = value.SelectTimeOfRecu,
-                        TimeOfRecu0 = value.TimeOfRecu0,
-                        TimeOfRecu1 = value.TimeOfRecu1,
-                        TimeOfRecu2 = value.TimeOfRecu2,
-
-                        //Final Date
-
-                        IdFinalDate = InfoListsWA.ListFinalDate.FirstOrDefault(x => x.TextValue == value.TextFinalDate).IdValue,
-                        NumRecu = value.NumRecu,
-                        ContractExp = value.ContractExp
-                    });
+                    value.IdTask = InfoListsWA.ListTask.Count();
+                    InfoListsWA.ListTask.Add(value);
 
                     return Ok();
                 }
@@ -308,18 +237,18 @@ namespace MockWebApi.Controllers
 
                     //Task
 
-                    temp.IdTask = InfoListsWA.ListTask.Count();
+                    temp.IdTask = value.IdTask;
                     temp.TextIssue = value.TextIssue;
                     temp.TextDescription = value.TextDescription;
-                    temp.IdRespUser = InfoListsWA.ListUserPass.FirstOrDefault(x => x.NameUser == value.NameRespUser).IdUser;
-                    temp.IdCopyUser = InfoListsWA.ListUserPass.FirstOrDefault(x => x.NameUser == value.NameCopyUser).IdUser;
-                    temp.IdCategory = InfoListsWA.ListCategory.FirstOrDefault(x => x.TextValue == value.TextCategory).IdValue;
+                    temp.IdRespUser = value.IdRespUser;
+                    temp.IdCopyUser = value.IdCopyUser;
+                    temp.IdCategory = value.IdCategory;
                     temp.IsAprob = value.IsAprob;
-                    temp.IdPriority = InfoListsWA.ListPriority.FirstOrDefault(x => x.TextValue == value.TextPriority).IdValue;
+                    temp.IdPriority = value.IdPriority;
 
                     //Recurrence
 
-                    temp.IdRecu = InfoListsWA.ListRecurrence.FirstOrDefault(x => x.TextValue == value.TextRecu).IdValue;
+                    temp.IdRecu = value.IdRecu;
                     temp.BeforeDays = value.BeforeDays;
                     temp.IsCancelRecu = false;
 
@@ -332,7 +261,7 @@ namespace MockWebApi.Controllers
 
                     //Final Date
 
-                    temp.IdFinalDate = InfoListsWA.ListFinalDate.FirstOrDefault(x => x.TextValue == value.TextFinalDate).IdValue;
+                    temp.FinalDate = value.FinalDate;
                     temp.NumRecu = value.NumRecu;
                     temp.ContractExp = value.ContractExp;
 

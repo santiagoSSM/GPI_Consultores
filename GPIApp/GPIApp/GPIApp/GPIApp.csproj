@@ -43,12 +43,15 @@
     <Compile Include="Infraestructure\IVMContainer.cs" />
     <Compile Include="Infraestructure\NavigationService.cs" />
     <Compile Include="Models\FiltersParamModel.cs" />
+    <Compile Include="Models\PickersModel.cs" />
     <Compile Include="Models\TaskBindingModel.cs" />
     <Compile Include="Models\TaskListItemModel.cs" />
     <Compile Include="Models\TaskParentModel.cs" />
     <Compile Include="Models\TaskPickersModel.cs" />
+    <Compile Include="Models\TaskPickersBindModel.cs" />
     <Compile Include="Models\TaskSeeModel.cs" />
     <Compile Include="Models\TaskStringModel.cs" />
+    <Compile Include="Models\TaskModel.cs" />
     <Compile Include="Models\TaskUserDraftModel.cs" />
     <Compile Include="Models\UserPassModel.cs" />
     <Compile Include="Models\UserModel.cs" />

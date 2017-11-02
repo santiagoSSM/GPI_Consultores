@@ -4,20 +4,16 @@ namespace GPIApp.Models
 {
     public class TaskPickersModel
     {
-        protected ObservableCollection<string> listUser;
-        protected ObservableCollection<string> listCategory;
-        protected ObservableCollection<string> listPriority;
+        protected ObservableCollection<UserModel> listUser;
+        protected ObservableCollection<PickersModel> listCategory;
+        protected ObservableCollection<PickersModel> listPriority;
 
         //Recurrence
-        protected ObservableCollection<string> listRecu;
-
-        //FinalDate
-
-        protected ObservableCollection<string> listFinalDate;
+        protected ObservableCollection<PickersModel> listRecu;
 
         //Properties
 
-        public ObservableCollection<string> ListUser
+        public ObservableCollection<UserModel> ListUser
         {
             get
             {
@@ -30,7 +26,7 @@ namespace GPIApp.Models
             }
         }
 
-        public ObservableCollection<string> ListCategory
+        public ObservableCollection<PickersModel> ListCategory
         {
             get
             {
@@ -43,7 +39,7 @@ namespace GPIApp.Models
             }
         }
 
-        public ObservableCollection<string> ListPriority
+        public ObservableCollection<PickersModel> ListPriority
         {
             get
             {
@@ -58,7 +54,7 @@ namespace GPIApp.Models
 
 
         //Recurrence
-        public ObservableCollection<string> ListRecu
+        public ObservableCollection<PickersModel> ListRecu
         {
             get
             {
@@ -68,22 +64,6 @@ namespace GPIApp.Models
             set
             {
                 listRecu = value;
-            }
-        }
-
-
-        //FinalDate
-
-        public ObservableCollection<string> ListFinalDate
-        {
-            get
-            {
-                return listFinalDate;
-            }
-
-            set
-            {
-                listFinalDate = value;
             }
         }
     }

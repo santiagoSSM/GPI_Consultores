@@ -23,6 +23,7 @@ namespace GPIApp.Models
 
         //FinalDate
 
+        private char finalDate; //s = sin fecha de finalizacion d = Finaliza después de f = Finaliza el
         protected int numRecu;
         protected DateTime contractExp;
 
@@ -174,6 +175,19 @@ namespace GPIApp.Models
             set
             {
                 numRecu = value;
+            }
+        }
+
+        public char FinalDate
+        {
+            get
+            {
+                return finalDate;
+            }
+
+            set
+            {
+                finalDate = value;
             }
         }
 

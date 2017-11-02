@@ -7,6 +7,7 @@ using GPIApp.WebApi;
 using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -15,28 +16,33 @@ namespace GPIApp.ViewModels
     public class NewEditTaskViewModel
     {
         NavigationService navServ;
+        private TaskPickersModel taskPickers;
+
         public string Title { get; private set; }
-        public TaskUserDraftModel TaskBind { get; set; }
-        public TaskPickersModel TaskPickers { get; set; }
+        public TaskBindingModel TaskBind { get; set; }
+        public TaskPickersBindModel TaskPickers { get; set; }
 
         public NewEditTaskViewModel(IVMContainer inter, string title)
         {
             navServ = new NavigationService(inter);
+            taskPickers = new TaskPickersModel();
+
             Title = title;
-            TaskBind = new TaskUserDraftModel();
-            TaskPickers = new TaskPickersModel();
+            TaskBind = new TaskBindingModel();
         }
 
         public async Task LoadPickers()
         {
-            TaskPickers = await TaskWACtrl.GetTaskPickers();
+            taskPickers = await TaskWACtrl.GetTaskPickers();
+            TaskPickers = new TaskPickersBindModel(taskPickers);
         }
 
         public async Task LoadEditTask(int idTask)
         {
             var editTask = await TaskWACtrl.GetEditTask(idTask);
 
-            TaskPickers = editTask.TaskPickers;
+            taskPickers = editTask.TaskPickers;
+            TaskPickers = new TaskPickersBindModel(taskPickers);
 
             //NoTaskAttributes
 
@@ -69,7 +75,7 @@ namespace GPIApp.ViewModels
 
             //Final Date
 
-            TaskBind.TextFinalDate = editTask.TextFinalDate;
+            TaskBind.FinalDate = editTask.FinalDate;
             TaskBind.NumRecu = editTask.NumRecu;
             TaskBind.ContractExp = editTask.ContractExp;
         }
@@ -117,8 +123,6 @@ namespace GPIApp.ViewModels
             //Todo informacion de pruebas recurrencia
             #region Recurrencia
             //Recurrence
-
-            TaskBind.TextRecu = "Ninguna";
             TaskBind.BeforeDays = 1;
             TaskBind.IsCancelRecu = false;
 
@@ -131,7 +135,7 @@ namespace GPIApp.ViewModels
 
             //Final Date
 
-            TaskBind.TextFinalDate = "Sin fecha de finalización";
+            TaskBind.FinalDate = 's';
             TaskBind.NumRecu = 0;
             TaskBind.ContractExp = new DateTime(2010, 8, 10);
             #endregion
@@ -142,7 +146,43 @@ namespace GPIApp.ViewModels
             try
             {
                 await PopupNavigation.PushAsync(new ActivityIndicatorPopUp());//Todo cambiar por guardando
-                if (await TaskWACtrl.Post(TaskBind))
+                if (await TaskWACtrl.Post(new TaskModel
+                {
+                    //NoTaskAttributes
+
+                    IdUser = TaskBind.IdUser,
+                    IsDraft = TaskBind.IsDraft,
+
+                    //Task
+
+                    IdTask = TaskBind.IdTask,
+                    TextIssue = TaskBind.TextIssue,
+                    TextDescription = TaskBind.TextDescription,
+                    IdRespUser = taskPickers.ListUser.FirstOrDefault(x => x.NameUser == TaskBind.NameRespUser).IdUser,
+                    IdCopyUser = taskPickers.ListUser.FirstOrDefault(x => x.NameUser == TaskBind.NameCopyUser).IdUser,
+                    IdCategory = taskPickers.ListCategory.FirstOrDefault(x => x.TextValue == TaskBind.TextCategory).IdValue,
+                    IsAprob = TaskBind.IsAprob,
+                    IdPriority = taskPickers.ListPriority.FirstOrDefault(x => x.TextValue == TaskBind.TextPriority).IdValue,
+
+                    //Recurrence
+
+                    IdRecu = taskPickers.ListRecu.FirstOrDefault(x => x.TextValue == TaskBind.TextRecu).IdValue,
+                    BeforeDays = TaskBind.BeforeDays,
+                    IsCancelRecu = false,
+
+                    //Daily,Montly,Annual Vector info
+
+                    SelectTimeOfRecu = TaskBind.SelectTimeOfRecu,
+                    TimeOfRecu0 = TaskBind.TimeOfRecu0,
+                    TimeOfRecu1 = TaskBind.TimeOfRecu1,
+                    TimeOfRecu2 = TaskBind.TimeOfRecu2,
+
+                    //Final Date
+
+                    FinalDate = TaskBind.FinalDate,
+                    NumRecu = TaskBind.NumRecu,
+                    ContractExp = TaskBind.ContractExp
+                }))
                 {
                     await DialogService.ShowMessage("Mensaje", "Tarea registrada correctamente", "Aceptar");
                     await navServ.Navigate("MainPage");
@@ -175,31 +215,30 @@ namespace GPIApp.ViewModels
             //Todo cambiar estructura de pickers y guardado
             try
             {
-                var select = await DialogService.ShowOptions("Seleccionar", new string[] { "Ninguna", "Diaria", "Semanal", "Mensual", "Anual" }, "Cancelar");
-
-                switch (select)
+                TaskBind.TextRecu = await DialogService.ShowOptions("Seleccionar", TaskPickers.ListRecu, "Cancelar");
+                
+                switch (taskPickers.ListRecu.FirstOrDefault(x => x.TextValue == TaskBind.TextRecu).IdValue)
                 {
-                    case "Ninguna":
+                    //None
+                    case 0:
                         {
-                            //Init the objectClass
-                            TaskBind.TextRecu= "Ninguna";
+                            //Init the popup
                             var temp = new NoneRecurrence() { CloseWhenBackgroundIsClicked = true };
                             await PopupNavigation.PushAsync(temp);
 
                             break;
                         }
-                    case "Diaria":
+                    //Daily
+                    case 1:
                         {
-                            TaskBind.TextRecu = "Diaria";
                             var temp = new DailyRecurrence() { CloseWhenBackgroundIsClicked = true };
                             await PopupNavigation.PushAsync(temp);
 
                             break;
                         }
-                    case "Semanal":
+                    //Weekly
+                    case 2:
                         {
-
-                            TaskBind.TextRecu = "Semanal";
                             var temp = new WeeklyRecurrence() { CloseWhenBackgroundIsClicked = true };
                             await PopupNavigation.PushAsync(temp);
                             //Init the objectClass
@@ -210,10 +249,9 @@ namespace GPIApp.ViewModels
                             //await PopupNavigation.PushAsync(temp);
                             break;
                         }
-                    case "Mensual":
+                    //Monthly
+                    case 3:
                         {
-
-                            TaskBind.TextRecu = "Mensual";
                             var temp = new MonthlyRecurrence() { CloseWhenBackgroundIsClicked = true };
                             await PopupNavigation.PushAsync(temp);
                             //Init the objectClass
@@ -225,10 +263,9 @@ namespace GPIApp.ViewModels
 
                             break;
                         }
-                    case "Anual":
+                    //Annual
+                    case 4:
                         {
-
-                            TaskBind.TextRecu = "Anual";
                             var temp = new AnnualRecurrence() { CloseWhenBackgroundIsClicked = true };
                             await PopupNavigation.PushAsync(temp);
                             //Init the objectClass
@@ -238,10 +275,6 @@ namespace GPIApp.ViewModels
                             //var temp = new AnnualRecurrence() { CloseWhenBackgroundIsClicked = true };
                             //await PopupNavigation.PushAsync(temp);
                             break;
-                        }
-                    default:
-                        {
-                            throw new Exception("Error en el tipo de recurrencia");
                         }
                 }
             }

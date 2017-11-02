@@ -110,7 +110,7 @@ namespace MockWebApi.Models
                 TextValue = "Baja"
             }
         };
-        private static ObservableCollection<PickersWA> listRecurrence = new ObservableCollection<PickersWA>()
+        private static ObservableCollection<PickersWA> listRecu = new ObservableCollection<PickersWA>()
         {
             new PickersWA()
             {
@@ -140,26 +140,6 @@ namespace MockWebApi.Models
             {
                 IdValue = 4,
                 TextValue = "Anual"
-            }
-        };
-        private static ObservableCollection<PickersWA> listFinalDate = new ObservableCollection<PickersWA>()
-        {
-            new PickersWA()
-            {
-                IdValue = 0,
-                TextValue = "Sin fecha de finalización"
-            },
-
-            new PickersWA()
-            {
-                IdValue = 1,
-                TextValue = "Finaliza después de"
-            },
-
-            new PickersWA()
-            {
-                IdValue = 2,
-                TextValue = "Finaliza el"
             }
         };
         private static ObservableCollection<TaskWA> listTask = new ObservableCollection<TaskWA>()
@@ -196,7 +176,7 @@ namespace MockWebApi.Models
 
                 //Final Date
 
-                IdFinalDate = 0,
+                FinalDate = 's',
                 NumRecu = 0,
                 ContractExp = new DateTime(2010, 8, 10)
             },
@@ -233,7 +213,7 @@ namespace MockWebApi.Models
 
                 //Final Date
 
-                IdFinalDate = 0,
+                FinalDate = 's',
                 NumRecu = 0,
                 ContractExp = new DateTime(2010, 8, 10)
             },
@@ -270,7 +250,7 @@ namespace MockWebApi.Models
 
                 //Final Date
 
-                IdFinalDate = 0,
+                FinalDate = 's',
                 NumRecu = 0,
                 ContractExp = new DateTime(2010, 8, 10)
             }
@@ -315,29 +295,16 @@ namespace MockWebApi.Models
             }
         }
 
-        public static ObservableCollection<PickersWA> ListRecurrence
+        public static ObservableCollection<PickersWA> ListRecu
         {
             get
             {
-                return listRecurrence;
+                return listRecu;
             }
 
             set
             {
-                listRecurrence = value;
-            }
-        }
-
-        public static ObservableCollection<PickersWA> ListFinalDate
-        {
-            get
-            {
-                return listFinalDate;
-            }
-
-            set
-            {
-                listFinalDate = value;
+                listRecu = value;
             }
         }
 

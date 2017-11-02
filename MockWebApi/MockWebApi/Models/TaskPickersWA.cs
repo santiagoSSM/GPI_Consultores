@@ -4,20 +4,16 @@ namespace MockWebApi.Models
 {
     public class TaskPickersWA
     {
-        protected ObservableCollection<string> listUser;
-        protected ObservableCollection<string> listCategory;
-        protected ObservableCollection<string> listPriority;
+        protected ObservableCollection<UserWA> listUser;
+        protected ObservableCollection<PickersWA> listCategory;
+        protected ObservableCollection<PickersWA> listPriority;
 
         //Recurrence
-        protected ObservableCollection<string> listRecu;
-
-        //FinalDate
-
-        protected ObservableCollection<string> listFinalDate;
+        protected ObservableCollection<PickersWA> listRecu;
 
         //Properties
 
-        public ObservableCollection<string> ListUser
+        public ObservableCollection<UserWA> ListUser
         {
             get
             {
@@ -30,7 +26,7 @@ namespace MockWebApi.Models
             }
         }
 
-        public ObservableCollection<string> ListCategory
+        public ObservableCollection<PickersWA> ListCategory
         {
             get
             {
@@ -43,7 +39,7 @@ namespace MockWebApi.Models
             }
         }
 
-        public ObservableCollection<string> ListPriority
+        public ObservableCollection<PickersWA> ListPriority
         {
             get
             {
@@ -58,7 +54,7 @@ namespace MockWebApi.Models
 
 
         //Recurrence
-        public ObservableCollection<string> ListRecu
+        public ObservableCollection<PickersWA> ListRecu
         {
             get
             {
@@ -71,20 +67,5 @@ namespace MockWebApi.Models
             }
         }
 
-
-        //FinalDate
-
-        public ObservableCollection<string> ListFinalDate
-        {
-            get
-            {
-                return listFinalDate;
-            }
-
-            set
-            {
-                listFinalDate = value;
-            }
-        }
     }
 }

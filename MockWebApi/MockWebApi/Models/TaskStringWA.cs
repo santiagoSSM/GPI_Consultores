@@ -15,10 +15,6 @@ namespace MockWebApi.Models
         //Recurrence
         protected string textRecu;
 
-        //FinalDate
-
-        protected string textFinalDate;
-
         //Properties
 
         public string NameRespUser
@@ -85,22 +81,6 @@ namespace MockWebApi.Models
             set
             {
                 textRecu = value;
-            }
-        }
-
-
-        //FinalDate
-
-        public string TextFinalDate
-        {
-            get
-            {
-                return textFinalDate;
-            }
-
-            set
-            {
-                textFinalDate = value;
             }
         }
 

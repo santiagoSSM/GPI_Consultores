@@ -7,7 +7,7 @@ namespace MockWebApi.Models
 {
     public class TaskParentWA
     {
-        protected int idTask;
+        protected int idTask = -1;
         protected string textIssue;
         protected string textDescription;
         protected bool isAprob;
@@ -26,6 +26,7 @@ namespace MockWebApi.Models
 
         //FinalDate
 
+        private char finalDate; //s = sin fecha de finalizacion d = Finaliza después de f = Finaliza el
         protected int numRecu;
         protected DateTime contractExp;
 
@@ -177,6 +178,19 @@ namespace MockWebApi.Models
             set
             {
                 numRecu = value;
+            }
+        }
+
+        public char FinalDate
+        {
+            get
+            {
+                return finalDate;
+            }
+
+            set
+            {
+                finalDate = value;
             }
         }
 

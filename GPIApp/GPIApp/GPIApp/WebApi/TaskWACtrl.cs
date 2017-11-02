@@ -113,7 +113,7 @@ namespace GPIApp.WebApi
             }
         }
 
-        public static async Task<bool> Post(TaskUserDraftModel value)
+        public static async Task<bool> Post(TaskModel value)
         {
             try
             {
