@@ -176,7 +176,7 @@ namespace MockWebApi.Models
 
                 //Final Date
 
-                FinalDate = 's',
+                FinalDate = 0,
                 NumRecu = 0,
                 ContractExp = new DateTime(2010, 8, 10)
             },
@@ -213,7 +213,7 @@ namespace MockWebApi.Models
 
                 //Final Date
 
-                FinalDate = 's',
+                FinalDate = 0,
                 NumRecu = 0,
                 ContractExp = new DateTime(2010, 8, 10)
             },
@@ -250,7 +250,7 @@ namespace MockWebApi.Models
 
                 //Final Date
 
-                FinalDate = 's',
+                FinalDate = 0,
                 NumRecu = 0,
                 ContractExp = new DateTime(2010, 8, 10)
             }

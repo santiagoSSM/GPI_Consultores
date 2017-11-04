@@ -120,26 +120,6 @@ namespace GPIApp.ViewModels
                 return;
             }
 
-            //Todo informacion de pruebas recurrencia
-            #region Recurrencia
-            //Recurrence
-            TaskBind.BeforeDays = 1;
-            TaskBind.IsCancelRecu = false;
-
-            //Daily,Montly,Annual Vector info
-
-            TaskBind.SelectTimeOfRecu = false;
-            TaskBind.TimeOfRecu0 = 0;
-            TaskBind.TimeOfRecu1 = 0;
-            TaskBind.TimeOfRecu2 = 0;
-
-            //Final Date
-
-            TaskBind.FinalDate = 's';
-            TaskBind.NumRecu = 0;
-            TaskBind.ContractExp = new DateTime(2010, 8, 10);
-            #endregion
-
             TaskBind.IdUser = UserLogged.Value.IdUser;
             TaskBind.IsDraft = isDraft == "true";
 
@@ -225,7 +205,6 @@ namespace GPIApp.ViewModels
                             //Init the popup
                             var temp = new NoneRecurrence() { CloseWhenBackgroundIsClicked = true };
                             await PopupNavigation.PushAsync(temp);
-
                             break;
                         }
                     //Daily
@@ -233,7 +212,6 @@ namespace GPIApp.ViewModels
                         {
                             var temp = new DailyRecurrence() { CloseWhenBackgroundIsClicked = true };
                             await PopupNavigation.PushAsync(temp);
-
                             break;
                         }
                     //Weekly
@@ -241,12 +219,6 @@ namespace GPIApp.ViewModels
                         {
                             var temp = new WeeklyRecurrence() { CloseWhenBackgroundIsClicked = true };
                             await PopupNavigation.PushAsync(temp);
-                            //Init the objectClass
-                            //NewTaskVM.task.UserRecurrence = "Semanal";
-                            //NewTaskVM.task.ObjRecurrence = new WeeklyTaskModel();
-
-                            //var temp = new WeeklyRecurrence() { CloseWhenBackgroundIsClicked = true };
-                            //await PopupNavigation.PushAsync(temp);
                             break;
                         }
                     //Monthly
@@ -254,13 +226,6 @@ namespace GPIApp.ViewModels
                         {
                             var temp = new MonthlyRecurrence() { CloseWhenBackgroundIsClicked = true };
                             await PopupNavigation.PushAsync(temp);
-                            //Init the objectClass
-                            //NewTaskVM.task.UserRecurrence = "Mensual";
-                            //NewTaskVM.task.ObjRecurrence = new MonthlyTaskModel();
-
-                            //var temp = new MonthlyRecurrence() { CloseWhenBackgroundIsClicked = true };
-                            //await PopupNavigation.PushAsync(temp);
-
                             break;
                         }
                     //Annual
@@ -268,12 +233,6 @@ namespace GPIApp.ViewModels
                         {
                             var temp = new AnnualRecurrence() { CloseWhenBackgroundIsClicked = true };
                             await PopupNavigation.PushAsync(temp);
-                            //Init the objectClass
-                            //NewTaskVM.task.UserRecurrence = "Anual";
-                            //NewTaskVM.task.ObjRecurrence = new AnnualTaskModel();
-
-                            //var temp = new AnnualRecurrence() { CloseWhenBackgroundIsClicked = true };
-                            //await PopupNavigation.PushAsync(temp);
                             break;
                         }
                 }

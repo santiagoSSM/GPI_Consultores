@@ -5,7 +5,7 @@
         //NoTaskAttributes
 
         private int idUser = -1;
-        private bool isDraft;
+        private bool isDraft = false;
 
         //Task
 

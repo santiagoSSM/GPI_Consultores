@@ -8,27 +8,27 @@ namespace MockWebApi.Models
     public class TaskParentWA
     {
         protected int idTask = -1;
-        protected string textIssue;
-        protected string textDescription;
-        protected bool isAprob;
+        protected string textIssue = "";
+        protected string textDescription = "";
+        protected bool isAprob = false;
 
         //Recurrence
 
-        protected int beforeDays;
-        protected bool isCancelRecu;
+        protected int beforeDays = 0;
+        protected bool isCancelRecu = false;
 
         //Daily Monthly Annual vector info
 
-        protected bool selectTimeOfRecu;
-        protected int timeOfRecu0;
-        protected int timeOfRecu1;
-        protected int timeOfRecu2;
+        protected bool selectTimeOfRecu = false;
+        protected int timeOfRecu0 = 0;
+        protected int timeOfRecu1 = 0;
+        protected int timeOfRecu2 = 0;
 
         //FinalDate
 
-        private char finalDate; //s = sin fecha de finalizacion d = Finaliza después de f = Finaliza el
-        protected int numRecu;
-        protected DateTime contractExp;
+        private int finalDate = 0; //0 = sin fecha de finalizacion 1 = Finaliza después de 2 = Finaliza el
+        protected int numRecu = 0;
+        protected DateTime contractExp = DateTime.Now;
 
         //Properties
 
@@ -181,7 +181,7 @@ namespace MockWebApi.Models
             }
         }
 
-        public char FinalDate
+        public int FinalDate
         {
             get
             {

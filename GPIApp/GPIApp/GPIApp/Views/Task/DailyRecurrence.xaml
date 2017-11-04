@@ -4,59 +4,48 @@
              xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="GPIApp.Views.Task.DailyRecurrence"
-             BindingContext="{Binding VMControl, Source={StaticResource Locator}}">
+             BindingContext="{Binding VMControl.NewEditTaskVM, Source={StaticResource Locator}}">
 
     <StackLayout VerticalOptions="Center" HorizontalOptions="Center" Padding="0" Margin="0">
       <Frame Margin="30" Padding="10">
         <StackLayout>
 
           <StackLayout Orientation="Vertical">
-            <Label Text="Días de Preaviso" Font="20"  HorizontalOptions="Start" VerticalOptions="Center"></Label>
-            <Picker SelectedItem="{Binding task.objRecurrence.UserBeforeDays}" ItemsSource="{Binding beforeDaysList}" x:Name="beforeDays" Title="Seleccionar"></Picker>
+            <Label Text="Días de Preaviso" Font="20" TextColor="Black" HorizontalOptions="Start" VerticalOptions="Center"></Label>
+            <Entry Text="{Binding TaskBind.BeforeDays, Mode=TwoWay}" Placeholder="Ingresar" HorizontalOptions="FillAndExpand" VerticalOptions="Center"></Entry>
           </StackLayout>
 
-          <StackLayout Orientation="Vertical">
-            <StackLayout Orientation="Horizontal">
-              <Label Text="Cancelar Recurrencia" Font="20"  HorizontalOptions="Start" VerticalOptions="Center"></Label>
-              <Switch IsToggled="{Binding task.objRecurrence.UserCancelRecurrence}" HorizontalOptions="Fill" x:Name="cancelRecuSwitch"></Switch>
-            </StackLayout>
-          </StackLayout>
-          
-            <StackLayout Orientation="Horizontal">
-                <Label Text="Cada" Font="20"  HorizontalOptions="Start" VerticalOptions="Center"></Label>
-                <Entry Text="0"  HorizontalOptions="Fill" VerticalOptions="Center"></Entry>
-                <Label Text="Días" Font="20"  HorizontalOptions="Fill" VerticalOptions="Center"></Label>
-            </StackLayout>
-          
           <StackLayout Orientation="Horizontal">
-                    <Label Text="Fecha Final: " Font="20"  VerticalOptions="Center"></Label>
-                </StackLayout>
+            <Label Text="Cancelar Recurrencia" Font="20" TextColor="Black"  HorizontalOptions="Start" VerticalOptions="Center"></Label>
+            <Switch IsToggled="{Binding TaskBind.IsCancelRecu}" HorizontalOptions="FillAndExpand" x:Name="cancelRecuSwitch"></Switch>
+          </StackLayout>
 
-                <StackLayout Orientation="Vertical">
-                    <StackLayout Orientation="Horizontal">
-                        <Switch HorizontalOptions="Start" x:Name="finalDateSwitch"></Switch>
-                        <Label x:Name="finalDate" Font="20"  HorizontalOptions="Fill" TextColor="Green" Text="Sin Fecha de Finalización"></Label>
-                    </StackLayout>
-                </StackLayout>
+          <StackLayout Orientation="Horizontal">
+            <Label Text="Cada" Font="20" TextColor="Black" HorizontalOptions="Start" VerticalOptions="Center"></Label>
+            <Entry Text="{Binding TaskBind.TimeOfRecu0, Mode=TwoWay}" HorizontalOptions="FillAndExpand" VerticalOptions="Center"></Entry>
+            <Label Text="Días" Font="20" TextColor="Black"  HorizontalOptions="FillAndExpand" VerticalOptions="Center"></Label>
+          </StackLayout>
 
-                <StackLayout Orientation="Vertical">
-                    <StackLayout Orientation="Horizontal">
-                        <Switch HorizontalOptions="Start" x:Name="AfterDayOfSwitch"></Switch>
-                        <Label x:Name="AfterDayOf" Font="20"  HorizontalOptions="Fill" TextColor="Green" Text="Finaliza Después de:"  VerticalOptions="Center"></Label>
-                    </StackLayout>
-                </StackLayout>
-          
-           <StackLayout Orientation="Horizontal">
-                <Entry HorizontalOptions="Center" VerticalOptions="Center"></Entry>
-                <Label Text="Recurrencias" Font="20"  HorizontalOptions="Fill" VerticalOptions="Center"></Label>
-            </StackLayout>
-          
           <StackLayout Orientation="Vertical">
-             <StackLayout Orientation="Horizontal">
-                <Switch HorizontalOptions="Start" x:Name="FinalSwitch"></Switch>
-                <Label x:Name="final" Font="20"  HorizontalOptions="Fill" TextColor="Green" Text="Finaliza el: "></Label>
-            </StackLayout>
-                <DatePicker Date="{Binding task.objRecurrence.UserContractDate}" x:Name="finalDatePicker"></DatePicker>
+            <Label Text="Fecha final" Font="20" TextColor="Black" HorizontalOptions="Start" VerticalOptions="Center"></Label>
+            <Picker SelectedIndex="{Binding TaskBind.FinalDate, Mode=TwoWay}" Title="Seleccionar">
+              <Picker.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                  <x:String>Sin Fecha de Finalización</x:String>
+                  <x:String>Finaliza Después de:</x:String>
+                  <x:String>Finaliza el:</x:String>
+                </x:Array>
+              </Picker.ItemsSource>
+            </Picker>
+          </StackLayout>
+
+          <StackLayout x:Name="recu" Orientation="Horizontal">
+            <Entry Text="{Binding TaskBind.NumRecu, Mode=TwoWay}" HorizontalOptions="StartAndExpand" VerticalOptions="Center"></Entry>
+            <Label Text="Recurrencias" Font="20" TextColor="Black"  HorizontalOptions="FillAndExpand" VerticalOptions="Center"></Label>
+          </StackLayout>
+
+          <StackLayout x:Name="finalDate">
+            <DatePicker Date="{Binding TaskBind.ContractExp}" x:Name="finalDatePicker"></DatePicker>
           </StackLayout>
 
           <Button Text="Hecho" Clicked="Button_OnClicked"></Button>
