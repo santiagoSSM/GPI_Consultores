@@ -20,7 +20,7 @@ namespace MockWebApi.Models
         private int idPriority = -1;
 
         //Recurrence
-        private int idRecu = -1;
+        private int idRecu = 0;
 
         //Properties
 

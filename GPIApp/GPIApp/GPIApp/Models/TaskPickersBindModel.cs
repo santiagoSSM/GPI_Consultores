@@ -14,7 +14,7 @@ namespace GPIApp.Models
         protected ObservableCollection<string> listPriority;
 
         //Recurrence
-        protected string[] listRecu;
+        protected ObservableCollection<string> listRecu;
 
         //Properties
 
@@ -38,13 +38,11 @@ namespace GPIApp.Models
                 listPriority.Add(element.TextValue);
             }
 
-            var temp = new ObservableCollection<string>();
+            listRecu = new ObservableCollection<string>();
             foreach (PickersModel element in value.ListRecu)
             {
-                temp.Add(element.TextValue);
+                listRecu.Add(element.TextValue);
             }
-
-            listRecu = temp.ToArray();
         }
 
         public ObservableCollection<string> ListUser
@@ -73,7 +71,7 @@ namespace GPIApp.Models
 
 
         //Recurrence
-        public string[] ListRecu
+        public ObservableCollection<string> ListRecu
         {
             get
             {

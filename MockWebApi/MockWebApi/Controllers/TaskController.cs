@@ -69,7 +69,7 @@ namespace MockWebApi.Controllers
 
                         TextRecu = InfoListsWA.ListRecu.FirstOrDefault(x => x.IdValue == temp.IdRecu).TextValue,
                         BeforeDays = temp.BeforeDays,
-                        IsCancelRecu = false,
+                        IsCancelRecu = temp.IsCancelRecu,
 
                         //Daily,Montly,Annual Vector info
 
@@ -152,7 +152,7 @@ namespace MockWebApi.Controllers
 
                         TextRecu = InfoListsWA.ListRecu.FirstOrDefault(x => x.IdValue == temp.IdRecu).TextValue,
                         BeforeDays = temp.BeforeDays,
-                        IsCancelRecu = false,
+                        IsCancelRecu = temp.IsCancelRecu,
 
                         //Daily,Montly,Annual Vector info
 
@@ -250,7 +250,7 @@ namespace MockWebApi.Controllers
 
                     temp.IdRecu = value.IdRecu;
                     temp.BeforeDays = value.BeforeDays;
-                    temp.IsCancelRecu = false;
+                    temp.IsCancelRecu = value.IsCancelRecu;
 
                     //Daily;Montly;Annual Vector info
 

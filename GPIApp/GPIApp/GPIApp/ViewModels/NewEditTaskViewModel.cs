@@ -7,16 +7,238 @@ using GPIApp.WebApi;
 using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace GPIApp.ViewModels
 {
-    public class NewEditTaskViewModel
+    public class NewEditTaskViewModel : INotifyPropertyChanged
     {
         NavigationService navServ;
         private TaskPickersModel taskPickers;
+        public bool isInitPopUp;//Variable that determines the execution of this method as protection for the binding context
+
+        #region Pop-up properties control
+
+        #region hide or show elements
+
+        private void ConfigPopup(string TextRecu)
+        {
+            switch (taskPickers.ListRecu.FirstOrDefault(x => x.TextValue == TextRecu).IdValue)
+            {
+                //None
+                case 0:
+                    {
+                        NoneRecuControl();
+                        break;
+                    }
+                //Daily
+                case 1:
+                    {
+                        DailyRecuControl();
+                        break;
+                    }
+                //Weekly
+                case 2:
+                    {
+                        WeeklyRecuControl();
+                        break;
+                    }
+                //Monthly
+                case 3:
+                    {
+                        MontlyRecuControl();
+                        break;
+                    }
+                //Annual
+                case 4:
+                    {
+
+                        break;
+                    }
+            }
+        }
+
+        private void NoneRecuControl()
+        {
+            VisEverSTC = false;
+            OnPropertyChanged("VisEverSTC");
+
+            VisDayOfWeekSTC = false;
+            OnPropertyChanged("VisDayOfWeekSTC");
+
+            VisSelectRecuSTC = false;
+            OnPropertyChanged("VisSelectRecuSTC");
+
+            VisFinalDateSTC = false;
+            OnPropertyChanged("VisFinalDateSTC");
+
+            VisNumRecuSTC = false;
+            OnPropertyChanged("VisNumRecuSTC");
+
+            VisContractExpSTC = true;
+            OnPropertyChanged("VisContractExpSTC");
+
+            VisContractExpLC = true;
+            OnPropertyChanged("VisContractExpLC");
+        }
+
+        private void DailyRecuControl()
+        {
+            TextEverLC = "Días";
+            OnPropertyChanged("TextEverLC");
+
+            VisEverSTC = true;
+            OnPropertyChanged("VisEverSTC");
+
+            VisDayOfWeekSTC = false;
+            OnPropertyChanged("VisDayOfWeekSTC");
+
+            VisSelectRecuSTC = false;
+            OnPropertyChanged("VisSelectRecuSTC");
+
+            VisFinalDateSTC = true;
+            OnPropertyChanged("VisFinalDateSTC");
+
+            FinalDateControl(TaskBind.FinalDate);
+        }
+
+        private void WeeklyRecuControl()
+        {
+            TextEverLC = "Semana";
+            OnPropertyChanged("TextEverLC");
+
+            VisEverSTC = true;
+            OnPropertyChanged("VisEverSTC");
+
+            VisDayOfWeekSTC = true;
+            OnPropertyChanged("VisDayOfWeekSTC");
+
+            VisSelectRecuSTC = false;
+            OnPropertyChanged("VisSelectRecuSTC");
+
+            VisFinalDateSTC = true;
+            OnPropertyChanged("VisFinalDateSTC");
+
+            FinalDateControl(TaskBind.FinalDate);
+        }
+
+        private void MontlyRecuControl()
+        {
+            VisEverSTC = false;
+            OnPropertyChanged("VisEverSTC");
+
+            VisDayOfWeekSTC = false;
+            OnPropertyChanged("VisDayOfWeekSTC");
+
+            VisSelectRecuSTC = true;
+            OnPropertyChanged("VisSelectRecuSTC");
+
+            VisFinalDateSTC = true;
+            OnPropertyChanged("VisFinalDateSTC");
+
+            FinalDateControl(TaskBind.FinalDate);
+        }
+
+        private void FinalDateControl(int idFinalDateSelect)
+        {
+            switch (idFinalDateSelect)
+            {
+                //Sin Fecha de Finalización
+                case 0:
+                    {
+                        VisNumRecuSTC = false;
+                        OnPropertyChanged("VisNumRecuSTC");
+
+                        VisContractExpSTC = false;
+                        OnPropertyChanged("VisContractExpSTC");
+
+                        VisContractExpLC = false;
+                        OnPropertyChanged("VisContractExpLC");
+                        break;
+                    }
+                //Finaliza Después de
+                case 1:
+                    {
+                        VisNumRecuSTC = true;
+                        OnPropertyChanged("VisNumRecuSTC");
+
+                        VisContractExpSTC = false;
+                        OnPropertyChanged("VisContractExpSTC");
+
+                        VisContractExpLC = false;
+                        OnPropertyChanged("VisContractExpLC");
+                        break;
+                    }
+                //Finaliza el
+                case 2:
+                    {
+                        VisNumRecuSTC = false;
+                        OnPropertyChanged("VisNumRecuSTC");
+
+                        VisContractExpSTC = true;
+                        OnPropertyChanged("VisContractExpSTC");
+
+                        VisContractExpLC = false;
+                        OnPropertyChanged("VisContractExpLC");
+                        break;
+                    }
+            }
+        }
+
+        #endregion
+
+        #region Pickers Control
+
+        public string RecuC
+        {
+            get
+            {
+                return TaskBind.TextRecu;
+            }
+
+            set
+            {
+                TaskBind.TextRecu = value;
+                ConfigPopup(value);
+            }
+        }
+
+        public int FinalDateIndexC
+        {
+            get
+            {
+                return TaskBind.FinalDate;
+            }
+
+            set
+            {
+                TaskBind.FinalDate = value;
+                if (!isInitPopUp)
+                {
+                    FinalDateControl(value);
+                }
+            }
+        }
+
+        #endregion
+
+        #region Properties
+
+        public string TextEverLC { get; set; }
+        public bool VisEverSTC { get; set; }
+        public bool VisDayOfWeekSTC { get; set; }
+        public bool VisSelectRecuSTC { get; set; }
+        public bool VisFinalDateSTC { get; set; }
+        public bool VisNumRecuSTC { get; set; }
+        public bool VisContractExpSTC { get; set; }
+        public bool VisContractExpLC { get; set; }
+        
+        #endregion
+
+        #endregion
 
         public string Title { get; private set; }
         public TaskBindingModel TaskBind { get; set; }
@@ -35,6 +257,8 @@ namespace GPIApp.ViewModels
         {
             taskPickers = await TaskWACtrl.GetTaskPickers();
             TaskPickers = new TaskPickersBindModel(taskPickers);
+
+            TaskBind.TextRecu = taskPickers.ListRecu.First().TextValue;
         }
 
         public async Task LoadEditTask(int idTask)
@@ -146,11 +370,11 @@ namespace GPIApp.ViewModels
 
                     //Recurrence
 
-                    IdRecu = taskPickers.ListRecu.FirstOrDefault(x => x.TextValue == TaskBind.TextRecu).IdValue,
-                    BeforeDays = TaskBind.BeforeDays,
-                    IsCancelRecu = false,
+                    IdRecu = taskPickers.ListRecu.FirstOrDefault(x => x.TextValue == TaskBind.TextRecu).IdValue,//
+                    BeforeDays = TaskBind.BeforeDays,//
+                    IsCancelRecu = TaskBind.IsCancelRecu,//
 
-                    //Daily,Montly,Annual Vector info
+                    //Daily,Montly,Annual
 
                     SelectTimeOfRecu = TaskBind.SelectTimeOfRecu,
                     TimeOfRecu0 = TaskBind.TimeOfRecu0,
@@ -192,57 +416,22 @@ namespace GPIApp.ViewModels
         private async void TaskRecu()
 
         {
-            //Todo cambiar estructura de pickers y guardado
-            try
-            {
-                TaskBind.TextRecu = await DialogService.ShowOptions("Seleccionar", TaskPickers.ListRecu, "Cancelar");
-                
-                switch (taskPickers.ListRecu.FirstOrDefault(x => x.TextValue == TaskBind.TextRecu).IdValue)
-                {
-                    //None
-                    case 0:
-                        {
-                            //Init the popup
-                            var temp = new NoneRecurrence() { CloseWhenBackgroundIsClicked = true };
-                            await PopupNavigation.PushAsync(temp);
-                            break;
-                        }
-                    //Daily
-                    case 1:
-                        {
-                            var temp = new DailyRecurrence() { CloseWhenBackgroundIsClicked = true };
-                            await PopupNavigation.PushAsync(temp);
-                            break;
-                        }
-                    //Weekly
-                    case 2:
-                        {
-                            var temp = new WeeklyRecurrence() { CloseWhenBackgroundIsClicked = true };
-                            await PopupNavigation.PushAsync(temp);
-                            break;
-                        }
-                    //Monthly
-                    case 3:
-                        {
-                            var temp = new MonthlyRecurrence() { CloseWhenBackgroundIsClicked = true };
-                            await PopupNavigation.PushAsync(temp);
-                            break;
-                        }
-                    //Annual
-                    case 4:
-                        {
-                            var temp = new AnnualRecurrence() { CloseWhenBackgroundIsClicked = true };
-                            await PopupNavigation.PushAsync(temp);
-                            break;
-                        }
-                }
-            }
-            catch (Exception ex)
-            {
-                await DialogService.ShowMessage("Error", ex.Message, "Aceptar");
-            }
+            //Init the popup
+            isInitPopUp = true;
+            var temp = new NoneRecurrence() { CloseWhenBackgroundIsClicked = true };
+            await PopupNavigation.PushAsync(temp);
+            isInitPopUp = false;
         }
 
+        public event PropertyChangedEventHandler PropertyChanged;
 
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            var changed = PropertyChanged;
+            if (changed != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
     }
 }

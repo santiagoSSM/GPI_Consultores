@@ -7,23 +7,140 @@
              BindingContext="{Binding VMControl.NewEditTaskVM, Source={StaticResource Locator}}">
     
     <StackLayout VerticalOptions="Center" HorizontalOptions="Center" Padding="0" Margin="0">
-        <Frame Margin="30" Padding="10">
+        <Frame Margin="5" Padding="10">
+          
+          <ScrollView>
             <StackLayout>
               
-                <StackLayout Orientation="Vertical">
-                    <Label Text="Días de Preaviso" Font="20" TextColor="Black" HorizontalOptions="Start" VerticalOptions="Center"></Label>
-                    <Entry Text="{Binding TaskBind.BeforeDays, Mode=TwoWay}" Placeholder="Ingresar" HorizontalOptions="FillAndExpand" VerticalOptions="Center"></Entry>
-                </StackLayout>
-
+              <!--Select recurrence-->
+                
+              <StackLayout Orientation="Vertical">
+                  <Label Text="Recurrencia" Font="20" TextColor="Black" HorizontalOptions="Start" VerticalOptions="Center"></Label>
+                  <Picker ItemsSource="{Binding TaskPickers.ListRecu}" SelectedItem="{Binding RecuC, Mode=TwoWay}"></Picker>
+              </StackLayout>
+             
+              <!--Before and cancel-->
+              
+              <StackLayout Orientation="Vertical">
+                  <Label Text="Días de Preaviso" Font="20" TextColor="Black" HorizontalOptions="Start" VerticalOptions="Center"></Label>
+                  <Entry Text="{Binding TaskBind.BeforeDays, Mode=TwoWay}" Placeholder="Ingresar" HorizontalOptions="FillAndExpand" VerticalOptions="Center"></Entry>
+              </StackLayout>
+              
+              <StackLayout Orientation="Horizontal">
+                  <Label Text="Cancelar Recurrencia" Font="20" TextColor="Black"  HorizontalOptions="Start" VerticalOptions="Center"></Label>
+                  <Switch IsToggled="{Binding TaskBind.IsCancelRecu}" HorizontalOptions="FillAndExpand"></Switch>
+              </StackLayout>
+              
+              <!--Daily,Weekly,Montly,Annual-->
+              
+              <!--Daily and Weekly-->
+              
+              <StackLayout IsVisible="{Binding VisEverSTC}" Orientation="Horizontal">
+                <Label Text="Cada" Font="20" TextColor="Black" HorizontalOptions="Start" VerticalOptions="Center"></Label>
+                <Entry Text="{Binding TaskBind.TimeOfRecu0, Mode=TwoWay}" HorizontalOptions="FillAndExpand" VerticalOptions="Center"></Entry>
+                <Label Text="{Binding TextEverLC}" Font="20" TextColor="Black"  HorizontalOptions="FillAndExpand" VerticalOptions="Center"></Label>
+              </StackLayout>
+              
+              <!--Weekly-->
+                
+              <StackLayout IsVisible="{Binding VisDayOfWeekSTC}" Orientation="Vertical">
+                <Label Text="Día" Font="20" TextColor="Black" HorizontalOptions="Start" VerticalOptions="Center"></Label>
+                <Picker SelectedIndex="{Binding TaskBind.TimeOfRecu1, Mode=TwoWay}">
+                  <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                      <x:String>Domingo</x:String>
+                      <x:String>Lunes</x:String>
+                      <x:String>Martes</x:String>
+                      <x:String>Miércoles</x:String>
+                      <x:String>Jueves</x:String>
+                      <x:String>Viernes</x:String>
+                      <x:String>Sábado</x:String>
+                    </x:Array>
+                  </Picker.ItemsSource>
+                </Picker>
+              </StackLayout>
+              
+              <!--Montly and Annual-->
+              <StackLayout IsVisible="{Binding VisSelectRecuSTC}" Orientation="Vertical">
+                  <Label Text="Seleccionar recurrencia" Font="20" TextColor="Black"  HorizontalOptions="Start" VerticalOptions="Center"></Label>
+                  <Switch IsToggled="{Binding TaskBind.SelectTimeOfRecu}" HorizontalOptions="Start"></Switch>
+              </StackLayout>
+              
+              <StackLayout IsVisible="True" Orientation="Vertical">
+                
                 <StackLayout Orientation="Horizontal">
-                    <Label Text="Cancelar Recurrencia" Font="20" TextColor="Black"  HorizontalOptions="Start" VerticalOptions="Center"></Label>
-                    <Switch IsToggled="{Binding TaskBind.IsCancelRecu}" HorizontalOptions="FillAndExpand" x:Name="cancelRecuSwitch"></Switch>
+                  <Label Text="El " Font="20" TextColor="Black" HorizontalOptions="Start" VerticalOptions="Center"></Label>
+                  <Entry Text="20" HorizontalOptions="FillAndExpand" VerticalOptions="Center"></Entry>
+                  <Label Text=" del cada " Font="20" TextColor="Black"  HorizontalOptions="FillAndExpand" VerticalOptions="Center"></Label>
                 </StackLayout>
+              
+                <StackLayout Orientation="Horizontal">
+                  <Entry Text="2" HorizontalOptions="Start" VerticalOptions="Center"></Entry>
+                  <Label Text=" Mes(es)" Font="20" TextColor="Black"  HorizontalOptions="FillAndExpand" VerticalOptions="Center"></Label>
+                </StackLayout>
+              
+              </StackLayout>
+              
+              <StackLayout IsVisible="True" Orientation="Vertical">
+                
+                <StackLayout Orientation="Horizontal">
+                  <Label Text="El " Font="20" TextColor="Black" HorizontalOptions="Start" VerticalOptions="Center"></Label>
+                  <Picker SelectedIndex="{Binding FinalDateIndexC, Mode=TwoWay}">
+                    <Picker.ItemsSource>
+                      <x:Array Type="{x:Type x:String}">
+                        <x:String>Primer</x:String>
+                        <x:String>Segundo</x:String>
+                        <x:String>Tercer</x:String>
+                        <x:String>Cuarto</x:String>
+                      </x:Array>
+                    </Picker.ItemsSource>
+                  </Picker>
+                  <Picker SelectedIndex="{Binding FinalDateIndexC, Mode=TwoWay}">
+                    <Picker.ItemsSource>
+                      <x:Array Type="{x:Type x:String}">
+                        <x:String>Domingo</x:String>
+                        <x:String>Lunes</x:String>
+                        <x:String>Martes</x:String>
+                        <x:String>Miércoles</x:String>
+                        <x:String>Jueves</x:String>
+                        <x:String>Viernes</x:String>
+                        <x:String>Sábado</x:String>
+                      </x:Array>
+                    </Picker.ItemsSource>
+                  </Picker>
+                </StackLayout>
+              
+                <StackLayout Orientation="Horizontal">
+                  <Entry Text="2" HorizontalOptions="Start" VerticalOptions="Center"></Entry>
+                  <Label Text=" de cada mes(es)" Font="20" TextColor="Black"  HorizontalOptions="FillAndExpand" VerticalOptions="Center"></Label>
+                </StackLayout>
+              
+              </StackLayout>
+              
+              <!--Final Date-->
+              
+              <StackLayout IsVisible="{Binding VisFinalDateSTC}" Orientation="Vertical">
+                <Label Text="Fecha final" Font="20" TextColor="Black" HorizontalOptions="Start" VerticalOptions="Center"></Label>
+                <Picker SelectedIndex="{Binding FinalDateIndexC, Mode=TwoWay}">
+                  <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                      <x:String>Sin Fecha de Finalización</x:String>
+                      <x:String>Finaliza Después de</x:String>
+                      <x:String>Finaliza el</x:String>
+                    </x:Array>
+                  </Picker.ItemsSource>
+                </Picker>
+              </StackLayout>
 
-                <StackLayout Orientation="Vertical">
-                    <Label x:Name="final" Font="20"  HorizontalOptions="Fill" TextColor="Black" Text="Vencimiento"></Label>
-                    <DatePicker Date="{Binding TaskBind.ContractExp}" x:Name="finalDatePicker"></DatePicker>
-                </StackLayout>
+              <StackLayout IsVisible="{Binding VisNumRecuSTC}"  Orientation="Horizontal">
+                <Entry Text="{Binding TaskBind.NumRecu, Mode=TwoWay}" HorizontalOptions="FillAndExpand" VerticalOptions="Center"></Entry>
+                <Label Text="Recurrencias" Font="20" TextColor="Black"  HorizontalOptions="FillAndExpand" VerticalOptions="Center"></Label>
+              </StackLayout>
+
+              <StackLayout IsVisible="{Binding VisContractExpSTC}" Orientation="Vertical">
+                <Label IsVisible="{Binding VisContractExpLC}" Font="20"  HorizontalOptions="Fill" TextColor="Black" Text="Vencimiento"></Label>
+                <DatePicker Date="{Binding TaskBind.ContractExp}" x:Name="finalDatePicker"></DatePicker>
+              </StackLayout>
 
               <!--<StackLayout Orientation="Vertical">
                     <Label Text="Días de Preaviso" Font="20"  HorizontalOptions="Start" VerticalOptions="Center"></Label>
@@ -66,6 +183,8 @@
               
                 <Button Text="Hecho" Clicked="Button_OnClicked"></Button>
             </StackLayout>
+          </ScrollView>
+            
         </Frame>
     </StackLayout>
 
