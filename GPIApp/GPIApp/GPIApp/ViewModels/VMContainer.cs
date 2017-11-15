@@ -48,7 +48,7 @@ namespace GPIApp.ViewModels
             else
             {
                 NewEditTaskVM = new NewEditTaskViewModel(this, "Nueva tarea");
-                await NewEditTaskVM.LoadPickers();
+                await NewEditTaskVM.LoadNewTask();
             }
         }
 

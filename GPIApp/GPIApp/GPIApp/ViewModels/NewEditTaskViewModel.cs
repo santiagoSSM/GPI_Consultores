@@ -202,6 +202,7 @@ namespace GPIApp.ViewModels
             set
             {
                 TaskBind.TextRecu = value;
+                OnPropertyChanged("RecuC");
                 ConfigPopup(value);
             }
         }
@@ -253,7 +254,7 @@ namespace GPIApp.ViewModels
             TaskBind = new TaskBindingModel();
         }
 
-        public async Task LoadPickers()
+        public async Task LoadNewTask()
         {
             taskPickers = await TaskWACtrl.GetTaskPickers();
             TaskPickers = new TaskPickersBindModel(taskPickers);

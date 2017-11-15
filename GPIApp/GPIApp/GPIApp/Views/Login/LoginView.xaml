@@ -16,7 +16,9 @@
                 <Entry Text="{Binding User.PassUser}" x:Name="userPass" Placeholder="Contraseña" IsPassword="True" HorizontalOptions="FillAndExpand" VerticalOptions="Center"></Entry>
             </StackLayout>
 
-            <Button Command="{Binding LoginCommand}" x:Name="enterButton" Text="Ingresar" BackgroundColor="Navy" TextColor="White" HorizontalOptions="FillAndExpand" VerticalOptions="Center"></Button>
+            <StackLayout Orientation="Vertical" Padding="20">
+                <Button Command="{Binding LoginCommand}" x:Name="enterButton" Text="Ingresar" BackgroundColor="Navy" TextColor="White" HorizontalOptions="FillAndExpand" VerticalOptions="Center"></Button>
+            </StackLayout>
 
         </StackLayout>
     </ScrollView>
