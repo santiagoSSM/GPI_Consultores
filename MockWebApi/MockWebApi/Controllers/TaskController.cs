@@ -54,13 +54,31 @@ namespace MockWebApi.Controllers
 
                 if (temp != null)
                 {
+                    #region Convertion Users Id to Name List
+
+                    ObservableCollection<string> nameRespUser = new ObservableCollection<string>();
+
+                    foreach (int element in temp.IdRespUser)
+                    {
+                        nameRespUser.Add(InfoListsWA.ListUserPass.FirstOrDefault(x => x.IdUser == element).NameUser);
+                    }
+
+                    ObservableCollection<string> nameCopyUser = new ObservableCollection<string>();
+
+                    foreach (int element in temp.IdCopyUser)
+                    {
+                        nameCopyUser.Add(InfoListsWA.ListUserPass.FirstOrDefault(x => x.IdUser == element).NameUser);
+                    }
+
+                    #endregion
+
                     var tmp = new TaskSeeWA()
                     {
                         IdTask = temp.IdTask,
                         TextIssue = temp.TextIssue,
                         TextDescription = temp.TextDescription,
-                        NameRespUser = InfoListsWA.ListUserPass.FirstOrDefault(x => x.IdUser == temp.IdRespUser).NameUser,
-                        NameCopyUser = InfoListsWA.ListUserPass.FirstOrDefault(x => x.IdUser == temp.IdCopyUser).NameUser,
+                        NameRespUser = nameRespUser,
+                        NameCopyUser = nameCopyUser,
                         TextCategory = InfoListsWA.ListCategory.FirstOrDefault(x => x.IdValue == temp.IdCategory).TextValue,
                         IsAprob = temp.IsAprob,
                         TextPriority = InfoListsWA.ListPriority.FirstOrDefault(x => x.IdValue == temp.IdPriority).TextValue,
@@ -128,6 +146,24 @@ namespace MockWebApi.Controllers
                         );
                     }
 
+                    #region Convertion Users Id to Name List
+
+                    ObservableCollection<string> nameRespUser = new ObservableCollection<string>();
+
+                    foreach (int element in temp.IdRespUser)
+                    {
+                        nameRespUser.Add(InfoListsWA.ListUserPass.FirstOrDefault(x => x.IdUser == element).NameUser);
+                    }
+
+                    ObservableCollection<string> nameCopyUser = new ObservableCollection<string>();
+
+                    foreach (int element in temp.IdCopyUser)
+                    {
+                        nameCopyUser.Add(InfoListsWA.ListUserPass.FirstOrDefault(x => x.IdUser == element).NameUser);
+                    }
+
+                    #endregion
+
                     return new TaskBindingWA()
                     {
                         TaskPickers = tmpTaskPickers,
@@ -142,8 +178,8 @@ namespace MockWebApi.Controllers
                         IdTask = temp.IdTask,
                         TextIssue = temp.TextIssue,
                         TextDescription = temp.TextDescription,
-                        NameRespUser = InfoListsWA.ListUserPass.FirstOrDefault(x => x.IdUser == temp.IdRespUser).NameUser,
-                        NameCopyUser = InfoListsWA.ListUserPass.FirstOrDefault(x => x.IdUser == temp.IdCopyUser).NameUser,
+                        NameRespUser = nameRespUser,
+                        NameCopyUser = nameCopyUser,
                         TextCategory = InfoListsWA.ListCategory.FirstOrDefault(x => x.IdValue == temp.IdCategory).TextValue,
                         IsAprob = temp.IsAprob,
                         TextPriority = InfoListsWA.ListPriority.FirstOrDefault(x => x.IdValue == temp.IdPriority).TextValue,

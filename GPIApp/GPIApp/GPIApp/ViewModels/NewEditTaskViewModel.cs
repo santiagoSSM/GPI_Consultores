@@ -18,7 +18,14 @@ namespace GPIApp.ViewModels
     {
         NavigationService navServ;
         private TaskPickersModel taskPickers;
-        public bool isInitPopUp;//Variable that determines the execution of this method as protection for the binding context
+        public bool IsNewTask { get; private set; }
+        public string Title { get; private set; }
+        
+
+        //Todo usuarios temporales mejorar con seleccion multiple mediante color
+
+        public string User { get;  set; }
+        public string Copy { get; set; }
 
         #region Pop-up properties control
 
@@ -236,21 +243,33 @@ namespace GPIApp.ViewModels
         public bool VisNumRecuSTC { get; set; }
         public bool VisContractExpSTC { get; set; }
         public bool VisContractExpLC { get; set; }
-        
+
+        #endregion
+
+        #region Variables
+        public bool isInitPopUp;//Variable that determines the execution of this method as protection for the binding context
         #endregion
 
         #endregion
 
-        public string Title { get; private set; }
         public TaskBindingModel TaskBind { get; set; }
         public TaskPickersBindModel TaskPickers { get; set; }
 
-        public NewEditTaskViewModel(IVMContainer inter, string title)
+        public NewEditTaskViewModel(IVMContainer inter, bool isNewTask)
         {
             navServ = new NavigationService(inter);
             taskPickers = new TaskPickersModel();
+            IsNewTask = isNewTask;
 
-            Title = title;
+            if (IsNewTask)
+            {
+                Title = "Nueva Tarea";
+            }
+            else
+            {
+                Title = "Editar Tarea";
+            }
+
             TaskBind = new TaskBindingModel();
         }
 
@@ -303,6 +322,12 @@ namespace GPIApp.ViewModels
             TaskBind.FinalDate = editTask.FinalDate;
             TaskBind.NumRecu = editTask.NumRecu;
             TaskBind.ContractExp = editTask.ContractExp;
+
+
+            //Todo usuarios temporales mejorar con seleccion multiple mediante color
+
+            User = TaskBind.NameRespUser.FirstOrDefault();
+            Copy = TaskBind.NameCopyUser.FirstOrDefault();
         }
 
         public ICommand SaveTaskCommand
@@ -312,7 +337,19 @@ namespace GPIApp.ViewModels
 
         private async void SaveTask(string isDraft)
         {
-            //TaskBind.TextDescription = editTask.TextDescription;//Optional?
+            //Todo usuarios temporales mejorar con seleccion multiple mediante color
+
+            TaskBind.NameRespUser = new ObservableCollection<string>()
+            {
+                User
+            };
+
+            TaskBind.NameCopyUser = new ObservableCollection<string>()
+            {
+                Copy
+            };
+
+            //Todo TaskBind.TextDescription = editTask.TextDescription;//Optional?
 
             //Task
             if (string.IsNullOrEmpty(TaskBind.TextIssue))
@@ -320,14 +357,14 @@ namespace GPIApp.ViewModels
                 await DialogService.ShowMessage("Error", "Debe ingresar un asunto", "Aceptar");
                 return;
             }
-			
-			if (string.IsNullOrEmpty(TaskBind.NameRespUser))
+
+            if (TaskBind.NameRespUser == null || TaskBind.NameRespUser.Count <= 0)
             {
                 await DialogService.ShowMessage("Error", "Debe ingresar un responsable", "Aceptar");
                 return;
             }
 
-            if (string.IsNullOrEmpty(TaskBind.NameCopyUser))
+            if (TaskBind.NameCopyUser == null || TaskBind.NameCopyUser.Count <= 0)
             {
                 await DialogService.ShowMessage("Error", "Ingresar el usuario al que se copia la tarea", "Aceptar");
                 return;
@@ -345,12 +382,33 @@ namespace GPIApp.ViewModels
                 return;
             }
 
-            TaskBind.IdUser = UserLogged.Value.IdUser;
-            TaskBind.IsDraft = isDraft == "true";
+            
 
             try
             {
-                await PopupNavigation.PushAsync(new ActivityIndicatorPopUp());//Todo cambiar por guardando
+                await PopupNavigation.PushAsync(new ActivityIndicatorPopUp("Guardando"));
+
+                TaskBind.IdUser = UserLogged.Value.IdUser;
+                TaskBind.IsDraft = isDraft == "true";
+
+                #region Convertion Users Name to Id List
+
+                ObservableCollection<int> idRespUser = new ObservableCollection<int>();
+
+                foreach (string element in TaskBind.NameRespUser)
+                {
+                    idRespUser.Add(taskPickers.ListUser.FirstOrDefault(x => x.NameUser == element).IdUser);
+                }
+
+                ObservableCollection<int> idCopyUser = new ObservableCollection<int>();
+
+                foreach (string element in TaskBind.NameCopyUser)
+                {
+                    idCopyUser.Add(taskPickers.ListUser.FirstOrDefault(x => x.NameUser == element).IdUser);
+                }
+
+                #endregion
+
                 if (await TaskWACtrl.Post(new TaskModel
                 {
                     //NoTaskAttributes
@@ -363,8 +421,8 @@ namespace GPIApp.ViewModels
                     IdTask = TaskBind.IdTask,
                     TextIssue = TaskBind.TextIssue,
                     TextDescription = TaskBind.TextDescription,
-                    IdRespUser = taskPickers.ListUser.FirstOrDefault(x => x.NameUser == TaskBind.NameRespUser).IdUser,
-                    IdCopyUser = taskPickers.ListUser.FirstOrDefault(x => x.NameUser == TaskBind.NameCopyUser).IdUser,
+                    IdRespUser = idRespUser,
+                    IdCopyUser = idCopyUser,
                     IdCategory = taskPickers.ListCategory.FirstOrDefault(x => x.TextValue == TaskBind.TextCategory).IdValue,
                     IsAprob = TaskBind.IsAprob,
                     IdPriority = taskPickers.ListPriority.FirstOrDefault(x => x.TextValue == TaskBind.TextPriority).IdValue,
@@ -419,7 +477,7 @@ namespace GPIApp.ViewModels
         {
             //Init the popup
             isInitPopUp = true;
-            var temp = new NoneRecurrence() { CloseWhenBackgroundIsClicked = true };
+            var temp = new RecurrencePopUp() { CloseWhenBackgroundIsClicked = true };
             await PopupNavigation.PushAsync(temp);
             isInitPopUp = false;
         }

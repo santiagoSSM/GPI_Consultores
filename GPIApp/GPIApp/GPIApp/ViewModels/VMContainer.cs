@@ -42,12 +42,12 @@ namespace GPIApp.ViewModels
             ReleaseResourses();
             if (title == "EditTask")
             {
-                NewEditTaskVM = new NewEditTaskViewModel(this, "Editar tarea");
+                NewEditTaskVM = new NewEditTaskViewModel(this, false);
                 await NewEditTaskVM.LoadEditTask(id);
             }
             else
             {
-                NewEditTaskVM = new NewEditTaskViewModel(this, "Nueva tarea");
+                NewEditTaskVM = new NewEditTaskViewModel(this, true);
                 await NewEditTaskVM.LoadNewTask();
             }
         }

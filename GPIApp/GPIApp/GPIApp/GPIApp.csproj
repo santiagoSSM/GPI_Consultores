@@ -64,8 +64,8 @@
     <Compile Include="Views\Task\AnnualRecurrence.xaml.cs">
       <DependentUpon>AnnualRecurrence.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Task\DailyRecurrence.xaml.cs">
-      <DependentUpon>DailyRecurrence.xaml</DependentUpon>
+    <Compile Include="Views\Task\DayOrWeekPopUp.xaml.cs">
+      <DependentUpon>DayOrWeekPopUp.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\PopUps\ActivityIndicatorPopUp.xaml.cs">
       <DependentUpon>ActivityIndicatorPopUp.xaml</DependentUpon>
@@ -73,8 +73,8 @@
     <Compile Include="Views\Task\MonthlyRecurrence.xaml.cs">
       <DependentUpon>MonthlyRecurrence.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Task\NoneRecurrence.xaml.cs">
-      <DependentUpon>NoneRecurrence.xaml</DependentUpon>
+    <Compile Include="Views\Task\RecurrencePopUp.xaml.cs">
+      <DependentUpon>RecurrencePopUp.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Login\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
@@ -185,13 +185,13 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\Task\NoneRecurrence.xaml">
+    <EmbeddedResource Include="Views\Task\RecurrencePopUp.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\Task\DailyRecurrence.xaml">
+    <EmbeddedResource Include="Views\Task\DayOrWeekPopUp.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

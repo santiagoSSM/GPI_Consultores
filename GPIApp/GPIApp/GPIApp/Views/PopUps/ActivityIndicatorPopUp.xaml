@@ -15,7 +15,7 @@
             <StackLayout Orientation="Vertical">
                 <Label Text="" Font="5"></Label>
                 <ActivityIndicator IsVisible="True" IsRunning="True" Scale="2" Color="{StaticResource MainColor}"></ActivityIndicator>
-                <Label Text="Cargando" Font="20"   HorizontalOptions="Start" VerticalOptions="Center"></Label>
+                <Label x:Name="Text" Font="20"  HorizontalOptions="Start" VerticalOptions="Center"></Label>
             </StackLayout>
         </Frame>
     </StackLayout>

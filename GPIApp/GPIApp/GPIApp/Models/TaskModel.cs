@@ -1,4 +1,6 @@
-﻿namespace GPIApp.Models
+﻿using System.Collections.ObjectModel;
+
+namespace GPIApp.Models
 {
     public class TaskModel : TaskParentModel
     {
@@ -9,8 +11,8 @@
 
         //Task
 
-        private int idRespUser = -1;
-        private int idCopyUser = -1;
+        private ObservableCollection<int> idRespUser = null;
+        private ObservableCollection<int> idCopyUser = null;
         private int idCategory = -1;
         private int idPriority = -1;
 
@@ -50,7 +52,7 @@
 
         //Task
 
-        public int IdRespUser
+        public ObservableCollection<int> IdRespUser
         {
             get
             {
@@ -63,7 +65,7 @@
             }
         }
 
-        public int IdCopyUser
+        public ObservableCollection<int> IdCopyUser
         {
             get
             {

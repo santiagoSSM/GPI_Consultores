@@ -12,6 +12,7 @@ namespace GPIApp.Views.Task
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class NewEditTaskView : ContentPage
     {
+
         public NewEditTaskView()
         {
             InitializeComponent();
@@ -59,6 +60,12 @@ namespace GPIApp.Views.Task
         {
             LabelCopy.Unfocus();
             PickerCopy.Focus();
+        }
+
+        private void LabelRecu_Focused(object sender, FocusEventArgs e)
+        {
+            LabelRecu.Unfocus();
+            stackL.Command.Execute(null);
         }
     }
 }

@@ -1,9 +1,11 @@
-﻿namespace GPIApp.Models
+﻿using System.Collections.ObjectModel;
+
+namespace GPIApp.Models
 {
     public class TaskStringModel : TaskParentModel
     {
-        protected string nameRespUser;
-        protected string nameCopyUser;
+        protected ObservableCollection<string> nameRespUser;
+        protected ObservableCollection<string> nameCopyUser;
         protected string textCategory;
         protected string textPriority;
 
@@ -12,7 +14,7 @@
 
         //Properties
 
-        public string NameRespUser
+        public ObservableCollection<string> NameRespUser
         {
             get
             {
@@ -25,7 +27,7 @@
             }
         }
 
-        public string NameCopyUser
+        public ObservableCollection<string> NameCopyUser
         {
             get
             {

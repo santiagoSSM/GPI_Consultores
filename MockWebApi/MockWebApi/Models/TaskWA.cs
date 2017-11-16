@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Web;
 
@@ -14,8 +15,8 @@ namespace MockWebApi.Models
 
         //Task
 
-        private int idRespUser = -1;
-        private int idCopyUser = -1;
+        private ObservableCollection<int> idRespUser = null;
+        private ObservableCollection<int> idCopyUser = null;
         private int idCategory = -1;
         private int idPriority = -1;
 
@@ -55,7 +56,7 @@ namespace MockWebApi.Models
 
         //Task
 
-        public int IdRespUser
+        public ObservableCollection<int> IdRespUser
         {
             get
             {
@@ -68,7 +69,7 @@ namespace MockWebApi.Models
             }
         }
 
-        public int IdCopyUser
+        public ObservableCollection<int> IdCopyUser
         {
             get
             {

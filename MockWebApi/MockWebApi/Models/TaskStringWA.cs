@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Web;
 
@@ -7,8 +8,8 @@ namespace MockWebApi.Models
 {
     public class TaskStringWA : TaskParentWA
     {
-        protected string nameRespUser;
-        protected string nameCopyUser;
+        protected ObservableCollection<string> nameRespUser;
+        protected ObservableCollection<string> nameCopyUser;
         protected string textCategory;
         protected string textPriority;
 
@@ -17,7 +18,7 @@ namespace MockWebApi.Models
 
         //Properties
 
-        public string NameRespUser
+        public ObservableCollection<string> NameRespUser
         {
             get
             {
@@ -30,7 +31,7 @@ namespace MockWebApi.Models
             }
         }
 
-        public string NameCopyUser
+        public ObservableCollection<string> NameCopyUser
         {
             get
             {

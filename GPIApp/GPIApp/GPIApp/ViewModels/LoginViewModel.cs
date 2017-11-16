@@ -49,7 +49,7 @@ namespace GPIApp.ViewModels
 
             try
             {
-                await PopupNavigation.PushAsync(new ActivityIndicatorPopUp());
+                await PopupNavigation.PushAsync(new ActivityIndicatorPopUp("Cargando"));
                 UserLogged.Value = await UserWACtrl.Put(User);
                 if (UserLogged.Value != null)
                 {

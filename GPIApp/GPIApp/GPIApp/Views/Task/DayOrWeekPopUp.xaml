@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+                 xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GPIApp.Views.Task.DayOrWeek"
+             BindingContext="{Binding VMControl.NewEditTaskVM, Source={StaticResource Locator}}">
+
+    <StackLayout VerticalOptions="Center" HorizontalOptions="Center" Padding="0" Margin="0">
+      <Frame Margin="30" Padding="10">
+        <StackLayout>
+
+          <StackLayout  Orientation="Horizontal">
+
+            <StackLayout IsVisible="{Binding VisSTC}" Orientation="Vertical">
+              <Label Text="Seleccionar" Font="15" TextColor="Black" HorizontalOptions="Start" VerticalOptions="Center"></Label>
+              <Picker x:Name="PickerDayOrWeek" IsVisible="False" SelectedIndexChanged="PickerDayOrWeek_SelectedIndexChanged">
+                <Picker.ItemsSource>
+                  <x:Array Type="{x:Type x:String}">
+                    <x:String>Día</x:String>
+                    <x:String>Semana</x:String>
+                  </x:Array>
+                </Picker.ItemsSource>
+              </Picker>
+              <Entry x:Name="LabelDayOrWeek" FontSize="15" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Focused="LabelDayOrWeek_Focused"></Entry>
+            </StackLayout>
+
+          </StackLayout>
+
+          <Button Text="Hecho" Clicked="Button_OnClicked"></Button>
+        </StackLayout>
+      </Frame>
+    </StackLayout>
+
+</pages:PopupPage>

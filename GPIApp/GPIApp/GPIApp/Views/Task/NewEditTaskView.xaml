@@ -20,13 +20,13 @@
 
             <StackLayout Orientation="Vertical">
                 <Label Font="15" Text="Responsables" HorizontalOptions="Start" VerticalOptions="Center"></Label>
-                <Picker x:Name="PickerResp" ItemsSource="{Binding TaskPickers.ListUser}" SelectedItem="{Binding TaskBind.NameRespUser, Mode=TwoWay}" IsVisible="False" SelectedIndexChanged="PickerResp_SelectedIndexChanged"></Picker>
+                <Picker x:Name="PickerResp" ItemsSource="{Binding TaskPickers.ListUser}" SelectedItem="{Binding User, Mode=TwoWay}" IsVisible="False" SelectedIndexChanged="PickerResp_SelectedIndexChanged"></Picker>
                 <Entry x:Name="LabelResp" Placeholder="Seleccionar" FontSize="15" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Focused="LabelResp_Focused"></Entry>
             </StackLayout>
 
             <StackLayout Orientation="Vertical">
                 <Label Text="Copiados" Font="15"  HorizontalOptions="Start" VerticalOptions="Center"></Label>
-                <Picker x:Name="PickerCopy" ItemsSource="{Binding TaskPickers.ListUser}" SelectedItem="{Binding TaskBind.NameCopyUser, Mode=TwoWay}" IsVisible="False" SelectedIndexChanged ="PickerCopy_SelectedIndexChanged"></Picker>
+                <Picker x:Name="PickerCopy" ItemsSource="{Binding TaskPickers.ListUser}" SelectedItem="{Binding Copy, Mode=TwoWay}" IsVisible="False" SelectedIndexChanged ="PickerCopy_SelectedIndexChanged"></Picker>
                 <Entry x:Name="LabelCopy" Placeholder="Seleccionar" FontSize="15" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Focused="LabelCopy_Focused"></Entry>
             </StackLayout>
 
@@ -48,17 +48,19 @@
             </StackLayout>
 
             <StackLayout Orientation="Horizontal">
-                <StackLayout.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding TaskRecuCommand}">
-                    </TapGestureRecognizer>
-                </StackLayout.GestureRecognizers>
+                <StackLayout>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer x:Name="stackL" Command="{Binding TaskRecuCommand}">
+                        </TapGestureRecognizer>
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
                 <Label Font="15" Text="Recurrencia: " HorizontalOptions="Start"></Label>
-                <Label Font="15" Text="{Binding RecuC, Mode=TwoWay}" HorizontalOptions="Fill" TextColor="Black"></Label>
+                <Entry x:Name="LabelRecu" Text="{Binding RecuC, Mode=TwoWay}" FontSize="15" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Focused="LabelRecu_Focused" ></Entry>
             </StackLayout>
 
             <StackLayout Orientation="Vertical" Padding="20">
                 <Button Command="{Binding SaveTaskCommand}" CommandParameter="false" Text="Guardar" BackgroundColor="Navy" TextColor="White" HorizontalOptions="FillAndExpand" VerticalOptions="Center"></Button>
-                <Button Command="{Binding SaveTaskCommand}" CommandParameter="true" Text="Crear borrador" BackgroundColor="Navy" TextColor="White" HorizontalOptions="FillAndExpand" VerticalOptions="Center"></Button>
+                <Button Command="{Binding SaveTaskCommand}" CommandParameter="true" Text="Crear borrador" BackgroundColor="Navy" TextColor="White" HorizontalOptions="FillAndExpand" VerticalOptions="Center" IsVisible="{Binding IsNewTask}"></Button>
             </StackLayout>
            
         </StackLayout>
