@@ -6,29 +6,59 @@
              x:Class="GPIApp.Views.Task.DayOrWeek"
              BindingContext="{Binding VMControl.NewEditTaskVM, Source={StaticResource Locator}}">
 
-    <StackLayout VerticalOptions="Center" HorizontalOptions="Center" Padding="0" Margin="0">
+    <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
       <Frame Margin="30" Padding="10">
-        <StackLayout>
+        
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100" />
+                <ColumnDefinition Width="100" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="40" />
+            </Grid.RowDefinitions>
+        
+            <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" VerticalOptions="Center" Text="Seleccionar día o semana" Font="15" TextColor="Black"></Label>
+        
+            <StackLayout Grid.Row="1" Grid.Column="0">
+                  <Picker x:Name="PickerDayOrWeek" SelectedIndex="{Binding DayOrWeekC, Mode=TwoWay}" IsVisible="False" SelectedIndexChanged="PickerDayOrWeek_SelectedIndexChanged">
+                    <Picker.ItemsSource>
+                      <x:Array Type="{x:Type x:String}">
+                        <x:String>Día</x:String>
+                        <x:String>Semana</x:String>
+                      </x:Array>
+                    </Picker.ItemsSource>
+                  </Picker>
+                  <Entry x:Name="LabelDayOrWeek" FontSize="15" HorizontalOptions="FillAndExpand" Focused="LabelDayOrWeek_Focused"></Entry>
+                </StackLayout>
 
-          <StackLayout  Orientation="Horizontal">
-
-            <StackLayout IsVisible="{Binding VisSTC}" Orientation="Vertical">
-              <Label Text="Seleccionar" Font="15" TextColor="Black" HorizontalOptions="Start" VerticalOptions="Center"></Label>
-              <Picker x:Name="PickerDayOrWeek" IsVisible="False" SelectedIndexChanged="PickerDayOrWeek_SelectedIndexChanged">
+            <StackLayout Grid.Row="1" Grid.Column="1" IsVisible="{Binding DayOrWeekC, Mode=TwoWay}">
+              <Picker x:Name="PickerNumWeek" SelectedIndex="{Binding TaskBind.TimeOfRecu0, Mode=TwoWay}" IsVisible="False" SelectedIndexChanged="PickerNumWeek_SelectedIndexChanged">
                 <Picker.ItemsSource>
                   <x:Array Type="{x:Type x:String}">
-                    <x:String>Día</x:String>
-                    <x:String>Semana</x:String>
+                    <x:String>Primera</x:String>
+                    <x:String>Segunda</x:String>
+                    <x:String>Tercera</x:String>
+                    <x:String>Cuarta</x:String>
+                    <x:String>Quinta</x:String>
                   </x:Array>
                 </Picker.ItemsSource>
               </Picker>
-              <Entry x:Name="LabelDayOrWeek" FontSize="15" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Focused="LabelDayOrWeek_Focused"></Entry>
+              <Entry x:Name="LabelNumWeek" FontSize="15" HorizontalOptions="FillAndExpand" Focused="LabelNumWeek_Focused"></Entry>
+            </StackLayout>   
+            
+            <StackLayout Grid.Row="1" Grid.Column="1" IsVisible="{Binding DayOrWeekC, Converter={StaticResource NotBoolConverter}, Mode=TwoWay}">
+              <Picker x:Name="PickerNumDay" ItemsSource="{Binding Days}" SelectedIndex="{Binding TaskBind.TimeOfRecu0, Mode=TwoWay}" IsVisible="False" SelectedIndexChanged="PickerNumDay_SelectedIndexChanged"/>
+              <Entry x:Name="LabelNumDay" FontSize="15" HorizontalOptions="FillAndExpand" Focused="LabelNumDay_Focused"></Entry>
             </StackLayout>
-
-          </StackLayout>
-
-          <Button Text="Hecho" Clicked="Button_OnClicked"></Button>
-        </StackLayout>
+      
+            <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" VerticalOptions="Center" Text="Hecho" Clicked="Button_OnClicked"></Button>
+        
+        </Grid>
+        
+        
       </Frame>
     </StackLayout>
 

@@ -38,6 +38,8 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Infraestructure\Converters\NotBoolConverter.cs" />
+    <Compile Include="Infraestructure\Converters\IntToBoolConverter.cs" />
     <Compile Include="Infraestructure\DialogService.cs" />
     <Compile Include="Infraestructure\InstanceLocator.cs" />
     <Compile Include="Infraestructure\IVMContainer.cs" />

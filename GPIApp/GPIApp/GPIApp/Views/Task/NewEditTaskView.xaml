@@ -8,54 +8,54 @@
     <ScrollView>
         <StackLayout Padding="10,15,10,10" Spacing="10">
 
-            <StackLayout Orientation="Vertical">
-                <Label Font="15" Text="Asunto" HorizontalOptions="Start" VerticalOptions="Center"></Label>
+            <StackLayout Orientation="Horizontal">
+                <Label Font="15" Text="Asunto: " HorizontalOptions="Start" VerticalOptions="Center"></Label>
                 <Entry FontSize="15" Text="{Binding TaskBind.TextIssue, Mode=TwoWay}" Placeholder="Ingresar texto" HorizontalOptions="FillAndExpand" VerticalOptions="Center"></Entry>
             </StackLayout>
 
-            <StackLayout Orientation="Vertical">
-                <Label Font="15" Text="Descripción" HorizontalOptions="Start" VerticalOptions="Center"></Label>
+            <StackLayout Orientation="Horizontal">
+                <Label Font="15" Text="Descripción: " HorizontalOptions="Start" VerticalOptions="Center"></Label>
                 <Entry FontSize="15" Text="{Binding TaskBind.TextDescription, Mode=TwoWay}" Placeholder="Ingresar texto" HorizontalOptions="FillAndExpand" VerticalOptions="Center"></Entry>
             </StackLayout>
 
-            <StackLayout Orientation="Vertical">
-                <Label Font="15" Text="Responsables" HorizontalOptions="Start" VerticalOptions="Center"></Label>
+            <StackLayout Orientation="Horizontal">
+                <Label Font="15" Text="Responsables: " HorizontalOptions="Start" VerticalOptions="Center"></Label>
                 <Picker x:Name="PickerResp" ItemsSource="{Binding TaskPickers.ListUser}" SelectedItem="{Binding User, Mode=TwoWay}" IsVisible="False" SelectedIndexChanged="PickerResp_SelectedIndexChanged"></Picker>
                 <Entry x:Name="LabelResp" Placeholder="Seleccionar" FontSize="15" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Focused="LabelResp_Focused"></Entry>
             </StackLayout>
 
-            <StackLayout Orientation="Vertical">
-                <Label Text="Copiados" Font="15"  HorizontalOptions="Start" VerticalOptions="Center"></Label>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Copiados: " Font="15"  HorizontalOptions="Start" VerticalOptions="Center"></Label>
                 <Picker x:Name="PickerCopy" ItemsSource="{Binding TaskPickers.ListUser}" SelectedItem="{Binding Copy, Mode=TwoWay}" IsVisible="False" SelectedIndexChanged ="PickerCopy_SelectedIndexChanged"></Picker>
                 <Entry x:Name="LabelCopy" Placeholder="Seleccionar" FontSize="15" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Focused="LabelCopy_Focused"></Entry>
             </StackLayout>
 
-            <StackLayout Orientation="Vertical">
-                <Label Text="Categoría" Font="15"  HorizontalOptions="Start" VerticalOptions="Center"></Label>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Categoría: " Font="15"  HorizontalOptions="Start" VerticalOptions="Center"></Label>
                 <Picker x:Name="PickerCategory" ItemsSource="{Binding TaskPickers.ListCategory}" SelectedItem="{Binding TaskBind.TextCategory, Mode=TwoWay}" IsVisible="False" SelectedIndexChanged="PickerCategory_SelectedIndexChanged"></Picker>
                 <Entry x:Name="LabelCategory" Placeholder="Seleccionar" FontSize="15" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Focused="LabelCategory_Focused"></Entry>
             </StackLayout>
 
             <StackLayout Orientation="Horizontal">
-                <Label Text="Requiere Aprobación" Font="15"  HorizontalOptions="Start" VerticalOptions="Center"></Label>
+                <Label Text="Requiere Aprobación: " Font="15"  HorizontalOptions="Start" VerticalOptions="Center"></Label>
                 <Switch IsToggled="{Binding TaskBind.IsAprob, Mode=TwoWay}" HorizontalOptions="Fill" x:Name="approvalSwitch"></Switch>
             </StackLayout>
 
             <StackLayout Orientation="Horizontal">
-                <Label Text="Prioridad" Font="15"  HorizontalOptions="Start" VerticalOptions="Center"></Label>
+                <Label Text="Prioridad: " Font="15"  HorizontalOptions="Start" VerticalOptions="Center"></Label>
                 <Picker x:Name="PickerPriority" ItemsSource="{Binding TaskPickers.ListPriority}" SelectedItem="{Binding TaskBind.TextPriority, Mode=TwoWay}" IsVisible="False" SelectedIndexChanged="PickerPriority_SelectedIndexChanged"></Picker>
                 <Entry x:Name="LabelPriority" Placeholder="Seleccionar" FontSize="15" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Focused="LabelPriority_Focused"></Entry>
             </StackLayout>
 
             <StackLayout Orientation="Horizontal">
+                <Label Font="15" Text="Recurrencia: " HorizontalOptions="Start"></Label>
                 <StackLayout>
                     <StackLayout.GestureRecognizers>
                         <TapGestureRecognizer x:Name="stackL" Command="{Binding TaskRecuCommand}">
                         </TapGestureRecognizer>
                     </StackLayout.GestureRecognizers>
+                    <Entry x:Name="LabelRecu" Text="{Binding RecuC, Mode=TwoWay}" FontSize="15" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Focused="LabelRecu_Focused" ></Entry>
                 </StackLayout>
-                <Label Font="15" Text="Recurrencia: " HorizontalOptions="Start"></Label>
-                <Entry x:Name="LabelRecu" Text="{Binding RecuC, Mode=TwoWay}" FontSize="15" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Focused="LabelRecu_Focused" ></Entry>
             </StackLayout>
 
             <StackLayout Orientation="Vertical" Padding="20">

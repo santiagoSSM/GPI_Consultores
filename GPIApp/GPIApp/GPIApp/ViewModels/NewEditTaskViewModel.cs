@@ -20,14 +20,15 @@ namespace GPIApp.ViewModels
         private TaskPickersModel taskPickers;
         public bool IsNewTask { get; private set; }
         public string Title { get; private set; }
-        
+        public ObservableCollection<string> Days { get; private set; }
+
 
         //Todo usuarios temporales mejorar con seleccion multiple mediante color
 
         public string User { get;  set; }
         public string Copy { get; set; }
 
-        #region Pop-up properties control
+        #region Pop-up control
 
         #region hide or show elements
 
@@ -199,6 +200,20 @@ namespace GPIApp.ViewModels
 
         #region Pickers Control
 
+        public bool DayOrWeekC
+        {
+            get
+            {
+                return TaskBind.SelectTimeOfRecu;
+            }
+
+            set
+            {
+                TaskBind.SelectTimeOfRecu = value;
+                OnPropertyChanged("DayOrWeekC");
+            }
+        }
+
         public string RecuC
         {
             get
@@ -260,6 +275,12 @@ namespace GPIApp.ViewModels
             navServ = new NavigationService(inter);
             taskPickers = new TaskPickersModel();
             IsNewTask = isNewTask;
+            Days = new ObservableCollection<string>();
+
+            for (int i = 1; i <= 31; i++)
+            {
+                Days.Add(i.ToString());
+            }
 
             if (IsNewTask)
             {
@@ -381,8 +402,6 @@ namespace GPIApp.ViewModels
                 await DialogService.ShowMessage("Error", "Debe ingresar la prioridad", "Aceptar");
                 return;
             }
-
-            
 
             try
             {

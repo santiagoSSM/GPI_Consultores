@@ -30,6 +30,28 @@ namespace GPIApp.Views.Task
             PickerDayOrWeek.Focus();
         }
 
+        private void PickerNumWeek_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LabelNumWeek.Text = PickerNumWeek.SelectedItem.ToString();
+        }
+
+        private void LabelNumWeek_Focused(object sender, FocusEventArgs e)
+        {
+            LabelNumWeek.Unfocus();
+            PickerNumWeek.Focus();
+        }
+
+        private void PickerNumDay_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LabelNumDay.Text = PickerNumDay.SelectedItem.ToString();
+        }
+
+        private void LabelNumDay_Focused(object sender, FocusEventArgs e)
+        {
+            LabelNumDay.Unfocus();
+            PickerNumDay.Focus();
+        }
+
         private async void Button_OnClicked(object sender, EventArgs e)
         {
             await PopupNavigation.PopAsync();

@@ -52,6 +52,7 @@ namespace GPIApp.Views.Task
         private void PickerFinalDate_SelectedIndexChanged(object sender, EventArgs e)
         {
             LabelFinalDate.Text = PickerFinalDate.SelectedItem.ToString();
+            var xyz = LabelFinalDate.Measure(25, 25);
         }
 
         private void LabelFinalDate_Focused(object sender, FocusEventArgs e)
