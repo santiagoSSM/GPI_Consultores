@@ -20,8 +20,6 @@ namespace GPIApp.ViewModels
         private TaskPickersModel taskPickers;
         public bool IsNewTask { get; private set; }
         public string Title { get; private set; }
-        public ObservableCollection<string> Days { get; private set; }
-
 
         //Todo usuarios temporales mejorar con seleccion multiple mediante color
 
@@ -115,7 +113,7 @@ namespace GPIApp.ViewModels
 
         private void WeeklyRecuControl()
         {
-            TextEverLC = "Semana";
+            TextEverLC = "Semana(s)";
             OnPropertyChanged("TextEverLC");
 
             VisEverSTC = true;
@@ -135,7 +133,7 @@ namespace GPIApp.ViewModels
 
         private void MontlyRecuControl()
         {
-            VisEverSTC = false;
+            VisEverSTC = true;
             OnPropertyChanged("VisEverSTC");
 
             VisDayOfWeekSTC = false;
@@ -200,7 +198,7 @@ namespace GPIApp.ViewModels
 
         #region Pickers Control
 
-        public bool DayOrWeekC
+        public bool SelectTimeOfRecuC
         {
             get
             {
@@ -210,7 +208,37 @@ namespace GPIApp.ViewModels
             set
             {
                 TaskBind.SelectTimeOfRecu = value;
-                OnPropertyChanged("DayOrWeekC");
+                OnPropertyChanged("SelectTimeOfRecuC");
+                DayOrWeekIntC = 0;
+            }
+        }
+
+        public int DayOrWeekIntC
+        {
+            get
+            {
+                return TaskBind.TimeOfRecu0;
+            }
+
+            set
+            {
+                TaskBind.TimeOfRecu0 = value;
+                OnPropertyChanged("DayOrWeekTextC");
+            }
+        }
+
+        public string DayOrWeekTextC
+        {
+            get
+            {
+                if (TaskBind.SelectTimeOfRecu)
+                {
+                    return ((TaskBind.TimeOfRecu0 + 1).ToString() + "°");
+                }
+                else
+                {
+                    return (TaskBind.TimeOfRecu0 + 1).ToString();
+                }
             }
         }
 
@@ -263,6 +291,15 @@ namespace GPIApp.ViewModels
 
         #region Variables
         public bool isInitPopUp;//Variable that determines the execution of this method as protection for the binding context
+        public ObservableCollection<string> DaysText { get; private set; }
+        public ObservableCollection<string> Days { get; private set; }
+        public ObservableCollection<string> Weeks { get; private set; }
+        #endregion
+
+        #region Constants
+
+        const int rowSize = 30;
+
         #endregion
 
         #endregion
@@ -276,6 +313,24 @@ namespace GPIApp.ViewModels
             taskPickers = new TaskPickersModel();
             IsNewTask = isNewTask;
             Days = new ObservableCollection<string>();
+            DaysText = new ObservableCollection<string>()
+            {
+                "Domingo",
+                "Lunes",
+                "Martes",
+                "Miércoles",
+                "Jueves",
+                "Viernes",
+                "Sábado"
+            };
+            Weeks = new ObservableCollection<string>()
+            {
+                "Primera",
+                "Segunda",
+                "Tercera",
+                "Cuarta",
+                "Quinta"
+            };
 
             for (int i = 1; i <= 31; i++)
             {

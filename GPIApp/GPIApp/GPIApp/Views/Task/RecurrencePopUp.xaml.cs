@@ -14,11 +14,10 @@ namespace GPIApp.Views.Task
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class RecurrencePopUp : PopupPage
     {
-		public RecurrencePopUp()
-		{
-			InitializeComponent ();
+        public RecurrencePopUp()
+        {
+            InitializeComponent();
             PickerDate_DateSelected();
-
         }
 
         private void PickerRecu_SelectedIndexChanged(object sender, EventArgs e)
@@ -47,6 +46,17 @@ namespace GPIApp.Views.Task
         {
             LabelDayOrWeek.Unfocus();
             await PopupNavigation.PushAsync(new DayOrWeek());
+        }
+
+        private void PickerDay_SelectedIndexChanged2(object sender, EventArgs e)
+        {
+            LabelDay2.Text = PickerDay2.SelectedItem.ToString();
+        }
+
+        private void LabelDay_Focused2(object sender, FocusEventArgs e)
+        {
+            LabelDay2.Unfocus();
+            PickerDay2.Focus();
         }
 
         private void PickerFinalDate_SelectedIndexChanged(object sender, EventArgs e)
