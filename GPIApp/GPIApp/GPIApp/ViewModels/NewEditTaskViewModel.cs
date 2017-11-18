@@ -61,7 +61,7 @@ namespace GPIApp.ViewModels
                 //Annual
                 case 4:
                     {
-
+                        AnnualRecuControl();
                         break;
                     }
             }
@@ -75,8 +75,11 @@ namespace GPIApp.ViewModels
             VisDayOfWeekSTC = false;
             OnPropertyChanged("VisDayOfWeekSTC");
 
-            VisSelectRecuSTC = false;
-            OnPropertyChanged("VisSelectRecuSTC");
+            VisSelectRecuMontlySTC = false;
+            OnPropertyChanged("VisSelectRecuMontlySTC");
+
+            VisSelectRecuAnnualSTC = false;
+            OnPropertyChanged("VisSelectRecuAnnualSTC");
 
             VisFinalDateSTC = false;
             OnPropertyChanged("VisFinalDateSTC");
@@ -102,8 +105,11 @@ namespace GPIApp.ViewModels
             VisDayOfWeekSTC = false;
             OnPropertyChanged("VisDayOfWeekSTC");
 
-            VisSelectRecuSTC = false;
-            OnPropertyChanged("VisSelectRecuSTC");
+            VisSelectRecuMontlySTC = false;
+            OnPropertyChanged("VisSelectRecuMontlySTC");
+
+            VisSelectRecuAnnualSTC = false;
+            OnPropertyChanged("VisSelectRecuAnnualSTC");
 
             VisFinalDateSTC = true;
             OnPropertyChanged("VisFinalDateSTC");
@@ -122,8 +128,11 @@ namespace GPIApp.ViewModels
             VisDayOfWeekSTC = true;
             OnPropertyChanged("VisDayOfWeekSTC");
 
-            VisSelectRecuSTC = false;
-            OnPropertyChanged("VisSelectRecuSTC");
+            VisSelectRecuMontlySTC = false;
+            OnPropertyChanged("VisSelectRecuMontlySTC");
+
+            VisSelectRecuAnnualSTC = false;
+            OnPropertyChanged("VisSelectRecuAnnualSTC");
 
             VisFinalDateSTC = true;
             OnPropertyChanged("VisFinalDateSTC");
@@ -139,8 +148,37 @@ namespace GPIApp.ViewModels
             VisDayOfWeekSTC = false;
             OnPropertyChanged("VisDayOfWeekSTC");
 
-            VisSelectRecuSTC = true;
-            OnPropertyChanged("VisSelectRecuSTC");
+            VisSelectRecuMontlySTC = true;
+            OnPropertyChanged("VisSelectRecuMontlySTC");
+
+            VisSelectRecuAnnualSTC = false;
+            OnPropertyChanged("VisSelectRecuAnnualSTC");
+
+            VisMontlyLC = true;
+            OnPropertyChanged("VisMontlyLC");
+
+            VisFinalDateSTC = true;
+            OnPropertyChanged("VisFinalDateSTC");
+
+            FinalDateControl(TaskBind.FinalDate);
+        }
+
+        private void AnnualRecuControl()
+        {
+            VisEverSTC = true;
+            OnPropertyChanged("VisEverSTC");
+
+            VisDayOfWeekSTC = false;
+            OnPropertyChanged("VisDayOfWeekSTC");
+
+            VisSelectRecuMontlySTC = false;
+            OnPropertyChanged("VisSelectRecuMontlySTC");
+
+            VisSelectRecuAnnualSTC = true;
+            OnPropertyChanged("VisSelectRecuAnnualSTC");
+
+            VisMontlyLC = false;
+            OnPropertyChanged("VisMontlyLC");
 
             VisFinalDateSTC = true;
             OnPropertyChanged("VisFinalDateSTC");
@@ -281,7 +319,9 @@ namespace GPIApp.ViewModels
         public string TextEverLC { get; set; }
         public bool VisEverSTC { get; set; }
         public bool VisDayOfWeekSTC { get; set; }
-        public bool VisSelectRecuSTC { get; set; }
+        public bool VisSelectRecuMontlySTC { get; set; }
+        public bool VisSelectRecuAnnualSTC { get; set; }
+        public bool VisMontlyLC { get; set; }
         public bool VisFinalDateSTC { get; set; }
         public bool VisNumRecuSTC { get; set; }
         public bool VisContractExpSTC { get; set; }
@@ -294,12 +334,7 @@ namespace GPIApp.ViewModels
         public ObservableCollection<string> DaysText { get; private set; }
         public ObservableCollection<string> Days { get; private set; }
         public ObservableCollection<string> Weeks { get; private set; }
-        #endregion
-
-        #region Constants
-
-        const int rowSize = 30;
-
+        public ObservableCollection<string> Months { get; private set; }
         #endregion
 
         #endregion
@@ -330,6 +365,21 @@ namespace GPIApp.ViewModels
                 "Tercera",
                 "Cuarta",
                 "Quinta"
+            };
+            Months = new ObservableCollection<string>()
+            {
+                "Enero",
+                "Febrero",
+                "Marzo",
+                "Abril",
+                "Mayo",
+                "Junio",
+                "Julio",
+                "Agosto",
+                "Septiembre",
+                "Octubre",
+                "Noviembre",
+                "Diciembre"
             };
 
             for (int i = 1; i <= 31; i++)

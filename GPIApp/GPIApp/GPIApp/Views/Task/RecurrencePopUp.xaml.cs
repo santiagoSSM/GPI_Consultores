@@ -45,6 +45,7 @@ namespace GPIApp.Views.Task
         private async void LabelDayOrWeek_Focused(object sender, FocusEventArgs e)
         {
             LabelDayOrWeek.Unfocus();
+            LabelDayOrWeek2.Unfocus();
             await PopupNavigation.PushAsync(new DayOrWeek());
         }
 
@@ -57,6 +58,39 @@ namespace GPIApp.Views.Task
         {
             LabelDay2.Unfocus();
             PickerDay2.Focus();
+        }
+
+        private void PickerDay_SelectedIndexChanged3(object sender, EventArgs e)
+        {
+            LabelDay3.Text = PickerDay3.SelectedItem.ToString();
+        }
+
+        private void LabelDay_Focused3(object sender, FocusEventArgs e)
+        {
+            LabelDay3.Unfocus();
+            PickerDay3.Focus();
+        }
+
+        private void PickerMonth_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LabelMonth.Text = PickerMonth.SelectedItem.ToString();
+        }
+
+        private void LabelMonth_Focused(object sender, FocusEventArgs e)
+        {
+            LabelMonth.Unfocus();
+            PickerMonth.Focus();
+        }
+
+        private void PickerMonth_SelectedIndexChanged2(object sender, EventArgs e)
+        {
+            LabelMonth2.Text = PickerMonth2.SelectedItem.ToString();
+        }
+
+        private void LabelMonth_Focused2(object sender, FocusEventArgs e)
+        {
+            LabelMonth2.Unfocus();
+            PickerMonth2.Focus();
         }
 
         private void PickerFinalDate_SelectedIndexChanged(object sender, EventArgs e)

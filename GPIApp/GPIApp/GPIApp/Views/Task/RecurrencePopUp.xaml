@@ -82,7 +82,7 @@
                 <Entry Grid.Column="1" x:Name="LabelDay" FontSize="15" Focused="LabelDay_Focused"></Entry>
               </Grid>
               <!--Montly and Annual-->
-              <Grid Grid.Row="3" IsVisible="{Binding VisSelectRecuSTC}">
+              <Grid Grid.Row="3" IsVisible="{Binding VisSelectRecuMontlySTC}">
                 <Grid.ColumnDefinitions>
                   <ColumnDefinition Width="Auto" />
                   <ColumnDefinition Width="40" />
@@ -124,6 +124,51 @@
                   <Entry Grid.Column="0" x:Name="LabelDay2" FontSize="15" HorizontalOptions="FillAndExpand" Focused="LabelDay_Focused2"></Entry>
                   <Entry Grid.Column="1" Text="{Binding TaskBind.TimeOfRecu2, Mode=TwoWay}" FontSize="15" Keyboard="Numeric" HorizontalOptions="FillAndExpand"></Entry>
                   <Label Grid.Column="2" Text="de cada Mes(es)" Font="15" TextColor="Black" HorizontalOptions="FillAndExpand"></Label>
+                
+                </Grid>
+              </Grid>
+              <Grid Grid.Row="3" IsVisible="{Binding VisSelectRecuAnnualSTC}">
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="Auto" />
+                  <ColumnDefinition Width="40" />
+                  <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                  <RowDefinition Height="30" />
+                </Grid.RowDefinitions>
+
+                <Label Grid.Column="0" Text="El Día" Font="15" TextColor="Black"></Label>
+                <Entry Grid.Column="1" x:Name="LabelDayOrWeek2" Text="{Binding DayOrWeekTextC}" FontSize="15" Focused="LabelDayOrWeek_Focused"></Entry>
+              
+                <Grid Grid.Column="3" IsVisible="{Binding SelectTimeOfRecuC, Converter={StaticResource NotBoolConverter}, Mode=TwoWay}">
+                  <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                  </Grid.ColumnDefinitions>
+                  <Grid.RowDefinitions>
+                    <RowDefinition Height="30" />
+                  </Grid.RowDefinitions>
+
+                  <Label Grid.Column="0" Text="de" Font="15" TextColor="Black"></Label>
+                  <Picker x:Name="PickerMonth" ItemsSource="{Binding Months}" SelectedIndex="{Binding TaskBind.TimeOfRecu2, Mode=TwoWay}" IsVisible="False" SelectedIndexChanged="PickerMonth_SelectedIndexChanged"></Picker>
+                  <Entry Grid.Column="2" x:Name="LabelMonth" FontSize="15" HorizontalOptions="FillAndExpand" Focused="LabelMonth_Focused"></Entry>
+                
+                </Grid>
+                <Grid Grid.Column="3" IsVisible="{Binding SelectTimeOfRecuC, Mode=TwoWay}">
+                  <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                  </Grid.ColumnDefinitions>
+                  <Grid.RowDefinitions>
+                    <RowDefinition Height="30" />
+                  </Grid.RowDefinitions>
+
+                  <Picker x:Name="PickerDay3" ItemsSource="{Binding DaysText}" SelectedIndex="{Binding TaskBind.TimeOfRecu1, Mode=TwoWay}" IsVisible="False" SelectedIndexChanged="PickerDay_SelectedIndexChanged3"></Picker>
+                  <Entry Grid.Column="0" x:Name="LabelDay3" FontSize="15" HorizontalOptions="FillAndExpand" Focused="LabelDay_Focused3"></Entry>
+                  <Label Grid.Column="1" Text="de" Font="15" TextColor="Black"></Label>
+                  <Picker x:Name="PickerMonth2" ItemsSource="{Binding Months}" SelectedIndex="{Binding TaskBind.TimeOfRecu2, Mode=TwoWay}" IsVisible="False" SelectedIndexChanged="PickerMonth_SelectedIndexChanged2"></Picker>
+                  <Entry Grid.Column="2" x:Name="LabelMonth2" FontSize="15" HorizontalOptions="FillAndExpand" Focused="LabelMonth_Focused2"></Entry>
                 
                 </Grid>
               </Grid>
