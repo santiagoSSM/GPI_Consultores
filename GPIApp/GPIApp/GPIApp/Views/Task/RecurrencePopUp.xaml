@@ -19,6 +19,7 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
               </Grid.RowDefinitions>
                 
               <Grid Grid.Row="0">
@@ -221,6 +222,12 @@
                 <Entry Grid.Column="1" x:Name="LabelDate" FontSize="15" Focused="LabelDate_Focused"></Entry>
               </Grid>
               <Button Grid.Row="7" VerticalOptions="Center" Text="Hecho" Clicked="Button_OnClicked"></Button>
+              <StackLayout Grid.Row="8">
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer x:Name="stackL" Command="{Binding TaskRecuCommand2}">
+                    </TapGestureRecognizer>
+                </StackLayout.GestureRecognizers>
+            </StackLayout>
             </Grid>
           </ScrollView> 
         </Frame>

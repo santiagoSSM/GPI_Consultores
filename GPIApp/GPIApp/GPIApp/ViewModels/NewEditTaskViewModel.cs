@@ -247,7 +247,10 @@ namespace GPIApp.ViewModels
             {
                 TaskBind.SelectTimeOfRecu = value;
                 OnPropertyChanged("SelectTimeOfRecuC");
-                DayOrWeekIntC = 0;
+                if (!isInitPopUp)
+                {
+                    DayOrWeekIntC = 0;
+                }
             }
         }
 
@@ -261,6 +264,7 @@ namespace GPIApp.ViewModels
             set
             {
                 TaskBind.TimeOfRecu0 = value;
+                OnPropertyChanged("DayOrWeekIntC");
                 OnPropertyChanged("DayOrWeekTextC");
             }
         }
@@ -305,6 +309,7 @@ namespace GPIApp.ViewModels
             set
             {
                 TaskBind.FinalDate = value;
+                OnPropertyChanged("FinalDateIndexC");
                 if (!isInitPopUp)
                 {
                     FinalDateControl(value);
@@ -602,6 +607,21 @@ namespace GPIApp.ViewModels
             //Init the popup
             isInitPopUp = true;
             var temp = new RecurrencePopUp() { CloseWhenBackgroundIsClicked = true };
+            await PopupNavigation.PushAsync(temp);
+            isInitPopUp = false;
+        }
+
+        public ICommand TaskRecuCommand2
+        {
+            get { return new RelayCommand(TaskRecu2); }
+        }
+
+        private async void TaskRecu2()
+
+        {
+            //Init the popup
+            isInitPopUp = true;
+            var temp = new DayOrWeek() { CloseWhenBackgroundIsClicked = true };
             await PopupNavigation.PushAsync(temp);
             isInitPopUp = false;
         }

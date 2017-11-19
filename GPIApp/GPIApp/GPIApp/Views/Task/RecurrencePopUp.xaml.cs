@@ -42,11 +42,11 @@ namespace GPIApp.Views.Task
             PickerDay.Focus();
         }
 
-        private async void LabelDayOrWeek_Focused(object sender, FocusEventArgs e)
+        private void LabelDayOrWeek_Focused(object sender, FocusEventArgs e)
         {
             LabelDayOrWeek.Unfocus();
             LabelDayOrWeek2.Unfocus();
-            await PopupNavigation.PushAsync(new DayOrWeek());
+            stackL.Command.Execute(null);
         }
 
         private void PickerDay_SelectedIndexChanged2(object sender, EventArgs e)
