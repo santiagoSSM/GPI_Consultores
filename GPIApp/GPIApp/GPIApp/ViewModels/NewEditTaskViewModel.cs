@@ -18,6 +18,7 @@ namespace GPIApp.ViewModels
     {
         NavigationService navServ;
         private TaskPickersModel taskPickers;
+        public bool isInitPopUp = true;//Variable that determines the execution of this method as protection for the binding context
         public bool IsNewTask { get; private set; }
         public string Title { get; private set; }
 
@@ -28,44 +29,66 @@ namespace GPIApp.ViewModels
 
         #region Pop-up control
 
-        #region hide or show elements
+        #region Clear and Update Recurrence
 
-        private void ConfigPopup(string TextRecu)
+        private void ClearRecu()
         {
-            switch (taskPickers.ListRecu.FirstOrDefault(x => x.TextValue == TextRecu).IdValue)
-            {
-                //None
-                case 0:
-                    {
-                        NoneRecuControl();
-                        break;
-                    }
-                //Daily
-                case 1:
-                    {
-                        DailyRecuControl();
-                        break;
-                    }
-                //Weekly
-                case 2:
-                    {
-                        WeeklyRecuControl();
-                        break;
-                    }
-                //Monthly
-                case 3:
-                    {
-                        MontlyRecuControl();
-                        break;
-                    }
-                //Annual
-                case 4:
-                    {
-                        AnnualRecuControl();
-                        break;
-                    }
-            }
+            TaskBind.BeforeDays = 0;
+            TaskBind.IsCancelRecu = false;
+
+            //Daily,Montly,Annual Vector info
+
+            TaskBind.SelectTimeOfRecu = false;
+            TaskBind.TimeOfRecu0 = 0;
+            TaskBind.TimeOfRecu1 = 0;
+            TaskBind.TimeOfRecu2 = 0;
+
+            //Final Date
+
+            TaskBind.FinalDate = 0;
+            TaskBind.NumRecu = 0;
+            TaskBind.ContractExp = DateTime.Now;
         }
+
+        private void NoneRecuClear()
+        {
+            ClearRecu();
+            OnPropertyChanged("TaskBind");
+        }
+
+        private void DailyRecuClear()
+        {
+            ClearRecu();
+            OnPropertyChanged("TaskBind");
+            FinalDateIndexC = 0;
+        }
+
+        private void WeeklyRecuClear()
+        {
+            ClearRecu();
+            OnPropertyChanged("TaskBind");
+            FinalDateIndexC = 0;
+        }
+
+        private void MontlyRecuClear()
+        {
+            ClearRecu();
+            OnPropertyChanged("TaskBind");
+            SelectTimeOfRecuC = false;
+            FinalDateIndexC = 0;
+        }
+
+        private void AnnualRecuClear()
+        {
+            ClearRecu();
+            OnPropertyChanged("TaskBind");
+            SelectTimeOfRecuC = false;
+            FinalDateIndexC = 0;
+        }
+
+        #endregion
+
+        #region hide or show elements
 
         private void NoneRecuControl()
         {
@@ -113,8 +136,6 @@ namespace GPIApp.ViewModels
 
             VisFinalDateSTC = true;
             OnPropertyChanged("VisFinalDateSTC");
-
-            FinalDateControl(TaskBind.FinalDate);
         }
 
         private void WeeklyRecuControl()
@@ -136,13 +157,11 @@ namespace GPIApp.ViewModels
 
             VisFinalDateSTC = true;
             OnPropertyChanged("VisFinalDateSTC");
-
-            FinalDateControl(TaskBind.FinalDate);
         }
 
         private void MontlyRecuControl()
         {
-            VisEverSTC = true;
+            VisEverSTC = false;
             OnPropertyChanged("VisEverSTC");
 
             VisDayOfWeekSTC = false;
@@ -159,13 +178,11 @@ namespace GPIApp.ViewModels
 
             VisFinalDateSTC = true;
             OnPropertyChanged("VisFinalDateSTC");
-
-            FinalDateControl(TaskBind.FinalDate);
         }
 
         private void AnnualRecuControl()
         {
-            VisEverSTC = true;
+            VisEverSTC = false;
             OnPropertyChanged("VisEverSTC");
 
             VisDayOfWeekSTC = false;
@@ -182,8 +199,6 @@ namespace GPIApp.ViewModels
 
             VisFinalDateSTC = true;
             OnPropertyChanged("VisFinalDateSTC");
-
-            FinalDateControl(TaskBind.FinalDate);
         }
 
         private void FinalDateControl(int idFinalDateSelect)
@@ -236,6 +251,82 @@ namespace GPIApp.ViewModels
 
         #region Pickers Control
 
+        public string RecuC
+        {
+            get
+            {
+                return TaskBind.TextRecu;
+            }
+
+            set
+            {
+                TaskBind.TextRecu = value;
+                OnPropertyChanged("RecuC");
+                ConfigPopup(value);
+            }
+        }
+
+        private void ConfigPopup(string TextRecu)
+        {
+            switch (taskPickers.ListRecu.FirstOrDefault(x => x.TextValue == TextRecu).IdValue)
+            {
+                //None
+                case 0:
+                    {
+                        if (!isInitPopUp)
+                        {
+                            NoneRecuClear();
+                        }
+                        NoneRecuControl();
+                        break;
+                    }
+                //Daily
+                case 1:
+                    {
+                        if (!isInitPopUp)
+                        {
+                            DailyRecuClear();
+                        }
+                        DailyRecuControl();
+                        FinalDateControl(TaskBind.FinalDate);
+                        break;
+                    }
+                //Weekly
+                case 2:
+                    {
+                        if (!isInitPopUp)
+                        {
+                            WeeklyRecuClear();
+                        }
+                        WeeklyRecuControl();
+                        FinalDateControl(TaskBind.FinalDate);
+                        break;
+                    }
+                //Monthly
+                case 3:
+                    {
+                        if (!isInitPopUp)
+                        {
+                            MontlyRecuClear();
+                        }
+                        MontlyRecuControl();
+                        FinalDateControl(TaskBind.FinalDate);
+                        break;
+                    }
+                //Annual
+                case 4:
+                    {
+                        if (!isInitPopUp)
+                        {
+                            AnnualRecuClear();
+                        }
+                        AnnualRecuControl();
+                        FinalDateControl(TaskBind.FinalDate);
+                        break;
+                    }
+            }
+        }
+
         public bool SelectTimeOfRecuC
         {
             get
@@ -282,22 +373,7 @@ namespace GPIApp.ViewModels
                     return (TaskBind.TimeOfRecu0 + 1).ToString();
                 }
             }
-        }
-
-        public string RecuC
-        {
-            get
-            {
-                return TaskBind.TextRecu;
-            }
-
-            set
-            {
-                TaskBind.TextRecu = value;
-                OnPropertyChanged("RecuC");
-                ConfigPopup(value);
-            }
-        }
+        }  
 
         public int FinalDateIndexC
         {
@@ -335,7 +411,6 @@ namespace GPIApp.ViewModels
         #endregion
 
         #region Variables
-        public bool isInitPopUp;//Variable that determines the execution of this method as protection for the binding context
         public ObservableCollection<string> DaysText { get; private set; }
         public ObservableCollection<string> Days { get; private set; }
         public ObservableCollection<string> Weeks { get; private set; }
